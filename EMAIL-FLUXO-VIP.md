@@ -9,22 +9,25 @@ disponibilidade de stock.
 
 ## Estado técnico
 
-O formulário está em [`src/index.html`](./src/index.html). O atributo
-`data-endpoint` do formulário `#vip-email-form` está vazio por omissão. Enquanto
-estiver vazio, o site não envia nem guarda o email e apresenta uma mensagem a
-informar que o registo ainda não está ativo.
+O formulário está em [`src/index.html`](./src/index.html) e envia os dados para
+`https://formspree.io/f/xqpegzwz` usando o atributo `action` e o método `POST`.
+O envio usa `FormData` e o cabeçalho `Accept: application/json`, para permitir
+que a página apresente os estados de sucesso e erro.
 
-Para ativar o envio:
+Os campos enviados são:
 
-1. Criar uma lista/audiência para o Lote 001 num serviço aprovado e configurar a
-   confirmação de subscrição e as regras aplicáveis.
-2. Configurar o endpoint HTTPS do formulário em `data-endpoint`. O envio atual
-   usa `POST` com `FormData` e o cabeçalho `Accept: application/json`, adequado
-   a endpoints que aceitem submissões de formulário, como um formulário
-   Formspree configurado para aceitar pedidos cross-origin.
-3. Fazer um teste de ponta a ponta com um endereço de teste e verificar a
+- `email`: endereço validado pelo navegador.
+- `consent`: valor `accepted`, após confirmação obrigatória da caixa de
+  consentimento.
+- `_subject`: assunto para identificar novas inscrições na caixa de entrada.
+
+Antes de publicar:
+
+1. Confirmar que o formulário Formspree está ativo e configurado para aceitar
+   estes campos e que a caixa de entrada de destino está correta.
+2. Fazer um teste de ponta a ponta com um endereço de teste e verificar a
    receção, os erros, a confirmação de subscrição e a remoção/descadastro.
-4. Atualizar o aviso de privacidade da página com o responsável pelo tratamento,
+3. Atualizar o aviso de privacidade da página com o responsável pelo tratamento,
    serviço/subcontratante, finalidade, base legal, conservação, transferências
    eventualmente aplicáveis e forma de exercer direitos antes de recolher dados.
 
@@ -35,7 +38,7 @@ serviço e processá-la de acordo com a política de privacidade publicada.
 Não colocar chaves privadas, tokens ou credenciais no HTML/JavaScript público.
 Uma integração Mailchimp que não aceite pedidos cross-origin exige o formulário
 de incorporação oficial ou um endpoint intermédio protegido no servidor; não
-substituir `data-endpoint` por uma chave privada.
+substituir o endpoint público por uma chave privada.
 
 ## Sequência recomendada
 

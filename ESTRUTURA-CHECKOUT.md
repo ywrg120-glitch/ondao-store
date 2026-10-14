@@ -13,8 +13,8 @@ checkout pode confirmar uma encomenda e a disponibilidade real.
    a confirmação de subscrição, o aviso de privacidade e o processo de
    descadastro. Testar o registo e o tratamento de falhas.
 2. **Recolher interesse:** o CTA abre o modal; o visitante fornece um email
-   válido. O site envia o formulário apenas quando `data-endpoint` está
-   configurado. Resposta de sucesso significa que o endpoint aceitou o registo,
+   válido e dá consentimento. O site envia `email`, `consent` e `_subject` ao
+   endpoint Formspree no atributo `action`, usando `POST`. Resposta de sucesso significa que o endpoint aceitou o registo,
    não que uma unidade ficou reservada.
 3. **Aguardar preparação comercial e operacional:** aprovar preço final,
    condições do desconto de fundador (se aplicável), termos, política de
@@ -53,11 +53,10 @@ checkout pode confirmar uma encomenda e a disponibilidade real.
 
 ## Responsabilidades de integração
 
-- O formulário está em [`src/index.html`](./src/index.html); o atributo
-  `data-endpoint` permanece vazio até ser configurado.
-- O endpoint deverá aceitar `POST` com os campos do formulário e responder com
-  um status HTTP de sucesso apenas depois de aceitar o registo. A página não
-  persiste emails localmente.
+- O formulário está em [`src/index.html`](./src/index.html) e envia `email`,
+  `consent` e `_subject` por `POST` ao endpoint Formspree definido em `action`.
+- A página apresenta sucesso para uma resposta HTTP bem-sucedida e estados de
+  erro para rejeição do endpoint ou falha de rede; não persiste emails localmente.
 - A integração de checkout, a gestão de stock e a confirmação de encomendas não
   estão implementadas nesta página estática; devem ser fornecidas pela
   plataforma de comércio eletrónico ou por serviços de backend apropriados.
@@ -66,7 +65,7 @@ checkout pode confirmar uma encomenda e a disponibilidade real.
 
 ## Critérios para ativação
 
-- [ ] Endpoint de email configurado e testado com respostas de sucesso e erro.
+- [ ] Formulário Formspree ativo e testado com respostas de sucesso e erro.
 - [ ] Aviso de privacidade e mecanismo de descadastro publicados e revistos.
 - [ ] Preço, condições, stock, expedição e políticas aprovados.
 - [ ] Checkout e emails transacionais testados em mobile e desktop.

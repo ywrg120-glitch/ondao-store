@@ -879,7 +879,12 @@
       <p id="vip-dialog-copy" class="ondao-vip-dialog__copy">
         Deixa o teu email para manifestar interesse na edição limitada do Lote 001.
       </p>
-      <form id="vip-email-form" data-endpoint="">
+      <form
+        id="vip-email-form"
+        action="https://formspree.io/f/xqpegzwz"
+        method="post"
+      >
+        <input type="hidden" name="_subject" value="Nova inscrição — Lista VIP Lote 001">
         <label class="ondao-vip-dialog__label" for="vip-email">Email</label>
         <input
           id="vip-email"
@@ -900,7 +905,8 @@
           </span>
         </label>
         <p id="vip-dialog-notice" class="ondao-vip-dialog__notice">
-          O email só será enviado quando a lista VIP estiver ativa.
+          Ao submeter, o teu email e consentimento serão enviados para o Formspree
+          para tratar a adesão à lista VIP.
         </p>
         <button id="vip-submit-button" class="ondao-vip-dialog__submit" type="submit">
           Verificar email
@@ -928,9 +934,9 @@
         <section id="privacidade" class="ondao-footer__privacy" aria-labelledby="privacy-heading">
           <h2 id="privacy-heading" class="ondao-footer__title">Privacidade</h2>
           <p>
-            O email só será enviado para o serviço de lista VIP quando este estiver
-            configurado. Antes da ativação, serão disponibilizadas informações sobre
-            o responsável pelo tratamento, a finalidade, a conservação e os direitos
+            O formulário envia o email e o consentimento ao Formspree para tratar
+            a adesão à lista VIP. Serão disponibilizadas informações sobre o
+            responsável pelo tratamento, a finalidade, a conservação e os direitos
             relativos aos dados pessoais.
           </p>
         </section>
@@ -984,19 +990,12 @@
         event.preventDefault();
         vipFormStatus.textContent = "";
 
-        const endpoint = vipEmailForm.dataset.endpoint.trim();
-        if (!endpoint) {
-          vipFormStatus.textContent =
-            "A lista VIP ainda não está ativa. Estamos a preparar o registo do teu email.";
-          return;
-        }
-
         vipSubmitButton.disabled = true;
         vipFormStatus.textContent = "A enviar o teu email…";
 
         try {
-          const response = await fetch(endpoint, {
-            method: "POST",
+          const response = await fetch(vipEmailForm.action, {
+            method: vipEmailForm.method.toUpperCase(),
             body: new FormData(vipEmailForm),
             headers: { Accept: "application/json" },
           });
