@@ -466,6 +466,165 @@
         padding-left: 1.25rem;
       }
 
+      .ondao-vip-dialog {
+        width: min(100% - 2rem, 480px);
+        max-width: none;
+        max-height: 90vh;
+        max-height: 90dvh;
+        overflow-y: auto;
+        padding: clamp(1.5rem, 6vw, 2.5rem);
+        border: 1px solid rgb(168 139 86 / 55%);
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .ondao-vip-dialog::backdrop {
+        background: rgb(41 37 31 / 68%);
+      }
+
+      .ondao-vip-dialog__close {
+        display: block;
+        width: 44px;
+        height: 44px;
+        margin: -0.75rem -0.75rem 1rem auto;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1.5rem;
+      }
+
+      .ondao-vip-dialog__close:focus-visible,
+      .ondao-vip-dialog__submit:focus-visible,
+      .ondao-vip-dialog__email:focus-visible,
+      .ondao-footer a:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .ondao-vip-dialog__eyebrow {
+        margin: 0 0 0.75rem;
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .ondao-vip-dialog__heading {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .ondao-vip-dialog__copy,
+      .ondao-vip-dialog__notice {
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+
+      .ondao-vip-dialog__copy {
+        margin: 1rem 0 1.5rem;
+      }
+
+      .ondao-vip-dialog__label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .ondao-vip-dialog__email {
+        width: 100%;
+        min-height: 48px;
+        padding: 0.75rem;
+        border: 1px solid rgb(41 37 31 / 45%);
+        border-radius: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+      }
+
+      .ondao-vip-dialog__notice {
+        margin: 0.75rem 0 0;
+        color: rgb(41 37 31 / 75%);
+      }
+
+      .ondao-vip-dialog__submit {
+        width: 100%;
+        min-height: 48px;
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .ondao-vip-dialog__status {
+        min-height: 1.5em;
+        margin: 0.75rem 0 0;
+        color: var(--ink);
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .ondao-footer {
+        padding: 3rem 1.25rem;
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .ondao-footer__content {
+        display: grid;
+        width: min(100%, 1120px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        margin: 0 auto;
+      }
+
+      .ondao-footer__title {
+        margin: 0;
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .ondao-footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+        margin: 1rem 0 0;
+      }
+
+      .ondao-footer a {
+        color: inherit;
+        text-underline-offset: 0.2em;
+      }
+
+      .ondao-footer__terms,
+      .ondao-footer__privacy {
+        scroll-margin-top: 1.5rem;
+      }
+
+      .ondao-footer__terms p,
+      .ondao-footer__privacy p {
+        margin: 0.75rem 0 0;
+        color: rgb(249 246 240 / 78%);
+        font-size: 0.85rem;
+        line-height: 1.65;
+      }
+
       @media (max-width: 560px) {
         .ondao-hero {
           min-height: 70svh;
@@ -495,6 +654,11 @@
 
         .ondao-product__heading {
           font-size: 2.5rem;
+        }
+
+        .ondao-footer__content {
+          grid-template-columns: 1fr;
+          gap: 1.75rem;
         }
 
         .ondao-ingredients__item {
@@ -679,10 +843,80 @@
         </details>
       </section>
     </main>
+    <dialog
+      id="vip-dialog"
+      class="ondao-vip-dialog"
+      aria-labelledby="vip-dialog-heading"
+      aria-describedby="vip-dialog-copy vip-dialog-notice"
+    >
+      <button
+        class="ondao-vip-dialog__close"
+        type="button"
+        aria-label="Fechar formulário"
+        data-close-vip-dialog
+      >&times;</button>
+      <p class="ondao-vip-dialog__eyebrow">Lote 001 · 100 fundadores</p>
+      <h2 id="vip-dialog-heading" class="ondao-vip-dialog__heading">
+        Lista de espera VIP
+      </h2>
+      <p id="vip-dialog-copy" class="ondao-vip-dialog__copy">
+        Deixa o teu email para manifestar interesse na edição limitada do Lote 001.
+      </p>
+      <form id="vip-email-form">
+        <label class="ondao-vip-dialog__label" for="vip-email">Email</label>
+        <input
+          id="vip-email"
+          class="ondao-vip-dialog__email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          inputmode="email"
+          maxlength="254"
+          required
+        >
+        <p id="vip-dialog-notice" class="ondao-vip-dialog__notice">
+          A lista ainda não está ativa. O email não será enviado nem guardado.
+        </p>
+        <button class="ondao-vip-dialog__submit" type="submit">
+          Verificar email
+        </button>
+        <p id="vip-form-status" class="ondao-vip-dialog__status" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
+    <footer class="ondao-footer">
+      <div class="ondao-footer__content">
+        <nav aria-label="Informação legal">
+          <p class="ondao-footer__title">Informação</p>
+          <div class="ondao-footer__links">
+            <a href="#termos">Termos</a>
+            <a href="#privacidade">Privacidade</a>
+          </div>
+        </nav>
+        <section id="termos" class="ondao-footer__terms" aria-labelledby="terms-heading">
+          <h2 id="terms-heading" class="ondao-footer__title">Termos</h2>
+          <p>
+            Esta página é uma pré-visualização: não aceita encomendas nem reservas.
+            As condições da oferta de fundador serão publicadas antes da abertura
+            das vendas.
+          </p>
+        </section>
+        <section id="privacidade" class="ondao-footer__privacy" aria-labelledby="privacy-heading">
+          <h2 id="privacy-heading" class="ondao-footer__title">Privacidade</h2>
+          <p>
+            O formulário da lista VIP é apenas demonstrativo. Nesta versão, o email
+            introduzido não é enviado nem guardado. Será disponibilizada informação
+            sobre o tratamento de dados antes da ativação da lista.
+          </p>
+        </section>
+      </div>
+    </footer>
     <script>
       const quantityInput = document.querySelector("#product-quantity");
       const quantityStatus = document.querySelector("#quantity-status");
       const reservationStatus = document.querySelector("#reservation-status");
+      const vipDialog = document.querySelector("#vip-dialog");
+      const vipEmail = document.querySelector("#vip-email");
+      const vipFormStatus = document.querySelector("#vip-form-status");
 
       function setQuantity(value) {
         const quantity = Math.min(100, Math.max(1, Number.parseInt(value, 10) || 1));
@@ -704,7 +938,24 @@
       });
 
       document.querySelector("#reserve-button").addEventListener("click", () => {
-        reservationStatus.textContent = "As reservas ainda não estão disponíveis nesta pré-visualização.";
+        reservationStatus.textContent = "";
+        vipFormStatus.textContent = "";
+        vipDialog.showModal();
+        vipEmail.focus();
+      });
+
+      document.querySelector("[data-close-vip-dialog]").addEventListener("click", () => {
+        vipDialog.close();
+      });
+
+      vipDialog.addEventListener("click", (event) => {
+        if (event.target === vipDialog) vipDialog.close();
+      });
+
+      document.querySelector("#vip-email-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        vipFormStatus.textContent =
+          "A lista VIP ainda não está ativa. O teu email não foi enviado nem guardado.";
       });
     </script>
   </body>
