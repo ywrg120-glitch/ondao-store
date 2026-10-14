@@ -1,0 +1,135 @@
+<section class="ondao-ingredients" aria-labelledby="ondao-ingredients-heading">
+  <div class="ondao-ingredients__content">
+    <p class="ondao-ingredients__eyebrow">A fórmula · Lote 001</p>
+    <h2 id="ondao-ingredients-heading" class="ondao-ingredients__heading">
+      Quatro ingredientes. Um cuidado pensado ao detalhe.
+    </h2>
+    <p class="ondao-ingredients__intro">
+      Conhece os ingredientes-chave da fórmula e o papel de cada um na tua rotina.
+    </p>
+    <div class="ondao-ingredients__grid">
+      <article class="ondao-ingredients__item">
+        <span class="ondao-ingredients__number" aria-hidden="true">01</span>
+        <h3 class="ondao-ingredients__name">Pequi</h3>
+        <p class="ondao-ingredients__benefit">Para apoiar a definição dos caracóis.</p>
+      </article>
+      <article class="ondao-ingredients__item">
+        <span class="ondao-ingredients__number" aria-hidden="true">02</span>
+        <h3 class="ondao-ingredients__name">Cacay</h3>
+        <p class="ondao-ingredients__benefit">Para brilho e nutrição.</p>
+      </article>
+      <article class="ondao-ingredients__item">
+        <span class="ondao-ingredients__number" aria-hidden="true">03</span>
+        <h3 class="ondao-ingredients__name">Baobab</h3>
+        <p class="ondao-ingredients__benefit">Para cuidar da elasticidade do cabelo.</p>
+      </article>
+      <article class="ondao-ingredients__item">
+        <span class="ondao-ingredients__number" aria-hidden="true">04</span>
+        <h3 class="ondao-ingredients__name">Ácido poliglutâmico (PGA)</h3>
+        <p class="ondao-ingredients__benefit">Para hidratação profunda.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .ondao-ingredients {
+    --oi-paper: #F9F6F0;
+    --oi-ink: #29251F;
+    --oi-gold: #A88B56;
+    padding: clamp(4.5rem, 9vw, 7.5rem) 1.25rem;
+    background: var(--oi-ink);
+    color: var(--oi-paper);
+  }
+
+  .ondao-ingredients__content {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+  }
+
+  .ondao-ingredients__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--oi-gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .ondao-ingredients__heading {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-align: center;
+  }
+
+  .ondao-ingredients__intro {
+    max-width: 590px;
+    margin: 1.25rem auto 0;
+    color: rgb(249 246 240 / 78%);
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .ondao-ingredients__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .ondao-ingredients__item {
+    min-height: 220px;
+    padding: 1.5rem;
+    border: 1px solid rgb(168 139 86 / 50%);
+    background: rgb(249 246 240 / 4%);
+  }
+
+  .ondao-ingredients__number {
+    display: block;
+    margin-bottom: 2rem;
+    color: var(--oi-gold);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.9rem;
+  }
+
+  .ondao-ingredients__name {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+  }
+
+  .ondao-ingredients__benefit {
+    margin: 0.65rem 0 0;
+    color: rgb(249 246 240 / 78%);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    .ondao-ingredients__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ondao-ingredients__item {
+      min-height: 0;
+    }
+
+    .ondao-ingredients__number {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  @media (min-width: 561px) and (max-width: 840px) {
+    .ondao-ingredients__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+{% endstyle %}

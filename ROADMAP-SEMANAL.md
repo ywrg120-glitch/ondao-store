@@ -24,6 +24,11 @@ Plano de sete dias, de segunda-feira a domingo, para os sete agentes definidos e
 - **QA — concluído (verificação estática):** identificada e corrigida a alegação “orgânicos” sem suporte nos factos configurados. Na pré-visualização HTML, o CTA aponta para o próprio título (`#hero-heading`), pelo que não comprova um percurso até ao produto; a rota não foi inventada e fica por confirmar. Validar em ambiente Shopify os destinos reais, a apresentação responsiva e o comportamento da oferta antes de publicar.
 - **Git — concluído (inspeção):** a árvore já continha alterações do utilizador em `.gitignore`, `agents/room-config.md`, `src/index.html` e `src/sections/ondao-hero.liquid`. As alterações anteriores foram preservadas; nada foi preparado para commit nem publicado.
 
+## Execução — secção de ingredientes
+
+- Adicionada à pré-visualização uma secção responsiva em carvão, creme e dourado com pequi (definição), Cacay (brilho e nutrição), Baobab (elasticidade) e ácido poliglutâmico/PGA (hidratação profunda).
+- Criado o snippet Shopify `src/snippets/ondao-ingredients.liquid` com a mesma estrutura e apresentação. A integração do snippet no template da loja fica dependente do tema/página Shopify que o deverá renderizar.
+
 ## Critérios de conclusão da semana
 
 1. Hero consistente entre pré-visualização e secção Shopify, com copy limitado a factos confirmados.
