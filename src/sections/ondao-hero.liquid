@@ -1,0 +1,180 @@
+{% liquid
+  assign section_id = 'ondao-hero-' | append: section.id
+  assign hero_product = section.settings.product
+
+  if hero_product != blank
+    assign hero_cta_url = hero_product.url
+  elsif section.settings.cta_link != blank
+    assign hero_cta_url = section.settings.cta_link
+  else
+    assign hero_cta_url = routes.all_products_collection_url
+  endif
+%}
+
+<section id="{{ section_id }}" class="ondao-hero" aria-labelledby="{{ section_id }}-heading">
+  <div class="ondao-hero__content">
+    <p class="ondao-hero__eyebrow">Lote 001 <span aria-hidden="true">·</span> Máscara Transformadora de Caracóis</p>
+    <h1 id="{{ section_id }}-heading" class="ondao-hero__heading">Cabelo real.<br>Fórmula real.</h1>
+    <p class="ondao-hero__description">
+      Uma fórmula com pequi, Cacay, Baobab e ácido poliglutâmico, sem sulfatos nem silicones, fabricada num laboratório em Portugal.
+    </p>
+    <a class="ondao-hero__cta" href="{{ hero_cta_url | escape }}">
+      {{ section.settings.cta_label | escape }}
+      <span aria-hidden="true">&rarr;</span>
+    </a>
+    <p class="ondao-hero__note">Primeira edição de 100 unidades · 20% de desconto vitalício para fundadores. Consulta as condições.</p>
+  </div>
+</section>
+
+{% style %}
+  #{{ section_id }} {
+    --oh-paper: {{ section.settings.background }};
+    --oh-ink: {{ section.settings.text_color }};
+    --oh-gold: {{ section.settings.accent_color }};
+    display: grid;
+    min-height: min(760px, 84vh);
+    place-items: center;
+    padding: clamp(5rem, 12vw, 9rem) 1.25rem;
+    background: var(--oh-paper);
+    color: var(--oh-ink);
+    text-align: center;
+  }
+
+  #{{ section_id }} .ondao-hero__content {
+    width: min(100%, 780px);
+    margin: 0 auto;
+  }
+
+  #{{ section_id }} .ondao-hero__eyebrow {
+    margin: 0 0 1.5rem;
+    color: var(--oh-gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  #{{ section_id }} .ondao-hero__heading {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(3.2rem, 9vw, 7rem);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+
+  #{{ section_id }} .ondao-hero__description {
+    max-width: 530px;
+    margin: 1.75rem auto 0;
+    font-size: clamp(1rem, 1.7vw, 1.15rem);
+    line-height: 1.75;
+  }
+
+  #{{ section_id }} .ondao-hero__cta {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 2rem;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid var(--oh-ink);
+    background: var(--oh-ink);
+    color: var(--oh-paper);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  #{{ section_id }} .ondao-hero__cta:hover {
+    background: transparent;
+    color: var(--oh-ink);
+  }
+
+  #{{ section_id }} .ondao-hero__cta:focus-visible {
+    outline: 2px solid var(--oh-gold);
+    outline-offset: 4px;
+  }
+
+  #{{ section_id }} .ondao-hero__note {
+    margin: 1rem 0 0;
+    color: var(--oh-gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 560px) {
+    #{{ section_id }} {
+      min-height: 70vh;
+      padding: 5rem 1.1rem;
+    }
+
+    #{{ section_id }} .ondao-hero__eyebrow {
+      max-width: 280px;
+      margin-right: auto;
+      margin-left: auto;
+      font-size: 0.65rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #{{ section_id }} .ondao-hero__cta {
+      transition: none;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Ondão | Hero Lote 001",
+  "tag": "section",
+  "class": "section-ondao-hero",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produto para reserva"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Ligação alternativa do botão"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto do botão",
+      "default": "Conhecer o Lote 001"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fundo",
+      "default": "#F9F6F0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texto",
+      "default": "#29251F"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Dourado suave",
+      "default": "#A88B56"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ondão | Hero Lote 001"
+    }
+  ]
+}
+{% endschema %}
