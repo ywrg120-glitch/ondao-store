@@ -29,6 +29,12 @@ Plano de sete dias, de segunda-feira a domingo, para os sete agentes definidos e
 - Adicionada à pré-visualização uma secção responsiva em carvão, creme e dourado com pequi (definição), Cacay (brilho e nutrição), Baobab (elasticidade) e ácido poliglutâmico/PGA (hidratação profunda).
 - Criado o snippet Shopify `src/snippets/ondao-ingredients.liquid` com a mesma estrutura e apresentação. A integração do snippet no template da loja fica dependente do tema/página Shopify que o deverá renderizar.
 
+## Execução — PDP do Lote 001
+
+- Adicionada à pré-visualização a secção de produto com quantidade selecionável até 100 unidades, volume de 250 ml, ativos-chave e oferta de fundador de 20% de desconto vitalício.
+- O preço final, as condições do desconto, o INCI, o modo de utilização e os avisos aplicáveis estão identificados como por confirmar; a pré-visualização não regista reservas nem consulta stock.
+- Ligados placeholders de imagem para hero, ingredientes e embalagem sob `src/assets/images/`; os ficheiros de imagem ainda têm de ser gerados e adicionados.
+
 ## Critérios de conclusão da semana
 
 1. Hero consistente entre pré-visualização e secção Shopify, com copy limitado a factos confirmados.

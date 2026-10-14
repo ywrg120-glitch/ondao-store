@@ -74,6 +74,14 @@
         margin: 0 auto;
       }
 
+      .ondao-hero__image {
+        display: block;
+        width: min(100%, 560px);
+        aspect-ratio: 16 / 9;
+        margin: 0 auto 2rem;
+        object-fit: cover;
+      }
+
       .ondao-hero__ornament {
         display: grid;
         width: 2.25rem;
@@ -200,6 +208,14 @@
         margin-top: clamp(2.5rem, 5vw, 4rem);
       }
 
+      .ondao-ingredients__image {
+        display: block;
+        width: min(100%, 900px);
+        aspect-ratio: 2 / 1;
+        margin: 2.5rem auto 0;
+        object-fit: cover;
+      }
+
       .ondao-ingredients__item {
         min-height: 220px;
         padding: 1.5rem;
@@ -229,6 +245,227 @@
         line-height: 1.6;
       }
 
+      .ondao-product {
+        padding: clamp(4.5rem, 9vw, 7.5rem) 1.25rem;
+        background: var(--paper);
+      }
+
+      .ondao-product__layout {
+        display: grid;
+        width: min(100%, 1120px);
+        grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+        gap: clamp(2rem, 6vw, 5.5rem);
+        align-items: start;
+        margin: 0 auto;
+      }
+
+      .ondao-product__image {
+        position: sticky;
+        top: 2rem;
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        background: #e9e3d8;
+        object-fit: cover;
+      }
+
+      .ondao-product__eyebrow {
+        margin: 0 0 1rem;
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__heading {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 3.5rem;
+        font-weight: 400;
+        line-height: 1.03;
+      }
+
+      .ondao-product__description {
+        margin: 1.25rem 0 0;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .ondao-product__offer {
+        display: grid;
+        gap: 0.4rem;
+        margin-top: 2rem;
+        padding: 1.25rem 0;
+        border-top: 1px solid rgb(168 139 86 / 55%);
+        border-bottom: 1px solid rgb(168 139 86 / 55%);
+      }
+
+      .ondao-product__offer-label {
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__offer-value {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.8rem;
+        line-height: 1.2;
+      }
+
+      .ondao-product__offer-note,
+      .ondao-product__fine-print {
+        margin: 0;
+        color: rgb(41 37 31 / 75%);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .ondao-product__facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .ondao-product__fact {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgb(168 139 86 / 40%);
+      }
+
+      .ondao-product__fact dt {
+        margin-bottom: 0.35rem;
+        color: var(--gold);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__fact dd {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .ondao-product__quantity-label {
+        display: block;
+        margin-bottom: 0.65rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .ondao-product__quantity {
+        display: grid;
+        width: 152px;
+        height: 48px;
+        grid-template-columns: 48px 1fr 48px;
+        border: 1px solid rgb(41 37 31 / 40%);
+      }
+
+      .ondao-product__quantity button,
+      .ondao-product__quantity input {
+        min-width: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        text-align: center;
+      }
+
+      .ondao-product__quantity button {
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .ondao-product__quantity button:focus-visible,
+      .ondao-product__quantity input:focus-visible,
+      .ondao-product__reserve:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .ondao-product__quantity input {
+        width: 100%;
+        appearance: textfield;
+      }
+
+      .ondao-product__quantity input::-webkit-inner-spin-button,
+      .ondao-product__quantity input::-webkit-outer-spin-button {
+        margin: 0;
+        appearance: none;
+      }
+
+      .ondao-product__reserve {
+        display: flex;
+        width: 100%;
+        min-height: 54px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+        padding: 0.9rem 1.25rem;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        line-height: 1.4;
+        text-transform: uppercase;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      .ondao-product__reserve:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .ondao-product__fine-print {
+        margin-top: 0.85rem;
+      }
+
+      .ondao-product__status {
+        min-height: 1.5em;
+        margin: 0.75rem 0 0;
+        color: var(--gold);
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .ondao-product__details {
+        width: min(100%, 1120px);
+        margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
+        border-top: 1px solid rgb(168 139 86 / 55%);
+      }
+
+      .ondao-product__details summary {
+        padding: 1.25rem 0;
+        cursor: pointer;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.4rem;
+      }
+
+      .ondao-product__details-content {
+        max-width: 760px;
+        padding: 0 0 1.5rem;
+      }
+
+      .ondao-product__details-content p,
+      .ondao-product__details-content li {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .ondao-product__details-content ul {
+        padding-left: 1.25rem;
+      }
+
       @media (max-width: 560px) {
         .ondao-hero {
           min-height: 70svh;
@@ -244,6 +481,20 @@
 
         .ondao-ingredients__grid {
           grid-template-columns: 1fr;
+        }
+
+        .ondao-product__layout {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .ondao-product__image {
+          position: static;
+          aspect-ratio: 4 / 3;
+        }
+
+        .ondao-product__heading {
+          font-size: 2.5rem;
         }
 
         .ondao-ingredients__item {
@@ -262,7 +513,8 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .ondao-hero__cta {
+        .ondao-hero__cta,
+        .ondao-product__reserve {
           transition: none;
         }
       }
@@ -272,6 +524,12 @@
     <main>
       <section class="ondao-hero" aria-labelledby="hero-heading">
         <div class="ondao-hero__content">
+          <img
+            class="ondao-hero__image"
+            src="assets/images/lote-001-hero.webp"
+            alt="Composição de estúdio do Lote 001 Ondão."
+            fetchpriority="high"
+          >
           <span class="ondao-hero__ornament" aria-hidden="true">✳</span>
           <p class="ondao-hero__eyebrow">
             Lote 001 <span aria-hidden="true">·</span> Máscara Transformadora de Caracóis
@@ -283,7 +541,7 @@
             Uma fórmula com pequi, Cacay, Baobab e ácido poliglutâmico, sem sulfatos
             nem silicones, desenvolvida e produzida em Portugal.
           </p>
-          <a class="ondao-hero__cta" href="#hero-heading">
+          <a class="ondao-hero__cta" href="#produto">
             Conhecer o Lote 001 <span aria-hidden="true">&rarr;</span>
           </a>
           <p class="ondao-hero__note">
@@ -302,6 +560,12 @@
           <p class="ondao-ingredients__intro">
             Conhece os ingredientes-chave da fórmula e o papel de cada um na tua rotina.
           </p>
+          <img
+            class="ondao-ingredients__image"
+            src="assets/images/lote-001-ingredients.webp"
+            alt="Ingredientes do Lote 001 numa composição de estúdio."
+            loading="lazy"
+          >
           <div class="ondao-ingredients__grid">
             <article class="ondao-ingredients__item">
               <span class="ondao-ingredients__number" aria-hidden="true">01</span>
@@ -326,6 +590,122 @@
           </div>
         </div>
       </section>
+
+      <section id="produto" class="ondao-product" aria-labelledby="ondao-product-heading">
+        <div class="ondao-product__layout">
+          <img
+            class="ondao-product__image"
+            src="assets/images/lote-001-packaging.webp"
+            alt="Embalagem da Máscara Transformadora de Caracóis Ondão, Lote 001."
+            loading="lazy"
+          >
+          <div class="ondao-product__content">
+            <p class="ondao-product__eyebrow">Lote 001 · Edição de fundadores</p>
+            <h2 id="ondao-product-heading" class="ondao-product__heading">
+              Máscara Transformadora de Caracóis
+            </h2>
+            <p class="ondao-product__description">
+              Uma máscara com pequi, Cacay, Baobab e ácido poliglutâmico,
+              sem sulfatos nem silicones.
+            </p>
+
+            <div class="ondao-product__offer" aria-label="Oferta de fundador">
+              <span class="ondao-product__offer-label">Preço de fundador</span>
+              <span class="ondao-product__offer-value">20% de desconto vitalício*</span>
+              <p class="ondao-product__offer-note">Preço final em euros: por confirmar.</p>
+            </div>
+
+            <dl class="ondao-product__facts">
+              <div class="ondao-product__fact">
+                <dt>Quantidade</dt>
+                <dd>250 ml</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Lote</dt>
+                <dd>Limitado a 100 unidades</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Ativos-chave</dt>
+                <dd>Pequi, Cacay, Baobab e PGA</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Formulação</dt>
+                <dd>Sem sulfatos nem silicones</dd>
+              </div>
+            </dl>
+
+            <label class="ondao-product__quantity-label" for="product-quantity">
+              Quantidade a reservar
+            </label>
+            <div class="ondao-product__quantity" role="group" aria-label="Selecionar quantidade">
+              <button type="button" data-quantity-step="-1" aria-label="Diminuir quantidade">−</button>
+              <input
+                id="product-quantity"
+                name="quantity"
+                type="number"
+                min="1"
+                max="100"
+                value="1"
+                inputmode="numeric"
+                aria-describedby="quantity-status"
+              >
+              <button type="button" data-quantity-step="1" aria-label="Aumentar quantidade">+</button>
+            </div>
+            <p id="quantity-status" class="ondao-product__status" aria-live="polite">
+              Máximo selecionável: 100 unidades.
+            </p>
+            <button id="reserve-button" class="ondao-product__reserve" type="button">
+              Reservar unidade <span aria-hidden="true">&rarr;</span>
+            </button>
+            <p class="ondao-product__fine-print">
+              *Desconto sujeito a condições por confirmar. Esta pré-visualização não regista reservas.
+            </p>
+            <p id="reservation-status" class="ondao-product__status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <details class="ondao-product__details">
+          <summary>Detalhes da fórmula</summary>
+          <div class="ondao-product__details-content">
+            <p>
+              A embalagem contém 250 ml. A fórmula destaca pequi, Cacay, Baobab
+              e ácido poliglutâmico (PGA), e não contém sulfatos nem silicones.
+            </p>
+            <ul>
+              <li>Lista INCI completa: por confirmar.</li>
+              <li>Modo de utilização e avisos aplicáveis: por confirmar.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
     </main>
+    <script>
+      const quantityInput = document.querySelector("#product-quantity");
+      const quantityStatus = document.querySelector("#quantity-status");
+      const reservationStatus = document.querySelector("#reservation-status");
+
+      function setQuantity(value) {
+        const quantity = Math.min(100, Math.max(1, Number.parseInt(value, 10) || 1));
+        quantityInput.value = quantity;
+        quantityStatus.textContent = `${quantity} ${quantity === 1 ? "unidade" : "unidades"} selecionada(s). Máximo: 100.`;
+        document.querySelector("#reserve-button").firstChild.textContent =
+          `Reservar ${quantity === 1 ? "unidade" : "unidades"} `;
+      }
+
+      document.querySelectorAll("[data-quantity-step]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setQuantity(Number(quantityInput.value) + Number(button.dataset.quantityStep));
+        });
+      });
+
+      quantityInput.addEventListener("change", () => setQuantity(quantityInput.value));
+      quantityInput.addEventListener("input", () => {
+        if (quantityInput.value !== "") setQuantity(quantityInput.value);
+      });
+
+      document.querySelector("#reserve-button").addEventListener("click", () => {
+        reservationStatus.textContent = "As reservas ainda não estão disponíveis nesta pré-visualização.";
+      });
+    </script>
   </body>
 </html>
