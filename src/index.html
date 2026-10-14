@@ -548,6 +548,23 @@
         font: inherit;
       }
 
+      .ondao-vip-dialog__consent {
+        display: grid;
+        grid-template-columns: 1.25rem minmax(0, 1fr);
+        gap: 0.65rem;
+        align-items: start;
+        margin-top: 1rem;
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+
+      .ondao-vip-dialog__consent input {
+        width: 1.1rem;
+        height: 1.1rem;
+        margin: 0.1rem 0 0;
+        accent-color: var(--ink);
+      }
+
       .ondao-vip-dialog__notice {
         margin: 0.75rem 0 0;
         color: rgb(41 37 31 / 75%);
@@ -862,7 +879,7 @@
       <p id="vip-dialog-copy" class="ondao-vip-dialog__copy">
         Deixa o teu email para manifestar interesse na edição limitada do Lote 001.
       </p>
-      <form id="vip-email-form">
+      <form id="vip-email-form" data-endpoint="">
         <label class="ondao-vip-dialog__label" for="vip-email">Email</label>
         <input
           id="vip-email"
@@ -874,10 +891,18 @@
           maxlength="254"
           required
         >
+        <label class="ondao-vip-dialog__consent">
+          <input name="consent" type="checkbox" value="accepted" required>
+          <span>
+            Quero receber novidades por email sobre o Lote 001. Posso retirar o
+            meu consentimento a qualquer momento. Consulta a
+            <a href="#privacidade">informação de privacidade</a>.
+          </span>
+        </label>
         <p id="vip-dialog-notice" class="ondao-vip-dialog__notice">
-          A lista ainda não está ativa. O email não será enviado nem guardado.
+          O email só será enviado quando a lista VIP estiver ativa.
         </p>
-        <button class="ondao-vip-dialog__submit" type="submit">
+        <button id="vip-submit-button" class="ondao-vip-dialog__submit" type="submit">
           Verificar email
         </button>
         <p id="vip-form-status" class="ondao-vip-dialog__status" role="status" aria-live="polite"></p>
@@ -903,9 +928,10 @@
         <section id="privacidade" class="ondao-footer__privacy" aria-labelledby="privacy-heading">
           <h2 id="privacy-heading" class="ondao-footer__title">Privacidade</h2>
           <p>
-            O formulário da lista VIP é apenas demonstrativo. Nesta versão, o email
-            introduzido não é enviado nem guardado. Será disponibilizada informação
-            sobre o tratamento de dados antes da ativação da lista.
+            O email só será enviado para o serviço de lista VIP quando este estiver
+            configurado. Antes da ativação, serão disponibilizadas informações sobre
+            o responsável pelo tratamento, a finalidade, a conservação e os direitos
+            relativos aos dados pessoais.
           </p>
         </section>
       </div>
@@ -917,6 +943,8 @@
       const vipDialog = document.querySelector("#vip-dialog");
       const vipEmail = document.querySelector("#vip-email");
       const vipFormStatus = document.querySelector("#vip-form-status");
+      const vipEmailForm = document.querySelector("#vip-email-form");
+      const vipSubmitButton = document.querySelector("#vip-submit-button");
 
       function setQuantity(value) {
         const quantity = Math.min(100, Math.max(1, Number.parseInt(value, 10) || 1));
@@ -952,10 +980,44 @@
         if (event.target === vipDialog) vipDialog.close();
       });
 
-      document.querySelector("#vip-email-form").addEventListener("submit", (event) => {
+      vipEmailForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-        vipFormStatus.textContent =
-          "A lista VIP ainda não está ativa. O teu email não foi enviado nem guardado.";
+        vipFormStatus.textContent = "";
+
+        const endpoint = vipEmailForm.dataset.endpoint.trim();
+        if (!endpoint) {
+          vipFormStatus.textContent =
+            "A lista VIP ainda não está ativa. Estamos a preparar o registo do teu email.";
+          return;
+        }
+
+        vipSubmitButton.disabled = true;
+        vipFormStatus.textContent = "A enviar o teu email…";
+
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            body: new FormData(vipEmailForm),
+            headers: { Accept: "application/json" },
+          });
+
+          if (!response.ok) {
+            console.error("O serviço da lista VIP rejeitou o pedido.", response.status);
+            vipFormStatus.textContent =
+              "Não foi possível registar o teu email. Tenta novamente mais tarde.";
+            return;
+          }
+
+          vipEmailForm.reset();
+          vipFormStatus.textContent =
+            "Obrigado! A tua vaga na lista VIP para o Lote 001 está reservada.";
+        } catch (error) {
+          console.error("Falha ao contactar o serviço da lista VIP.", error);
+          vipFormStatus.textContent =
+            "Ocorreu um erro ao enviar o teu email. Verifica a ligação e tenta novamente.";
+        } finally {
+          vipSubmitButton.disabled = false;
+        }
       });
     </script>
   </body>
