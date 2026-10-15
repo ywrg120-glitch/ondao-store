@@ -6,16 +6,15 @@
     <meta name="theme-color" content="#F9F6F0">
     <meta
       name="description"
-      content="Máscara Transformadora de Caracóis Ondão. Lote 001, edição limitada a 100 unidades, desenvolvida e produzida em Portugal."
+      content="Pré-visualização do hero da Ondão para o Lote 001."
     >
-    <title>Máscara Transformadora de Caracóis — Lote 001 | Ondão</title>
+    <title>Ondão — Lote 001</title>
     <style>
       :root {
         color-scheme: light;
         --paper: #F9F6F0;
         --ink: #29251F;
-        --muted: #6D675E;
-        --line: #DDD6CA;
+        --gold: #A88B56;
       }
 
       *,
@@ -28,631 +27,684 @@
         min-width: 320px;
         min-height: 100vh;
         margin: 0;
-        padding-bottom: 0;
         background: var(--paper);
         color: var(--ink);
         font-family: Arial, Helvetica, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
-      .page {
-        width: min(1080px, calc(100% - 2.5rem));
-        margin-inline: auto;
-      }
-
-      .hero {
+      .ondao-hero {
+        position: relative;
         display: grid;
-        min-height: min(680px, 88svh);
-        grid-template-columns: minmax(0, 1fr);
-        align-items: center;
-        padding-block: clamp(3rem, 8vw, 6rem);
-      }
-
-      .hero__content {
-        width: min(100%, 560px);
-        margin-inline: auto;
+        min-height: 100svh;
+        min-height: min(760px, 100svh);
+        place-items: center;
+        overflow: hidden;
+        padding: clamp(5rem, 12vw, 9rem) 1.25rem;
         text-align: center;
       }
 
-      .hero__image,
-      .product-image,
-      .ingredients__image {
-        display: block;
-        max-width: 100%;
-        height: auto;
+      .ondao-hero::before,
+      .ondao-hero::after {
+        position: absolute;
+        left: 50%;
+        width: min(88vw, 1060px);
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgb(168 139 86 / 35%),
+          transparent
+        );
+        content: "";
+        transform: translateX(-50%);
       }
 
-      .hero__image {
-        width: min(100%, 800px);
+      .ondao-hero::before {
+        top: 2rem;
+      }
+
+      .ondao-hero::after {
+        bottom: 2rem;
+      }
+
+      .ondao-hero__content {
+        position: relative;
+        width: min(100%, 780px);
+        margin: 0 auto;
+      }
+
+      .ondao-hero__image {
+        display: block;
+        width: min(100%, 560px);
         aspect-ratio: 16 / 9;
         margin: 0 auto 2rem;
         object-fit: cover;
       }
 
-      .hero__badge {
-        display: inline-block;
-        margin: 0 0 1.25rem;
-        padding: 0.45rem 0.7rem;
-        border: 1px solid var(--line);
-        font-size: 0.7rem;
+      .ondao-hero__ornament {
+        display: grid;
+        width: 2.25rem;
+        height: 2.25rem;
+        place-items: center;
+        margin: 0 auto 1.5rem;
+        border: 1px solid rgb(168 139 86 / 48%);
+        border-radius: 50%;
+        color: var(--gold);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.15rem;
+        line-height: 1;
+      }
+
+      .ondao-hero__eyebrow {
+        margin: 0 0 1.5rem;
+        color: var(--gold);
+        font-size: 0.72rem;
         font-weight: 600;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.16em;
+        line-height: 1.5;
         text-transform: uppercase;
       }
 
-      .hero__heading {
+      .ondao-hero__heading {
         margin: 0;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(2.75rem, 5.5vw, 5rem);
+        font-size: clamp(3.2rem, 9vw, 7rem);
         font-weight: 400;
-        letter-spacing: -0.04em;
-        line-height: 1.02;
-        overflow-wrap: anywhere;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
       }
 
-      .hero__description {
-        max-width: 360px;
-        margin: 1.25rem 0 0;
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.65;
+      .ondao-hero__description {
+        max-width: 530px;
+        margin: 1.75rem auto 0;
+        font-size: clamp(1rem, 1.7vw, 1.15rem);
+        line-height: 1.75;
       }
 
-      .hero__price {
-        margin: 1.75rem 0 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 1.5rem;
-        line-height: 1.3;
-      }
-
-      .hero__price-note {
-        margin: 0.4rem 0 0;
-        color: var(--muted);
-        font-size: 0.75rem;
-        line-height: 1.5;
-      }
-
-      .reserve-button {
-        display: flex;
-        width: 100%;
+      .ondao-hero__cta {
+        display: inline-flex;
         min-height: 52px;
         align-items: center;
         justify-content: center;
-        margin-top: 1.5rem;
+        gap: 0.9rem;
+        margin-top: 2rem;
+        padding: 0.9rem 1.5rem;
+        border: 1px solid var(--ink);
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        line-height: 1.3;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      .ondao-hero__cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .ondao-hero__cta:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 4px;
+      }
+
+      .ondao-hero__note {
+        max-width: 560px;
+        margin: 1rem auto 0;
+        color: var(--gold);
+        font-size: 0.78rem;
+        line-height: 1.6;
+      }
+
+      .ondao-ingredients {
+        padding: clamp(4.5rem, 9vw, 7.5rem) 1.25rem;
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .ondao-ingredients__content {
+        width: min(100%, 1120px);
+        margin: 0 auto;
+      }
+
+      .ondao-ingredients__eyebrow {
+        margin: 0 0 1rem;
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .ondao-ingredients__heading {
+        max-width: 720px;
+        margin: 0 auto;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        font-weight: 400;
+        letter-spacing: -0.035em;
+        line-height: 1.08;
+        text-align: center;
+      }
+
+      .ondao-ingredients__intro {
+        max-width: 590px;
+        margin: 1.25rem auto 0;
+        color: rgb(249 246 240 / 78%);
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      .ondao-ingredients__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: clamp(2.5rem, 5vw, 4rem);
+      }
+
+      .ondao-ingredients__image {
+        display: block;
+        width: min(100%, 900px);
+        aspect-ratio: 2 / 1;
+        margin: 2.5rem auto 0;
+        object-fit: cover;
+      }
+
+      .ondao-ingredients__item {
+        min-height: 220px;
+        padding: 1.5rem;
+        border: 1px solid rgb(168 139 86 / 50%);
+        background: rgb(249 246 240 / 4%);
+      }
+
+      .ondao-ingredients__number {
+        display: block;
+        margin-bottom: 2rem;
+        color: var(--gold);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 0.9rem;
+      }
+
+      .ondao-ingredients__name {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.55rem;
+        font-weight: 400;
+      }
+
+      .ondao-ingredients__benefit {
+        margin: 0.65rem 0 0;
+        color: rgb(249 246 240 / 78%);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .ondao-product {
+        padding: clamp(4.5rem, 9vw, 7.5rem) 1.25rem;
+        background: var(--paper);
+      }
+
+      .ondao-product__layout {
+        display: grid;
+        width: min(100%, 1120px);
+        grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+        gap: clamp(2rem, 6vw, 5.5rem);
+        align-items: start;
+        margin: 0 auto;
+      }
+
+      .ondao-product__image {
+        position: sticky;
+        top: 2rem;
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        background: #e9e3d8;
+        object-fit: cover;
+      }
+
+      .ondao-product__eyebrow {
+        margin: 0 0 1rem;
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__heading {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 3.5rem;
+        font-weight: 400;
+        line-height: 1.03;
+      }
+
+      .ondao-product__description {
+        margin: 1.25rem 0 0;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .ondao-product__offer {
+        display: grid;
+        gap: 0.4rem;
+        margin-top: 2rem;
+        padding: 1.25rem 0;
+        border-top: 1px solid rgb(168 139 86 / 55%);
+        border-bottom: 1px solid rgb(168 139 86 / 55%);
+      }
+
+      .ondao-product__offer-label {
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__offer-value {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.8rem;
+        line-height: 1.2;
+      }
+
+      .ondao-product__offer-note,
+      .ondao-product__fine-print {
+        margin: 0;
+        color: rgb(41 37 31 / 75%);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .ondao-product__facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .ondao-product__fact {
+        padding: 1rem 0;
+        border-bottom: 1px solid rgb(168 139 86 / 40%);
+      }
+
+      .ondao-product__fact dt {
+        margin-bottom: 0.35rem;
+        color: var(--gold);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .ondao-product__fact dd {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .ondao-product__quantity-label {
+        display: block;
+        margin-bottom: 0.65rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .ondao-product__quantity {
+        display: grid;
+        width: 152px;
+        height: 48px;
+        grid-template-columns: 48px 1fr 48px;
+        border: 1px solid rgb(41 37 31 / 40%);
+      }
+
+      .ondao-product__quantity button,
+      .ondao-product__quantity input {
+        min-width: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        text-align: center;
+      }
+
+      .ondao-product__quantity button {
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .ondao-product__quantity button:focus-visible,
+      .ondao-product__quantity input:focus-visible,
+      .ondao-product__reserve:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .ondao-product__quantity input {
+        width: 100%;
+        appearance: textfield;
+      }
+
+      .ondao-product__quantity input::-webkit-inner-spin-button,
+      .ondao-product__quantity input::-webkit-outer-spin-button {
+        margin: 0;
+        appearance: none;
+      }
+
+      .ondao-product__reserve {
+        display: flex;
+        width: 100%;
+        min-height: 54px;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
         padding: 0.9rem 1.25rem;
         border: 1px solid var(--ink);
         background: var(--ink);
         color: var(--paper);
         cursor: pointer;
         font: inherit;
-        font-size: 0.75rem;
+        font-size: 0.76rem;
         font-weight: 600;
         letter-spacing: 0.1em;
+        line-height: 1.4;
         text-transform: uppercase;
+        transition: background-color 180ms ease, color 180ms ease;
       }
 
-      .reserve-button:hover {
+      .ondao-product__reserve:hover {
         background: transparent;
         color: var(--ink);
       }
 
-      .reserve-button:focus-visible,
-      .dialog button:focus-visible,
-      .dialog input:focus-visible,
-      .footer a:focus-visible,
-      .footer summary:focus-visible {
-        outline: 2px solid var(--ink);
-        outline-offset: 3px;
+      .ondao-product__fine-print {
+        margin-top: 0.85rem;
       }
 
-      .hero__note {
-        margin: 0.75rem 0 0;
-        color: var(--muted);
-        font-size: 0.78rem;
-        line-height: 1.5;
-        text-align: center;
-      }
-
-      .ingredients {
-        padding-block: clamp(3rem, 7vw, 5rem);
-        border-top: 1px solid var(--line);
-      }
-
-      .ingredients__heading {
-        margin: 0 0 1rem;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(1.6rem, 3vw, 2.25rem);
-        font-weight: 400;
-      }
-
-      .ingredients__list {
-        margin: 0;
-      }
-
-      .ingredients__image {
-        width: min(100%, 900px);
-        aspect-ratio: 2 / 1;
-        margin: 1.5rem 0;
-        object-fit: cover;
-      }
-
-      .ingredients__item {
-        display: grid;
-        grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
-        gap: 1rem;
-        padding: 0.9rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .ingredients__item dt {
-        font-weight: 600;
-      }
-
-      .ingredients__item dd {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .footer {
-        padding-block: 1.5rem;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.78rem;
-        line-height: 1.6;
-      }
-
-      .product-visual {
-        padding-block: 0 clamp(2.5rem, 6vw, 4rem);
-        text-align: center;
-      }
-
-      .product-image {
-        width: min(100%, 360px);
-        aspect-ratio: 4 / 5;
-        margin-inline: auto;
-        object-fit: cover;
-      }
-
-      .product-visual__caption,
-      .ingredients__caption {
-        margin: 0.65rem 0 0;
-        color: var(--muted);
-        font-size: 0.75rem;
-        line-height: 1.5;
-      }
-
-      .footer__links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.25rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer a {
-        color: inherit;
-        text-underline-offset: 0.2em;
-      }
-
-      .footer details {
-        margin-top: 0.5rem;
-      }
-
-      .footer summary {
-        width: fit-content;
-        cursor: pointer;
-      }
-
-      .footer details p {
-        max-width: 720px;
-        margin: 0.5rem 0 0;
-      }
-
-      .dialog {
-        width: min(440px, calc(100% - 2rem));
-        max-width: none;
-        max-height: 90vh;
-        max-height: 90dvh;
-        overflow-y: auto;
-        padding: clamp(1.25rem, 5vw, 2rem);
-        border: 1px solid var(--line);
-        background: var(--paper);
-        color: var(--ink);
-      }
-
-      .dialog::backdrop {
-        background: rgb(41 37 31 / 55%);
-      }
-
-      .dialog__close {
-        display: block;
-        width: 44px;
-        height: 44px;
-        margin: -0.5rem -0.5rem 1rem auto;
-        border: 0;
-        background: transparent;
-        color: inherit;
-        cursor: pointer;
-        font: inherit;
-        font-size: 1.5rem;
-      }
-
-      .dialog__eyebrow {
-        margin: 0 0 0.65rem;
-        color: var(--muted);
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      .dialog__heading {
-        margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(1.75rem, 7vw, 2.25rem);
-        font-weight: 400;
-        line-height: 1.1;
-      }
-
-      .dialog__copy,
-      .dialog__notice {
-        color: var(--muted);
-        font-size: 0.88rem;
-        line-height: 1.6;
-      }
-
-      .dialog__copy {
-        margin: 0.75rem 0 1.25rem;
-      }
-
-      .dialog__label {
-        display: block;
-        margin-bottom: 0.45rem;
-        font-size: 0.82rem;
-        font-weight: 600;
-      }
-
-      .dialog__email {
-        width: 100%;
-        min-height: 48px;
-        padding: 0.7rem;
-        border: 1px solid var(--line);
-        border-radius: 0;
-        background: transparent;
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .dialog__consent {
-        display: grid;
-        grid-template-columns: 1.1rem minmax(0, 1fr);
-        gap: 0.6rem;
-        align-items: start;
-        margin-top: 1rem;
-        font-size: 0.78rem;
-        line-height: 1.5;
-      }
-
-      .dialog__consent input {
-        width: 1rem;
-        height: 1rem;
-        margin: 0.1rem 0 0;
-      }
-
-      .dialog__notice {
-        margin: 0.75rem 0 0;
-      }
-
-      .dialog__submit {
-        margin-top: 1rem;
-      }
-
-      .dialog__status {
+      .ondao-product__status {
         min-height: 1.5em;
         margin: 0.75rem 0 0;
+        color: var(--gold);
         font-size: 0.85rem;
         line-height: 1.5;
       }
 
-      .mobile-sticky {
-        display: none;
+      .ondao-product__details {
+        width: min(100%, 1120px);
+        margin: clamp(3.5rem, 7vw, 5.5rem) auto 0;
+        border-top: 1px solid rgb(168 139 86 / 55%);
       }
 
-      @media (max-width: 700px) {
-        body.has-sticky {
-          padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
+      .ondao-product__details summary {
+        padding: 1.25rem 0;
+        cursor: pointer;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.4rem;
+      }
+
+      .ondao-product__details-content {
+        max-width: 760px;
+        padding: 0 0 1.5rem;
+      }
+
+      .ondao-product__details-content p,
+      .ondao-product__details-content li {
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+
+      .ondao-product__details-content ul {
+        padding-left: 1.25rem;
+      }
+
+      @media (max-width: 560px) {
+        .ondao-hero {
+          min-height: 70svh;
+          padding: 5rem 1.1rem;
         }
 
-        .page {
-          width: min(520px, calc(100% - 2rem));
+        .ondao-hero__eyebrow {
+          max-width: 280px;
+          margin-right: auto;
+          margin-left: auto;
+          font-size: 0.65rem;
         }
 
-        .hero {
-          min-height: auto;
-          padding-block: 1.25rem 3rem;
+        .ondao-ingredients__grid {
+          grid-template-columns: 1fr;
         }
 
-        .hero__heading {
-          font-size: clamp(2.4rem, 11vw, 3.5rem);
+        .ondao-product__layout {
+          grid-template-columns: 1fr;
+          gap: 2rem;
         }
 
-        .hero__description {
-          margin-top: 0.85rem;
-          font-size: 0.95rem;
+        .ondao-product__image {
+          position: static;
+          aspect-ratio: 4 / 3;
         }
 
-        .hero__price {
-          margin-top: 1.25rem;
-          font-size: 1.35rem;
+        .ondao-product__heading {
+          font-size: 2.5rem;
         }
 
-        .hero__cta {
-          margin-top: 1.1rem;
+        .ondao-ingredients__item {
+          min-height: 0;
         }
 
-        .ingredients {
-          padding-block: 2.5rem;
+        .ondao-ingredients__number {
+          margin-bottom: 1.25rem;
         }
+      }
 
-        .ingredients__item {
-          grid-template-columns: minmax(6.5rem, 0.4fr) minmax(0, 1fr);
-          gap: 0.75rem;
-          font-size: 0.88rem;
-        }
-
-        .mobile-sticky:not([hidden]) {
-          position: fixed;
-          z-index: 2;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          display: block;
-          padding: 0.55rem 1rem calc(0.55rem + env(safe-area-inset-bottom));
-          border-top: 1px solid var(--line);
-          background: rgb(249 246 240 / 96%);
-        }
-
-        .mobile-sticky .reserve-button {
-          width: min(100%, 480px);
-          min-height: 48px;
-          margin: 0 auto;
+      @media (min-width: 561px) and (max-width: 840px) {
+        .ondao-ingredients__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          transition-duration: 0.01ms !important;
+        .ondao-hero__cta,
+        .ondao-product__reserve {
+          transition: none;
         }
       }
     </style>
   </head>
   <body>
     <main>
-      <section class="hero page" aria-labelledby="hero-heading">
-        <img
-          class="hero__image"
-          src="assets/images/Lote-001-hero.jpg"
-          alt="Mockup gráfico ilustrativo do Lote 001; não é fotografia nem representa a embalagem final."
-          width="1600"
-          height="900"
-          fetchpriority="high"
-          decoding="async"
-        >
-        <div class="hero__content">
-          <p class="hero__badge">Lote 001 · 100 unidades</p>
-          <h1 id="hero-heading" class="hero__heading">Máscara Transformadora de Caracóis</h1>
-          <p class="hero__description">
-            Cuidado essencial para caracóis.<br>
-            Desenvolvida e produzida em Portugal.
+      <section class="ondao-hero" aria-labelledby="hero-heading">
+        <div class="ondao-hero__content">
+          <img
+            class="ondao-hero__image"
+            src="assets/images/lote-001-hero.webp"
+            alt="Composição de estúdio do Lote 001 Ondão."
+            fetchpriority="high"
+          >
+          <span class="ondao-hero__ornament" aria-hidden="true">✳</span>
+          <p class="ondao-hero__eyebrow">
+            Lote 001 <span aria-hidden="true">·</span> Máscara Transformadora de Caracóis
           </p>
-          <p class="hero__price">Preço fundador · 20% de desconto vitalício*</p>
-          <p class="hero__price-note">
-            *Condições e preço final por confirmar.
+          <h1 id="hero-heading" class="ondao-hero__heading">
+            Cabelo real.<br>Fórmula real.
+          </h1>
+          <p class="ondao-hero__description">
+            Uma fórmula com pequi, Cacay, Baobab e ácido poliglutâmico, sem sulfatos
+            nem silicones, desenvolvida e produzida em Portugal.
           </p>
-          <button class="reserve-button hero__cta" type="button" data-open-vip>
-            Reservar unidade
-          </button>
-          <p class="hero__note">
-            Acesso antecipado exclusivo 24h antes da abertura pública do Lote 001.
+          <a class="ondao-hero__cta" href="#produto">
+            Conhecer o Lote 001 <span aria-hidden="true">&rarr;</span>
+          </a>
+          <p class="ondao-hero__note">
+            Lote 001 exclusivo: edição de 100 unidades para fundadores.<br>
+            Direito de devolução no prazo legal de 14 dias após a receção do produto.
           </p>
         </div>
       </section>
 
-      <figure class="product-visual page">
-        <img
-          class="product-image"
-          src="assets/images/Lote-001-packaging.jpg"
-          alt="Estudo gráfico de uma embalagem genérica para a máscara; proporções, rótulo e frasco finais por confirmar."
-          width="900"
-          height="1125"
-          loading="lazy"
-          decoding="async"
-        >
-        <figcaption class="product-visual__caption">
-          Mockup ilustrativo. A embalagem final poderá ser diferente.
-        </figcaption>
-      </figure>
+      <section class="ondao-ingredients" aria-labelledby="ondao-ingredients-heading">
+        <div class="ondao-ingredients__content">
+          <p class="ondao-ingredients__eyebrow">A fórmula · Lote 001</p>
+          <h2 id="ondao-ingredients-heading" class="ondao-ingredients__heading">
+            Quatro ingredientes. Um cuidado pensado ao detalhe.
+          </h2>
+          <p class="ondao-ingredients__intro">
+            Conhece os ingredientes-chave da fórmula e o papel de cada um na tua rotina.
+          </p>
+          <img
+            class="ondao-ingredients__image"
+            src="assets/images/lote-001-ingredients.webp"
+            alt="Ingredientes do Lote 001 numa composição de estúdio."
+            loading="lazy"
+          >
+          <div class="ondao-ingredients__grid">
+            <article class="ondao-ingredients__item">
+              <span class="ondao-ingredients__number" aria-hidden="true">01</span>
+              <h3 class="ondao-ingredients__name">Pequi</h3>
+              <p class="ondao-ingredients__benefit">Para apoiar a definição dos caracóis.</p>
+            </article>
+            <article class="ondao-ingredients__item">
+              <span class="ondao-ingredients__number" aria-hidden="true">02</span>
+              <h3 class="ondao-ingredients__name">Cacay</h3>
+              <p class="ondao-ingredients__benefit">Para brilho e nutrição.</p>
+            </article>
+            <article class="ondao-ingredients__item">
+              <span class="ondao-ingredients__number" aria-hidden="true">03</span>
+              <h3 class="ondao-ingredients__name">Baobab</h3>
+              <p class="ondao-ingredients__benefit">Para cuidar da elasticidade do cabelo.</p>
+            </article>
+            <article class="ondao-ingredients__item">
+              <span class="ondao-ingredients__number" aria-hidden="true">04</span>
+              <h3 class="ondao-ingredients__name">Ácido poliglutâmico (PGA)</h3>
+              <p class="ondao-ingredients__benefit">Para hidratação profunda.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-      <section class="ingredients page" aria-labelledby="ingredients-heading">
-        <h2 id="ingredients-heading" class="ingredients__heading">Ingredientes essenciais</h2>
-        <img
-          class="ingredients__image"
-          src="assets/images/Lote-001-ingredients.jpg"
-          alt="Ilustrações gráficas conceptuais de pequi, cacay, baobab e PGA; não são fotografias nem identificações botânicas."
-          width="1400"
-          height="700"
-          loading="lazy"
-          decoding="async"
-        >
-        <p class="ingredients__caption">
-          Estudo visual ilustrativo; não representa fotografias ou amostras dos ingredientes reais.
-        </p>
-        <dl class="ingredients__list">
-          <div class="ingredients__item">
-            <dt>Pequi</dt>
-            <dd>Definição natural e controlo do frisado sem rigidez.</dd>
+      <section id="produto" class="ondao-product" aria-labelledby="ondao-product-heading">
+        <div class="ondao-product__layout">
+          <img
+            class="ondao-product__image"
+            src="assets/images/lote-001-packaging.webp"
+            alt="Embalagem da Máscara Transformadora de Caracóis Ondão, Lote 001."
+            loading="lazy"
+          >
+          <div class="ondao-product__content">
+            <p class="ondao-product__eyebrow">Lote 001 · Edição de fundadores</p>
+            <h2 id="ondao-product-heading" class="ondao-product__heading">
+              Máscara Transformadora de Caracóis
+            </h2>
+            <p class="ondao-product__description">
+              Uma máscara com pequi, Cacay, Baobab e ácido poliglutâmico,
+              sem sulfatos nem silicones.
+            </p>
+
+            <div class="ondao-product__offer" aria-label="Oferta de fundador">
+              <span class="ondao-product__offer-label">Preço de fundador</span>
+              <span class="ondao-product__offer-value">20% de desconto vitalício*</span>
+              <p class="ondao-product__offer-note">Preço final em euros: por confirmar.</p>
+            </div>
+
+            <dl class="ondao-product__facts">
+              <div class="ondao-product__fact">
+                <dt>Quantidade</dt>
+                <dd>250 ml</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Lote</dt>
+                <dd>Limitado a 100 unidades</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Ativos-chave</dt>
+                <dd>Pequi, Cacay, Baobab e PGA</dd>
+              </div>
+              <div class="ondao-product__fact">
+                <dt>Formulação</dt>
+                <dd>Sem sulfatos nem silicones</dd>
+              </div>
+            </dl>
+
+            <label class="ondao-product__quantity-label" for="product-quantity">
+              Quantidade a reservar
+            </label>
+            <div class="ondao-product__quantity" role="group" aria-label="Selecionar quantidade">
+              <button type="button" data-quantity-step="-1" aria-label="Diminuir quantidade">−</button>
+              <input
+                id="product-quantity"
+                name="quantity"
+                type="number"
+                min="1"
+                max="100"
+                value="1"
+                inputmode="numeric"
+                aria-describedby="quantity-status"
+              >
+              <button type="button" data-quantity-step="1" aria-label="Aumentar quantidade">+</button>
+            </div>
+            <p id="quantity-status" class="ondao-product__status" aria-live="polite">
+              Máximo selecionável: 100 unidades.
+            </p>
+            <button id="reserve-button" class="ondao-product__reserve" type="button">
+              Reservar unidade <span aria-hidden="true">&rarr;</span>
+            </button>
+            <p class="ondao-product__fine-print">
+              *Desconto sujeito a condições por confirmar. Esta pré-visualização não regista reservas.
+            </p>
+            <p id="reservation-status" class="ondao-product__status" role="status" aria-live="polite"></p>
           </div>
-          <div class="ingredients__item">
-            <dt>Cacay</dt>
-            <dd>Nutrição intensa e brilho espelhado da fibra.</dd>
+        </div>
+
+        <details class="ondao-product__details">
+          <summary>Detalhes da fórmula</summary>
+          <div class="ondao-product__details-content">
+            <p>
+              A embalagem contém 250 ml. A fórmula destaca pequi, Cacay, Baobab
+              e ácido poliglutâmico (PGA), e não contém sulfatos nem silicones.
+            </p>
+            <ul>
+              <li>Lista INCI completa: por confirmar.</li>
+              <li>Modo de utilização e avisos aplicáveis: por confirmar.</li>
+            </ul>
           </div>
-          <div class="ingredients__item">
-            <dt>Baobab</dt>
-            <dd>Fortalece a elasticidade e a estrutura do caracol.</dd>
-          </div>
-          <div class="ingredients__item">
-            <dt>Ácido poliglutâmico (PGA)</dt>
-            <dd>Retenção profunda de humidade, 4x superior ao ácido hialurónico.</dd>
-          </div>
-        </dl>
+        </details>
       </section>
     </main>
-
-    <div id="mobile-sticky" class="mobile-sticky" hidden>
-      <button class="reserve-button" type="button" data-open-vip>Reservar unidade</button>
-    </div>
-
-    <dialog
-      id="vip-dialog"
-      class="dialog"
-      aria-labelledby="vip-heading"
-      aria-describedby="vip-copy vip-notice"
-    >
-      <button class="dialog__close" type="button" aria-label="Fechar" data-close-dialog>&times;</button>
-      <p class="dialog__eyebrow">Lote 001 · Lista VIP</p>
-      <h2 id="vip-heading" class="dialog__heading">Reserva o teu acesso VIP</h2>
-      <p id="vip-copy" class="dialog__copy">
-        Deixa o teu email para receber novidades sobre a abertura do lote.
-      </p>
-      <form id="vip-form" action="https://formspree.io/f/xqpegzwz" method="post">
-        <input type="hidden" name="_subject" value="Nova inscrição — Lista VIP Lote 001">
-        <label class="dialog__label" for="vip-email">Email</label>
-        <input
-          id="vip-email"
-          class="dialog__email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          inputmode="email"
-          maxlength="254"
-          required
-        >
-        <label class="dialog__consent">
-          <input name="consent" type="checkbox" value="accepted" required>
-          <span>
-            Quero receber novidades por email. Consulta a
-            <a href="#privacy">informação de privacidade</a>.
-          </span>
-        </label>
-        <p id="vip-notice" class="dialog__notice">
-          Recebe acesso antecipado e novidades do Lote 001. Podes cancelar a
-          subscrição a qualquer momento.
-        </p>
-        <button id="vip-submit" class="reserve-button dialog__submit" type="submit">
-          Garantir acesso VIP
-        </button>
-        <p id="vip-status" class="dialog__status" role="status" aria-live="polite"></p>
-      </form>
-    </dialog>
-
-    <footer class="footer page">
-      <nav class="footer__links" aria-label="Informação legal">
-        <a href="#terms">Termos</a>
-        <a href="#privacy">Privacidade</a>
-      </nav>
-      <details id="terms">
-        <summary>Termos</summary>
-        <p>
-          Esta página não aceita encomendas. A inscrição VIP não é uma reserva
-          de produto. As condições da oferta serão publicadas antes da abertura
-          das vendas.
-        </p>
-      </details>
-      <details id="privacy">
-        <summary>Privacidade</summary>
-        <p>
-          O email e o consentimento são enviados ao Formspree para tratar a adesão
-          à lista VIP. Serão disponibilizadas informações completas sobre o
-          tratamento de dados antes da ativação da lista.
-        </p>
-      </details>
-    </footer>
-
     <script>
-      const vipDialog = document.querySelector("#vip-dialog");
-      const vipEmail = document.querySelector("#vip-email");
-      const vipForm = document.querySelector("#vip-form");
-      const vipStatus = document.querySelector("#vip-status");
-      const vipSubmit = document.querySelector("#vip-submit");
-      const stickyBar = document.querySelector("#mobile-sticky");
-      let dialogTrigger = null;
+      const quantityInput = document.querySelector("#product-quantity");
+      const quantityStatus = document.querySelector("#quantity-status");
+      const reservationStatus = document.querySelector("#reservation-status");
 
-      document.querySelectorAll("[data-open-vip]").forEach((button) => {
-        button.addEventListener("click", () => {
-          dialogTrigger = button;
-          vipStatus.textContent = "";
-          vipDialog.showModal();
-          vipEmail.focus();
-        });
-      });
-
-      const setStickyVisibility = (visible) => {
-        stickyBar.hidden = !visible;
-        document.body.classList.toggle("has-sticky", visible);
-      };
-
-      if ("IntersectionObserver" in window) {
-        const heroObserver = new IntersectionObserver(([entry]) => {
-          setStickyVisibility(!entry.isIntersecting);
-        });
-        heroObserver.observe(document.querySelector(".hero"));
-      } else {
-        window.addEventListener("scroll", () => {
-          setStickyVisibility(window.scrollY > window.innerHeight);
-        }, { passive: true });
+      function setQuantity(value) {
+        const quantity = Math.min(100, Math.max(1, Number.parseInt(value, 10) || 1));
+        quantityInput.value = quantity;
+        quantityStatus.textContent = `${quantity} ${quantity === 1 ? "unidade" : "unidades"} selecionada(s). Máximo: 100.`;
+        document.querySelector("#reserve-button").firstChild.textContent =
+          `Reservar ${quantity === 1 ? "unidade" : "unidades"} `;
       }
 
-      document.querySelector("[data-close-dialog]").addEventListener("click", () => {
-        vipDialog.close();
+      document.querySelectorAll("[data-quantity-step]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setQuantity(Number(quantityInput.value) + Number(button.dataset.quantityStep));
+        });
       });
 
-      vipDialog.addEventListener("click", (event) => {
-        if (event.target === vipDialog) vipDialog.close();
+      quantityInput.addEventListener("change", () => setQuantity(quantityInput.value));
+      quantityInput.addEventListener("input", () => {
+        if (quantityInput.value !== "") setQuantity(quantityInput.value);
       });
 
-      vipDialog.addEventListener("close", () => {
-        dialogTrigger?.focus();
-        dialogTrigger = null;
-      });
-
-      vipForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        vipSubmit.disabled = true;
-        vipStatus.textContent = "A enviar…";
-
-        try {
-          const response = await fetch(vipForm.action, {
-            method: vipForm.method.toUpperCase(),
-            body: new FormData(vipForm),
-            headers: { Accept: "application/json" },
-          });
-
-          if (!response.ok) {
-            console.error("O Formspree rejeitou a inscrição.", response.status);
-            vipStatus.textContent = "Não foi possível enviar. Tenta novamente.";
-            return;
-          }
-
-          vipForm.reset();
-          vipStatus.textContent = "Obrigado! A tua inscrição na lista VIP foi recebida.";
-        } catch (error) {
-          console.error("Falha ao contactar o Formspree.", error);
-          vipStatus.textContent = "Ocorreu um erro. Verifica a ligação e tenta novamente.";
-        } finally {
-          vipSubmit.disabled = false;
-        }
+      document.querySelector("#reserve-button").addEventListener("click", () => {
+        reservationStatus.textContent = "As reservas ainda não estão disponíveis nesta pré-visualização.";
       });
     </script>
   </body>
