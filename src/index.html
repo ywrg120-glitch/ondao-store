@@ -1,57 +1,146 @@
-<!-- Hero Section - Ondão (Minimalist D2C) -->
-<section class="relative bg-[#FAFAFA] text-[#2C2623] min-h-[90vh] flex items-center justify-center px-6 py-20 font-sans">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-    
-    <!-- Lado Esquerdo: Copywriting & CTA -->
-    <div class="space-y-6 text-center md:text-left">
-      <span class="inline-block px-3 py-1 bg-[#E07A5F]/10 text-[#E07A5F] text-xs uppercase tracking-widest font-semibold rounded-full">
-        Cuidado Capilar Orgânico
-      </span>
-      
-      <h1 class="text-4xl md:text-6xl font-light tracking-tight text-[#2C2623] leading-tight">
-        Assuma as suas <span class="italic font-serif text-[#E07A5F]">ondas.</span>
-      </h1>
-      
-      <p class="text-base md:text-lg text-[#6B5E57] max-w-md mx-auto md:mx-0 font-normal leading-relaxed">
-        Nutrição profunda e definição natural para os seus caracóis e ondas. Formulado com ativos botânicos de alta performance e zero ruído.
-      </p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondão | Creme de Estilização & Nutrição</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-[#FAF7F2] text-[#2C2623] antialiased">
 
-      <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
-        <a href="#produto" class="w-full sm:w-auto px-8 py-4 bg-[#E07A5F] hover:bg-[#D0694E] text-white text-sm font-medium tracking-wide rounded-lg transition-all shadow-sm text-center">
-          Descobrir a Fórmula
-        </a>
-        <a href="#ingredientes" class="w-full sm:w-auto px-8 py-4 border border-[#2C2623]/20 hover:border-[#2C2623] text-[#2C2623] text-sm font-medium tracking-wide rounded-lg transition-all text-center">
-          Ingredientes
-        </a>
+  <!-- Header Minimalista Wavy -->
+  <header class="w-full py-5 px-6 md:px-12 flex justify-between items-center border-b border-[#2C2623]/10 bg-[#FAF7F2]/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="text-2xl font-serif tracking-tight font-semibold text-[#1F302B]">ondão</div>
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-[#5C524C]">
+      <a href="#produto" class="hover:text-[#1F302B] transition-colors">O Produto</a>
+      <a href="#ingredientes" class="hover:text-[#1F302B] transition-colors">Ativos Botânicos</a>
+      <a href="#modo-de-uso" class="hover:text-[#1F302B] transition-colors">Como Usar</a>
+    </nav>
+    <a href="#comprar" class="px-6 py-2.5 bg-[#1F302B] text-white text-xs font-semibold tracking-wider uppercase rounded-full hover:bg-[#2C423B] transition-all shadow-sm">
+      Comprar • 200ml
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="produto" class="relative min-h-[90vh] flex items-center justify-center px-6 py-12 md:py-20">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Copywriting -->
+      <div class="space-y-6 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1F302B]/10 text-[#1F302B] text-xs font-semibold tracking-wider uppercase rounded-full">
+          <span class="w-2 h-2 rounded-full bg-[#1F302B]"></span>
+          Ativos Puros & Orgânicos
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#2C2623] leading-[1.15]">
+          Assuma as suas <span class="italic font-serif text-[#C85D3A]">ondas.</span>
+        </h1>
+        
+        <p class="text-base md:text-lg text-[#6B5E57] max-w-md mx-auto md:mx-0 leading-relaxed font-light">
+          Creme de estilização e nutrição para ondas e caracóis. Definição suave e hidratação profunda sem pesar os fios.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
+          <a href="#comprar" class="w-full sm:w-auto px-8 py-4 bg-[#C85D3A] hover:bg-[#B34E2D] text-white text-sm font-semibold tracking-wide rounded-full transition-all shadow-lg shadow-[#C85D3A]/20 text-center">
+            Adicionar ao Carrinho — 200ml
+          </a>
+          <a href="#ingredientes" class="w-full sm:w-auto px-8 py-4 border border-[#2C2623]/20 hover:border-[#1F302B] text-[#2C2623] text-sm font-medium tracking-wide rounded-full transition-all text-center">
+            Ver Ingredientes
+          </a>
+        </div>
       </div>
 
-      <div class="pt-6 flex items-center justify-center md:justify-start gap-6 text-xs text-[#6B5E57]">
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-[#E07A5F]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-          <span>Ingredientes Orgânicos</span>
+      <!-- Foto Real da Frente (IMG_3916.jpeg) -->
+      <div class="relative flex justify-center items-center">
+        <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-[#C85D3A]/15 rounded-full filter blur-3xl -z-10"></div>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-[#EBE5DB] border border-[#2C2623]/10 p-2 max-w-xs sm:max-w-sm">
+          <img 
+            src="src/IMG_3916.jpeg" 
+            alt="Ondão Creme de Estilização & Nutrição" 
+            class="w-full h-auto object-cover rounded-2xl"
+            onerror="this.onerror=null; this.src='IMG_3916.jpeg';"
+          />
         </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-4 h-4 text-[#E07A5F]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-          <span>Sem Sulfatos ou Parabenos</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Ativos Botânicos Reais -->
+  <section id="ingredientes" class="py-20 px-6 bg-white border-t border-[#2C2623]/5">
+    <div class="max-w-6xl mx-auto space-y-12">
+      <div class="text-center max-w-xl mx-auto space-y-3">
+        <span class="text-xs uppercase tracking-widest text-[#C85D3A] font-semibold">Fórmula Exclusiva</span>
+        <h2 class="text-3xl md:text-4xl font-light text-[#2C2623]">Ciência Botânica & <br><span class="font-serif italic text-[#1F302B]">Nutrição Pura</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-8 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-3">
+          <div class="text-xs font-semibold text-[#1F302B] uppercase tracking-wider">Óleo de Palma Vermelha</div>
+          <h3 class="text-lg font-medium text-[#2C2623]">Proteção Antioxidante</h3>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Rico em betacaroteno e vitamina E para proteger a fibra capilar.</p>
+        </div>
+        <div class="p-8 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-3">
+          <div class="text-xs font-semibold text-[#C85D3A] uppercase tracking-wider">Óleo de Pequi</div>
+          <h3 class="text-lg font-medium text-[#2C2623]">Definição Sem Frizz</h3>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Selagem natural para caracóis e ondas com máxima flexibilidade.</p>
+        </div>
+        <div class="p-8 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-3">
+          <div class="text-xs font-semibold text-[#1F302B] uppercase tracking-wider">Óleo de Cacay</div>
+          <h3 class="text-lg font-medium text-[#2C2623]">Restauração Intensa</h3>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Rico em retinol natural para devolver o brilho e a suavidade.</p>
+        </div>
+        <div class="p-8 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-3">
+          <div class="text-xs font-semibold text-[#1F302B] uppercase tracking-wider">Óleo de Baobab</div>
+          <h3 class="text-lg font-medium text-[#2C2623]">Força & Elasticidade</h3>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Nutre profundamente a estrutura fragilizada do fio.</p>
+        </div>
+        <div class="p-8 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-3 md:col-span-2">
+          <div class="text-xs font-semibold text-[#C85D3A] uppercase tracking-wider">Ácido Poliglutâmico</div>
+          <h3 class="text-lg font-medium text-[#2C2623]">Super-Hidratação Contínua</h3>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Retém até 4x mais humidade do que o ácido hialurónico, garantindo nutrição prolongada.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Lado Direito: Visual do Produto -->
-    <div class="relative flex justify-center items-center">
-      <!-- Fundo Suave / Destaque Terracota -->
-      <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-[#E07A5F]/15 rounded-full filter blur-2xl -z-10"></div>
+  <!-- Modo de Uso com Foto Real do Verso (IMG_3918.jpeg) -->
+  <section id="modo-de-uso" class="py-20 px-6 bg-[#FAF7F2] border-t border-[#2C2623]/5">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       
-      <!-- Placeholder Elegante do Frasco Terracota -->
-      <div class="w-64 h-80 md:w-80 md:h-96 bg-[#D86A4C] rounded-2xl shadow-xl flex flex-col justify-between p-8 text-white relative border border-white/20">
-        <div class="text-xs uppercase tracking-widest opacity-80">Ondão Hair Care</div>
-        <div class="my-auto text-center space-y-2">
-          <h2 class="text-2xl font-serif tracking-wide">ONDÃO</h2>
-          <p class="text-xs tracking-widest uppercase opacity-90">Creme de Pentear Nutritivo</p>
+      <div class="flex justify-center">
+        <div class="relative rounded-3xl overflow-hidden shadow-xl bg-[#EBE5DB] border border-[#2C2623]/10 p-2 max-w-xs">
+          <img 
+            src="src/IMG_3918.jpeg" 
+            alt="Ondão Verso" 
+            class="w-full h-auto object-cover rounded-2xl"
+            onerror="this.onerror=null; this.src='IMG_3918.jpeg';"
+          />
         </div>
-        <div class="text-[10px] text-center opacity-70 tracking-wider uppercase">Ativos Orgânicos • 250ml</div>
       </div>
-    </div>
 
-  </div>
-</section>
+      <div class="space-y-6">
+        <span class="text-xs uppercase tracking-widest text-[#1F302B] font-semibold">Ritual de Estilização</span>
+        <h2 class="text-3xl font-light text-[#2C2623]">Como aplicar o seu <br><span class="font-serif italic text-[#C85D3A]">Ondão</span></h2>
+        <p class="text-sm text-[#5C524C] leading-relaxed">
+          Creme finalizador e co-wash para definição suave. Use para modelar os fios de forma leve, proporcionando nutrição e suavidade para cabelos ondulados e cacheados.
+        </p>
+        <div class="pt-2 text-xs font-mono text-[#6B5E57]">
+          200ml | 6.76 FL OZ • Ativos botânicos e livres de crueldade
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
