@@ -13,40 +13,38 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .font-serif { font-family: 'Playfair Display', serif; }
-    /* Esconder scrollbars na galeria */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="bg-[#FAF7F2] text-[#2C2623] antialiased">
 
-  <!-- 1. Top Bar Promocional Estilo Wavy -->
+  <!-- Top Bar Promocional Realista -->
   <div class="bg-[#1F302B] text-white text-[11px] font-semibold tracking-wider uppercase py-2 text-center px-4">
-    Envios Grátis para Portugal & Espanha em compras acima de €35 • Mais de 50.000 clientes fiéis
+    Envios Grátis para Portugal em compras acima de €35 • Feito para ondular e nutrir
   </div>
 
-  <!-- 2. Header Minimalista -->
+  <!-- Header Minimalista -->
   <header class="w-full py-4 px-6 md:px-12 flex justify-between items-center border-b border-[#2C2623]/10 bg-[#FAF7F2]/90 backdrop-blur-md sticky top-0 z-50">
     <div class="text-2xl font-serif tracking-tight font-bold text-[#1F302B]">ondão</div>
     <nav class="hidden md:flex gap-8 text-sm font-medium text-[#5C524C]">
       <a href="#produto" class="hover:text-[#1F302B] transition-colors">Produto</a>
-      <a href="#resultados" class="hover:text-[#1F302B] transition-colors">Antes & Depois</a>
+      <a href="#resultados" class="hover:text-[#1F302B] transition-colors">Resultados</a>
+      <a href="#comunidade" class="hover:text-[#1F302B] transition-colors">Comunidade</a>
       <a href="#ingredientes" class="hover:text-[#1F302B] transition-colors">Ingredientes</a>
-      <a href="#faq" class="hover:text-[#1F302B] transition-colors">Perguntas Frequentes</a>
     </nav>
     <a href="#comprar" class="px-5 py-2 bg-[#C85D3A] text-white text-xs font-semibold tracking-wider uppercase rounded-full hover:bg-[#B34E2D] transition-all shadow-sm">
       Comprar • €24,00
     </a>
   </header>
 
-  <!-- 3. Módulo Principal de Produto (Hero + Galeria Swipe + Caixa de Compra D2C) -->
+  <!-- Módulo Principal de Produto (Hero + Galeria com Swipe) -->
   <section id="produto" class="py-8 md:py-16 px-4 md:px-12 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
-      <!-- Lado Esquerdo: Galeria Interativa com Swipe / Bolinhas (Colunas 7/12) -->
+      <!-- Lado Esquerdo: Galeria de Fotos Reais -->
       <div class="lg:col-span-7 space-y-4">
         <div class="relative overflow-hidden rounded-3xl bg-[#EBE5DB] border border-[#2C2623]/10 shadow-lg">
-          <!-- Carrossel com Scroll Snap (Swipe no Telemóvel) -->
           <div id="carousel" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth">
             <div class="snap-center shrink-0 w-full flex justify-center items-center p-4">
               <img src="src/IMG_3916.jpeg" alt="Ondão - Frente" class="max-h-[500px] w-auto object-contain rounded-2xl" onerror="this.onerror=null; this.src='IMG_3916.jpeg';" />
@@ -55,233 +53,220 @@
               <img src="src/IMG_3918.jpeg" alt="Ondão - Verso" class="max-h-[500px] w-auto object-contain rounded-2xl" onerror="this.onerror=null; this.src='IMG_3918.jpeg';" />
             </div>
           </div>
-
-          <!-- Dica visual de Swipe -->
           <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#1F302B]/80 backdrop-blur-sm text-white text-[10px] uppercase font-semibold px-3 py-1 rounded-full pointer-events-none">
             Deslize para ver o verso ↔
           </div>
         </div>
 
-        <!-- Miniaturas Clicáveis para Alternar -->
         <div class="flex justify-center gap-3">
-          <button onclick="scrollToSlide(0)" class="w-16 h-16 rounded-xl border-2 border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB] focus:outline-none">
+          <button onclick="scrollToSlide(0)" class="w-16 h-16 rounded-xl border-2 border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB]">
             <img src="src/IMG_3916.jpeg" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null; this.src='IMG_3916.jpeg';" />
           </button>
-          <button onclick="scrollToSlide(1)" class="w-16 h-16 rounded-xl border-2 border-[#2C2623]/20 hover:border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB] focus:outline-none">
+          <button onclick="scrollToSlide(1)" class="w-16 h-16 rounded-xl border-2 border-[#2C2623]/20 hover:border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB]">
             <img src="src/IMG_3918.jpeg" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null; this.src='IMG_3918.jpeg';" />
           </button>
         </div>
       </div>
 
-      <!-- Lado Direito: Formulário e Módulo D2C de Venda (Colunas 5/12) -->
+      <!-- Lado Direito: Módulo D2C -->
       <div id="comprar" class="lg:col-span-5 space-y-6 bg-white p-6 md:p-8 rounded-3xl border border-[#2C2623]/10 shadow-sm">
-        
-        <!-- Título e Avaliação -->
         <div>
           <div class="flex items-center gap-2 mb-1">
             <div class="text-[#C85D3A] text-sm">★★★★★</div>
-            <span class="text-xs font-semibold text-[#5C524C]">4.9 / 5.0 (+1.200 avaliações)</span>
+            <span class="text-xs font-semibold text-[#5C524C]">Avaliado por utilizadores</span>
           </div>
           <h1 class="text-2xl sm:text-3xl font-light text-[#2C2623]">
-            Creme para Ondas & Caracóis <span class="font-serif italic text-[#C85D3A]">Everyday</span>
+            Creme de Estilização & Nutrição <span class="font-serif italic text-[#C85D3A]">Ondão</span>
           </h1>
-          <p class="text-xs text-[#6B5E57] mt-1 font-mono">200ml | 6.76 FL OZ • Ativos Botânicos Puros</p>
+          <p class="text-xs text-[#6B5E57] mt-1 font-mono">200ml | 6.76 FL OZ • Ativos Botânicos</p>
         </div>
 
         <p class="text-xs text-[#5C524C] leading-relaxed">
-          A solução definitiva para textura natural sem frizz que dura o dia todo. Fórmula leve que equilibra movimento, definição e nutrição profunda.
+          Definição natural, hidratação profunda e controlo do frizz sem pesar. Formulado com óleos de Pequi, Cacay, Baobab, Palma Vermelha e Ácido Poliglutâmico.
         </p>
 
-        <!-- Seletor de Modalidade: Compra Única vs Assinatura (Estilo Wavy) -->
+        <!-- Seletor de Compra -->
         <div class="space-y-3 pt-2">
-          
-          <!-- Opção 1: Compra Única -->
           <label class="flex items-center justify-between p-4 rounded-2xl border-2 border-[#C85D3A] bg-[#FAF7F2] cursor-pointer">
             <div class="flex items-center gap-3">
               <input type="radio" name="compra" value="unica" checked class="accent-[#C85D3A] w-4 h-4">
               <div>
-                <div class="text-xs font-bold text-[#2C2623] uppercase tracking-wider">Compra Única</div>
-                <div class="text-[11px] text-[#6B5E57]">Experimente sem compromisso</div>
+                <div class="text-xs font-bold text-[#2C2623] uppercase tracking-wider">Frasco Único (200ml)</div>
+                <div class="text-[11px] text-[#6B5E57]">Ideal para testar e apaixonar-se</div>
               </div>
             </div>
             <div class="text-base font-bold text-[#2C2623]">€24,00</div>
           </label>
-
-          <!-- Opção 2: Assinatura com Desconto -->
-          <label class="flex items-center justify-between p-4 rounded-2xl border border-[#2C2623]/15 hover:border-[#1F302B] cursor-pointer">
-            <div class="flex items-center gap-3">
-              <input type="radio" name="compra" value="assinatura" class="accent-[#1F302B] w-4 h-4">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-bold text-[#1F302B] uppercase tracking-wider">Assinar & Economizar</span>
-                  <span class="bg-[#1F302B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Poupe 15%</span>
-                </div>
-                <div class="text-[11px] text-[#6B5E57]">Entrega automática a cada 30 dias • Cancele quando quiser</div>
-              </div>
-            </div>
-            <div class="text-base font-bold text-[#1F302B]">€20,40</div>
-          </label>
-
         </div>
 
-        <!-- Garantias e Vantagens Rápidas -->
         <div class="grid grid-cols-2 gap-2 text-[11px] text-[#5C524C] pt-2">
-          <div class="flex items-center gap-1.5">✓ Mais de 98% botânico</div>
-          <div class="flex items-center gap-1.5">✓ Dura o dia todo</div>
-          <div class="flex items-center gap-1.5">✓ Para toda a textura</div>
-          <div class="flex items-center gap-1.5">✓ Envio rápido 24/48h</div>
+          <div class="flex items-center gap-1.5">✓ 100% Ativos Botânicos</div>
+          <div class="flex items-center gap-1.5">✓ Sem sulfatos/parabenos</div>
+          <div class="flex items-center gap-1.5">✓ Cruelty-Free</div>
+          <div class="flex items-center gap-1.5">✓ Envio rápido 24h</div>
         </div>
 
-        <!-- Botão CTA Principal de Compra -->
-        <button class="w-full py-4 bg-[#C85D3A] hover:bg-[#B34E2D] text-white font-semibold text-sm tracking-wider uppercase rounded-full shadow-lg shadow-[#C85D3A]/25 transition-all transform active:scale-95">
+        <button class="w-full py-4 bg-[#C85D3A] hover:bg-[#B34E2D] text-white font-semibold text-sm tracking-wider uppercase rounded-full shadow-lg shadow-[#C85D3A]/25 transition-all">
           Adicionar ao Carrinho — €24,00
         </button>
 
         <p class="text-[10px] text-center text-[#6B5E57]">
-          🔒 Pagamento Seguro via MB WAY, Cartão de Crédito e Klarna
+          🔒 Pagamento Seguro • Garantia de Qualidade Ondão
         </p>
-
       </div>
 
     </div>
   </section>
 
-  <!-- 4. Destaque de Imprensa / Citação Estilo Vogue -->
-  <section class="bg-[#1F302B] text-white py-12 px-6 text-center">
-    <div class="max-w-3xl mx-auto space-y-4">
-      <div class="text-xs font-mono uppercase tracking-widest text-[#EBE5DB]/70">VOGUE BEAUTY</div>
-      <blockquote class="text-lg md:text-2xl font-serif font-light italic leading-relaxed">
-        "Uma fórmula leve que adiciona textura e definição às ondas, proporcionando a fixação perfeita sem efeito rígido."
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- 5. Comparador Antes & Depois Interativo (Slider Arrastável) -->
+  <!-- Resultados / Antes & Depois -->
   <section id="resultados" class="py-16 px-6 max-w-4xl mx-auto space-y-8">
     <div class="text-center space-y-2">
-      <span class="text-xs uppercase tracking-widest text-[#C85D3A] font-semibold">Transformação Real</span>
-      <h2 class="text-3xl font-light text-[#2C2623]">Resultados no Cabelo</h2>
-      <p class="text-xs text-[#6B5E57]">Arraste o marcador central para comparar o Antes e o Depois do Ondão.</p>
+      <span class="text-xs uppercase tracking-widest text-[#C85D3A] font-semibold">Performance Real</span>
+      <h2 class="text-3xl font-light text-[#2C2623]">Antes & Depois</h2>
+      <p class="text-xs text-[#6B5E57]">Veja o poder de definição e controlo de frizz com uma única aplicação.</p>
     </div>
 
-    <!-- Módulo do Slider de Comparação -->
     <div class="relative w-full max-w-2xl mx-auto h-[380px] sm:h-[450px] rounded-3xl overflow-hidden shadow-xl select-none border border-[#2C2623]/10">
-      
-      <!-- Imagem DEPOIS (Fundo) -->
       <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
       <span class="absolute top-4 right-4 bg-[#1F302B] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">DEPOIS</span>
 
-      <!-- Imagem ANTES (Sobreposição Cortada) -->
       <div id="before-image-container" class="absolute top-0 left-0 bottom-0 w-1/2 overflow-hidden">
         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" alt="Antes" class="absolute top-0 left-0 h-full max-w-none w-[600px] sm:w-[700px] object-cover">
         <span class="absolute top-4 left-4 bg-[#C85D3A] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow">ANTES</span>
       </div>
 
-      <!-- Slider Control (Linha e Botão Central) -->
       <input type="range" min="0" max="100" value="50" id="before-after-slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" oninput="updateBeforeAfter(this.value)">
       <div id="slider-line" class="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white z-20 pointer-events-none shadow-lg">
         <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-white text-[#2C2623] rounded-full flex items-center justify-center font-bold text-xs shadow-md">
           ↔
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- NOVA SECÇÃO: Junte-se à Comunidade Ondão (Com Carrossel Controlável por Setas) -->
+  <section id="comunidade" class="py-16 px-6 bg-white border-t border-[#2C2623]/5">
+    <div class="max-w-6xl mx-auto space-y-8">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="space-y-2 text-center md:text-left">
+          <span class="text-xs uppercase tracking-widest text-[#1F302B] font-semibold">Resultados Reais da Comunidade</span>
+          <h2 class="text-3xl font-light text-[#2C2623]">Junte-se à Comunidade <span class="font-serif italic text-[#C85D3A]">Ondão</span></h2>
+        </div>
+        <!-- Botões de Controlo do Carrossel (Esquerda / Direita) -->
+        <div class="flex gap-2">
+          <button onclick="scrollCommunity('left')" class="w-12 h-12 rounded-full border border-[#2C2623]/20 flex items-center justify-center hover:bg-[#1F302B] hover:text-white transition-all">
+            ←
+          </button>
+          <button onclick="scrollCommunity('right')" class="w-12 h-12 rounded-full border border-[#2C2623]/20 flex items-center justify-center hover:bg-[#1F302B] hover:text-white transition-all">
+            →
+          </button>
+        </div>
+      </div>
+
+      <!-- Contentor Deslizável com os Cartões da Comunidade -->
+      <div id="community-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth pb-4">
+        
+        <!-- Cartão 1 -->
+        <div class="snap-start shrink-0 w-80 bg-[#FAF7F2] p-6 rounded-3xl border border-[#2C2623]/10 space-y-4">
+          <div class="h-64 rounded-2xl overflow-hidden bg-[#EBE5DB]">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="text-[#C85D3A] text-xs">★★★★★</div>
+          <p class="text-xs text-[#5C524C] leading-relaxed">"O cheiro é incrível e define as ondas sem colar nem deixar o cabelo pesado."</p>
+          <div class="text-[11px] font-bold text-[#1F302B]">— Gonçalo M.</div>
+        </div>
+
+        <!-- Cartão 2 -->
+        <div class="snap-start shrink-0 w-80 bg-[#FAF7F2] p-6 rounded-3xl border border-[#2C2623]/10 space-y-4">
+          <div class="h-64 rounded-2xl overflow-hidden bg-[#EBE5DB]">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="text-[#C85D3A] text-xs">★★★★★</div>
+          <p class="text-xs text-[#5C524C] leading-relaxed">"Finalmente um produto que controla o frizz durante o dia todo em Lisboa."</p>
+          <div class="text-[11px] font-bold text-[#1F302B]">— Tiago R.</div>
+        </div>
+
+        <!-- Cartão 3 -->
+        <div class="snap-start shrink-0 w-80 bg-[#FAF7F2] p-6 rounded-3xl border border-[#2C2623]/10 space-y-4">
+          <div class="h-64 rounded-2xl overflow-hidden bg-[#EBE5DB]">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="text-[#C85D3A] text-xs">★★★★★</div>
+          <p class="text-xs text-[#5C524C] leading-relaxed">"Textura super leve e ingredientes naturais de alta qualidade. Recomendo muito!"</p>
+          <div class="text-[11px] font-bold text-[#1F302B]">— Diogo S.</div>
+        </div>
+
+        <!-- Cartão 4 -->
+        <div class="snap-start shrink-0 w-80 bg-[#FAF7F2] p-6 rounded-3xl border border-[#2C2623]/10 space-y-4">
+          <div class="h-64 rounded-2xl overflow-hidden bg-[#EBE5DB]">
+            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+          </div>
+          <div class="text-[#C85D3A] text-xs">★★★★★</div>
+          <p class="text-xs text-[#5C524C] leading-relaxed">"O formato de 200ml rende muito e o resultado nos caracóis é imediato."</p>
+          <div class="text-[11px] font-bold text-[#1F302B]">— Miguel P.</div>
+        </div>
+
+      </div>
 
     </div>
   </section>
 
-  <!-- 6. Secção de Ingredientes Botânicos -->
-  <section id="ingredientes" class="py-16 px-6 bg-white border-t border-[#2C2623]/5">
+  <!-- Ingredientes Ativos -->
+  <section id="ingredientes" class="py-16 px-6 bg-[#FAF7F2] border-t border-[#2C2623]/5">
     <div class="max-w-6xl mx-auto space-y-10">
       <div class="text-center max-w-xl mx-auto space-y-2">
-        <span class="text-xs uppercase tracking-widest text-[#C85D3A] font-semibold">Ativos Orgânicos</span>
-        <h2 class="text-3xl font-light text-[#2C2623]">Formulado com Propósito</h2>
+        <span class="text-xs uppercase tracking-widest text-[#C85D3A] font-semibold">Fórmula Limpa</span>
+        <h2 class="text-3xl font-light text-[#2C2623]">Ciência Botânica Pura</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-6 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-2">
+        <div class="p-6 bg-white rounded-2xl border border-[#2C2623]/5 space-y-2">
           <div class="text-xs font-bold text-[#1F302B] uppercase">Óleo de Palma Vermelha</div>
-          <p class="text-xs text-[#6B5E57]">Proteção antioxidante rica em betacaroteno contra o desgaste diário.</p>
+          <p class="text-xs text-[#6B5E57]">Proteção antioxidante contra agressões diárias.</p>
         </div>
-        <div class="p-6 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-2">
+        <div class="p-6 bg-white rounded-2xl border border-[#2C2623]/5 space-y-2">
           <div class="text-xs font-bold text-[#C85D3A] uppercase">Óleo de Pequi</div>
-          <p class="text-xs text-[#6B5E57]">Selagem natural que elimina o frizz sem comprometer o balanço.</p>
+          <p class="text-xs text-[#6B5E57]">Selagem natural que elimina o frizz sem pesar.</p>
         </div>
-        <div class="p-6 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-2">
+        <div class="p-6 bg-white rounded-2xl border border-[#2C2623]/5 space-y-2">
           <div class="text-xs font-bold text-[#1F302B] uppercase">Óleo de Cacay</div>
-          <p class="text-xs text-[#6B5E57]">Restauração com retinol natural para dar brilho e sedosidade.</p>
-        </div>
-        <div class="p-6 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-2">
-          <div class="text-xs font-bold text-[#1F302B] uppercase">Óleo de Baobab</div>
-          <p class="text-xs text-[#6B5E57]">Força e nutrição intensiva para a fibra capilar.</p>
-        </div>
-        <div class="p-6 bg-[#FAF7F2] rounded-2xl border border-[#2C2623]/5 space-y-2 md:col-span-2">
-          <div class="text-xs font-bold text-[#C85D3A] uppercase">Ácido Poliglutâmico</div>
-          <p class="text-xs text-[#6B5E57]">Retém até 4x mais humidade do que o ácido hialurónico para hidratação contínua.</p>
+          <p class="text-xs text-[#6B5E57]">Restauração com retinol natural para brilho e suavidade.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Accordion FAQ (Perguntas Frequentes Clicáveis) -->
-  <section id="faq" class="py-16 px-6 max-w-3xl mx-auto space-y-8">
-    <div class="text-center space-y-2">
-      <span class="text-xs uppercase tracking-widest text-[#1F302B] font-semibold">Dúvidas</span>
-      <h2 class="text-3xl font-light text-[#2C2623]">Perguntas Frequentes</h2>
-    </div>
-
-    <div class="space-y-4">
-      <details class="group bg-white p-5 rounded-2xl border border-[#2C2623]/10 cursor-pointer">
-        <summary class="font-medium text-sm flex justify-between items-center text-[#2C2623] list-none">
-          O produto contém sulfatos ou parabenos?
-          <span class="transition group-open:rotate-180 text-[#C85D3A]">▼</span>
-        </summary>
-        <p class="text-xs text-[#6B5E57] mt-3 leading-relaxed">
-          Não. A nossa fórmula é 100% livre de sulfatos, parabenos, silicones pesados ou óleos minerais.
-        </p>
-      </details>
-
-      <details class="group bg-white p-5 rounded-2xl border border-[#2C2623]/10 cursor-pointer">
-        <summary class="font-medium text-sm flex justify-between items-center text-[#2C2623] list-none">
-          Tenho cabelo liso ou ligeiramente ondulado. Vai funcionar?
-          <span class="transition group-open:rotate-180 text-[#C85D3A]">▼</span>
-        </summary>
-        <p class="text-xs text-[#6B5E57] mt-3 leading-relaxed">
-          O Ondão ativa e define a textura natural existente no cabelo (ondas 2A-2C e caracóis 3A-3C). Se tiveres ondas suaves, vai ajudar a dar corpo e textura sem pesar.
-        </p>
-      </details>
-
-      <details class="group bg-white p-5 rounded-2xl border border-[#2C2623]/10 cursor-pointer">
-        <summary class="font-medium text-sm flex justify-between items-center text-[#2C2623] list-none">
-          Qual é o prazo de entrega em Portugal?
-          <span class="transition group-open:rotate-180 text-[#C85D3A]">▼</span>
-        </summary>
-        <p class="text-xs text-[#6B5E57] mt-3 leading-relaxed">
-          Entregas rápidas em 24h a 48h úteis para Portugal Continental e 3 a 5 dias para as ilhas.
-        </p>
-      </details>
-    </div>
-  </section>
-
-  <!-- Rodapé D2C -->
+  <!-- Rodapé -->
   <footer class="bg-[#1F302B] text-white/80 py-12 px-6 text-center text-xs space-y-4">
     <div class="text-xl font-serif text-white font-bold">ondão</div>
     <p>© 2026 Ondão Hair Care. Todos os direitos reservados. Seja fiel à sua textura.</p>
   </footer>
 
-  <!-- Scripts JavaScript Interativos -->
+  <!-- Scripts JavaScript -->
   <script>
-    // Função para rolar o carrossel de fotos no telemóvel
     function scrollToSlide(index) {
       const carousel = document.getElementById('carousel');
       const width = carousel.clientWidth;
       carousel.scrollTo({ left: width * index, behavior: 'smooth' });
     }
 
-    // Função para o Slider do Antes & Depois
     function updateBeforeAfter(val) {
       const container = document.getElementById('before-image-container');
       const line = document.getElementById('slider-line');
       container.style.width = val + '%';
       line.style.left = val + '%';
+    }
+
+    // Controlo das setas do carrossel da comunidade
+    function scrollCommunity(direction) {
+      const communityCarousel = document.getElementById('community-carousel');
+      const scrollAmount = 340; // largura do cartão + margem
+      if (direction === 'left') {
+        communityCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        communityCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
     }
   </script>
 
