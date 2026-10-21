@@ -1,8 +1,10 @@
 name: Executar Agentes Ondao
 
 on:
-  issues:
-    types: [opened, labeled]
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   run-gemini-agents:
@@ -32,32 +34,13 @@ jobs:
           from google import genai
 
           client = genai.Client()
-          
-          # Procurar o ficheiro room-config dentro da pasta agentes
-          files = glob.glob('room-config.md') or glob.glob('agentes/room-config.md') or glob.glob('*/room-config.md')
 
+          # Procurar o ficheiro room-config na raiz
+          files = glob.glob('room-config.md')
           contexto = ''
           if files:
               with open(files[0], 'r', encoding='utf-8') as f:
                   contexto = f.read()
 
-          prompt = f'''
-          Tu és a equipa de 7 agentes autónomos da Ondão Store.
-          Com base nas tuas diretrizes:
-          {contexto}
-
-          Trabalha na seguinte tarefa aberta no GitHub:
-          Título: {os.environ.get('ISSUE_TITLE')}
-          Descrição: {os.environ.get('ISSUE_BODY')}
-
-          Gera um plano de ação detalhado, o código necessário e as recomendações de conversão inspiradas na Wavy.
-          '''
-
-          response = client.models.generate_content(
-              model='gemini-2.5-flash',
-              contents=prompt,
-          )
-
-          print('--- RESPOSTA DOS AGENTES ---')
-          print(response.text)
+          print(f'Contexto carregado com sucesso da raiz: {len(contexto)} carateres')
           "
