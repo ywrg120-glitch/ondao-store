@@ -35,8 +35,8 @@ jobs:
 
           client = genai.Client()
 
-          # Procurar o ficheiro room-config na raiz
-          files = glob.glob('room-config.md')
+          # Procurar o ficheiro config-ondao na raiz
+          files = glob.glob('config-ondao.md')
           contexto = ''
           if files:
               with open(files[0], 'r', encoding='utf-8') as f:
