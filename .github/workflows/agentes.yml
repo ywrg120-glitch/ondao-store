@@ -42,5 +42,4 @@ jobs:
               with open(files[0], 'r', encoding='utf-8') as f:
                   contexto = f.read()
 
-          print(f'Contexto carregado com sucesso da raiz: {len(contexto)} carateres')
-          "
+          print(f'Contexto carregado com sucesso da raiz: {len(contexto)} carateres') 
