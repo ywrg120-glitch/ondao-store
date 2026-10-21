@@ -1,8 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ondão Hair Care | Assuma as suas ondas</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#FAFAFA] text-[#2C2623] font-sans antialiased">
+
+  <!-- Header / Navigation -->
+  <header class="w-full py-6 px-8 flex justify-between items-center border-b border-[#2C2623]/10 bg-white">
+    <div class="text-xl font-serif tracking-wider font-semibold">ONDÃO</div>
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-[#6B5E57]">
+      <a href="#produto" class="hover:text-[#E07A5F] transition-colors">Produto</a>
+      <a href="#ingredientes" class="hover:text-[#E07A5F] transition-colors">Ingredientes</a>
+      <a href="#sobre" class="hover:text-[#E07A5F] transition-colors">A Marca</a>
+    </nav>
+    <a href="#produto" class="px-5 py-2.5 bg-[#E07A5F] text-white text-xs font-semibold rounded-lg hover:bg-[#D0694E] transition-all">
+      Comprar
+    </a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[85vh] flex items-center justify-center px-6 py-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      
+      <!-- Lado Esquerdo: Copywriting & CTA -->
+      <div class="space-y-6 text-center md:text-left">
+        <span class="inline-block px-3.5 py-1 bg-[#E07A5F]/10 text-[#E07A5F] text-xs uppercase tracking-widest font-semibold rounded-full">
+          Cuidado Capilar Orgânico
+        </span>
+        
+        <h1 class="text-4xl md:text-6xl font-light tracking-tight leading-tight">
+          Assuma as suas <span class="italic font-serif text-[#E07A5F]">ondas.</span>
+        </h1>
+        
+        <p class="text-base md:text-lg text-[#6B5E57] max-w-md mx-auto md:mx-0 font-normal leading-relaxed">
+          Nutrição profunda e definição natural para os seus caracóis e ondas. Formulado com ativos botânicos de alta performance e zero ruído.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center">
+          <a href="#produto" class="w-full sm:w-auto px-8 py-4 bg-[#E07A5F] hover:bg-[#D0694E] text-white text-sm font-medium tracking-wide rounded-lg transition-all shadow-sm text-center">
+            Descobrir a Fórmula
+          </a>
+          <a href="#ingredientes" class="w-full sm:w-auto px-8 py-4 border border-[#2C2623]/20 hover:border-[#2C2623] text-[#2C2623] text-sm font-medium tracking-wide rounded-lg transition-all text-center">
+            Ingredientes
+          </a>
+        </div>
+
+        <div class="pt-4 flex items-center justify-center md:justify-start gap-6 text-xs text-[#6B5E57]">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#E07A5F]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+            <span>Ingredientes Orgânicos</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#E07A5F]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+            <span>Sem Sulfatos / Parabenos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Visual do Produto -->
+      <div class="relative flex justify-center items-center">
+        <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-[#E07A5F]/15 rounded-full filter blur-2xl -z-10"></div>
+        
+        <div class="w-64 h-80 md:w-80 md:h-96 bg-[#D86A4C] rounded-2xl shadow-2xl flex flex-col justify-between p-8 text-white relative border border-white/20 transform hover:scale-105 transition-all duration-300">
+          <div class="text-[10px] uppercase tracking-widest opacity-80 font-mono">Ondão Hair Care</div>
+          <div class="my-auto text-center space-y-2">
+            <h2 class="text-3xl font-serif tracking-wider font-light">ONDÃO</h2>
+            <p class="text-xs tracking-widest uppercase opacity-90 font-medium">Creme de Pentear Nutritivo</p>
+          </div>
+          <div class="text-[10px] text-center opacity-75 tracking-wider uppercase font-mono">Ativos Botânicos • 250ml</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Secção Ingredientes / Ativos Botânicos -->
   <section id="ingredientes" class="py-20 px-6 bg-white border-t border-[#2C2623]/5">
     <div class="max-w-6xl mx-auto space-y-12">
       
-      <!-- Cabeçalho da Secção -->
+      <!-- Cabeçalho -->
       <div class="text-center max-w-xl mx-auto space-y-3">
         <span class="text-xs uppercase tracking-widest text-[#E07A5F] font-semibold">Ciência Botânica</span>
         <h2 class="text-3xl md:text-4xl font-light text-[#2C2623]">Fórmulas limpas. <br><span class="font-serif italic text-[#E07A5F]">Resultados reais.</span></h2>
@@ -12,28 +92,31 @@
       <!-- Grelha de Ingredientes -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
         
-        <!-- Cartão 1: Óleo de Pequi -->
+        <!-- 01: Óleo de Pequi -->
         <div class="p-8 bg-[#FAFAFA] rounded-2xl border border-[#2C2623]/5 space-y-4 hover:shadow-md transition-all">
           <div class="w-10 h-10 bg-[#E07A5F]/10 rounded-xl flex items-center justify-center text-[#E07A5F] font-serif font-bold text-lg">01</div>
           <h3 class="text-xl font-medium text-[#2C2623]">Óleo de Pequi</h3>
           <p class="text-xs text-[#6B5E57] leading-relaxed">Rico em ácidos gordos essenciais. Define as ondas de forma natural, reduz o frisado e devolve o brilho sem deixar resíduos gordurosos.</p>
         </div>
 
-        <!-- Cartão 2: Proteína de Baobá -->
+        <!-- 02: Proteína de Baobá -->
         <div class="p-8 bg-[#FAFAFA] rounded-2xl border border-[#2C2623]/5 space-y-4 hover:shadow-md transition-all">
           <div class="w-10 h-10 bg-[#E07A5F]/10 rounded-xl flex items-center justify-center text-[#E07A5F] font-serif font-bold text-lg">02</div>
           <h3 class="text-xl font-medium text-[#2C2623]">Proteína de Baobá</h3>
           <p class="text-xs text-[#6B5E57] leading-relaxed">Fortalece a estrutura interna do cabelo danificado por agressões térmicas ou solares, prevenindo a quebra e conferindo elasticidade.</p>
         </div>
 
-        <!-- Cartão 3: Ácido Poliglutâmico -->
+        <!-- 03: Ácido Poliglutâmico -->
         <div class="p-8 bg-[#FAFAFA] rounded-2xl border border-[#2C2623]/5 space-y-4 hover:shadow-md transition-all">
           <div class="w-10 h-10 bg-[#E07A5F]/10 rounded-xl flex items-center justify-center text-[#E07A5F] font-serif font-bold text-lg">03</div>
           <h3 class="text-xl font-medium text-[#2C2623]">Ácido Poliglutâmico</h3>
-          <p class="text-xs text-[#6B5E57] leading-relaxed">Retem até 4x mais humidade do que o ácido hialurónico. Cria uma barreira invisível de hidratação contínua ao longo de todo o dia.</p>
+          <p class="text-xs text-[#6B5E57] leading-relaxed">Retém até 4x mais humidade do que o ácido hialurónico. Cria uma barreira invisível de hidratação contínua ao longo de todo o dia.</p>
         </div>
 
       </div>
 
     </div>
   </section>
+
+</body>
+</html>
