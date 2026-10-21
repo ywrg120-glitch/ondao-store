@@ -33,6 +33,24 @@ jobs:
 
           client = genai.Client()
 
+          # 1. Obter a lista real de modelos disponíveis para esta API Key
+          print('--- A PROCURAR MODELOS DISPONÍVEIS ---')
+          modelos_disponiveis = [m.name for m in client.models.list()]
+          print(f'Modelos encontrados na tua conta: {modelos_disponiveis}')
+
+          # Selecionar o primeiro modelo válido que suporte geração de texto
+          modelo_escolhido = None
+          for m in modelos_disponiveis:
+              if 'gemini' in m and 'flash' in m:
+                  modelo_escolhido = m
+                  break
+          
+          if not modelo_escolhido and modelos_disponiveis:
+              modelo_escolhido = modelos_disponiveis[0]
+
+          print(f'Modelo selecionado automaticamente: {modelo_escolhido}')
+
+          # 2. Carregar contexto da marca
           files = glob.glob('config-ondao.md')
           contexto = ''
           if files:
@@ -41,6 +59,7 @@ jobs:
 
           print(f'Contexto carregado: {len(contexto)} carateres')
 
+          # 3. Gerar o código da Hero Section
           prompt = f'''
           Com base nas diretrizes da marca em anexo:
           {contexto}
@@ -51,7 +70,7 @@ jobs:
           '''
 
           response = client.models.generate_content(
-              model='gemini-2.5-flash',
+              model=modelo_escolhido,
               contents=prompt
           )
 
