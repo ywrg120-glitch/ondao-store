@@ -33,12 +33,28 @@ jobs:
 
           client = genai.Client()
 
-          # Procurar o ficheiro config-ondao na raiz
           files = glob.glob('config-ondao.md')
           contexto = ''
           if files:
               with open(files[0], 'r', encoding='utf-8') as f:
                   contexto = f.read()
 
-          print(f'Contexto carregado com sucesso da raiz: {len(contexto)} carateres')
+          print(f'Contexto carregado: {len(contexto)} carateres')
+
+          prompt = f'''
+          Com base nas diretrizes da marca em anexo:
+          {contexto}
+          
+          Atua como um especialista em copywriting D2C e desenvolvimento web minimalista (estilo Wavy).
+          Gera o código HTML/Tailwind CSS para a Hero Section com a headline \"Assuma as suas ondas.\", 
+          com foco visual no creme/frasco terracota, zero ruído visual, elegante e com alta conversão.
+          '''
+
+          response = client.models.generate_content(
+              model='gemini-2.5-flash',
+              contents=prompt
+          )
+
+          print('--- RESPOSTA DOS AGENTES (HERO SECTION) ---')
+          print(response.text)
           "
