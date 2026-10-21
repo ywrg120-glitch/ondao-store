@@ -34,7 +34,8 @@ jobs:
           client = genai.Client()
           
           # Procurar o ficheiro room-config dentro da pasta agentes
-          files = glob.glob('agentes/*room-config*.md')
+          files = glob.glob('room-config.md') or glob.glob('agentes/room-config.md') or glob.glob('*/room-config.md')
+
           contexto = ''
           if files:
               with open(files[0], 'r', encoding='utf-8') as f:
