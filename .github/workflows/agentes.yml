@@ -31,34 +31,14 @@ jobs:
           import os, glob
           from google import genai
 
-          # Inicializar o cliente oficial do Google GenAI
           client = genai.Client()
 
-          # Carregar o contexto da marca a partir da raiz
+          # Procurar o ficheiro config-ondao na raiz
           files = glob.glob('config-ondao.md')
           contexto = ''
           if files:
               with open(files[0], 'r', encoding='utf-8') as f:
                   contexto = f.read()
 
-          print(f'Contexto carregado com sucesso: {len(contexto)} carateres')
-
-          # Prompt para os agentes gerarem a Hero Section limpa e direta
-          prompt = f'''
-          Com base nas diretrizes da marca em anexo:
-          {contexto}
-          
-          Atua como um especialista em copywriting D2C e desenvolvimento web minimalista.
-          Gera o código HTML/Tailwind para a Hero Section com o título \"Assuma as suas ondas.\", 
-          mantendo um design sem ruído visual, elegante e focado na conversão do produto.
-          '''
-
-          # Chamar o modelo Gemini para executar a tarefa dos agentes
-          response = client.models.generate_content(
-              model='gemini-2.5-flash',
-              contents=prompt
-          )
-
-          print('--- RESPOSTA DOS AGENTES ---')
-          print(response.text)
+          print(f'Contexto carregado com sucesso da raiz: {len(contexto)} carateres')
           "
