@@ -50,25 +50,11 @@ jobs:
           com foco visual no creme/frasco terracota, zero ruído visual, elegante e com alta conversão.
           '''
 
-          # Lista de modelos a testar por ordem de preferência
-          modelos = ['gemini-2.0-flash', 'gemini-1.5-flash-8b', 'gemini-1.5-pro']
-          
-          response = None
-          for m in modelos:
-              try:
-                  print(f'A tentar gerar com o modelo: {m}...')
-                  response = client.models.generate_content(
-                      model=m,
-                      contents=prompt
-                  )
-                  print(f'Sucesso com o modelo: {m}')
-                  break
-              except Exception as e:
-                  print(f'Falha ao tentar {m}: {e}')
+          response = client.models.generate_content(
+              model='gemini-2.5-flash',
+              contents=prompt
+          )
 
-          if response:
-              print('--- RESPOSTA DOS AGENTES (HERO SECTION) ---')
-              print(response.text)
-          else:
-              raise RuntimeError('Nenhum modelo Gemini respondeu com sucesso.')
+          print('--- RESPOSTA DOS AGENTES (HERO SECTION) ---')
+          print(response.text)
           "
