@@ -28,14 +28,17 @@ jobs:
           ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           python -c "
-          import os
+          import os, glob
           from google import genai
 
           client = genai.Client()
           
-          # Ler o contexto dos agentes
-          with open('agentes/room-config.md', 'r') as f:
-              contexto = f.read()
+          # Procurar o ficheiro room-config dentro da pasta agentes
+          files = glob.glob('agentes/*room-config*.md')
+          contexto = ''
+          if files:
+              with open(files[0], 'r', encoding='utf-8') as f:
+                  contexto = f.read()
 
           prompt = f'''
           Tu és a equipa de 7 agentes autónomos da Ondão Store.
