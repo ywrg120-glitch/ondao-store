@@ -15,11 +15,6 @@
     .font-serif { font-family: 'Playfair Display', serif; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    
-    /* Estilo para a Lupa de Zoom */
-    .zoom-container { position: relative; overflow: hidden; cursor: zoom-in; }
-    .zoom-container img { transition: transform 0.3s ease; }
-    .zoom-container:hover img { transform: scale(1.6); }
   </style>
 </head>
 <body class="bg-[#FAF7F2] text-[#2C2623] antialiased">
@@ -42,65 +37,57 @@
     </button>
   </header>
 
-  <!-- HERO SECTION: Inovador com Efeito Lupa e Ocultação de Preço -->
+  <!-- HERO SECTION: Foco Visual de Luxo (Estilo Marca de Cabelo Premium) -->
   <section id="produto" class="py-12 md:py-20 px-4 md:px-12 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
-      <!-- Lado Esquerdo: Galeria Swipe com Efeito Lupa incorporado -->
-      <div class="lg:col-span-7 space-y-4">
-        <div class="relative overflow-hidden rounded-3xl bg-[#EBE5DB] border border-[#2C2623]/10 shadow-lg">
-          <div id="carousel" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth">
-            <!-- Foto Frente com Zoom/Lupa -->
-            <div class="snap-center shrink-0 w-full flex justify-center items-center p-6">
-              <div class="zoom-container rounded-2xl bg-white/40 p-2">
-                <img src="src/IMG_3916.jpeg" alt="Ondão - Frente" class="max-h-[500px] w-auto object-contain rounded-xl shadow-md pointer-events-none" onerror="this.onerror=null; this.src='IMG_3916.jpeg';" />
-              </div>
-            </div>
-            <!-- Foto Verso com Zoom/Lupa -->
-            <div class="snap-center shrink-0 w-full flex justify-center items-center p-6">
-              <div class="zoom-container rounded-2xl bg-white/40 p-2">
-                <img src="src/IMG_3918.jpeg" alt="Ondão - Verso" class="max-h-[500px] w-auto object-contain rounded-xl shadow-md pointer-events-none" onerror="this.onerror=null; this.src='IMG_3918.jpeg';" />
-              </div>
-            </div>
-          </div>
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#1F302B]/80 backdrop-blur-sm text-white text-[10px] uppercase font-semibold px-3.5 py-1.5 rounded-full pointer-events-none tracking-wider">
-            Passe o rato para ampliar 🔍 • Deslize para o verso ↔
+      <!-- Lado Esquerdo: Imagem Maior e Natural com Alternância Instantânea (Frente / Verso) -->
+      <div class="lg:col-span-7 flex flex-col items-center space-y-6">
+        
+        <!-- Contentor Principal da Foto do Produto (Grande e Imponente) -->
+        <div class="relative w-full max-w-md bg-[#EBE5DB] rounded-3xl p-8 border border-[#2C2623]/10 shadow-xl flex items-center justify-center min-h-[520px]">
+          <img id="main-product-img" src="src/IMG_3916.jpeg" alt="Ondão Creme" class="max-h-[460px] w-auto object-contain rounded-2xl transition-all duration-300" onerror="this.onerror=null; this.src='IMG_3916.jpeg';" />
+          
+          <div class="absolute top-4 left-4 bg-white/80 backdrop-blur-sm text-[#1F302B] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full">
+            200ml • 6.76 FL OZ
           </div>
         </div>
 
-        <div class="flex justify-center gap-3">
-          <button onclick="scrollToSlide(0)" class="w-16 h-16 rounded-xl border-2 border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB]">
-            <img src="src/IMG_3916.jpeg" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null; this.src='IMG_3916.jpeg';" />
+        <!-- Seutores de Vista Naturais (Frente / Verso) -->
+        <div class="flex gap-4">
+          <button onclick="switchView('frente')" id="btn-frente" class="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1F302B] text-white transition-all shadow-sm">
+            Frente
           </button>
-          <button onclick="scrollToSlide(1)" class="w-16 h-16 rounded-xl border-2 border-[#2C2623]/20 hover:border-[#C85D3A] overflow-hidden p-1 bg-[#EBE5DB]">
-            <img src="src/IMG_3918.jpeg" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null; this.src='IMG_3918.jpeg';" />
+          <button onclick="switchView('verso')" id="btn-verso" class="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-[#2C2623] border border-[#2C2623]/20 hover:border-[#1F302B] transition-all shadow-sm">
+            Verso (Ingredientes)
           </button>
         </div>
+
       </div>
 
-      <!-- Lado Direito: Título Direto e Bloco de Revelação de Preço (Inovação D2C) -->
+      <!-- Lado Direito: Título "Assuma as suas ondas" e Revelação de Preço D2C -->
       <div class="lg:col-span-5 space-y-6 bg-white p-6 md:p-8 rounded-3xl border border-[#2C2623]/10 shadow-sm">
         <div>
           <div class="text-[#C85D3A] text-xs font-bold tracking-widest uppercase mb-2">★★★★★ Ativos Botânicos Puros</div>
           <h1 class="text-4xl md:text-5xl font-light text-[#2C2623] tracking-tight leading-[1.15]">
             Assuma as suas <span class="font-serif italic text-[#C85D3A]">ondas.</span>
           </h1>
-          <p class="text-xs text-[#6B5E57] mt-3 font-mono uppercase tracking-wider">200ml | 6.76 FL OZ • Sem ruído, apenas resultados</p>
+          <p class="text-xs text-[#6B5E57] mt-3 font-mono uppercase tracking-wider">Creme de Estilização & Nutrição</p>
         </div>
 
         <p class="text-xs text-[#5C524C] leading-relaxed">
-          Creme finalizador desenvolvido para dar leveza, definição natural e controlo duradouro do frizz.
+          Fórmula botânica de alta performance desenvolvida para dar leveza, definição impecável e controlo duradouro do frizz.
         </p>
 
-        <!-- Botão Inovador em vez de "Shop Now" (Gera Curiosidade para ver o preço) -->
+        <!-- Botão Inovador de Revelação -->
         <div id="reveal-cta-container" class="pt-2">
           <button onclick="revealPricing()" class="w-full py-4 bg-[#1F302B] hover:bg-[#2C423B] text-white font-semibold text-xs tracking-widest uppercase rounded-full shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
             <span>✨ Revelar Ritual & Preço Exclusivo</span>
           </button>
         </div>
 
-        <!-- Bloco de Preço e Bundles (Invisível até o cliente clicar no botão acima) -->
-        <div id="pricing-module" class="hidden space-y-4 pt-2 border-t border-[#2C2623]/10 animate-fade-in">
+        <!-- Módulo de Preço e Bundles (Revelado ao clicar) -->
+        <div id="pricing-module" class="hidden space-y-4 pt-2 border-t border-[#2C2623]/10">
           <div class="space-y-3">
             <label onclick="selectBundle('duplo', 42)" class="flex items-center justify-between p-4 rounded-2xl border-2 border-[#C85D3A] bg-[#FAF7F2] cursor-pointer transition-all">
               <div class="flex items-center gap-3">
@@ -242,10 +229,21 @@
 
   <!-- Scripts -->
   <script>
-    function scrollToSlide(index) {
-      const carousel = document.getElementById('carousel');
-      const width = carousel.clientWidth;
-      carousel.scrollTo({ left: width * index, behavior: 'smooth' });
+    // Função para alternar visualização natural Frente / Verso sem carrossel confuso
+    function switchView(view) {
+      const img = document.getElementById('main-product-img');
+      const btnFrente = document.getElementById('btn-frente');
+      const btnVerso = document.getElementById('btn-verso');
+
+      if (view === 'frente') {
+        img.src = 'src/IMG_3916.jpeg';
+        btnFrente.className = "px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1F302B] text-white transition-all shadow-sm";
+        btnVerso.className = "px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-[#2C2623] border border-[#2C2623]/20 hover:border-[#1F302B] transition-all shadow-sm";
+      } else {
+        img.src = 'src/IMG_3918.jpeg';
+        btnVerso.className = "px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1F302B] text-white transition-all shadow-sm";
+        btnFrente.className = "px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-[#2C2623] border border-[#2C2623]/20 hover:border-[#1F302B] transition-all shadow-sm";
+      }
     }
 
     function updateBeforeAfter(val) {
