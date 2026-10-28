@@ -2,393 +2,623 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ondão — Seja real com a sua textura</title>
-<meta name="description" content="Creme finalizador para pentear ondas e caracóis, com óleo de Cacay da Colômbia. Define sem pesar, controla o frizz. Para ela e para ele.">
-<meta property="og:title" content="ondão — Seja real com a sua textura">
-<meta property="og:description" content="Define ondas e caracóis sem pesar. Óleo de Cacay da Colômbia, Pequi, Baobab e Palma Vermelha. Entre na Lista VIP.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ondão — Creme Finalizador para Pentear</title>
+<meta name="description" content="Creme finalizador para pentear ondas e caracóis, feito à volta do óleo de Cacay da Colômbia. Define sem pesar e controla o frizz. Para ela e para ele.">
+<meta property="og:title" content="ondão — Ondas com raízes">
+<meta property="og:description" content="O creme finalizador que define ondas e caracóis sem pesar. Óleo de Cacay da Colômbia. Entre na Lista VIP: −15% no lançamento.">
 <meta property="og:image" content="src/IMG_3916.jpeg">
 <meta name="theme-color" content="#1C3327">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* Estrutura: página de produto longa (avisos → hero com o tubo → produto e planos → benefícios → fundador → ingredientes → 100 lugares → FAQ → tipo de caracol → história → Lista VIP → rodapé). Mobile primeiro. */
 :root{
-  --verde:#1C3327; --verde-2:#2E5240; --salvia:#6B9A7B;
-  --terra:#C55A37; --terra-2:#A9472A;
-  --creme:#F7F3EC; --areia:#ECE3D8; --branco:#FFFDF9;
+  --verde:#1C3327; --verde-2:#2E5240; --salvia:#6B9A7B; --salvia-claro:#E4EBE2;
+  --terra:#C55A37; --terra-2:#A9472A; --cobre:#8A4C2D;
+  --creme:#F7F3EC; --areia:#ECE3D8; --linho:#E3DBD0; --branco:#FFFDF9;
   --tinta:#1E1B18; --cinza:#6A625A; --linha:#DDD3C6;
-  --serif:"Fraunces", Georgia, serif;
-  --sans:"Plus Jakarta Sans", system-ui, sans-serif;
-  --r:28px; --gutter:20px; --max:1180px;
+  --vip-txt:#EFE9DF; --vip-sub:#BFC9C0; --vip-linha:#4A6B5A; --rosa:#E39A7B;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:22px; --gutter:20px; --max:1180px;
   --ruido:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{background:var(--creme);color:var(--tinta);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--creme);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--terra)}
-.h1,.h2{font-family:var(--sans);font-weight:300;letter-spacing:-.035em;line-height:1.02}
-.h1{font-size:clamp(2.6rem,9vw,5.4rem)}
-.h2{font-size:clamp(2rem,6.5vw,3.6rem)}
-.it{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--terra);letter-spacing:-.02em}
-.lead{font-size:1.06rem;color:var(--cinza);max-width:34em}
-section{padding:72px 0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
 .tex{position:relative}
 .tex::before{content:"";position:absolute;inset:0;background-image:var(--ruido);pointer-events:none;z-index:1;border-radius:inherit}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;border:0;cursor:pointer;font:700 .82rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:18px 28px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s}
+.tex>*{position:relative;z-index:2}
+
+/* Tipografia */
+.caps{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.h1,.h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
+.h1{font-size:clamp(2.7rem,12vw,6.2rem)}
+.h2{font-size:clamp(2rem,7vw,3.4rem)}
+.it{font-style:italic;color:var(--terra)}
+.lead{font-size:1.02rem;color:var(--cinza);max-width:36em}
+.mini{font-size:.78rem;color:var(--cinza)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;border:0;cursor:pointer;font:700 .8rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:18px 30px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s,color .2s}
 .btn:active{transform:scale(.98)}
-.btn-terra{background:var(--terra);color:#fff}.btn-terra:hover{background:var(--terra-2)}
-.btn-verde{background:var(--verde);color:#fff}.btn-verde:hover{background:var(--verde-2)}
-.btn-linha{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--tinta)}
+.btn-verde{background:var(--verde);color:var(--branco)}.btn-verde:hover{background:var(--verde-2)}
+.btn-terra{background:var(--terra);color:var(--branco)}.btn-terra:hover{background:var(--terra-2)}
+.btn-branco{background:var(--branco);color:var(--verde)}.btn-branco:hover{background:var(--areia)}
+.btn-linha{background:transparent;color:var(--verde);box-shadow:inset 0 0 0 1.5px currentColor}
 .btn-full{width:100%}
-.media{position:relative;overflow:hidden;border-radius:var(--r);background:var(--areia)}
-.media img{width:100%;height:100%;object-fit:cover;position:relative;z-index:0}
-.foto-tubo{background:linear-gradient(#EEE9E4,#E3DBD0 70%,#DAD1C5)}
-.foto-tubo img{object-fit:contain;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
-.anuncio{background:var(--verde);color:#E9E3D8;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;overflow:hidden;white-space:nowrap}
-.anuncio .trilho{display:inline-flex;gap:56px;padding:12px 0;animation:corre 32s linear infinite}
+
+/* Barra de avisos e cabeçalho */
+.anuncio{background:var(--verde);color:var(--vip-txt);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;overflow:hidden;white-space:nowrap}
+.anuncio .trilho{display:inline-flex;gap:56px;padding:11px 0;animation:corre 34s linear infinite}
 @keyframes corre{to{transform:translateX(-50%)}}
-header{position:sticky;top:0;z-index:50;background:rgba(247,243,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font-family:var(--serif);font-weight:700;font-size:1.9rem;color:var(--verde);text-decoration:none;letter-spacing:-.03em}
-.links{display:none;gap:32px;font-size:.86rem}
-.links a{text-decoration:none;color:var(--cinza)}.links a:hover{color:var(--tinta)}
-.nav .btn{padding:13px 20px;font-size:.74rem}
-.hero{padding:28px 0 56px}
-.hero-grid{display:grid;gap:28px}
-.hero .media{aspect-ratio:4/5}
-.hero-txt{display:flex;flex-direction:column;gap:22px;justify-content:center}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.nota{font-size:.78rem;color:var(--cinza)}
-.fita{border-block:1px solid var(--linha);overflow:hidden;white-space:nowrap;background:var(--branco)}
-.fita .trilho{display:inline-flex;gap:40px;padding:18px 0;animation:corre 40s linear infinite;font-family:var(--serif);font-size:1.15rem}
-.fita .trilho span::after{content:"✦";color:var(--terra);margin-left:40px;font-size:.8em}
+header{position:sticky;top:0;z-index:50;background:rgba(247,243,236,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.9rem;color:var(--verde);text-decoration:none;letter-spacing:-.03em;line-height:1}
+.ico-btn{width:42px;height:42px;display:grid;place-items:center;background:none;border:0;cursor:pointer;color:var(--verde);border-radius:50%;text-decoration:none}
+.ico-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav-dir{justify-self:end;display:flex;gap:2px}
+.menu{display:none;border-top:1px solid var(--linha);background:var(--creme)}
+.menu.aberto{display:block}
+.menu ul{list-style:none;display:grid;padding:8px 0 18px}
+.menu a{display:block;padding:12px 0;text-decoration:none;font-family:var(--serif);font-size:1.4rem;color:var(--verde)}
+.links{display:none}
+
+/* HERO — o creme é a estrela */
+.hero{background:linear-gradient(180deg,#EDEAE5 0%,var(--linho) 55%,#DFD6CA 100%);overflow:hidden}
+.hero-grid{display:grid;grid-template-areas:"titulo" "palco" "acao";gap:6px;padding-top:24px;padding-bottom:36px;text-align:center}
+.hero-txt{grid-area:titulo;display:grid;gap:10px;justify-items:center}
+.hero-acao{grid-area:acao;display:grid;gap:16px;justify-items:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--cobre)}
+.kicker::before,.kicker::after{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
+.hero .h1{color:var(--verde)}
+.hero-sub{max-width:30em;color:var(--cinza);font-size:1rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.palco{grid-area:palco;position:relative;justify-self:center;width:min(100%,430px);margin-top:-8px}
+.palco img.tubo{width:100%;height:auto;aspect-ratio:704/1525;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 53%,#000 76%,transparent 100%);
+  mask-image:radial-gradient(ellipse 50% 50% at 50% 53%,#000 76%,transparent 100%);
+  animation:entra 1.4s cubic-bezier(.2,.75,.2,1) both}
+@keyframes entra{from{opacity:0;transform:translateY(24px) scale(1.03)}to{opacity:1;transform:none}}
+.selo-gira{position:absolute;top:9%;right:2%;width:min(30%,124px);aspect-ratio:1;animation:gira 26s linear infinite}
+.selo-gira svg{width:100%;height:100%;overflow:visible}
+.selo-gira text{font:700 10px var(--sans);fill:var(--cobre);text-transform:uppercase}
+@keyframes gira{to{transform:rotate(360deg)}}
+.preco-chip{position:absolute;left:4%;bottom:14%;background:var(--branco);border-radius:999px;padding:10px 16px;display:flex;align-items:baseline;gap:8px;box-shadow:0 12px 30px -12px rgba(30,27,24,.35);font-size:.82rem;color:var(--cinza)}
+.preco-chip b{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--verde)}
+
+.faixa{background:var(--creme);text-align:center;padding:30px 0}
+.faixa p{font-family:var(--serif);font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:500;color:var(--verde);text-wrap:balance}
+
+/* Produto */
+.produto{padding-top:8px;padding-bottom:64px}
 .prod-grid{display:grid;gap:28px}
-.prod-img{aspect-ratio:1/1.05;background:var(--areia);width:100%;max-width:400px;margin:0 auto}
-.galeria{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
-.galeria .media{aspect-ratio:3/4}
-.legenda{font-size:.78rem;color:var(--cinza);margin-top:14px}
-.consent a{color:inherit}
-.selo{position:absolute;top:18px;left:18px;z-index:3;background:var(--branco);border-radius:999px;padding:8px 16px;font-size:.72rem;font-weight:700;letter-spacing:.14em}
-.card{background:var(--branco);border-radius:var(--r);padding:32px 24px;box-shadow:0 1px 0 var(--linha)}
-.preco{display:flex;align-items:baseline;gap:12px;margin:18px 0 6px}
-.preco b{font-size:1.6rem;font-weight:500}
-.preco small{color:var(--cinza);font-size:.82rem}
-.opcoes{display:grid;gap:10px;margin:22px 0}
-.op{position:relative;display:block;border:1.5px solid var(--linha);border-radius:18px;padding:16px 18px;cursor:pointer;transition:border-color .2s,background .2s}
-.op input{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
-.op .topo{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:.92rem}
-.op .sub{font-size:.8rem;color:var(--cinza);margin-top:2px}
-.op .tag{background:var(--verde);color:#fff;font-size:.62rem;letter-spacing:.14em;padding:4px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
-.op:has(input:checked){border-color:var(--verde);background:#F1F4EF}
-.op ul{list-style:none;font-size:.8rem;color:var(--cinza);margin-top:10px;display:none}
-.op:has(input:checked) ul{display:block}
-.op li::before{content:"— ";color:var(--salvia)}
-.check{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-top:22px;font-size:.82rem}
-.check span::before{content:"✓ ";color:var(--salvia);font-weight:700}
-.manifesto{background:var(--verde);color:#EFE9DF;text-align:center}
-.manifesto .h2{max-width:14em;margin:18px auto 0}
-.manifesto .it{color:#E39A7B}
-.manifesto p{color:#BFC9C0;max-width:34em;margin:22px auto 0}
-.carta{font-family:var(--serif);font-size:1.28rem;line-height:1.5;font-weight:500}
-.carta p+p{margin-top:16px}
-.assina{margin-top:22px;font-family:var(--sans);font-size:.85rem;color:var(--cinza)}
-.ing-head{display:grid;gap:14px;margin-bottom:36px}
-.heroi{display:grid;gap:0;border-radius:var(--r);overflow:hidden;background:var(--verde);color:#EFE9DF;margin-bottom:14px}
-.heroi .palavra{font-family:var(--serif);font-style:italic;font-size:clamp(4.5rem,20vw,9rem);line-height:.9;color:#E39A7B;padding:32px 24px 0;letter-spacing:-.04em}
-.heroi .lead{color:#BFC9C0}
-.heroi .txt{padding:28px 24px}
-.heroi h3{font-family:var(--serif);font-size:2rem;font-weight:500;margin:8px 0 10px}
+.galeria{position:relative;min-width:0}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--r);background:var(--linho)}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;aspect-ratio:4/5;background:linear-gradient(180deg,#EDEAE5,var(--linho))}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.contem img{object-fit:contain}
+.pontos{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.pontos button{width:8px;height:8px;border-radius:50%;border:0;background:var(--linha);cursor:pointer;padding:0;transition:width .25s,background .25s}
+.pontos button[aria-current="true"]{width:22px;border-radius:99px;background:var(--verde)}
+.info{display:grid;gap:18px;min-width:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--salvia)}
+.badges span{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.badges svg,.beneficios svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.prod-titulo{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.05;letter-spacing:-.02em;color:var(--tinta)}
+.prod-titulo small{font-size:.55em;font-weight:500;color:var(--cinza);letter-spacing:0}
+.lote{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;color:var(--salvia)}
+.lote .sep{width:1px;height:12px;background:var(--linha)}
+.lote .vagas{color:var(--cobre)}
+.prod-desc{color:var(--cinza);font-size:.95rem}
+.tamanho{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tamanho .chip{background:var(--verde);color:var(--branco);border-radius:10px;padding:9px 18px;font-size:.85rem;font-weight:600}
+.planos-titulo{text-align:center;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-top:6px}
+.planos{display:grid;gap:10px;border:0;min-width:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.plano{position:relative;display:block;background:var(--areia);border:1.5px solid transparent;border-radius:16px;padding:16px 18px;cursor:pointer;transition:border-color .2s,background .2s}
+.plano input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.plano .linha1{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.plano .nome{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.plano .valor{font-weight:700;font-size:.95rem;white-space:nowrap}
+.plano .linha2{display:flex;justify-content:space-between;gap:12px;font-size:.78rem;color:var(--cinza);margin-top:2px}
+.plano .envio{color:var(--salvia);white-space:nowrap}
+.plano .riscado{color:var(--cinza);font-weight:500;text-decoration:line-through;margin-right:6px;font-size:.82rem}
+.plano ul{list-style:none;display:none;margin-top:10px;font-size:.78rem;color:var(--cinza);gap:2px}
+.plano ul li::before{content:"·";margin-right:8px;color:var(--verde);font-weight:700}
+.plano .faixa-top{display:none;position:absolute;top:-1.5px;left:-1.5px;right:-1.5px;background:var(--verde);color:var(--branco);border-radius:16px 16px 0 0;text-align:center;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:7px}
+.plano.destaque{padding-top:44px}
+.plano.destaque .faixa-top{display:block}
+.plano:has(input:checked){border-color:var(--verde);background:var(--salvia-claro)}
+.plano:has(input:checked) ul{display:grid}
+.plano:has(input:focus-visible){outline:2px solid var(--terra);outline-offset:3px}
+.plano .visto{position:absolute;right:16px;bottom:16px;width:20px;height:20px;border-radius:50%;background:var(--verde);display:none;place-items:center}
+.plano .visto svg{width:11px;height:11px;fill:none;stroke:var(--branco);stroke-width:3}
+.plano:has(input:checked) .visto{display:grid}
+.beneficios{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;font-size:.8rem;color:var(--tinta);list-style:none}
+.beneficios li{display:flex;align-items:center;gap:8px}
+.beneficios svg{color:var(--salvia)}
+.nota-compra{text-align:center;font-size:.78rem;color:var(--cinza);margin-top:-6px}
+
+/* Secções e cartões */
+.secao{padding-top:64px;padding-bottom:64px}
+.cabeca{display:grid;gap:10px;margin-bottom:26px}
+.cabeca.centro{text-align:center;justify-items:center}
+.rolo{display:grid;grid-auto-flow:column;grid-auto-columns:80%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.rolo::-webkit-scrollbar{display:none}
+.rolo>*{scroll-snap-align:start;min-width:0}
+.cartao .foto{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--areia)}
+.cartao .foto img{width:100%;height:100%;object-fit:cover}
+.cartao h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-top:16px}
+.cartao p{font-size:.86rem;color:var(--cinza);margin-top:6px}
+
+/* Fundador (bloco verde) */
+.fundador{background:var(--verde);color:var(--vip-txt);text-align:center}
+.fundador .wrap{display:grid;gap:22px;justify-items:center;padding-top:72px;padding-bottom:72px}
+.fundador .marca{font-family:var(--serif);font-size:clamp(2.2rem,10vw,4rem);letter-spacing:.08em;text-transform:uppercase;font-weight:400;line-height:1}
+.fundador blockquote{font-family:var(--serif);font-size:clamp(1.15rem,4.4vw,1.6rem);line-height:1.45;max-width:30em;text-wrap:balance}
+.fundador cite{font-style:normal;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--vip-sub)}
+
+/* Ingredientes */
+.ing-grid{display:grid;gap:14px}
+.heroi{border-radius:var(--r);overflow:hidden;background:var(--verde);color:var(--vip-txt);display:grid}
+.heroi .foto{aspect-ratio:3/2}
+.heroi .foto img{width:100%;height:100%;object-fit:cover}
+.heroi .txt{padding:28px 24px 30px;display:grid;gap:10px}
+.heroi .palavra{font-family:var(--serif);font-style:italic;font-size:clamp(3.6rem,15vw,6.4rem);line-height:.9;color:var(--rosa);letter-spacing:-.03em}
+.heroi .latim{font-size:.8rem;color:var(--vip-sub);font-style:italic}
+.heroi p.corpo{color:var(--vip-sub);font-size:.95rem;max-width:32em}
 .ings{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ing{background:var(--areia);border-radius:22px;padding:22px 18px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between}
-.ing h4{font-family:var(--serif);font-weight:500;font-size:1.2rem;line-height:1.15}
-.ing .origem{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700}
-.ing p{font-size:.8rem;color:var(--cinza);margin-top:8px}
-.passos{display:grid;gap:12px;margin-top:36px;counter-reset:p}
-.passo{background:var(--branco);border-radius:22px;padding:26px 22px;counter-increment:p;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
-.passo::before{content:counter(p,decimal-leading-zero);font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--terra);line-height:1}
-.passo h4{font-size:1rem;font-weight:700;margin-bottom:4px}
-.passo p{font-size:.88rem;color:var(--cinza)}
+.ing{background:var(--areia);border-radius:18px;padding:20px 18px;display:grid;gap:8px;align-content:space-between;min-height:150px}
+.ing .origem{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700}
+.ing h4{font-family:var(--serif);font-weight:500;font-size:1.15rem;line-height:1.15}
+.ing p{font-size:.8rem;color:var(--cinza)}
+
+/* 100 lugares */
 .cem{background:var(--areia)}
-.cem-box{display:grid;gap:24px}
-.big{font-family:var(--serif);font-size:clamp(5rem,22vw,10rem);line-height:.85;color:var(--terra);font-weight:500;letter-spacing:-.04em}
-.vantagens{display:grid;gap:10px;list-style:none;margin-top:6px}
-.vantagens li{background:var(--branco);border-radius:16px;padding:16px 18px;font-size:.9rem}
-.vantagens b{display:block}
-.faq{max-width:760px;margin:32px auto 0}
+.cem .numero{display:block;font-family:var(--serif);font-size:clamp(5rem,26vw,9rem);line-height:.8;color:var(--terra);font-weight:500;letter-spacing:-.04em}
+.vantagens{list-style:none;display:grid;gap:10px;margin:22px 0 26px}
+.vantagens li{background:var(--branco);border-radius:16px;padding:16px 18px;font-size:.88rem;color:var(--cinza)}
+.vantagens b{display:block;color:var(--tinta)}
+.retrato{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:var(--linho)}
+.retrato img{width:100%;height:100%;object-fit:cover}
+.retrato::after{content:"";position:absolute;top:45%;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(20,26,22,.72))}
+.retrato .rot{position:absolute;left:16px;right:16px;bottom:16px;z-index:2;color:var(--branco)}
+.retrato .rot b{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.retrato .rot span{font-family:var(--serif);font-size:1.15rem}
+.legenda{font-size:.76rem;color:var(--cinza);margin-top:14px}
+.cem-fotos{min-width:0;margin-top:36px}
+
+/* FAQ */
+.faq{max-width:780px}
+.faq .ajuda{font-family:var(--serif);font-size:1.1rem;color:var(--cinza)}
 details{border-bottom:1px solid var(--linha)}
-summary{list-style:none;cursor:pointer;padding:22px 36px 22px 0;font-weight:500;position:relative}
+summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-size:.95rem;position:relative}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:1.4rem;font-weight:300;transition:transform .25s}
-details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
-details p{padding:0 0 22px;color:var(--cinza);font-size:.92rem;max-width:40em}
-.vip{background:var(--verde);color:#EFE9DF}
-.vip-grid{display:grid;gap:32px}
-.vip .it{color:#E39A7B}
-.vip p.lead{color:#BFC9C0}
+summary::after{content:"";position:absolute;right:4px;top:50%;width:20px;height:20px;margin-top:-10px;border:1.5px solid var(--tinta);border-radius:50%;background:linear-gradient(var(--tinta),var(--tinta)) center/9px 1.5px no-repeat,linear-gradient(var(--tinta),var(--tinta)) center/1.5px 9px no-repeat;transition:transform .25s}
+details[open] summary::after{background:linear-gradient(var(--tinta),var(--tinta)) center/9px 1.5px no-repeat;transform:rotate(180deg)}
+details p{padding:0 0 20px;color:var(--cinza);font-size:.9rem;max-width:42em}
+
+/* Tipo de caracol */
+.tipo{position:relative;overflow:hidden;color:var(--branco);text-align:center}
+.tipo .fundo{position:absolute;inset:0}
+.tipo .fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.tipo .fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(20,26,22,.62),rgba(20,26,22,.45) 50%,rgba(20,26,22,.7))}
+.tipo .wrap{position:relative;z-index:2;display:grid;gap:16px;justify-items:center;padding-top:84px;padding-bottom:84px}
+.tipo p{max-width:30em;color:#EDE7DD}
+.tipos-rapidos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+.tipos-rapidos button{background:rgba(255,253,249,.12);border:1.5px solid rgba(255,253,249,.7);color:var(--branco);border-radius:999px;padding:12px 18px;font-size:.82rem;font-weight:600;cursor:pointer}
+.tipos-rapidos button:hover{background:var(--branco);color:var(--verde)}
+
+/* História */
+.historia-grid{display:grid;gap:28px;align-items:center}
+.historia .foto{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
+.historia .foto img{width:100%;height:100%;object-fit:cover}
+.carta{font-family:var(--serif);font-size:1.2rem;line-height:1.5}
+.carta p+p{margin-top:14px}
+.assina{margin-top:18px;font-size:.84rem;color:var(--cinza)}
+
+/* Lista VIP */
+.vip{background:var(--verde);color:var(--vip-txt)}
+.vip .wrap{display:grid;gap:30px;padding-top:72px;padding-bottom:72px}
+.vip .it{color:var(--rosa)}
+.vip .lead{color:var(--vip-sub)}
 form{display:grid;gap:12px}
 .campo{display:grid;gap:6px}
-.campo label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#BFC9C0;font-weight:700}
-.campo input{width:100%;background:transparent;border:1.5px solid #4A6B5A;border-radius:14px;padding:16px;color:#fff;font:400 1rem var(--sans);appearance:none}
-.campo input:focus{outline:none;border-color:#E39A7B}
-.tipos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.tipos label{position:relative;text-transform:none;letter-spacing:0;font-weight:500;font-size:.82rem;color:#EFE9DF;border:1.5px solid #4A6B5A;border-radius:12px;padding:12px 4px;text-align:center;cursor:pointer}
-.tipos input{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
-.tipos label:has(input:checked){border-color:#E39A7B;background:rgba(227,154,123,.12)}
-.consent{display:flex;gap:10px;font-size:.78rem;color:#BFC9C0;align-items:flex-start}
-.consent input{margin-top:3px;accent-color:var(--terra)}
+.campo>label,.campo>.rotulo{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--vip-sub);font-weight:700}
+.campo input{width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--vip-linha);border-radius:0;padding:14px 2px;color:var(--branco);font:400 1rem var(--sans);appearance:none}
+.campo input::placeholder{color:#8FA396}
+.campo input:focus{outline:none;border-color:var(--rosa)}
+.tipos-f{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tipos-f label{position:relative;font-size:.84rem;color:var(--vip-txt);border:1.5px solid var(--vip-linha);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer}
+.tipos-f input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.tipos-f label:has(input:checked){border-color:var(--rosa);background:rgba(227,154,123,.14)}
+.tipos-f label:has(input:focus-visible){outline:2px solid var(--rosa);outline-offset:2px}
+.consent{display:flex;gap:10px;font-size:.78rem;color:var(--vip-sub);align-items:flex-start;margin-top:4px}
+.consent input{margin-top:3px;accent-color:var(--terra);flex:none}
+.consent a{color:inherit}
 .msg{font-size:.9rem;min-height:1.4em}
-footer{background:var(--creme);padding:56px 0 110px;font-size:.86rem}
+.plano-escolhido{font-size:.8rem;color:var(--vip-sub)}
+.plano-escolhido b{color:var(--vip-txt);font-weight:600}
+
+/* Rodapé */
+footer{background:var(--creme);padding-top:56px;padding-bottom:120px;font-size:.86rem}
 .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-footer h5{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+footer h5{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px;color:var(--salvia)}
 footer ul{list-style:none;display:grid;gap:8px}
-footer a{text-decoration:none;color:var(--cinza)}
-.foot-marca{text-align:center;margin-top:48px}
-.foot-marca .logo{font-size:clamp(4rem,20vw,9rem);display:block;line-height:1}
-.foot-marca small{color:var(--cinza)}
-.fixa{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;transform:translateY(140%);transition:transform .35s}
+footer a{text-decoration:none;color:var(--tinta)}
+footer a:hover{color:var(--terra)}
+.pais{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--tinta);border-radius:999px;padding:7px 16px;font-size:.78rem}
+.foot-marca{display:grid;justify-items:center;gap:12px;margin-top:44px;text-align:center}
+.foot-marca .logo{font-size:clamp(3.6rem,18vw,7rem)}
+.foot-marca .lema{font-family:var(--serif);font-style:italic;color:var(--verde)}
+
+/* Botão fixo no telemóvel */
+.fixa{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));transform:translateY(130%);transition:transform .35s}
 .fixa.on{transform:none}
-.fixa .btn{width:100%;box-shadow:0 10px 30px rgba(28,51,39,.25)}
-@media (min-width:860px){
+.fixa .btn{width:100%;box-shadow:0 10px 30px rgba(28,51,39,.3)}
+
+@media (min-width:900px){
   :root{--gutter:40px}
-  section{padding:110px 0}
-  .links{display:flex}
-  .hero-grid{grid-template-columns:1.05fr .95fr;gap:56px}
-  .hero-txt{order:-1}
-  .prod-grid{grid-template-columns:1.1fr .9fr;align-items:start}
-  .prod-img{position:sticky;top:96px}
-  .card{padding:44px 40px}
-  .ing-head{grid-template-columns:1fr 1fr;align-items:end}
-  .heroi{grid-template-columns:1.2fr 1fr}
-  .heroi .txt{padding:48px;align-self:center}
-  .ings{grid-template-columns:repeat(4,1fr)}
-  .passos{grid-template-columns:repeat(3,1fr)}
-  .cem-box{grid-template-columns:auto 1fr;gap:64px;align-items:center}
-  .vip-grid{grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .nav{height:76px}
+  .links{display:flex;gap:28px;font-size:.84rem}
+  .links a{text-decoration:none;color:var(--cinza)}.links a:hover{color:var(--tinta)}
+  #btn-menu{display:none}
+  .hero-grid{grid-template-columns:1fr 1fr;grid-template-areas:"titulo palco" "acao palco";grid-template-rows:auto 1fr;text-align:left;padding-top:20px;padding-bottom:0;column-gap:40px;row-gap:22px}
+  .hero-txt{justify-items:start;gap:18px;align-self:end}
+  .hero-acao{justify-items:start;align-self:start}
+  .hero-ctas{justify-content:flex-start}
+  .palco{width:clamp(340px,calc((100vh - 96px) * .4617),500px);margin-top:0}
+  .faixa{padding:40px 0}
+  .produto{padding-top:40px;padding-bottom:110px}
+  .prod-grid{grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
+  .galeria{position:sticky;top:100px}
+  .secao{padding-top:110px;padding-bottom:110px}
+  .rolo{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(2,1fr);gap:24px;overflow:visible}
+  .rolo.tres{grid-template-columns:repeat(3,1fr)}
+  .fundador .wrap{padding-top:110px;padding-bottom:110px}
+  .ing-grid{grid-template-columns:1.25fr 1fr;align-items:stretch}
+  .cem-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .cem-fotos{margin-top:0}
+  .historia-grid{grid-template-columns:.9fr 1.1fr;gap:64px}
+  .vip .wrap{grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:110px;padding-bottom:110px}
+  .tipos-f{grid-template-columns:repeat(4,1fr)}
   .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
   .fixa{display:none}
 }
-@media (prefers-reduced-motion:reduce){.anuncio .trilho,.fita .trilho{animation:none}}
+@media (prefers-reduced-motion:reduce){
+  .anuncio .trilho,.selo-gira,.palco img.tubo{animation:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
 
 <div class="anuncio" aria-label="Avisos">
   <div class="trilho">
-    <span>Envios grátis para Portugal &gt; €35</span><span>Lista VIP: −15% no lançamento</span><span>Enviamos para toda a UE</span>
-    <span>Envios grátis para Portugal &gt; €35</span><span>Lista VIP: −15% no lançamento</span><span>Enviamos para toda a UE</span>
+    <span>Envios grátis para Portugal acima de €35</span><span>Lista VIP: −15% no lançamento</span><span>Enviamos para toda a UE</span>
+    <span aria-hidden="true">Envios grátis para Portugal acima de €35</span><span aria-hidden="true">Lista VIP: −15% no lançamento</span><span aria-hidden="true">Enviamos para toda a UE</span>
   </div>
 </div>
 
 <header>
   <div class="wrap nav">
+    <div>
+      <button class="ico-btn" id="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="links" aria-label="Principal">
+        <a href="#produto">O creme</a>
+        <a href="#ingredientes">Ingredientes</a>
+        <a href="#historia">A nossa história</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
     <a href="#" class="logo" aria-label="ondão, início">ondão</a>
-    <nav class="links">
-      <a href="#produto">O creme</a>
-      <a href="#historia">A nossa história</a>
-      <a href="#ingredientes">Ingredientes</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a href="#vip" class="btn btn-terra">Lista VIP</a>
+    <div class="nav-dir">
+      <a class="ico-btn" href="#vip" aria-label="Lista VIP">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      </a>
+      <a class="ico-btn" href="#produto" aria-label="Ver o creme">
+        <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="menu" id="menu">
+    <div class="wrap">
+      <ul>
+        <li><a href="#produto">O creme</a></li>
+        <li><a href="#ingredientes">Ingredientes</a></li>
+        <li><a href="#historia">A nossa história</a></li>
+        <li><a href="#faq">Perguntas frequentes</a></li>
+        <li><a href="#vip">Lista VIP</a></li>
+      </ul>
+    </div>
   </div>
 </header>
 
 <main>
 
-<section class="hero">
+<!-- HERO: o tubo é a primeira imagem -->
+<section class="hero tex">
   <div class="wrap hero-grid">
-    <div class="media tex">
-      <img src="src/0aeae066-7aa2-4c4f-8ad2-942072e97674.jpeg" alt="Campanha ondão: casal com cabelo cacheado">
-    </div>
     <div class="hero-txt">
-      <span class="eyebrow">Cuidado capilar unissexo · Raízes colombianas</span>
-      <h1 class="h1">Seja real com a sua <span class="it">textura.</span></h1>
-      <p class="lead">O creme que define ondas e caracóis sem pesar. Feito à volta do óleo de Cacay, uma noz nativa da Colômbia que as marcas de supermercado não usam.</p>
+      <span class="kicker caps">Lote 001 · Pré-lançamento</span>
+      <h1 class="h1">Ondas com <em class="it">raízes.</em></h1>
+    </div>
+    <div class="hero-acao">
+      <p class="hero-sub">O creme finalizador que define ondas e caracóis sem pesar. Feito à volta do óleo de Cacay, uma noz nativa da Colômbia.</p>
       <div class="hero-ctas">
-        <a href="#vip" class="btn btn-terra">Entrar na Lista VIP</a>
-        <a href="#produto" class="btn btn-linha">Ver o creme</a>
+        <a href="#produto" class="btn btn-verde">Comprar agora</a>
+        <a href="#vip" class="btn btn-linha">Lista VIP −15%</a>
       </div>
-      <p class="nota">−15% no lançamento para os primeiros 100 inscritos.</p>
+    </div>
+    <div class="palco">
+      <img class="tubo" src="src/IMG_3916.jpeg" alt="Tubo cor de cobre ondão, creme finalizador para pentear, 200 ml, com tampa verde" fetchpriority="high">
+      <div class="selo-gira" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+          <text><textPath href="#circ" textLength="234" lengthAdjust="spacing">Óleo de Cacay · Colômbia · </textPath></text>
+        </svg>
+      </div>
+      <div class="preco-chip"><b>€24</b> 200 ml</div>
     </div>
   </div>
 </section>
 
-<div class="fita" aria-hidden="true">
-  <div class="trilho">
-    <span>Define sem pesar</span><span>Controla o frizz</span><span>Ativos botânicos</span><span>Para ela e para ele</span><span>Livre de crueldade</span>
-    <span>Define sem pesar</span><span>Controla o frizz</span><span>Ativos botânicos</span><span>Para ela e para ele</span><span>Livre de crueldade</span>
-  </div>
+<div class="faixa">
+  <div class="wrap"><p>Definição que se vê. Leveza que se sente.</p></div>
 </div>
 
-<section id="produto">
+<!-- PRODUTO -->
+<section class="produto" id="produto">
   <div class="wrap prod-grid">
-    <div class="media tex prod-img foto-tubo">
-      <img src="src/IMG_3916.jpeg" alt="Tubo ondão, creme finalizador para pentear, 200 ml">
-      <span class="selo">200ML · 6.76 FL OZ</span>
-    </div>
-    <div class="card">
-      <span class="eyebrow">Ativos botânicos puros</span>
-      <h2 class="h2" style="margin-top:12px;font-size:clamp(1.9rem,5vw,2.8rem)">Creme Finalizador <span class="it">para Pentear</span></h2>
-      <p class="lead" style="margin-top:14px;font-size:.98rem">O último passo do seu ritual: define ondas e caracóis, dá leveza e controla o frizz. Com óleos de Cacay, Pequi, Baobab, Palma Vermelha e Ácido Poliglutâmico.</p>
-      <div class="preco"><b id="preco">€24,00</b><small id="preco100">€12,00 / 100ml</small></div>
-      <div class="opcoes" role="radiogroup" aria-label="Como quer comprar">
-        <label class="op">
-          <input type="radio" name="compra" value="unica" checked>
-          <div class="topo"><span>Compra única</span><span data-p="unica"></span></div>
-          <div class="sub">Experimente primeiro, decida depois.</div>
-        </label>
-        <label class="op">
-          <input type="radio" name="compra" value="subscricao">
-          <div class="topo"><span>Subscrição <span class="tag">−10%</span></span><span data-p="sub"></span></div>
-          <div class="sub">Recebe de 6 em 6 semanas. Envio grátis.</div>
-          <ul>
-            <li>Pausa ou cancela quando quiser</li>
-            <li>Lembrete 5 dias antes de cada envio</li>
-            <li>Ajusta a frequência ao seu ritmo</li>
-          </ul>
-        </label>
-      </div>
-      <button class="btn btn-verde btn-full" id="comprar">Reservar com −15% →</button>
-      <p class="nota" id="nota-compra" style="margin-top:10px;text-align:center">Pré-lançamento: reserve o seu lugar na Lista VIP.</p>
-      <div class="check">
-        <span>Ativos botânicos</span><span>Livre de crueldade</span>
-        <span>Leve, não pesa</span><span>Ondas e caracóis</span>
-        <span>Controlo do frizz</span><span>Para ela e para ele</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="manifesto tex">
-  <div class="wrap" style="position:relative;z-index:2">
-    <span class="eyebrow" style="color:#E39A7B">Feito por quem tem caracóis</span>
-    <h2 class="h2">Para quem tem caracóis. <span class="it">Ponto.</span></h2>
-    <p>Não fazemos versão "para homem" e versão "para mulher". O cabelo não sabe a diferença. Uma fórmula, uma rotina, qualquer textura ondulada ou cacheada.</p>
-  </div>
-</section>
-
-<section id="historia">
-  <div class="wrap" style="max-width:820px">
-    <span class="eyebrow">A nossa história</span>
-    <div class="carta" style="margin-top:18px">
-      <p>Cresci na Colômbia com um cabelo que ninguém sabia tratar. Ou o alisavam, ou o escondiam.</p>
-      <p>Quando cheguei a Portugal, as prateleiras davam-me duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
-      <p>Voltei às origens. Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
-    </div>
-    <p class="assina">— Jhon, fundador</p>
-  </div>
-</section>
-
-<section id="ingredientes" style="padding-top:0">
-  <div class="wrap">
-    <div class="ing-head">
-      <h2 class="h2">O que está <span class="it">dentro.</span></h2>
-      <p class="lead">Cinco ativos, escolhidos pela função. Nada de ingredientes de enchimento para fazer volume no rótulo.</p>
-    </div>
-    <div class="heroi">
-      <div class="palavra">Cacay.</div>
-      <div class="txt">
-        <span class="eyebrow" style="color:#E39A7B">Ingrediente-herói · Colômbia</span>
-        <h3 style="color:#fff">Óleo de Cacay</h3>
-        <p class="lead" style="font-size:.95rem">Extraído da noz da <em>Caryodendron orinocense</em>, árvore nativa da bacia do Orinoco. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p>
-      </div>
-    </div>
-    <div class="ings">
-      <div class="ing"><span class="origem">Cerrado</span><div><h4>Óleo de Pequi</h4><p>Nutrição densa para pontas secas.</p></div></div>
-      <div class="ing"><span class="origem">Savana</span><div><h4>Óleo de Baobab</h4><p>Elasticidade e menos quebra.</p></div></div>
-      <div class="ing"><span class="origem">Trópicos</span><div><h4>Palma Vermelha</h4><p>Carotenoides que protegem a fibra.</p></div></div>
-      <div class="ing"><span class="origem">Biotecnologia</span><div><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <span class="eyebrow">O ritual</span>
-    <h2 class="h2" style="margin-top:12px">Três passos. <span class="it">Zero drama.</span></h2>
-    <div class="passos">
-      <div class="passo"><div><h4>Cabelo bem húmido</h4><p>Aplique logo após o banho, com o cabelo ainda a pingar. É aqui que o caracol se forma.</p></div></div>
-      <div class="passo"><div><h4>Distribua e amasse</h4><p>Uma noz de creme nas mãos, passe em todo o comprimento e amasse de baixo para cima.</p></div></div>
-      <div class="passo"><div><h4>Deixe secar</h4><p>Ao ar ou com difusor. Sem mexer até secar. Depois, solte com as pontas dos dedos.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <span class="eyebrow">Cada onda é diferente</span>
-    <h2 class="h2" style="margin-top:12px">Ondas soltas. <span class="it">Caracóis definidos.</span></h2>
     <div class="galeria">
-      <div class="media"><img src="src/IMG_4130.jpeg" alt="Cabelo ondulado comprido, visto de costas" loading="lazy"></div>
-      <div class="media"><img src="src/IMG_4133.jpeg" alt="Cabelo cacheado preso em meia cauda" loading="lazy"></div>
+      <div class="slides" id="slides" tabindex="0" aria-label="Galeria do produto">
+        <div class="slide contem"><img src="src/IMG_3916.jpeg" alt="Tubo ondão de frente"></div>
+        <div class="slide"><img src="src/IMG_4142.jpeg" alt="Nozes de Cacay e óleo numa taça de cerâmica" loading="lazy"></div>
+        <div class="slide"><img src="src/IMG_4141.jpeg" alt="Mulher e homem com cabelo cacheado" loading="lazy"></div>
+        <div class="slide"><img src="src/0aeae066-7aa2-4c4f-8ad2-942072e97674.jpeg" alt="Casal com caracóis definidos" loading="lazy"></div>
+      </div>
+      <div class="pontos" id="pontos" aria-label="Escolher imagem"></div>
     </div>
-    <p class="legenda">Imagens de campanha. Os resultados reais dos primeiros clientes vão aparecer aqui depois do lançamento.</p>
-  </div>
-</section>
 
-<section class="cem tex">
-  <div class="wrap cem-box" style="position:relative;z-index:2">
-    <div class="big">100</div>
-    <div>
-      <span class="eyebrow">Programa fundador</span>
-      <h2 class="h2" style="margin-top:12px;font-size:clamp(1.9rem,5vw,3rem)">Ainda não temos milhares de clientes. <span class="it">Temos 100 lugares.</span></h2>
-      <ul class="vantagens" style="margin-top:22px">
-        <li><b>−15% na primeira encomenda</b>Exclusivo para os primeiros 100 da Lista VIP.</li>
-        <li><b>Acesso antes de todos</b>Recebe o link de compra 48h antes do lançamento público.</li>
-        <li><b>A sua opinião conta</b>Os primeiros testemunhos que vir aqui vão ser os seus.</li>
+    <div class="info">
+      <div class="badges">
+        <span><svg viewBox="0 0 24 24"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Ativos botânicos</span>
+        <span><svg viewBox="0 0 24 24"><path d="M20 6c-6 0-12 4-14 12M6 18c4-1 8-1 12 1"/></svg>Define sem pesar</span>
+        <span><svg viewBox="0 0 24 24"><path d="M3 9c3-3 6-3 9 0s6 3 9 0M3 15c3-3 6-3 9 0s6 3 9 0"/></svg>Controla o frizz</span>
+      </div>
+
+      <h2 class="prod-titulo">Creme Finalizador para Pentear <small>200 ml</small></h2>
+      <div class="lote caps"><span>Lote 001</span><span class="sep"></span><span class="vagas">100 lugares fundadores</span></div>
+
+      <p class="prod-desc">Uma fórmula leve que equilibra definição e movimento: o caracol fica marcado e solto, sem efeito molhado e sem crosta. Feita à volta do óleo de Cacay da Colômbia, com Pequi, Baobab, Palma Vermelha e Ácido Poliglutâmico. Para ela e para ele.</p>
+
+      <div class="tamanho">
+        <span class="chip">200 ml</span>
+        <span class="mini" id="por100">€12,00 / 100 ml</span>
+      </div>
+
+      <p class="planos-titulo">Quantas vezes penteia o cabelo?</p>
+      <fieldset class="planos" id="planos">
+        <legend class="sr">Escolha a frequência de entrega</legend>
+        <label class="plano">
+          <input type="radio" name="plano" value="unica">
+          <div class="linha1"><span class="nome">Compra única</span><span class="valor" data-plano="unica"></span></div>
+          <div class="linha2"><span>Compre agora, subscreva depois.</span><span>+ portes de envio</span></div>
+          <span class="visto"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+        </label>
+        <label class="plano">
+          <input type="radio" name="plano" value="mensal">
+          <div class="linha1"><span class="nome">6–7 dias por semana</span><span class="valor" data-plano="sub"></span></div>
+          <div class="linha2"><span>Entrega todos os meses</span><span class="envio">Envio grátis</span></div>
+          <span class="visto"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+        </label>
+        <label class="plano destaque">
+          <span class="faixa-top">Poupe 10% em cada entrega</span>
+          <input type="radio" name="plano" value="6-semanas" checked>
+          <div class="linha1"><span class="nome">5 dias por semana</span><span class="valor" data-plano="sub"></span></div>
+          <div class="linha2"><span>Entrega a cada 6 semanas</span><span class="envio">Envio grátis</span></div>
+          <ul>
+            <li>Pause ou cancele quando quiser</li>
+            <li>Lembrete 5 dias antes de cada pagamento</li>
+            <li>Ajuste a frequência ao seu ritmo</li>
+          </ul>
+          <span class="visto"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+        </label>
+        <label class="plano">
+          <input type="radio" name="plano" value="8-semanas">
+          <div class="linha1"><span class="nome">2–3 dias por semana</span><span class="valor" data-plano="sub"></span></div>
+          <div class="linha2"><span>Entrega a cada 8 semanas</span><span class="envio">Envio grátis</span></div>
+          <span class="visto"><svg viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5"/></svg></span>
+        </label>
+      </fieldset>
+
+      <ul class="beneficios">
+        <li><svg viewBox="0 0 24 24"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Ativos botânicos</li>
+        <li><svg viewBox="0 0 24 24"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Ondas e caracóis</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Livre de crueldade</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M14 15c3 0 5 2 6 5"/></svg>Para ela e para ele</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg>Leve, não pesa</li>
+        <li><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Envio para toda a UE</li>
       </ul>
-      <a href="#vip" class="btn btn-terra" style="margin-top:22px">Garantir o meu lugar</a>
+
+      <button class="btn btn-verde btn-full" id="comprar" type="button">Reservar com −15%</button>
+      <p class="nota-compra">Pré-lançamento: não cobramos nada agora. Quem está na Lista VIP recebe o link de compra 48h antes de todos.</p>
     </div>
   </div>
 </section>
 
-<section id="faq">
+<!-- PARA CADA ONDA -->
+<section class="secao" style="padding-top:0">
   <div class="wrap">
-    <div style="text-align:center">
-      <span class="eyebrow">Perguntas frequentes</span>
-      <h2 class="h2" style="margin-top:12px">Antes de <span class="it">perguntar.</span></h2>
+    <div class="cabeca centro">
+      <h2 class="h2">Para ela, para ele, <em class="it">para cada onda.</em></h2>
     </div>
-    <div class="faq">
-      <details><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
-      <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado e cacheado. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
-      <details><summary>Deixa o cabelo duro ou com efeito "molhado"?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
-      <details><summary>É testado em animais?</summary><p>Não. A ondão é livre de crueldade.</p></details>
-      <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, o envio é grátis em encomendas acima de €35.</p></details>
-      <details><summary>Quando é o lançamento?</summary><p>Muito em breve. Quem está na Lista VIP recebe a data primeiro, acesso antecipado de 48h e −15% na primeira encomenda.</p></details>
+    <div class="rolo">
+      <article class="cartao">
+        <div class="foto"><img src="src/IMG_4130.jpeg" alt="Cabelo ondulado comprido, visto de costas" loading="lazy"></div>
+        <h3>Define sem pesar</h3>
+        <p>Os óleos de Cacay e Baobab nutrem a fibra e marcam o caracol sem o deixar pesado nem duro.</p>
+      </article>
+      <article class="cartao">
+        <div class="foto"><img src="src/IMG_4133.jpeg" alt="Cabelo cacheado em meia cauda" loading="lazy"></div>
+        <h3>Controla o frizz</h3>
+        <p>O Ácido Poliglutâmico segura a hidratação dentro do fio. Menos frizz, mais forma ao longo do dia.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="vip tex" id="vip">
-  <div class="wrap vip-grid" style="position:relative;z-index:2">
+<!-- FUNDADOR -->
+<section class="fundador tex">
+  <div class="wrap">
+    <span class="marca">Orinoquía</span>
+    <blockquote>“Cresci na Colômbia com um cabelo que ninguém sabia tratar. Voltei às origens, encontrei o Cacay e construí a ondão à volta dele.”</blockquote>
+    <cite>Jhon, fundador</cite>
+    <a href="#historia" class="btn btn-branco">Ler a nossa história</a>
+  </div>
+</section>
+
+<!-- INGREDIENTES -->
+<section class="secao" id="ingredientes">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="caps" style="color:var(--terra)">O que está dentro</span>
+      <h2 class="h2">Cinco ativos. <em class="it">Zero enchimento.</em></h2>
+    </div>
+    <div class="ing-grid">
+      <div class="heroi">
+        <div class="foto"><img src="src/IMG_4142.jpeg" alt="Nozes de Cacay abertas e óleo dourado sobre ardósia" loading="lazy"></div>
+        <div class="txt">
+          <span class="palavra">Cacay.</span>
+          <span class="latim">Caryodendron orinocense · bacia do Orinoco, Colômbia</span>
+          <p class="corpo">O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p>
+        </div>
+      </div>
+      <div class="ings">
+        <div class="ing"><span class="origem">Cerrado</span><div><h4>Óleo de Pequi</h4><p>Nutrição densa para pontas secas.</p></div></div>
+        <div class="ing"><span class="origem">Savana</span><div><h4>Óleo de Baobab</h4><p>Elasticidade e menos quebra.</p></div></div>
+        <div class="ing"><span class="origem">Trópicos</span><div><h4>Palma Vermelha</h4><p>Carotenoides que protegem a fibra.</p></div></div>
+        <div class="ing"><span class="origem">Biotecnologia</span><div><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 100 LUGARES -->
+<section class="secao cem tex">
+  <div class="wrap">
+    <div class="cem-grid">
+      <div>
+        <span class="numero">100</span>
+        <h2 class="h2" style="margin-top:14px">Ainda não temos milhares de clientes. <em class="it">Temos 100 lugares.</em></h2>
+        <ul class="vantagens">
+          <li><b>−15% na primeira encomenda</b>Exclusivo para os primeiros 100 da Lista VIP.</li>
+          <li><b>Acesso antes de todos</b>O link de compra chega-lhe 48h antes do lançamento público.</li>
+          <li><b>A sua opinião conta</b>Os primeiros testemunhos desta página vão ser os seus.</li>
+        </ul>
+        <a href="#vip" class="btn btn-verde">Garantir o meu lugar</a>
+      </div>
+      <div class="cem-fotos">
+        <div class="rolo tres">
+          <div class="retrato"><img src="src/IMG_4135.jpeg" alt="Homem com cabelo ondulado comprido" loading="lazy"><div class="rot"><b>Ondulado</b><span>Ondas soltas</span></div></div>
+          <div class="retrato"><img src="src/IMG_4137.jpeg" alt="Homem com cabelo crespo curto" loading="lazy"><div class="rot"><b>Crespo</b><span>Caracol fechado</span></div></div>
+          <div class="retrato"><img src="src/IMG_4139.jpeg" alt="Mulher com cabelo ondulado e volume" loading="lazy"><div class="rot"><b>Ondulado</b><span>Volume natural</span></div></div>
+        </div>
+        <p class="legenda">Imagens de campanha. Os resultados reais dos primeiros clientes vão aparecer aqui depois do lançamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="secao" id="faq">
+  <div class="wrap faq">
+    <div class="cabeca">
+      <span class="caps">Perguntas frequentes</span>
+      <span class="ajuda">Centro de ajuda</span>
+    </div>
+    <details open><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
+    <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado, cacheado e crespo. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
+    <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
+    <details><summary>Como funciona a subscrição?</summary><p>Escolhe a frequência de entrega e paga menos 10% em cada envio, com envio grátis. Recebe um lembrete 5 dias antes de cada pagamento e pode pausar, mudar ou cancelar quando quiser. A subscrição abre no dia do lançamento.</p></details>
+    <details><summary>É testado em animais?</summary><p>Não. A ondão é livre de crueldade.</p></details>
+    <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, o envio é grátis em encomendas acima de €35.</p></details>
+    <details><summary>Quando é o lançamento?</summary><p>Muito em breve. Quem está na Lista VIP recebe a data primeiro, acesso antecipado de 48h e −15% na primeira encomenda.</p></details>
+  </div>
+</section>
+
+<!-- TIPO DE CARACOL -->
+<section class="tipo">
+  <div class="fundo"><img src="src/IMG_4141.jpeg" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <h2 class="h2">Qual é o seu tipo de caracol?</h2>
+    <p>Diga-nos e enviamos-lhe a rotina certa para a sua textura no dia do lançamento.</p>
+    <div class="tipos-rapidos">
+      <button type="button" data-tipo="ondulado">Ondulado</button>
+      <button type="button" data-tipo="cacheado">Cacheado</button>
+      <button type="button" data-tipo="crespo">Crespo</button>
+      <button type="button" data-tipo="nao-sei">Não sei</button>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRIA -->
+<section class="secao historia" id="historia">
+  <div class="wrap historia-grid">
+    <div class="foto"><img src="src/0aeae066-7aa2-4c4f-8ad2-942072e97674.jpeg" alt="Campanha ondão: casal com cabelo cacheado" loading="lazy"></div>
     <div>
-      <span class="eyebrow" style="color:#E39A7B">Lista VIP</span>
-      <h2 class="h2" style="margin-top:12px">Seja dos primeiros a <span class="it">sentir a diferença.</span></h2>
-      <p class="lead" style="margin-top:18px">−15% no lançamento, acesso 48h antes de todos e conteúdo real sobre cuidar de ondas e caracóis. Sem spam.</p>
+      <span class="caps" style="color:var(--terra)">A nossa história</span>
+      <h2 class="h2" style="margin:12px 0 22px">Ondas com <em class="it">raízes.</em></h2>
+      <div class="carta">
+        <p>Cresci na Colômbia com um cabelo que ninguém sabia tratar. Ou o alisavam, ou o escondiam.</p>
+        <p>Quando cheguei a Portugal, as prateleiras davam-me duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
+        <p>Voltei às origens. Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
+      </div>
+      <p class="assina">Jhon, fundador</p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTA VIP -->
+<section class="vip tex" id="vip">
+  <div class="wrap">
+    <div>
+      <span class="caps" style="color:var(--rosa)">Lista VIP</span>
+      <h2 class="h2" style="margin-top:12px">Seja dos primeiros a <em class="it">sentir a diferença.</em></h2>
+      <p class="lead" style="margin-top:16px">−15% na primeira encomenda, acesso 48h antes de todos e conteúdo sobre cuidar de ondas e caracóis. Sem spam.</p>
     </div>
     <form id="form-vip" novalidate>
-      <div class="campo">
-        <label for="nome">Primeiro nome</label>
-        <input id="nome" name="nome" autocomplete="given-name" placeholder="O seu nome">
-      </div>
       <div class="campo">
         <label for="email">Email *</label>
         <input id="email" name="email" type="email" required autocomplete="email" placeholder="nome@email.com">
       </div>
       <div class="campo">
-        <label>O meu cabelo é</label>
-        <div class="tipos">
+        <label for="nome">Primeiro nome</label>
+        <input id="nome" name="nome" autocomplete="given-name" placeholder="O seu nome">
+      </div>
+      <div class="campo">
+        <span class="rotulo" id="rotulo-cabelo">O meu cabelo é</span>
+        <div class="tipos-f" role="radiogroup" aria-labelledby="rotulo-cabelo">
           <label><input type="radio" name="cabelo" value="ondulado">Ondulado</label>
           <label><input type="radio" name="cabelo" value="cacheado">Cacheado</label>
           <label><input type="radio" name="cabelo" value="crespo">Crespo</label>
           <label><input type="radio" name="cabelo" value="nao-sei">Não sei</label>
         </div>
       </div>
-      <input type="hidden" name="interesse" id="interesse" value="unica">
+      <p class="plano-escolhido">Plano de interesse: <b id="plano-txt">5 dias por semana</b></p>
+      <input type="hidden" name="plano" id="plano" value="6-semanas">
       <input type="hidden" name="origem" id="origem" value="">
       <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão">
       <label class="consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="privacidade.html">Política de privacidade</a>.</span></label>
@@ -405,11 +635,11 @@ footer a{text-decoration:none;color:var(--cinza)}
     <div class="foot-grid">
       <div>
         <h5>ondão</h5>
-        <p style="color:var(--cinza);max-width:24em">Cuidado capilar para ondas e caracóis, com raízes na Colômbia e casa em Portugal.</p>
+        <p style="color:var(--cinza);max-width:24em">Cuidado capilar unissexo para ondas e caracóis, com raízes na Colômbia e casa em Portugal.</p>
       </div>
       <div>
         <h5>Loja</h5>
-        <ul><li><a href="#produto">O creme</a></li><li><a href="#historia">A nossa história</a></li><li><a href="#ingredientes">Ingredientes</a></li><li><a href="#vip">Lista VIP</a></li></ul>
+        <ul><li><a href="#produto">O creme</a></li><li><a href="#ingredientes">Ingredientes</a></li><li><a href="#historia">A nossa história</a></li><li><a href="#vip">Lista VIP</a></li></ul>
       </div>
       <div>
         <h5>Ajuda</h5>
@@ -417,80 +647,114 @@ footer a{text-decoration:none;color:var(--cinza)}
       </div>
     </div>
     <div class="foot-marca">
+      <span class="pais">Portugal | EUR €</span>
       <span class="logo">ondão</span>
-      <small>Seja real com a sua textura · © <span id="ano"></span> ondão</small>
+      <span class="lema">Ondas com raízes.</span>
+      <small class="mini">© <span id="ano"></span> ondão</small>
     </div>
   </div>
 </footer>
 
-<div class="fixa" id="fixa"><a href="#vip" class="btn btn-terra">Entrar na Lista VIP · −15%</a></div>
+<div class="fixa" id="fixa"><a href="#vip" class="btn btn-verde">Reservar com −15%</a></div>
 
 <script>
 /* ============ CONFIG — edite aqui ============ */
 const CONFIG = {
-  PRECO: 24.00,
+  PRECO: 24.00,          // compra única, 200 ml
   ML: 200,
-  DESCONTO_SUB: 0.10,
-  PRE_LANCAMENTO: true,
+  DESCONTO_SUB: 0.10,    // desconto da subscrição
+  PRE_LANCAMENTO: true,  // true = botões levam à Lista VIP
   FORM_ENDPOINT: "https://formspree.io/f/xqpegzwz"
 };
 /* ============================================ */
 
 const eur = v => v.toLocaleString("pt-PT",{style:"currency",currency:"EUR"});
 const pSub = CONFIG.PRECO * (1 - CONFIG.DESCONTO_SUB);
-document.querySelector('[data-p="unica"]').textContent = eur(CONFIG.PRECO);
-document.querySelector('[data-p="sub"]').textContent = eur(pSub);
-const elPreco = document.getElementById("preco");
-const elP100 = document.getElementById("preco100");
+
+// preços dos planos
+document.querySelectorAll('[data-plano="unica"]').forEach(e => e.textContent = eur(CONFIG.PRECO));
+document.querySelectorAll('[data-plano="sub"]').forEach(e => e.innerHTML = '<span class="riscado">' + eur(CONFIG.PRECO) + '</span>' + eur(pSub));
+
 const btnComprar = document.getElementById("comprar");
+const campoPlano = document.getElementById("plano");
+const planoTxt = document.getElementById("plano-txt");
+const por100 = document.getElementById("por100");
 
-function atualizar(){
-  const op = document.querySelector('input[name="compra"]:checked').value;
-  const v = op === "subscricao" ? pSub : CONFIG.PRECO;
-  elPreco.textContent = eur(v);
-  elP100.textContent = eur(v / CONFIG.ML * 100) + " / 100ml";
-  document.getElementById("interesse").value = op;
-  if(!CONFIG.PRE_LANCAMENTO) btnComprar.textContent = "Adicionar ao carrinho — " + eur(v);
+function atualizarPlano(){
+  const r = document.querySelector('input[name="plano"]:checked');
+  const v = r.value === "unica" ? CONFIG.PRECO : pSub;
+  por100.textContent = eur(v / CONFIG.ML * 100) + " / 100 ml";
+  campoPlano.value = r.value;
+  planoTxt.textContent = r.closest(".plano").querySelector(".nome").textContent;
+  btnComprar.textContent = CONFIG.PRE_LANCAMENTO ? "Reservar com −15%" : "Adicionar ao carrinho · " + eur(v);
 }
-document.querySelectorAll('input[name="compra"]').forEach(r => r.addEventListener("change", atualizar));
-atualizar();
+document.querySelectorAll('input[name="plano"]').forEach(r => r.addEventListener("change", atualizarPlano));
+atualizarPlano();
 
-if(!CONFIG.PRE_LANCAMENTO){ document.getElementById("nota-compra").remove(); }
+function irParaVip(){
+  document.getElementById("vip").scrollIntoView({behavior:"smooth"});
+  setTimeout(() => document.getElementById("email").focus({preventScroll:true}), 650);
+}
 btnComprar.addEventListener("click", () => {
-  if(CONFIG.PRE_LANCAMENTO){
-    document.getElementById("vip").scrollIntoView({behavior:"smooth"});
-    setTimeout(() => document.getElementById("email").focus({preventScroll:true}), 600);
-  } else if (typeof window.ondaoAddToCart === "function"){
-    window.ondaoAddToCart(document.getElementById("interesse").value);
-  }
+  if (CONFIG.PRE_LANCAMENTO) irParaVip();
+  else if (typeof window.ondaoAddToCart === "function") window.ondaoAddToCart(campoPlano.value);
 });
 
+// tipo de caracol: escolhe no formulário e leva à Lista VIP
+document.querySelectorAll(".tipos-rapidos button").forEach(b => b.addEventListener("click", () => {
+  const r = document.querySelector('input[name="cabelo"][value="' + b.dataset.tipo + '"]');
+  if (r) r.checked = true;
+  irParaVip();
+}));
+
+// menu
+const btnMenu = document.getElementById("btn-menu"), menu = document.getElementById("menu");
+btnMenu.addEventListener("click", () => {
+  const aberto = menu.classList.toggle("aberto");
+  btnMenu.setAttribute("aria-expanded", aberto);
+});
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { menu.classList.remove("aberto"); btnMenu.setAttribute("aria-expanded", false); }));
+
+// galeria
+const slides = document.getElementById("slides"), pontos = document.getElementById("pontos");
+[...slides.children].forEach((s, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.setAttribute("aria-label", "Imagem " + (i + 1));
+  b.addEventListener("click", () => slides.scrollTo({left: s.offsetLeft, behavior: "smooth"}));
+  pontos.appendChild(b);
+});
+function marcarPonto(){
+  const i = Math.round(slides.scrollLeft / slides.clientWidth);
+  [...pontos.children].forEach((b, k) => b.setAttribute("aria-current", k === i));
+}
+slides.addEventListener("scroll", () => requestAnimationFrame(marcarPonto), {passive:true});
+marcarPonto();
+
+// origem do visitante
 const qs = new URLSearchParams(location.search);
 document.getElementById("origem").value = qs.get("utm_source") || document.referrer || "direto";
 
-const form = document.getElementById("form-vip");
-const msg = document.getElementById("msg");
+// formulário VIP
+const form = document.getElementById("form-vip"), msg = document.getElementById("msg");
 form.addEventListener("submit", async e => {
   e.preventDefault();
   const email = form.email.value.trim();
-  if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent = "Confirme o seu email."; return; }
-  if(!form.consent.checked){ msg.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
-  if(CONFIG.FORM_ENDPOINT.includes("SEU_ID")){ msg.textContent = "⚠ Formulário por ligar: defina CONFIG.FORM_ENDPOINT."; return; }
+  if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Confirme o seu email."; return; }
+  if (!form.consent.checked) { msg.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
   msg.textContent = "A guardar o seu lugar…";
-  try{
-    const r = await fetch(CONFIG.FORM_ENDPOINT,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}});
-    if(!r.ok) throw 0;
-    form.reset();
-    msg.textContent = "Está dentro. Veja o seu email: o seu −15% vai lá ter no dia do lançamento.";
-  }catch{ msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
+  try {
+    const r = await fetch(CONFIG.FORM_ENDPOINT, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}});
+    if (!r.ok) throw 0;
+    form.reset(); atualizarPlano();
+    msg.textContent = "Está dentro. O seu −15% chega-lhe por email no dia do lançamento.";
+  } catch { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
 });
 
+// botão fixo no telemóvel
 const fixa = document.getElementById("fixa");
-const hero = document.querySelector(".hero");
-const vip = document.getElementById("vip");
-let passouHero = false, naVip = false;
-new IntersectionObserver(([e]) => { passouHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", passouHero && !naVip); }).observe(hero);
-new IntersectionObserver(([e]) => { naVip = e.isIntersecting; fixa.classList.toggle("on", passouHero && !naVip); }).observe(vip);
+let depoisHero = false, naVip = false;
+new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.querySelector(".hero"));
+new IntersectionObserver(([e]) => { naVip = e.isIntersecting; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.getElementById("vip"));
 
 document.getElementById("ano").textContent = new Date().getFullYear();
 </script>
