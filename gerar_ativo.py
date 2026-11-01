@@ -14,7 +14,7 @@ def main():
 
     client = genai.Client(api_key=api_key)
     
-    print(ny=f"A gerar imagem com o prompt: {args.prompt}")
+    print(f"A gerar imagem com o prompt: {args.prompt}")
     response = client.models.generate_images(
         model='imagen-3.0-generate-002',
         prompt=args.prompt,
