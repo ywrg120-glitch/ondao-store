@@ -1,0 +1,38 @@
+import os
+import argparse
+from google import genai
+from google.genai import types
+
+def gerar_imagem(prompt_text, output_path):
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("La variable de entorno GEMINI_API_KEY no fue encontrada.")
+    
+    client = genai.Client(api_key=api_key)
+    print(f"Generando imagen para el prompt: '{prompt_text}'...")
+    
+    result = client.models.generate_images(
+        model='imagen-3.0-generate-002',
+        prompt=prompt_text,
+        config=types.GenerateImagesConfig(
+            number_of_images=1,
+            aspect_ratio="3:4",
+            output_mime_type="image/jpeg",
+        )
+    )
+    
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    for generated_image in result.generated_images:
+        image_bytes = generated_image.image.image_bytes
+        with open(output_path, "wb") as f:
+            f.write(image_bytes)
+        print(f"¡Éxito! Imagen guardada en: {output_path}")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Genera imágenes de forma autónoma con Gemini.")
+    parser.add_argument("--prompt", required=True, help="Prompt descriptivo de la imagen.")
+    parser.add_argument("--output", required=True, help="Ruta y nombre del archivo de salida.")
+    
+    args = parser.parse_args()
+    gerar_imagem(args.prompt, args.output)
