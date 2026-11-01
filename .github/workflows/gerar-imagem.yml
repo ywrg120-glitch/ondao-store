@@ -30,7 +30,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          python gerar_ativo.py --prompt "${{ github.event.inputs.prompt }}" --output "assets/images/ingredients/${{ github.event.inputs.filename }}"
+          python gerar_imagem.py --prompt "${{ github.event.inputs.prompt }}" --output "assets/images/ingredients/${{ github.event.inputs.filename }}"
 
       - name: Commit e Push Automático
         run: |
