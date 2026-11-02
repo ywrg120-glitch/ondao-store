@@ -1,41 +1,74 @@
 name: Gerar Imagem com Gemini
+# Corre só à mão: Actions → "Gerar Imagem com Gemini" → Run workflow.
 on:
   workflow_dispatch:
     inputs:
       prompt:
-        description: 'Prompt detalhado para a imagem'
+        description: 'Descrição da imagem'
         required: true
         default: 'High-end studio product photograph of Amazonian ingredients, silent luxury aesthetic, cream background #F7F3EC'
-      filename:
-        description: 'Nome do ficheiro (ex: sacha-inchi.jpg ou ungurahui.jpg)'
+      ficheiro:
+        description: 'Nome do ficheiro (ex.: sacha-inchi.jpg)'
         required: true
         default: 'sacha-inchi.jpg'
+      pasta:
+        description: 'Pasta onde guardar'
+        required: true
+        default: 'src/gerado'
+      proporcao:
+        description: 'Proporção (1:1, 4:5, 3:4, 9:16, 16:9)'
+        required: true
+        default: '4:5'
+      referencia:
+        description: 'Imagem de referência opcional (ex.: src/hero-modelo.jpg ou src/ondao-tubo.webp)'
+        required: false
+        default: ''
+      modelo:
+        description: 'Modelo de imagem do Gemini'
+        required: true
+        default: 'gemini-nano-banana-2.1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gerar-imagem
+  cancel-in-progress: false
 
 jobs:
   gerar-e-commitar:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout do Repositório
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
 
-      - name: Instalar Dependências da API
-        run: pip install google-genai requests
+      - name: Instalar dependências
+        run: pip install --quiet google-genai pillow
 
-      - name: Executar Script de Geração
+      - name: Gerar imagem
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python gerar_imagem.py --prompt "${{ github.event.inputs.prompt }}" --output "assets/images/ingredients/${{ github.event.inputs.filename }}"
+          PROMPT: ${{ inputs.prompt }}
+          OUTPUT: ${{ inputs.pasta }}/${{ inputs.ficheiro }}
+          ASPECT: ${{ inputs.proporcao }}
+          REFERENCIA: ${{ inputs.referencia }}
+          MODELO: ${{ inputs.modelo }}
+        run: python gerar_imagem.py
 
-      - name: Commit e Push Automático
+      - name: Commit e push
+        env:
+          OUTPUT: ${{ inputs.pasta }}/${{ inputs.ficheiro }}
         run: |
-          git config --global user.name "Gemini Automation Bot"
-          git config --global user.email "bot@ondao.local"
-          git add assets/images/ingredients/
-          git commit -m "feat(assets): adiciona imagem gerada autonomamente para ${{ github.event.inputs.filename }}"
-          git push
+          git config user.name "ondao-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$OUTPUT"
+          if git diff --cached --quiet; then
+            echo "Nada de novo para guardar."
+            exit 0
+          fi
+          git commit -m "Imagem gerada: $OUTPUT"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
