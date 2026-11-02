@@ -1,10 +1,8 @@
 name: Executar Agentes Ondao
 
+# Desativado: só corre se for lançado à mão em Actions → "Run workflow".
 on:
-  pull_request:
-    branches: [ main ]
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   run-gemini-agents:
