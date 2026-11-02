@@ -9,6 +9,7 @@
 <meta property="og:description" content="O creme finalizador que define ondas e caracóis sem pesar. Óleo de Cacay da Colômbia. Entre na Lista VIP: −15% no lançamento.">
 <meta property="og:image" content="src/tubo-frente.jpg">
 <meta name="theme-color" content="#1C3327">
+<script data-goatcounter="https://ondao.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,6 +29,7 @@
   --ruido:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--creme);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
@@ -270,6 +272,28 @@ footer a:hover{color:var(--terra)}
 .foot-marca{display:grid;justify-items:center;gap:12px;margin-top:44px;text-align:center}
 .foot-marca .logo{font-size:clamp(3.6rem,18vw,7rem)}
 .foot-marca .lema{font-family:var(--serif);font-style:italic;color:var(--verde)}
+
+/* Popup do quiz */
+.pop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:rgba(16,22,18,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);animation:pop-in .35s ease both}
+.pop[hidden]{display:none}
+@keyframes pop-in{from{opacity:0}to{opacity:1}}
+.pop-card{position:relative;width:min(100%,420px);max-height:calc(100svh - 32px);overflow:auto;border-radius:24px;color:#FFFDF9;text-align:center;background:var(--verde) url("src/hero-modelo.jpg") 50% 22%/cover;box-shadow:0 30px 70px -20px rgba(0,0,0,.6)}
+.pop-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,24,.35) 0%,rgba(20,30,24,.78) 45%,rgba(28,51,39,.97) 100%)}
+.pop-in{position:relative;display:grid;gap:14px;padding:30px 26px 26px}
+.pop-fechar{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,253,249,.92);color:var(--verde);font-size:1.4rem;line-height:1;cursor:pointer}
+.pop .logo{color:#FFFDF9;font-size:1.7rem}
+.pop-titulo{font-family:var(--serif);font-weight:700;font-size:2.6rem;line-height:1;margin-top:40px}
+.pop-titulo em{font-style:italic;color:var(--rosa);font-weight:600}
+.pop-sub{font-size:.95rem;color:#EDE7DD}
+.pop-sub b{display:block;color:#FFFDF9}
+.pop-opcoes{display:grid;gap:9px;margin-top:4px}
+.pop-opcoes button{width:100%;border:0;border-radius:12px;background:#F7F3EC;color:var(--verde);padding:14px;font:600 .95rem var(--sans);cursor:pointer}
+.pop-opcoes button:hover{background:#FFFDF9}
+.pop form{gap:10px;text-align:left}
+.pop input[type=email]{width:100%;border:0;border-radius:12px;padding:15px 16px;font:400 1rem var(--sans);color:var(--tinta);background:#FFFDF9}
+.pop .consent{color:#D9DFD8}
+.pop .btn{width:100%}
+.pop-msg{font-size:.88rem;min-height:1.3em;text-align:center}
 
 /* Botão fixo no telemóvel */
 .fixa{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));transform:translateY(130%);transition:transform .35s}
@@ -666,6 +690,37 @@ footer a:hover{color:var(--terra)}
   </div>
 </footer>
 
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-titulo" hidden>
+  <div class="pop-card">
+    <button class="pop-fechar" type="button" id="pop-fechar" aria-label="Fechar">×</button>
+    <div class="pop-in">
+      <span class="logo">ondão</span>
+      <div id="pop-passo1">
+        <p class="pop-titulo" id="pop-titulo">Quer <em>−15%?</em></p>
+        <p class="pop-sub" style="margin-top:12px"><b>Responda a uma pergunta:</b>qual é o seu tipo de caracol?</p>
+        <div class="pop-opcoes" style="margin-top:16px">
+          <button type="button" data-tipo="ondulado">Ondulado</button>
+          <button type="button" data-tipo="cacheado">Cacheado</button>
+          <button type="button" data-tipo="crespo">Crespo</button>
+          <button type="button" data-tipo="nao-sei">Não sei</button>
+        </div>
+      </div>
+      <form id="pop-form" hidden novalidate>
+        <p class="pop-titulo" style="margin-top:28px;font-size:2rem;text-align:center">Está quase.</p>
+        <p class="pop-sub" style="text-align:center">Deixe o seu email e enviamos-lhe o −15% e a rotina certa para cabelo <span id="pop-tipo-txt">ondulado</span> no dia do lançamento.</p>
+        <label for="pop-email" class="sr">Email</label>
+        <input type="email" id="pop-email" name="email" required autocomplete="email" placeholder="nome@email.com">
+        <input type="hidden" name="cabelo" id="pop-cabelo" value="">
+        <input type="hidden" name="origem" id="pop-origem" value="popup">
+        <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão (popup)">
+        <label class="consent"><input type="checkbox" name="consent" value="accepted" id="pop-consent" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="privacidade.html">Política de privacidade</a>.</span></label>
+        <button class="btn btn-terra" type="submit">Quero o meu −15%</button>
+        <p class="pop-msg" id="pop-msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="fixa" id="fixa"><a href="#vip" class="btn btn-verde">Reservar com −15%</a></div>
 
 <script>
@@ -759,6 +814,7 @@ form.addEventListener("submit", async e => {
     if (!r.ok) throw 0;
     form.reset(); atualizarPlano();
     msg.textContent = "Está dentro. O seu −15% chega-lhe por email no dia do lançamento.";
+    marcarInscrito(); contar("inscricao-formulario");
   } catch { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
 });
 
@@ -787,6 +843,55 @@ const fixa = document.getElementById("fixa");
 let depoisHero = false, naVip = false;
 new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.querySelector(".hero"));
 new IntersectionObserver(([e]) => { naVip = e.isIntersecting; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.getElementById("vip"));
+
+// estatísticas (GoatCounter): eventos sem cookies
+function contar(nome){ try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path: nome, title: nome, event: true}); } catch(e){} }
+document.querySelectorAll('a[href="#vip"], #comprar, #cta-hero').forEach(el => el.addEventListener("click", () => contar("clique-cta-" + (el.id || "vip"))));
+
+// popup do quiz: aparece uma vez, ao fim de 8 s, a quem ainda não se inscreveu
+function ler(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function guardar(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+function marcarInscrito(){ guardar("ondao_vip","1"); }
+const pop = document.getElementById("pop");
+const popForm = document.getElementById("pop-form");
+let ultimoFoco = null;
+function abrirPop(){
+  if (ler("ondao_vip") || ler("ondao_pop") || !pop.hidden) return;
+  if (document.getElementById("vip").getBoundingClientRect().top < innerHeight) return;
+  guardar("ondao_pop","1");
+  ultimoFoco = document.activeElement;
+  pop.hidden = false; document.body.style.overflow = "hidden";
+  pop.querySelector(".pop-opcoes button").focus({preventScroll:true});
+  contar("popup-aberto");
+}
+function fecharPop(){ pop.hidden = true; document.body.style.overflow = ""; if (ultimoFoco) ultimoFoco.focus({preventScroll:true}); }
+setTimeout(abrirPop, 8000);
+document.getElementById("pop-fechar").addEventListener("click", fecharPop);
+pop.addEventListener("click", e => { if (e.target === pop) fecharPop(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !pop.hidden) fecharPop(); });
+pop.querySelectorAll(".pop-opcoes button").forEach(b => b.addEventListener("click", () => {
+  document.getElementById("pop-cabelo").value = b.dataset.tipo;
+  document.getElementById("pop-tipo-txt").textContent = b.dataset.tipo === "nao-sei" ? "ondulado ou cacheado" : b.textContent.toLowerCase();
+  document.getElementById("pop-passo1").hidden = true; popForm.hidden = false; popForm.style.display = "grid";
+  document.getElementById("pop-email").focus();
+  contar("popup-tipo-" + b.dataset.tipo);
+}));
+document.getElementById("pop-origem").value = "popup · " + (qs.get("utm_source") || document.referrer || "direto");
+popForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const pm = document.getElementById("pop-msg");
+  const email = document.getElementById("pop-email").value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(email)) { pm.textContent = "Confirme o seu email."; return; }
+  if (!document.getElementById("pop-consent").checked) { pm.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
+  pm.textContent = "A guardar o seu lugar…";
+  try {
+    const r = await fetch(CONFIG.FORM_ENDPOINT, {method:"POST", body:new FormData(popForm), headers:{Accept:"application/json"}});
+    if (!r.ok) throw 0;
+    marcarInscrito(); contar("inscricao-popup");
+    popForm.innerHTML = '<p class="pop-titulo" style="margin-top:28px;font-size:2rem;text-align:center">Está dentro.</p><p class="pop-sub" style="text-align:center">O seu −15% chega-lhe por email no dia do lançamento.</p>';
+    setTimeout(fecharPop, 3500);
+  } catch { pm.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
+});
 
 document.getElementById("ano").textContent = new Date().getFullYear();
 </script>
