@@ -295,6 +295,13 @@ footer a:hover{color:var(--terra)}
 .pop .btn{width:100%}
 .pop-msg{font-size:.88rem;min-height:1.3em;text-align:center}
 
+/* Voltar ao topo */
+.topo-btn{position:fixed;z-index:61;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,253,249,.35);background:var(--verde);color:var(--branco);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 24px -8px rgba(28,51,39,.5);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,bottom .35s}
+.topo-btn.on{opacity:1;transform:none;pointer-events:auto}
+.topo-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.topo-btn:hover{background:var(--verde-2)}
+body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+
 /* Botão fixo no telemóvel */
 .fixa{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));transform:translateY(130%);transition:transform .35s}
 .fixa.on{transform:none}
@@ -721,6 +728,8 @@ footer a:hover{color:var(--terra)}
   </div>
 </div>
 
+<button class="topo-btn" id="topo-btn" type="button" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
 <div class="fixa" id="fixa"><a href="#vip" class="btn btn-verde">Reservar com −15%</a></div>
 
 <script>
@@ -841,7 +850,13 @@ document.getElementById("cta-hero").addEventListener("click", e => { e.preventDe
 // botão fixo no telemóvel
 const fixa = document.getElementById("fixa");
 let depoisHero = false, naVip = false;
-new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.querySelector(".hero"));
+const topoBtn = document.getElementById("topo-btn");
+new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", depoisHero && !naVip); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero"));
+topoBtn.addEventListener("click", () => {
+  const suave = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({top: 0, behavior: suave ? "smooth" : "auto"});
+  contar("voltar-ao-topo");
+});
 new IntersectionObserver(([e]) => { naVip = e.isIntersecting; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.getElementById("vip"));
 
 // estatísticas (GoatCounter): eventos sem cookies
