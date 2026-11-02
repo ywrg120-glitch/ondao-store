@@ -1,0 +1,41 @@
+name: Gerar Imagem com Gemini
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Prompt detalhado para a imagem'
+        required: true
+        default: 'High-end studio product photograph of Amazonian ingredients, silent luxury aesthetic, cream background #F7F3EC'
+      filename:
+        description: 'Nome do ficheiro (ex: sacha-inchi.jpg ou ungurahui.jpg)'
+        required: true
+        default: 'sacha-inchi.jpg'
+
+jobs:
+  gerar-e-commitar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Dependências da API
+        run: pip install google-genai requests
+
+      - name: Executar Script de Geração
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python gerar_imagem.py --prompt "${{ github.event.inputs.prompt }}" --output "assets/images/ingredients/${{ github.event.inputs.filename }}"
+
+      - name: Commit e Push Automático
+        run: |
+          git config --global user.name "Gemini Automation Bot"
+          git config --global user.email "bot@ondao.local"
+          git add assets/images/ingredients/
+          git commit -m "feat(assets): adiciona imagem gerada autonomamente para ${{ github.event.inputs.filename }}"
+          git push
