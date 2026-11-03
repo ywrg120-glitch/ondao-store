@@ -210,8 +210,10 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .rolo>*{scroll-snap-align:start;min-width:0}
 .cartao .foto{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--areia)}
 .cartao .foto img{width:100%;height:100%;object-fit:cover}
-.cartao h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-top:16px}
-.cartao p{font-size:.86rem;color:var(--cinza);margin-top:6px}
+.cartao .momento{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra);margin-top:18px}
+.cartao h3{font-family:var(--serif);font-weight:400;font-size:1.45rem;line-height:1.15;letter-spacing:-.015em;margin-top:6px;color:var(--tinta);text-wrap:balance}
+.cartao p{font-size:.92rem;line-height:1.6;color:var(--cinza);margin-top:8px}
+.cabeca .sub-cabeca{font-size:.98rem;color:var(--cinza);margin-top:12px;max-width:30em;margin-left:auto;margin-right:auto}
 
 /* Fundador (bloco verde) */
 .fundador{background:var(--verde);color:var(--vip-txt);text-align:center}
@@ -566,18 +568,21 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
 <section class="secao" style="padding-top:0">
   <div class="wrap">
     <div class="cabeca centro">
-      <h2 class="h2">Para ela, para ele, <em class="it">para cada onda.</em></h2>
+      <h2 class="h2">O seu cabelo, <em class="it">nos seus dias.</em></h2>
+      <p class="sub-cabeca">Não é preciso uma rotina de 40 minutos. É preciso um creme que funcione numa terça-feira normal.</p>
     </div>
     <div class="rolo">
       <article class="cartao">
         <div class="foto"><img src="src/cartao-ela-define.jpg" alt="Mulher de costas a amachucar os caracóis definidos com as mãos" loading="lazy"></div>
-        <h3>Define sem pesar</h3>
-        <p>Os óleos de Cacay e Sacha Inchi nutrem a fibra e marcam o caracol sem o deixar pesado nem duro.</p>
+        <span class="momento">Para ela · De manhã, com pressa</span>
+        <h3>Amachuque, deixe secar e saia de casa.</h3>
+        <p>Um pouco de creme no cabelo húmido chega. O caracol marca-se e continua a mexer-se, macio ao toque, sem aquela crosta de gel.</p>
       </article>
       <article class="cartao">
         <div class="foto"><img src="src/cartao-ele-frizz.jpg" alt="Homem de perfil junto à janela, com cabelo ondulado definido e sem frizz" loading="lazy"></div>
-        <h3>Controla o frizz</h3>
-        <p>O Ácido Poliglutâmico segura a hidratação dentro do fio. Menos frizz, mais forma ao longo do dia.</p>
+        <span class="momento">Para ele · Dias de humidade</span>
+        <h3>A onda com forma, mesmo nos dias húmidos.</h3>
+        <p>Menos frizz e nada de brilho molhado. Ninguém percebe que tem produto: só que o cabelo está bem.</p>
       </article>
     </div>
   </div>
