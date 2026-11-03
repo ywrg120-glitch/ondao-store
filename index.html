@@ -91,9 +91,11 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .oferta{flex:none;display:grid;gap:10px;padding-top:14px;padding-bottom:16px;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px));text-align:center}
 .promessa{font-family:var(--serif);font-weight:700;text-transform:uppercase;font-size:clamp(1.75rem,8vw,3.4rem);line-height:1;letter-spacing:-.01em;color:var(--verde);text-wrap:balance}
 .promessa em{font-style:italic;font-weight:600;color:var(--terra)}
-.usps{list-style:none;display:grid;gap:6px;text-align:left;font-size:.8rem;line-height:1.3}
-.usps li{display:flex;gap:10px;align-items:center;background:rgba(255,253,249,.75);border:1px solid var(--linha);border-radius:10px;padding:9px 12px;color:var(--tinta)}
-.usps li::before{content:"";flex:none;width:16px;height:16px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3L13 4.5' fill='none' stroke='%23C55A37' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/16px no-repeat}
+.usps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:12px 0;text-align:center;font-size:.76rem;line-height:1.25;color:var(--tinta)}
+.usps li{display:grid;justify-items:center;align-content:start;gap:7px;padding:0 6px}
+.usps li+li{border-left:1px solid var(--linha)}
+.usps svg{width:24px;height:24px;fill:none;stroke:var(--terra);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.usps b{font-weight:600;display:block}
 .prova{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--verde)}
 .prova .ponto{width:8px;height:8px;border-radius:50%;background:var(--terra);box-shadow:0 0 0 4px rgba(197,90,55,.18)}
 .cta-hero{width:100%;padding:17px 24px;background:var(--terra);color:var(--branco);font-size:.84rem}
@@ -102,8 +104,8 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 @media (max-height:700px) and (max-width:899px){
   .oferta{gap:7px;padding-bottom:12px}
   .promessa{font-size:clamp(1.55rem,7.2vw,2.2rem)}
-  .usps{font-size:.78rem;gap:5px}
-  .usps li{padding:7px 11px}
+  .usps{font-size:.72rem;padding:9px 0}
+  .usps svg{width:20px;height:20px}
   .cta-hero{padding:15px 24px}
   .selo-usp{width:72px;height:72px;font-size:.45rem}
 }
@@ -388,8 +390,10 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
   .selo-usp{width:104px;height:104px;font-size:.58rem;right:3%;top:4%}
   .oferta{flex:.95 1 0;align-content:center;text-align:left;gap:16px;padding:0}
   .prova{justify-content:flex-start}
-  .usps{font-size:.98rem;gap:8px}
-  .usps li{padding:12px 16px}
+  .usps{font-size:.9rem;padding:20px 0;text-align:left}
+  .usps li{justify-items:start;padding:0 18px}
+  .usps li:first-child{padding-left:0}
+  .usps svg{width:28px;height:28px}
   .cta-hero{padding:20px 32px}
   .faixa{padding:40px 0}
   .produto{padding-top:40px;padding-bottom:110px}
@@ -475,9 +479,9 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
     <div class="oferta">
       <h1 class="promessa">Defina a sua <em>onda.</em></h1>
       <ul class="usps">
-        <li>Óleo de Cacay colombiano que nutre sem pesar</li>
-        <li>Controla o frizz, sem efeito molhado nem crosta</li>
-        <li>Para ela e para ele: ondas, caracóis e crespos</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.4"/></svg><span><b>Óleo de Cacay</b>da Colômbia</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/><path d="M3 13c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/><path d="M3 18c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/></svg><span><b>Define sem pesar</b>e controla o frizz</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="8.5" r="2.6"/><path d="M3 19.5c.6-3.3 2.8-5.3 5.5-5.3s4.9 2 5.5 5.3M14.6 14.4c.5-.1.9-.2 1.4-.2 2.4 0 4.3 1.8 4.9 4.8"/></svg><span><b>Para ela e ele</b>ondas a crespos</span></li>
       </ul>
       <p class="prova" id="prova" hidden><span class="ponto" aria-hidden="true"></span><span id="prova-txt"></span></p>
       <a href="#vip" class="btn cta-hero" id="cta-hero">Quero o meu ondão −15% <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
