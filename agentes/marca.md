@@ -1,6 +1,6 @@
 # Contexto da marca ondão (lido por todos os agentes)
 
-- **Produto:** Creme Finalizador para Pentear, 200 ml, €19,99. Pré-lançamento: ainda não se vende; o objetivo do site é captar emails para a Lista VIP (−15% para os primeiros 100).
+- **Produto:** Creme Finalizador para Pentear, 200 ml, €19,99. Pré-lançamento: ainda não se vende; o objetivo do site é captar emails para a Lista VIP (acesso antecipado). Preço único de 19,99 €: sem descontos nem subscrições.
 - **Marca:** ondão (sempre em minúsculas). Unissexo: para ela e para ele. Ondas, caracóis e crespos.
 - **História:** fundador colombiano a viver em Portugal. "O nome é português. As raízes são colombianas." Slogan: "Ondas com raízes."
 - **Fórmula (ativos):** óleo de Cacay (herói, Caryodendron orinocense), Sacha Inchi, Ungurahui (Amazónia colombiana), proteína de quinoa (Andes), Ácido Poliglutâmico. Sem silicones.
