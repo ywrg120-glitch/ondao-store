@@ -874,7 +874,13 @@ const CONFIG = {
   DESCONTO_SUB: 0.10, DESCONTO_VIP: 0.15,    // desconto da subscrição
   PRE_LANCAMENTO: true,  // true = botões levam à Lista VIP
   FORM_ENDPOINT: "https://formspree.io/f/xqpegzwz",
-  INSCRITOS: 0           // nº real de inscritos na Lista VIP; a partir de 50 aparece como prova social
+  INSCRITOS: 0,          // nº real de inscritos na Lista VIP; a partir de 50 aparece como prova social
+
+  // PRÉ-ENCOMENDA (Shopify) — basta colar o link de checkout do Shopify para o site mudar sozinho para pré-encomenda
+  LINK_COMPRA: "",       // ex.: "https://ondao.myshopify.com/cart/12345678901234:1"
+  CODIGO_DESCONTO: "",   // ex.: "LANCAMENTO15" — se preenchido, mostra −15% e aplica o código no checkout
+  DIAS_PREPARACAO: 10,   // dias até enviarmos, a contar do pagamento (o transporte é à parte)
+  DIAS_DEVOLUCAO: 14     // dias para devolver, a contar da ENTREGA (mínimo legal: 14)
 };
 /* ============================================ */
 
@@ -1192,6 +1198,48 @@ const INGS={
   }
   window.addEventListener('scroll',()=>{if(!pedido){pedido=true;requestAnimationFrame(atualizar);}},{passive:true});
   atualizar();
+})();
+
+// ===== MODO PRÉ-ENCOMENDA: ativa-se quando CONFIG.LINK_COMPRA tem um link do Shopify =====
+(function(){
+  const link = (CONFIG.LINK_COMPRA || "").trim();
+  if (!/^https:\/\//.test(link)) return;
+  const D = CONFIG.DIAS_PREPARACAO, R = CONFIG.DIAS_DEVOLUCAO;
+  let destino = link;
+  if (CONFIG.CODIGO_DESCONTO) destino += (link.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(CONFIG.CODIGO_DESCONTO);
+  const desc = CONFIG.CODIGO_DESCONTO ? CONFIG.DESCONTO_VIP : 0, preco = CONFIG.PRECO * (1 - desc);
+  const seta = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const ok = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const linhaPreco = desc
+    ? 'Preço de lançamento <s>' + eur(CONFIG.PRECO) + '</s> <b>' + eur(preco) + '</b> <span class="tag">−' + Math.round(desc*100) + '%</span>'
+    : '<b>' + eur(preco) + '</b> · envio em até ' + D + ' dias';
+  document.body.classList.add("modo-pre");
+  const olho = document.querySelector(".prod-olho"); if (olho) olho.textContent = "ondão · Pré-encomenda";
+  CONFIG.PRE_LANCAMENTO = false;
+  // barra de avisos
+  document.querySelectorAll(".anuncio .trilho span").forEach(sp => {
+    if (/Pré-venda/.test(sp.textContent)) sp.textContent = "Pré-encomenda aberta · envio em até " + D + " dias";
+    else if (/toda a UE/.test(sp.textContent)) sp.textContent = R + " dias para devolver após a entrega";
+  });
+  // topo: leva ao produto
+  const hero = document.getElementById("cta-hero");
+  hero.href = "#produto"; hero.innerHTML = 'Pré-encomendar o meu ondão ' + hero.querySelector("svg").outerHTML;
+  // botão do produto e barra fixa: vão direto ao checkout do Shopify
+  const comprar = document.getElementById("comprar");
+  const novoComprar = comprar.cloneNode(false); comprar.replaceWith(novoComprar);
+  novoComprar.innerHTML = '<span class="l1">Pré-encomendar ' + seta + '</span><span class="l2">' + linhaPreco + '</span>';
+  novoComprar.addEventListener("click", () => { contar("clique-checkout-produto"); location.href = destino; });
+  const fixa = document.getElementById("fixa-btn");
+  fixa.href = destino; fixa.innerHTML = '<span class="l1">Pré-encomendar ' + seta + '</span><span class="l2">' + linhaPreco + '</span>';
+  fixa.addEventListener("click", () => contar("clique-checkout-fixa"));
+  // só compra única na pré-encomenda
+  const unica = document.querySelector('input[name="plano"][value="unica"]'); if (unica) { unica.checked = true; unica.dispatchEvent(new Event("change")); }
+  document.querySelectorAll(".planos-titulo, #planos").forEach(e => e.hidden = true);
+  // garantias e nota
+  const g = document.querySelector(".garantias");
+  if (g) g.innerHTML = '<li>' + ok + 'Envio em até ' + D + ' dias</li><li>' + ok + R + ' dias para devolver</li><li>' + ok + 'Pagamento seguro</li>';
+  const nota = document.querySelector(".nota-compra");
+  if (nota) nota.innerHTML = '<b>Pré-encomenda:</b> paga agora e enviamos em até ' + D + ' dias (mais o tempo de transporte). Os ' + R + ' dias para devolver só começam a contar quando o creme chega a sua casa, por isso a espera não lhe tira prazo.';
 })();
 </script>
 </body>
