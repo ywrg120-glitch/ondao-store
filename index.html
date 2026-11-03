@@ -122,7 +122,11 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .slide.contem img{object-fit:contain}
 .pontos{display:flex;justify-content:center;gap:8px;margin-top:14px}
 .pontos button{width:8px;height:8px;border-radius:50%;border:0;background:var(--linha);cursor:pointer;padding:0;transition:width .25s,background .25s}
-.pontos button[aria-current="true"]{width:22px;border-radius:99px;background:var(--verde)}
+.pontos button[aria-current="true"]{width:28px;border-radius:99px;background:var(--linha);position:relative;overflow:hidden}
+.pontos button[aria-current="true"]::after{content:"";position:absolute;inset:0;background:var(--verde);border-radius:inherit;transform-origin:left;transform:scaleX(1)}
+.pontos.auto button[aria-current="true"]::after{animation:enche var(--intervalo,4s) linear both}
+.pontos.pausa button[aria-current="true"]::after{animation:none;transform:scaleX(1)}
+@keyframes enche{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .info{display:grid;gap:18px;min-width:0}
 .badges{display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--salvia)}
 .badges span{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
@@ -912,6 +916,35 @@ function marcarPonto(){
 }
 slides.addEventListener("scroll", () => requestAnimationFrame(marcarPonto), {passive:true});
 marcarPonto();
+
+// galeria passa sozinha a cada 4s; pára quando a pessoa mexe, sai do ecrã ou prefere menos movimento
+(function(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || slides.children.length < 2) return;
+  const INTERVALO = 4000;
+  pontos.style.setProperty("--intervalo", INTERVALO + "ms");
+  let visivel = false, pausaAte = 0, timer = null;
+  const atual = () => Math.round(slides.scrollLeft / slides.clientWidth);
+  function reiniciarBarra(){ pontos.classList.remove("auto"); void pontos.offsetWidth; pontos.classList.add("auto"); }
+  function agendar(){
+    clearTimeout(timer);
+    if (!visivel || document.hidden) { pontos.classList.remove("auto"); return; }
+    const espera = Math.max(0, pausaAte - Date.now());
+    if (espera) { pontos.classList.add("pausa"); timer = setTimeout(agendar, espera); return; }
+    pontos.classList.remove("pausa"); reiniciarBarra();
+    timer = setTimeout(() => {
+      const n = slides.children.length, prox = (atual() + 1) % n;
+      slides.scrollTo({left: slides.children[prox].offsetLeft, behavior: "smooth"});
+      setTimeout(agendar, 500);
+    }, INTERVALO);
+  }
+  function pausar(ms){ pausaAte = Date.now() + ms; agendar(); }
+  ["pointerdown","touchstart","wheel","keydown"].forEach(ev => slides.addEventListener(ev, () => pausar(9000), {passive:true}));
+  pontos.addEventListener("click", () => pausar(9000));
+  slides.addEventListener("mouseenter", () => pausar(60000));
+  slides.addEventListener("mouseleave", () => pausar(1500));
+  new IntersectionObserver(es => { visivel = es[0].isIntersecting; agendar(); }, {threshold: .6}).observe(slides);
+  document.addEventListener("visibilitychange", agendar);
+})();
 
 // origem do visitante
 const qs = new URLSearchParams(location.search);
