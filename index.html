@@ -128,7 +128,19 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .fundir{position:absolute;left:0;top:0;width:100%;border-radius:var(--r);overflow:hidden;opacity:0;transition:opacity 1.1s ease;pointer-events:none;z-index:2}
 .fundir.ver{opacity:1}
 .fundir .slide{width:100%}
-.pontos{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.pontos{display:none}
+.legenda-gal{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-bottom:12px;border-bottom:1px solid var(--linha)}
+.contador{display:flex;align-items:baseline;gap:8px;font-family:var(--serif);color:var(--verde);margin:0}
+.contador b{font-weight:500;font-size:1.25rem;font-style:italic;min-width:1.4em}
+.contador span{font-size:.85rem;color:var(--cinza)}
+.contador em{font-style:normal;font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra);margin-left:10px;transition:opacity .4s}
+.contador.troca b,.contador.troca em{opacity:0}
+.contador b{transition:opacity .4s}
+.setas{display:flex;gap:8px}
+.setas button{width:38px;height:38px;border-radius:50%;border:1px solid var(--linha);background:transparent;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.setas button:hover{background:var(--verde);border-color:var(--verde)}
+.setas button:hover svg{stroke:var(--creme)}
+.setas svg{width:16px;height:16px;fill:none;stroke:var(--verde);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .pontos button{width:8px;height:8px;border-radius:50%;border:0;background:var(--linha);cursor:pointer;padding:0;transition:width .25s,background .25s}
 .pontos button[aria-current="true"]{width:28px;border-radius:99px;background:var(--linha);position:relative;overflow:hidden}
 .pontos button[aria-current="true"]::after{content:"";position:absolute;inset:0;background:var(--verde);border-radius:inherit;transform-origin:left;transform:scaleX(1)}
@@ -498,13 +510,20 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
   <div class="wrap prod-grid">
     <div class="galeria">
       <div class="slides" id="slides" tabindex="0" aria-label="Galeria do produto">
-        <div class="slide contem"><img src="src/tubo-frente-v2.jpg" alt="Tubo ondão de frente"></div>
-        <div class="slide"><img src="src/galeria-textura.jpg" alt="Textura sedosa do creme ondão espalhada sobre ardósia" loading="lazy"></div>
-        <div class="slide"><img src="src/galeria-tubo-ingredientes.jpg" alt="Tubo ondão sobre ardósia com nozes de Cacay, cápsulas de Sacha Inchi e óleo" loading="lazy"></div>
-        <div class="slide"><img src="src/galeria-em-uso-v2.jpg" alt="Mulher de caracóis definidos com o tubo ondão numa mão e uma porção de creme na palma da outra" loading="lazy"></div>
-        <div class="slide"><img src="src/galeria-ritual.jpg" alt="Tubo ondão numa prateleira de travertino com pente de madeira e toalha de linho" loading="lazy"></div>
+        <div class="slide contem" data-legenda="O tubo"><img src="src/tubo-frente-v2.jpg" alt="Tubo ondão de frente"></div>
+        <div class="slide" data-legenda="A textura"><img src="src/galeria-textura.jpg" alt="Textura sedosa do creme ondão espalhada sobre ardósia" loading="lazy"></div>
+        <div class="slide" data-legenda="Os ingredientes"><img src="src/galeria-tubo-ingredientes.jpg" alt="Tubo ondão sobre ardósia com nozes de Cacay, cápsulas de Sacha Inchi e óleo" loading="lazy"></div>
+        <div class="slide" data-legenda="Em uso"><img src="src/galeria-em-uso-v2.jpg" alt="Mulher de caracóis definidos com o tubo ondão numa mão e uma porção de creme na palma da outra" loading="lazy"></div>
+        <div class="slide" data-legenda="O ritual"><img src="src/galeria-ritual.jpg" alt="Tubo ondão numa prateleira de travertino com pente de madeira e toalha de linho" loading="lazy"></div>
       </div>
-      <div class="pontos" id="pontos" aria-label="Escolher imagem"></div>
+      <div class="pontos" id="pontos" aria-hidden="true"></div>
+      <div class="legenda-gal">
+        <p class="contador" aria-live="polite"><b id="gal-num">01</b><span id="gal-total">/ 05</span><em id="gal-nome">O tubo</em></p>
+        <div class="setas">
+          <button type="button" id="gal-ant" aria-label="Imagem anterior"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" id="gal-seg" aria-label="Imagem seguinte"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
     </div>
 
     <div class="info">
@@ -920,10 +939,27 @@ const slides = document.getElementById("slides"), pontos = document.getElementBy
   b.addEventListener("click", () => slides.scrollTo({left: s.offsetLeft, behavior: "smooth"}));
   pontos.appendChild(b);
 });
+const galNum = document.getElementById("gal-num"), galNome = document.getElementById("gal-nome"), contador = document.querySelector(".contador");
+document.getElementById("gal-total").textContent = "/ " + String(slides.children.length).padStart(2, "0");
+let galUltimo = -1;
 function marcarPonto(){
   const i = Math.round(slides.scrollLeft / slides.clientWidth);
   [...pontos.children].forEach((b, k) => b.setAttribute("aria-current", k === i));
+  if (i === galUltimo) return; galUltimo = i;
+  contador.classList.add("troca");
+  setTimeout(() => {
+    galNum.textContent = String(i + 1).padStart(2, "0");
+    galNome.textContent = slides.children[i] ? (slides.children[i].dataset.legenda || "") : "";
+    contador.classList.remove("troca");
+  }, 200);
 }
+function irSlide(d){
+  const n = slides.children.length, i = (Math.round(slides.scrollLeft / slides.clientWidth) + d + n) % n;
+  slides.dispatchEvent(new Event("pointerdown"));
+  slides.scrollTo({left: slides.children[i].offsetLeft, behavior: "smooth"});
+}
+document.getElementById("gal-ant").addEventListener("click", () => irSlide(-1));
+document.getElementById("gal-seg").addEventListener("click", () => irSlide(1));
 slides.addEventListener("scroll", () => requestAnimationFrame(marcarPonto), {passive:true});
 marcarPonto();
 
