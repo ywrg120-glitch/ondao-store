@@ -254,12 +254,36 @@ details p{padding:0 0 20px;color:var(--cinza);font-size:.9rem;max-width:42em}
 .tipos-rapidos button:hover{background:var(--branco);color:var(--verde)}
 
 /* História */
-.historia-grid{display:grid;gap:28px;align-items:center}
-.historia .foto{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
-.historia .foto img{width:100%;height:100%;object-fit:cover}
-.carta{font-family:var(--serif);font-size:1.2rem;line-height:1.5}
-.carta p+p{margin-top:14px}
-.assina{margin-top:18px;font-size:.84rem;color:var(--cinza)}
+.historia-grid{display:grid;gap:34px;align-items:start}
+.rota{margin-top:24px;background:var(--verde);color:var(--vip-txt);border-radius:var(--r);padding:22px 20px 20px}
+.rota svg{width:100%;height:auto;display:block;overflow:visible}
+.rota .arco{fill:none;stroke:var(--rosa);stroke-width:1.6;stroke-dasharray:4 6}
+.rota .mascara{fill:none;stroke:var(--verde);stroke-width:6;stroke-dasharray:420;stroke-dashoffset:0;transition:stroke-dashoffset 2.2s cubic-bezier(.6,0,.3,1) .2s}
+.rota.ver .mascara{stroke-dashoffset:-420}
+.rota .ponto{fill:var(--terra)}
+.rota .ponto.pt{fill:var(--salvia)}
+.rota .halo{fill:none;stroke:var(--rosa);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
+.rota.ver .halo{animation:halo 2.4s ease-out 2.2s infinite}
+@keyframes halo{0%{opacity:.8;transform:scale(.4)}100%{opacity:0;transform:scale(2.2)}}
+.rota .lugar{font:600 13px var(--sans);fill:var(--creme)}
+.rota .sub{font:400 10.5px var(--sans);fill:var(--vip-sub)}
+.rota .meio{font:italic 500 15px var(--serif);fill:var(--rosa)}
+.rota p{font-size:.86rem;color:var(--vip-sub);margin-top:10px}
+.capitulos{position:relative;padding-left:34px}
+.capitulos::before,.capitulos .linha{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;border-radius:2px;background:var(--linha)}
+.capitulos .linha{background:var(--terra);bottom:auto;height:0;transition:height .15s linear}
+.capitulo{position:relative;padding-bottom:30px;opacity:.25;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.capitulo.ver{opacity:1;transform:none}
+.capitulo::before{content:"";position:absolute;left:-31px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--creme);border:2px solid var(--linha);transition:border-color .4s,background .4s}
+.capitulo.ver::before{border-color:var(--terra);background:var(--terra);box-shadow:0 0 0 5px rgba(197,90,55,.15)}
+.capitulo .rotulo{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--terra)}
+.capitulo h3{font-family:var(--serif);font-weight:500;font-size:1.45rem;line-height:1.15;margin:6px 0 8px;letter-spacing:-.01em}
+.capitulo p{font-size:.98rem;color:var(--cinza)}
+.capitulo .foto-cap{margin-top:16px;border-radius:18px;overflow:hidden;aspect-ratio:4/3}
+.capitulo .foto-cap img{width:100%;height:100%;object-fit:cover}
+.assina{display:flex;align-items:center;gap:12px;margin-top:4px}
+.assina b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:1.7rem;color:var(--verde);line-height:1}
+.assina span{font-size:.78rem;color:var(--cinza);line-height:1.3}
 
 /* Lista VIP */
 .vip{background:var(--verde);color:var(--vip-txt)}
@@ -357,14 +381,18 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
   .ing-grid{grid-template-columns:1.25fr 1fr;align-items:stretch}
   .cem-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
   .cem-fotos{margin-top:0}
-  .historia-grid{grid-template-columns:.9fr 1.1fr;gap:64px}
+  .historia-grid{grid-template-columns:.95fr 1.05fr;gap:72px}
+  .historia-esq{position:sticky;top:120px}
+  .capitulo h3{font-size:1.7rem}
   .vip .wrap{grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:110px;padding-bottom:110px}
   .tipos-f{grid-template-columns:repeat(4,1fr)}
   .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
   .fixa{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .anuncio .trilho,.cena .tubo,.selo-cem svg{animation:none}
+  .anuncio .trilho,.cena .tubo,.selo-cem svg,.rota .halo{animation:none}
+  .capitulo{opacity:1;transform:none;transition:none}
+  .rota .mascara{transition:none}
   .cena .tubo{--p:0}
   html{scroll-behavior:auto}
 }
@@ -647,16 +675,47 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
 <!-- HISTÓRIA -->
 <section class="secao historia" id="historia">
   <div class="wrap historia-grid">
-    <div class="foto"><img src="src/IMG_4142.jpeg" alt="Nozes de Cacay abertas e óleo dourado sobre ardósia" loading="lazy"></div>
-    <div>
+    <div class="historia-esq">
       <span class="caps" style="color:var(--terra)">A nossa história</span>
-      <h2 class="h2" style="margin:12px 0 22px">Ondas com <em class="it">raízes.</em></h2>
-      <div class="carta">
-        <p>Cresci na Colômbia com um cabelo que ninguém sabia tratar. Ou o alisavam, ou o escondiam.</p>
-        <p>Quando cheguei a Portugal, as prateleiras davam-me duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
-        <p>Voltei às origens. Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
+      <h2 class="h2" style="margin-top:12px">Ondas com <em class="it">raízes.</em></h2>
+      <div class="rota" id="rota">
+        <svg viewBox="0 0 320 160" role="img" aria-label="Rota da Colômbia até Portugal, do outro lado do Atlântico">
+          <path class="arco" d="M44,120 C80,22 200,8 272,44"/>
+          <path class="mascara" d="M44,120 C80,22 200,8 272,44"/>
+          <circle class="halo" cx="272" cy="44" r="9"/>
+          <circle class="ponto" cx="44" cy="120" r="5.5"/>
+          <circle class="ponto pt" cx="272" cy="44" r="5.5"/>
+          <text class="meio" x="168" y="112" text-anchor="middle">um oceano de distância</text>
+          <text class="lugar" x="270" y="68" text-anchor="middle">Portugal</text>
+          <text class="sub" x="270" y="81" text-anchor="middle">onde nasce a ondão</text>
+          <text class="lugar" x="44" y="143" text-anchor="middle">Colômbia</text>
+          <text class="sub" x="44" y="156" text-anchor="middle">onde tudo começou</text>
+        </svg>
       </div>
-      <p class="assina">Jhon, fundador</p>
+    </div>
+    <div>
+      <div class="capitulos" id="capitulos">
+        <span class="linha" aria-hidden="true"></span>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 1 · Colômbia</span>
+          <h3>O cabelo que ninguém sabia tratar.</h3>
+          <p>Cresci na Colômbia com caracóis que ninguém sabia cuidar. Ou os alisavam, ou os escondiam.</p>
+        </div>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 2 · Portugal</span>
+          <h3>As prateleiras erradas.</h3>
+          <p>Quando cheguei a Portugal, havia duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
+        </div>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 3 · De volta às raízes</span>
+          <h3>A resposta estava em casa.</h3>
+          <p>Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
+          <div class="foto-cap"><img src="src/IMG_4142.jpeg" alt="Nozes de Cacay abertas e óleo dourado" loading="lazy"></div>
+        </div>
+        <div class="capitulo">
+          <div class="assina"><b>Jhon</b><span>Fundador da ondão<br>Colombiano, a viver em Portugal</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -994,6 +1053,26 @@ const INGS={
     });
   });
   Object.values(INGS).forEach(d=>{const i=new Image();i.src=d.img;});
+})();
+
+/* História: rota desenha-se ao entrar no ecrã; capítulos acendem com o scroll */
+(function(){
+  const rota=document.getElementById('rota'), caps=document.getElementById('capitulos');
+  if(!rota||!caps) return;
+  if(!('IntersectionObserver' in window)){rota.classList.add('ver');caps.querySelectorAll('.capitulo').forEach(c=>c.classList.add('ver'));return;}
+  new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){rota.classList.add('ver');contar('historia-vista');o.disconnect();}}),{threshold:.5}).observe(rota);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('ver');io.unobserve(e.target);}}),{rootMargin:'0px 0px -30% 0px'});
+  caps.querySelectorAll('.capitulo').forEach(c=>io.observe(c));
+  const linha=caps.querySelector('.linha');
+  let pedido=false;
+  function atualizar(){
+    pedido=false;
+    const r=caps.getBoundingClientRect(), alvo=window.innerHeight*0.7;
+    const h=Math.max(0,Math.min(r.height-16,alvo-r.top));
+    linha.style.height=h+'px';
+  }
+  window.addEventListener('scroll',()=>{if(!pedido){pedido=true;requestAnimationFrame(atualizar);}},{passive:true});
+  atualizar();
 })();
 </script>
 </body>
