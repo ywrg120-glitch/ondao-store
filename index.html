@@ -189,9 +189,19 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .heroi .latim{font-size:.8rem;color:var(--vip-sub);font-style:italic}
 .heroi p.corpo{color:var(--vip-sub);font-size:.95rem;max-width:32em}
 .ings{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ing{background:var(--areia);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.ing{background:var(--areia);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;border:0;padding:0;text-align:left;cursor:pointer;position:relative;font:inherit;color:inherit;transition:transform .25s,box-shadow .25s}
+.ing:hover{transform:translateY(-3px);box-shadow:0 12px 28px -18px rgba(28,51,39,.5)}
+.ing .mais{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:rgba(247,243,236,.92);color:var(--verde);display:grid;place-items:center;font-size:1.1rem;line-height:1;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.ing-dica{font-size:.82rem;color:var(--cinza);margin-top:10px}
+.heroi{scroll-margin-top:72px}
+.heroi .foto img,.heroi .txt{transition:opacity .28s ease}
+.heroi.troca .foto img,.heroi.troca .txt{opacity:0}
+.heroi .palavra.longa{font-size:clamp(2.7rem,11vw,4.8rem)}
+.heroi .funcao{margin-top:6px;padding-top:14px;border-top:1px solid var(--vip-linha);display:grid;gap:4px}
+.heroi .funcao b{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rosa)}
+.heroi .funcao span{font-size:.92rem;color:var(--vip-txt)}
 .ing>img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:var(--linho)}
-.ing-txt{padding:14px 16px 18px;display:grid;gap:6px}
+.ing-txt{padding:14px 16px 18px;display:grid;gap:6px;align-content:start}
 .ing .origem{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700}
 .ing h4{font-family:var(--serif);font-weight:500;font-size:1.15rem;line-height:1.15}
 .ing p{font-size:.8rem;color:var(--cinza)}
@@ -536,21 +546,23 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
     <div class="cabeca">
       <span class="caps" style="color:var(--terra)">O que está dentro</span>
       <h2 class="h2">Cinco ativos. <em class="it">Zero enchimento.</em></h2>
+      <p class="ing-dica">Escolha um ativo para conhecer a origem e o que faz no seu cabelo.</p>
     </div>
     <div class="ing-grid">
-      <div class="heroi">
+      <div class="heroi" id="ing-heroi" aria-live="polite">
         <div class="foto"><img src="src/IMG_4142.jpeg" alt="Nozes de Cacay abertas e óleo dourado sobre ardósia" loading="lazy"></div>
         <div class="txt">
           <span class="palavra">Cacay.</span>
           <span class="latim">Caryodendron orinocense · bacia do Orinoco, Colômbia</span>
           <p class="corpo">O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p>
+          <div class="funcao"><b>Na fórmula</b><span>O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.</span></div>
         </div>
       </div>
       <div class="ings">
-        <div class="ing"><img src="src/ing-sacha-inchi.jpg" alt="Cápsulas em estrela de Sacha Inchi, sementes e óleo claro sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Sacha Inchi</h4><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></div>
-        <div class="ing"><img src="src/ing-ungurahui.jpg" alt="Frutos roxos de Ungurahui e óleo verde-dourado sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Ungurahui</h4><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></div>
-        <div class="ing"><img src="src/ing-quinoa.jpg" alt="Grãos de quinoa, espiga seca e proteína em pó sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Andes</span><h4>Proteína de Quinoa</h4><p>Estrutura e elasticidade para o caracol.</p></div></div>
-        <div class="ing"><img src="src/ing-poliglutamico.jpg" alt="Gel transparente a escorrer de uma pipeta para uma taça de cerâmica" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Biotecnologia</span><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></div>
+        <button class="ing" type="button" data-ing="sacha-inchi"><span class="mais" aria-hidden="true">+</span><img src="src/ing-sacha-inchi.jpg" alt="Cápsulas em estrela de Sacha Inchi, sementes e óleo claro sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Sacha Inchi</h4><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></button>
+        <button class="ing" type="button" data-ing="ungurahui"><span class="mais" aria-hidden="true">+</span><img src="src/ing-ungurahui.jpg" alt="Frutos roxos de Ungurahui e óleo verde-dourado sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Ungurahui</h4><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></button>
+        <button class="ing" type="button" data-ing="quinoa"><span class="mais" aria-hidden="true">+</span><img src="src/ing-quinoa.jpg" alt="Grãos de quinoa, espiga seca e proteína em pó sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Andes</span><h4>Proteína de Quinoa</h4><p>Estrutura e elasticidade para o caracol.</p></div></button>
+        <button class="ing" type="button" data-ing="poliglutamico"><span class="mais" aria-hidden="true">+</span><img src="src/ing-poliglutamico.jpg" alt="Gel transparente a escorrer de uma pipeta para uma taça de cerâmica" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Biotecnologia</span><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></button>
       </div>
     </div>
   </div>
@@ -907,6 +919,64 @@ popForm.addEventListener("submit", async e => {
 });
 
 document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* Ingredientes: tocar num cartão troca-o com o painel grande */
+const INGS={
+  cacay:{nome:"Cacay.",card:"Óleo de Cacay",origem:"Orinoquía colombiana",img:"src/IMG_4142.jpeg",alt:"Nozes de Cacay abertas e óleo dourado sobre ardósia",
+    latim:"Caryodendron orinocense · bacia do Orinoco, Colômbia",
+    corpo:"O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.",
+    funcao:"O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.",curto:"Nutre a fibra e dá brilho sem pesar."},
+  "sacha-inchi":{nome:"Sacha Inchi.",card:"Óleo de Sacha Inchi",origem:"Amazónia colombiana",img:"src/ing-sacha-inchi.jpg",alt:"Cápsulas em estrela de Sacha Inchi, sementes e óleo claro sobre ardósia",
+    latim:"Plukenetia volubilis · Amazónia colombiana",
+    corpo:"A \u201cnoz-estrela\u201d da Amazónia. As sementes escondem-se dentro de cápsulas em forma de estrela e dão um óleo muito leve, rico em ómega-3 e ómega-6.",
+    funcao:"Amacia e dá brilho com uma textura ultraleve, que é absorvida depressa e não deixa resíduo.",curto:"Ultraleve e rico em ómega-3. Brilho sem peso."},
+  ungurahui:{nome:"Ungurahui.",card:"Óleo de Ungurahui",origem:"Amazónia colombiana",img:"src/ing-ungurahui.jpg",alt:"Frutos roxos de Ungurahui e óleo verde-dourado sobre ardósia",
+    latim:"Oenocarpus bataua · conhecido na Colômbia como seje",
+    corpo:"O fruto de uma palmeira amazónica que as comunidades indígenas usam há gerações para cuidar do cabelo. O óleo, rico em ácido oleico, é parecido com o azeite, mas mais leve.",
+    funcao:"Suaviza a fibra, ajuda a desembaraçar e deixa os caracóis com brilho e toque macio.",curto:"Usado há gerações no cuidado do cabelo. Brilho e suavidade."},
+  quinoa:{nome:"Quinoa.",card:"Proteína de Quinoa",origem:"Andes",img:"src/ing-quinoa.jpg",alt:"Grãos de quinoa, espiga seca e proteína em pó sobre ardósia",
+    latim:"Chenopodium quinoa · Andes",
+    corpo:"O grão dos Andes, cultivado também no sul da Colômbia. A proteína é hidrolisada, ou seja, partida em fragmentos pequenos que conseguem aderir à superfície do cabelo.",
+    funcao:"Dá estrutura e elasticidade ao caracol e ajuda a protegê-lo da quebra ao pentear.",curto:"Estrutura e elasticidade para o caracol."},
+  poliglutamico:{nome:"Ácido Poliglutâmico.",card:"Ácido Poliglutâmico",origem:"Biotecnologia",img:"src/ing-poliglutamico.jpg",alt:"Gel transparente a escorrer de uma pipeta para uma taça de cerâmica",
+    latim:"γ-PGA · obtido por fermentação natural",
+    corpo:"Um ativo de biotecnologia, produzido por fermentação. Funciona como um íman de água: atrai e segura a hidratação dentro e à volta do fio.",
+    funcao:"Forma um filme leve e invisível que mantém o caracol hidratado e ajuda a controlar o frizz da humidade.",curto:"Retém a hidratação. Menos frizz."}
+};
+(function(){
+  const heroi=document.getElementById('ing-heroi'); if(!heroi) return;
+  let atual='cacay';
+  const reduz=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pintarHeroi(k){
+    const d=INGS[k], img=heroi.querySelector('.foto img');
+    img.src=d.img; img.alt=d.alt; img.loading='eager';
+    const pal=heroi.querySelector('.palavra'); pal.textContent=d.nome; pal.classList.toggle('longa',d.nome.length>12);
+    heroi.querySelector('.latim').textContent=d.latim;
+    heroi.querySelector('.corpo').textContent=d.corpo;
+    heroi.querySelector('.funcao span').textContent=d.funcao;
+  }
+  function pintarCard(b,k){
+    const d=INGS[k]; b.dataset.ing=k;
+    const img=b.querySelector('img'); img.src=d.img; img.alt=d.alt;
+    b.querySelector('.origem').textContent=d.origem;
+    b.querySelector('h4').textContent=d.card;
+    b.querySelector('p').textContent=d.curto;
+    b.setAttribute('aria-label','Saber mais sobre '+d.card);
+  }
+  document.querySelectorAll('.ing[data-ing]').forEach(b=>{
+    pintarCard(b,b.dataset.ing);
+    b.addEventListener('click',()=>{
+      const novo=b.dataset.ing, antigo=atual; atual=novo;
+      contar('ingrediente-'+novo);
+      const top=heroi.getBoundingClientRect().top;
+      if(top<0||top>window.innerHeight*0.5) heroi.scrollIntoView({behavior:reduz?'auto':'smooth',block:'start'});
+      if(reduz){pintarHeroi(novo);pintarCard(b,antigo);return;}
+      heroi.classList.add('troca');
+      setTimeout(()=>{pintarHeroi(novo);pintarCard(b,antigo);heroi.classList.remove('troca');},280);
+    });
+  });
+  Object.values(INGS).forEach(d=>{const i=new Image();i.src=d.img;});
+})();
 </script>
 </body>
 </html>
