@@ -59,6 +59,7 @@ jobs:
           ESTADO: ${{ steps.correr.outcome }}
         run: |
           if [ "$ESTADO" = "success" ]; then pre="Relatório"; else pre="Falhou"; fi
+          [ -s relatorio.md ] || echo "O agente não produziu relatório. Vê o registo em Actions." > relatorio.md
           titulo="[$AGENTE] $pre · $(date -u +'%d/%m %H:%M')"
           cat relatorio.md >> "$GITHUB_STEP_SUMMARY"
           gh issue create --title "$titulo" --body-file relatorio.md

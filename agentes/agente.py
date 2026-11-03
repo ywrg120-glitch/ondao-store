@@ -58,8 +58,9 @@ def main() -> int:
     pedido = f"# Tarefa\n{tarefa or 'Faz a tua revisão habitual do estado atual.'}\n\n# Material\n{contexto(agente)}"
 
     print(f"Agente: {agente} | modelo: {modelo} | tarefa: {tarefa[:120]}")
+    cliente = genai.Client()  # guardar numa variável: se não, o cliente fecha antes do pedido
     try:
-        r = genai.Client().models.generate_content(
+        r = cliente.models.generate_content(
             model=modelo,
             contents=pedido,
             config=types.GenerateContentConfig(system_instruction=sistema, temperature=0.4),
@@ -71,6 +72,10 @@ def main() -> int:
                 403: "A chave não tem acesso a este modelo."}.get(e.code, "")
         saida.write_text(f"**Erro da API Gemini ({e.code}):** {e.message}\n\n{dica}", encoding="utf-8")
         print(f"ERRO {e.code}: {e.message}")
+        return 1
+    except Exception as e:  # qualquer outra falha também fica no relatório
+        saida.write_text(f"**O agente falhou:** `{type(e).__name__}: {e}`", encoding="utf-8")
+        print(f"ERRO: {e!r}")
         return 1
 
     cabecalho = f"> Agente **{agente}** · modelo `{modelo}`\n> Tarefa: {tarefa or '(revisão habitual)'}\n\n"
