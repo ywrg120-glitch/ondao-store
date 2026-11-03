@@ -1,77 +1,65 @@
-name: Executar Agentes Ondao
-
-# Desativado: só corre se for lançado à mão em Actions → "Run workflow".
+name: Agentes ondão
+# Corre à mão: Actions → "Agentes ondão" → Run workflow.
+# O relatório do agente aparece como uma Issue nova no repositório.
 on:
   workflow_dispatch:
+    inputs:
+      agente:
+        description: 'Que agente?'
+        required: true
+        type: choice
+        options: [copy, cro, pdp, css, qa, liquid, git]
+        default: qa
+      tarefa:
+        description: 'O que queres que faça? (vazio = revisão habitual)'
+        required: false
+        default: ''
+      modelo:
+        description: 'Modelo Gemini'
+        required: true
+        default: 'gemini-3.8-flash'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: agentes-${{ inputs.agente }}
+  cancel-in-progress: false
 
 jobs:
-  run-gemini-agents:
+  agente:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: '3.10'
+          fetch-depth: 30
 
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install google-genai
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Run Agents Logic
+      - name: Instalar dependências
+        run: pip install --quiet google-genai
+
+      - name: Correr o agente
+        id: correr
+        continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AGENTE: ${{ inputs.agente }}
+          TAREFA: ${{ inputs.tarefa }}
+          MODELO: ${{ inputs.modelo }}
+        run: python agentes/agente.py
+
+      - name: Publicar relatório como Issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGENTE: ${{ inputs.agente }}
+          ESTADO: ${{ steps.correr.outcome }}
         run: |
-          python -c "
-          import os, glob
-          from google import genai
-
-          client = genai.Client()
-
-          # 1. Obter a lista real de modelos disponíveis para esta API Key
-          print('--- A PROCURAR MODELOS DISPONÍVEIS ---')
-          modelos_disponiveis = [m.name for m in client.models.list()]
-          print(f'Modelos encontrados na tua conta: {modelos_disponiveis}')
-
-          # Selecionar o primeiro modelo válido que suporte geração de texto
-          modelo_escolhido = None
-          for m in modelos_disponiveis:
-              if 'gemini' in m and 'flash' in m:
-                  modelo_escolhido = m
-                  break
-          
-          if not modelo_escolhido and modelos_disponiveis:
-              modelo_escolhido = modelos_disponiveis[0]
-
-          print(f'Modelo selecionado automaticamente: {modelo_escolhido}')
-
-          # 2. Carregar contexto da marca
-          files = glob.glob('config-ondao.md')
-          contexto = ''
-          if files:
-              with open(files[0], 'r', encoding='utf-8') as f:
-                  contexto = f.read()
-
-          print(f'Contexto carregado: {len(contexto)} carateres')
-
-          # 3. Gerar o código da Hero Section
-          prompt = f'''
-          Com base nas diretrizes da marca em anexo:
-          {contexto}
-          
-          Atua como um especialista em copywriting D2C e desenvolvimento web minimalista (estilo Wavy).
-          Gera o código HTML/Tailwind CSS para a Hero Section com a headline \"Assuma as suas ondas.\", 
-          com foco visual no creme/frasco terracota, zero ruído visual, elegante e com alta conversão.
-          '''
-
-          response = client.models.generate_content(
-              model=modelo_escolhido,
-              contents=prompt
-          )
-
-          print('--- RESPOSTA DOS AGENTES (HERO SECTION) ---')
-          print(response.text)
-          "
+          if [ "$ESTADO" = "success" ]; then pre="Relatório"; else pre="Falhou"; fi
+          titulo="[$AGENTE] $pre · $(date -u +'%d/%m %H:%M')"
+          cat relatorio.md >> "$GITHUB_STEP_SUMMARY"
+          gh issue create --title "$titulo" --body-file relatorio.md
+          [ "$ESTADO" = "success" ]
