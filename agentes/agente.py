@@ -42,6 +42,22 @@ def contexto(agente: str) -> str:
     return "\n\n".join(partes)
 
 
+def modelos_alternativos(cliente, excluir: str) -> list:
+    """Modelos de texto 'flash' disponíveis para esta chave, do mais recente para o mais antigo."""
+    proibidos = ("image", "tts", "audio", "live", "embedding", "vision", "thinking-exp", "native")
+    nomes = []
+    try:
+        for m in cliente.models.list():
+            nome = (m.name or "").replace("models/", "")
+            acoes = getattr(m, "supported_actions", None) or []
+            if "flash" in nome and not any(p in nome for p in proibidos) and nome != excluir \
+                    and (not acoes or "generateContent" in acoes):
+                nomes.append(nome)
+    except Exception as e:
+        print(f"Não consegui listar modelos: {e!r}")
+    return sorted(set(nomes), reverse=True)[:4]
+
+
 def main() -> int:
     agente = os.environ.get("AGENTE", "").strip().lower()
     tarefa = os.environ.get("TAREFA", "").strip()
@@ -60,22 +76,38 @@ def main() -> int:
 
     print(f"Agente: {agente} | modelo: {modelo} | tarefa: {tarefa[:120]}")
     cliente = genai.Client()  # guardar numa variável: se não, o cliente fecha antes do pedido
-    try:
-        esperas = [15, 45, 90, 0]  # o Gemini gratuito às vezes está sobrecarregado (503) ou com limite (429)
+    config = types.GenerateContentConfig(system_instruction=sistema, temperature=0.4)
+
+    def pedir(nome_modelo: str, esperas: list):
         for n, espera in enumerate(esperas, 1):
             try:
-                r = cliente.models.generate_content(
-                    model=modelo,
-                    contents=pedido,
-                    config=types.GenerateContentConfig(system_instruction=sistema, temperature=0.4),
-                )
-                break
+                return cliente.models.generate_content(model=nome_modelo, contents=pedido, config=config)
             except errors.APIError as e:
                 if e.code in (429, 500, 503) and espera:
-                    print(f"Tentativa {n}: erro {e.code}, nova tentativa em {espera} s")
+                    print(f"{nome_modelo} · tentativa {n}: erro {e.code}, nova tentativa em {espera} s")
                     time.sleep(espera)
                     continue
                 raise
+
+    try:
+        try:
+            r = pedir(modelo, [10, 30, 0])  # o Gemini gratuito às vezes está sobrecarregado (503)
+        except errors.APIError as e:
+            if e.code not in (404, 429, 500, 503):
+                raise
+            alternativas = modelos_alternativos(cliente, modelo)
+            print(f"{modelo} indisponível ({e.code}). Alternativas: {alternativas}")
+            r, ultimo = None, e
+            for alt in alternativas:
+                try:
+                    r = pedir(alt, [10, 0])
+                    modelo = alt
+                    break
+                except errors.APIError as e2:
+                    ultimo = e2
+                    print(f"{alt} falhou ({e2.code})")
+            if r is None:
+                raise ultimo
         texto = (r.text or "").strip() or "_O modelo não devolveu texto._"
     except errors.APIError as e:
         dica = {404: "O modelo não existe ou foi descontinuado: corre de novo com outro valor em 'modelo'.",
