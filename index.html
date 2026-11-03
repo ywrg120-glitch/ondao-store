@@ -159,6 +159,15 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .beneficios li{display:flex;align-items:center;gap:8px}
 .beneficios svg{color:var(--salvia)}
 .nota-compra{text-align:center;font-size:.78rem;color:var(--cinza);margin-top:-6px}
+.btn-preco{flex-direction:column;gap:6px;padding:15px 24px 14px;text-transform:none;letter-spacing:0}
+.btn-preco .l1{font:700 .82rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:.6em}
+.btn-preco .l2{font:500 .8rem/1 var(--sans);color:var(--vip-sub);display:flex;align-items:center;gap:8px}
+.btn-preco .l2 s{opacity:.75}
+.btn-preco .l2 b{color:var(--creme);font-weight:700}
+.btn-preco .tag{background:var(--terra);color:#fff;font-weight:700;font-size:.68rem;letter-spacing:.06em;padding:3px 7px;border-radius:999px}
+.garantias{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin:-4px 0 4px;font-size:.76rem;color:var(--verde);font-weight:600}
+.garantias li{display:flex;align-items:center;gap:5px}
+.garantias svg{width:14px;height:14px;stroke:var(--salvia);fill:none;stroke-width:2.4}
 
 /* Secções e cartões */
 .secao{padding-top:64px;padding-bottom:64px}
@@ -542,8 +551,9 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
         <li><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Envio para toda a UE</li>
       </ul>
 
-      <button class="btn btn-verde btn-full" id="comprar" type="button">Reservar com −15%</button>
-      <p class="nota-compra">Pré-lançamento: não cobramos nada agora. Quem está na Lista VIP recebe o link de compra 48h antes de todos.</p>
+      <button class="btn btn-verde btn-full btn-preco" id="comprar" type="button"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2" id="comprar-preco">Preço VIP <s>24,00 €</s> <b>20,40 €</b> <span class="tag">−15%</span></span></button>
+      <ul class="garantias"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Inscrição grátis</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sem cartão</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Só 100 lugares</li></ul>
+      <p class="nota-compra">Pré-lançamento: não cobramos nada agora. Entre na Lista VIP e receba o link de compra com o preço VIP 48h antes de todos.</p>
     </div>
   </div>
 </section>
@@ -625,7 +635,7 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
           <li><span class="n">02</span><b>Acesso antes de todos</b><span>O link de compra chega-lhe 48h antes do lançamento público.</span></li>
           <li><span class="n">03</span><b>A sua opinião conta</b><span>Os primeiros testemunhos desta página vão ser os seus.</span></li>
         </ol>
-        <a href="#vip" class="btn btn-verde btn-cem" onclick="contar('clique-cta-100')">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#vip" class="btn btn-verde btn-cem" id="cem">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <span class="seguro">Grátis e sem compromisso. Pode sair da lista quando quiser.</span>
       </div>
       <div class="cem-fotos">
@@ -817,14 +827,14 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
 
 <button class="topo-btn" id="topo-btn" type="button" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
-<div class="fixa" id="fixa"><a href="#vip" class="btn btn-verde">Reservar com −15%</a></div>
+<div class="fixa" id="fixa"><a href="#vip" class="btn btn-verde btn-preco" id="fixa-btn"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2 preco-vip">Preço VIP <s>24,00 €</s> <b>20,40 €</b> <span class="tag">−15%</span></span></a></div>
 
 <script>
 /* ============ CONFIG — edite aqui ============ */
 const CONFIG = {
   PRECO: 24.00,          // compra única, 200 ml
   ML: 200,
-  DESCONTO_SUB: 0.10,    // desconto da subscrição
+  DESCONTO_SUB: 0.10, DESCONTO_VIP: 0.15,    // desconto da subscrição
   PRE_LANCAMENTO: true,  // true = botões levam à Lista VIP
   FORM_ENDPOINT: "https://formspree.io/f/xqpegzwz",
   INSCRITOS: 0           // nº real de inscritos na Lista VIP; a partir de 50 aparece como prova social
@@ -849,7 +859,14 @@ function atualizarPlano(){
   por100.textContent = eur(v / CONFIG.ML * 100) + " / 100 ml";
   campoPlano.value = r.value;
   planoTxt.textContent = r.closest(".plano").querySelector(".nome").textContent;
-  btnComprar.textContent = CONFIG.PRE_LANCAMENTO ? "Reservar com −15%" : "Adicionar ao carrinho · " + eur(v);
+  if (CONFIG.PRE_LANCAMENTO) {
+    // Preço VIP: −15% sobre o preço base na 1.ª encomenda (não acumula com a subscrição)
+    const vip = CONFIG.PRECO * (1 - CONFIG.DESCONTO_VIP);
+    const html = 'Preço VIP <s>' + eur(CONFIG.PRECO) + '</s> <b>' + eur(vip) + '</b> <span class="tag">−' + Math.round(CONFIG.DESCONTO_VIP*100) + '%</span>';
+    document.querySelectorAll('#comprar-preco, .preco-vip').forEach(e => e.innerHTML = html);
+  } else {
+    btnComprar.textContent = "Adicionar ao carrinho · " + eur(v);
+  }
 }
 document.querySelectorAll('input[name="plano"]').forEach(r => r.addEventListener("change", atualizarPlano));
 atualizarPlano();
