@@ -208,10 +208,21 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 
 /* 100 lugares */
 .cem{background:var(--areia)}
-.cem .numero{display:block;font-family:var(--serif);font-size:clamp(5rem,26vw,9rem);line-height:.8;color:var(--terra);font-weight:500;letter-spacing:-.04em}
-.vantagens{list-style:none;display:grid;gap:10px;margin:22px 0 26px}
-.vantagens li{background:var(--branco);border-radius:16px;padding:16px 18px;font-size:.88rem;color:var(--cinza)}
-.vantagens b{display:block;color:var(--tinta)}
+.cem-topo{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.cem-topo .caps{color:var(--terra)}
+.selo-cem{position:relative;width:132px;height:132px;flex:none}
+.selo-cem svg{position:absolute;inset:0;width:100%;height:100%;animation:girar 28s linear infinite}
+.selo-cem text{font:700 9.6px var(--sans);letter-spacing:.2em;fill:var(--cobre);text-transform:uppercase}
+.selo-cem .centro{position:absolute;inset:22px;border-radius:50%;background:var(--verde);color:var(--creme);display:grid;place-content:center;text-align:center;box-shadow:0 10px 24px -14px rgba(28,51,39,.7)}
+.selo-cem .centro b{font-family:var(--serif);font-style:italic;font-weight:500;font-size:2.3rem;line-height:.9;letter-spacing:-.03em;color:var(--rosa)}
+.selo-cem .centro span{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-top:4px}
+@keyframes girar{to{transform:rotate(360deg)}}
+.vantagens{list-style:none;margin:26px 0 28px;border-top:1px solid var(--linha)}
+.vantagens li{display:grid;grid-template-columns:46px 1fr;gap:4px 10px;padding:16px 0;border-bottom:1px solid var(--linha);font-size:.9rem;color:var(--cinza)}
+.vantagens .n{grid-row:span 2;font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.1;color:var(--terra)}
+.vantagens b{color:var(--tinta);font-weight:600;font-size:.98rem}
+.cem .btn-cem{width:100%;gap:.7em}
+.cem .seguro{display:block;text-align:center;margin-top:12px;font-size:.78rem;color:var(--cinza)}
 .retrato{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:3/4;background:var(--linho)}
 .retrato img{width:100%;height:100%;object-fit:cover}
 .retrato::after{content:"";position:absolute;top:45%;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(20,26,22,.72))}
@@ -353,7 +364,7 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
   .fixa{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  .anuncio .trilho,.cena .tubo{animation:none}
+  .anuncio .trilho,.cena .tubo,.selo-cem svg{animation:none}
   .cena .tubo{--p:0}
   html{scroll-behavior:auto}
 }
@@ -573,14 +584,21 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
   <div class="wrap">
     <div class="cem-grid">
       <div>
-        <span class="numero">100</span>
-        <h2 class="h2" style="margin-top:14px">Ainda não temos milhares de clientes. <em class="it">Temos 100 lugares.</em></h2>
-        <ul class="vantagens">
-          <li><b>−15% na primeira encomenda</b>Exclusivo para os primeiros 100 da Lista VIP.</li>
-          <li><b>Acesso antes de todos</b>O link de compra chega-lhe 48h antes do lançamento público.</li>
-          <li><b>A sua opinião conta</b>Os primeiros testemunhos desta página vão ser os seus.</li>
-        </ul>
-        <a href="#vip" class="btn btn-verde">Garantir o meu lugar</a>
+        <div class="cem-topo">
+          <span class="caps">Lista VIP</span>
+          <div class="selo-cem" aria-hidden="true">
+            <svg viewBox="0 0 132 132"><defs><path id="circ-cem" d="M66,66 m-55,0 a55,55 0 1,1 110,0 a55,55 0 1,1 -110,0"/></defs><text><textPath href="#circ-cem" textLength="342" lengthAdjust="spacing">Lista VIP · 100 lugares · −15% no lançamento ·</textPath></text></svg>
+            <div class="centro"><b>100</b><span>lugares</span></div>
+          </div>
+        </div>
+        <h2 class="h2">Ainda não temos milhares de clientes. <em class="it">Temos 100 lugares.</em></h2>
+        <ol class="vantagens">
+          <li><span class="n">01</span><b>−15% na primeira encomenda</b><span>Exclusivo para os primeiros 100 da Lista VIP.</span></li>
+          <li><span class="n">02</span><b>Acesso antes de todos</b><span>O link de compra chega-lhe 48h antes do lançamento público.</span></li>
+          <li><span class="n">03</span><b>A sua opinião conta</b><span>Os primeiros testemunhos desta página vão ser os seus.</span></li>
+        </ol>
+        <a href="#vip" class="btn btn-verde btn-cem" onclick="contar('clique-cta-100')">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="seguro">Grátis e sem compromisso. Pode sair da lista quando quiser.</span>
       </div>
       <div class="cem-fotos">
         <div class="rolo tres">
