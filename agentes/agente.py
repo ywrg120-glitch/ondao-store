@@ -6,6 +6,7 @@ import glob
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from google import genai
@@ -60,15 +61,26 @@ def main() -> int:
     print(f"Agente: {agente} | modelo: {modelo} | tarefa: {tarefa[:120]}")
     cliente = genai.Client()  # guardar numa variável: se não, o cliente fecha antes do pedido
     try:
-        r = cliente.models.generate_content(
-            model=modelo,
-            contents=pedido,
-            config=types.GenerateContentConfig(system_instruction=sistema, temperature=0.4),
-        )
+        esperas = [15, 45, 90, 0]  # o Gemini gratuito às vezes está sobrecarregado (503) ou com limite (429)
+        for n, espera in enumerate(esperas, 1):
+            try:
+                r = cliente.models.generate_content(
+                    model=modelo,
+                    contents=pedido,
+                    config=types.GenerateContentConfig(system_instruction=sistema, temperature=0.4),
+                )
+                break
+            except errors.APIError as e:
+                if e.code in (429, 500, 503) and espera:
+                    print(f"Tentativa {n}: erro {e.code}, nova tentativa em {espera} s")
+                    time.sleep(espera)
+                    continue
+                raise
         texto = (r.text or "").strip() or "_O modelo não devolveu texto._"
     except errors.APIError as e:
         dica = {404: "O modelo não existe ou foi descontinuado: corre de novo com outro valor em 'modelo'.",
                 429: "Quota esgotada no plano gratuito: espera uns minutos ou tenta amanhã.",
+                503: "O Gemini está sobrecarregado neste momento. Tenta daqui a uns minutos ou escolhe outro modelo.",
                 403: "A chave não tem acesso a este modelo."}.get(e.code, "")
         saida.write_text(f"**Erro da API Gemini ({e.code}):** {e.message}\n\n{dica}", encoding="utf-8")
         print(f"ERRO {e.code}: {e.message}")
