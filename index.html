@@ -189,7 +189,9 @@ header{position:sticky;top:0;z-index:50;height:var(--h-nav);background:rgba(247,
 .heroi .latim{font-size:.8rem;color:var(--vip-sub);font-style:italic}
 .heroi p.corpo{color:var(--vip-sub);font-size:.95rem;max-width:32em}
 .ings{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ing{background:var(--areia);border-radius:18px;padding:20px 18px;display:grid;gap:8px;align-content:space-between;min-height:150px}
+.ing{background:var(--areia);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.ing>img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:var(--linho)}
+.ing-txt{padding:14px 16px 18px;display:grid;gap:6px}
 .ing .origem{font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700}
 .ing h4{font-family:var(--serif);font-weight:500;font-size:1.15rem;line-height:1.15}
 .ing p{font-size:.8rem;color:var(--cinza)}
@@ -545,10 +547,10 @@ body:not(:has(.fixa.on)) .topo-btn{bottom:calc(20px + env(safe-area-inset-bottom
         </div>
       </div>
       <div class="ings">
-        <div class="ing"><span class="origem">Amazónia colombiana</span><div><h4>Óleo de Sacha Inchi</h4><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></div>
-        <div class="ing"><span class="origem">Amazónia colombiana</span><div><h4>Óleo de Ungurahui</h4><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></div>
-        <div class="ing"><span class="origem">Andes</span><div><h4>Proteína de Quinoa</h4><p>Estrutura e elasticidade para o caracol.</p></div></div>
-        <div class="ing"><span class="origem">Biotecnologia</span><div><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></div>
+        <div class="ing"><img src="src/ing-sacha-inchi.jpg" alt="Cápsulas em estrela de Sacha Inchi, sementes e óleo claro sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Sacha Inchi</h4><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></div>
+        <div class="ing"><img src="src/ing-ungurahui.jpg" alt="Frutos roxos de Ungurahui e óleo verde-dourado sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Ungurahui</h4><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></div>
+        <div class="ing"><img src="src/ing-quinoa.jpg" alt="Grãos de quinoa, espiga seca e proteína em pó sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Andes</span><h4>Proteína de Quinoa</h4><p>Estrutura e elasticidade para o caracol.</p></div></div>
+        <div class="ing"><img src="src/ing-poliglutamico.jpg" alt="Gel transparente a escorrer de uma pipeta para uma taça de cerâmica" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Biotecnologia</span><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></div>
       </div>
     </div>
   </div>
