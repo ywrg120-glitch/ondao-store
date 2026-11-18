@@ -464,3 +464,22 @@ img{height:auto}
   .nav-cta{display:inline-flex}
   .fixa-geral{display:none}
 }
+
+/* ===== Páginas próprias e transições suaves ===== */
+html{scroll-behavior:auto}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:ondao-sai .22s ease both}
+::view-transition-new(root){animation:ondao-entra .38s ease both}
+@keyframes ondao-sai{to{opacity:0}}
+@keyframes ondao-entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+header,.anuncio{view-transition-name:none}
+.secao.pg{padding-top:56px}
+.pg-cta{text-align:center;padding:64px 0 96px;border-top:1px solid var(--linha)}
+.pg-cta .h2{margin-bottom:22px}
+.pg-cta .btn{display:inline-flex}
+.pg-voltar{display:block;margin-top:18px;font-size:.85rem;color:var(--cinza)}
+.ver-mais{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);text-decoration:none}
+.ver-mais:hover{text-decoration:underline}
+.historia-curta .hc-txt{max-width:620px;margin:18px auto 22px;font-size:1.05rem}
+.historia-curta .assina{display:flex;gap:12px;align-items:center}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}

@@ -136,7 +136,7 @@
     <span class="marca">Orinoquía</span>
     <blockquote>“Cresci na Colômbia com um cabelo que ninguém sabia tratar. Voltei às origens, encontrei o Cacay e construí a ondão à volta dele.”</blockquote>
     <cite>Jhon, fundador</cite>
-    <a href="{{ routes.root_url }}#historia" class="btn btn-branco">Ler a nossa história</a>
+    <a href="/pages/historia" class="btn btn-branco">Ler a nossa história</a>
   </div>
 </section>
 
@@ -179,10 +179,7 @@
     <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado, cacheado e crespo. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
     <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones. A lista INCI completa estará no tubo e nesta página no lançamento.</p></details>
     <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
-    <details><summary>Quanto custa?</summary><p>19,99 € por tubo de 200 ml. Um só preço, sem subscrições nem letras pequenas.</p></details>
-    <details><summary>É testado em animais?</summary><p>Não. Como todos os cosméticos vendidos na União Europeia, a ondão não é testada em animais.</p></details>
-    <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, o envio é grátis em encomendas acima de €35.</p></details>
-    <details><summary>Quando é o lançamento?</summary><p>Muito em breve. Quem está na Lista VIP recebe a data primeiro, e acesso antecipado de 48h.</p></details>
+    <a class="ver-mais" href="/pages/faq">Ver todas as perguntas <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
@@ -202,50 +199,13 @@
 </section>
 
 <!-- HISTÓRIA -->
-<section class="secao historia" id="historia">
-  <div class="wrap historia-grid">
-    <div class="historia-esq">
-      <span class="caps" style="color:var(--terra)">A nossa história</span>
-      <h2 class="h2" style="margin-top:12px">Ondas com <em class="it">raízes.</em></h2>
-      <div class="rota" id="rota">
-        <svg viewBox="0 0 320 160" role="img" aria-label="Rota da Colômbia até Portugal, do outro lado do Atlântico">
-          <path class="arco" d="M44,120 C80,22 200,8 272,44"/>
-          <path class="mascara" d="M44,120 C80,22 200,8 272,44"/>
-          <circle class="halo" cx="272" cy="44" r="9"/>
-          <circle class="ponto" cx="44" cy="120" r="5.5"/>
-          <circle class="ponto pt" cx="272" cy="44" r="5.5"/>
-          <text class="meio" x="168" y="112" text-anchor="middle">um oceano de distância</text>
-          <text class="lugar" x="270" y="68" text-anchor="middle">Portugal</text>
-          <text class="sub" x="270" y="81" text-anchor="middle">onde nasce a ondão</text>
-          <text class="lugar" x="44" y="143" text-anchor="middle">Colômbia</text>
-          <text class="sub" x="44" y="156" text-anchor="middle">onde tudo começou</text>
-        </svg>
-      </div>
-    </div>
-    <div>
-      <div class="capitulos" id="capitulos">
-        <span class="linha" aria-hidden="true"></span>
-        <div class="capitulo">
-          <span class="rotulo">Capítulo 1 · Colômbia</span>
-          <h3>O cabelo que ninguém sabia tratar.</h3>
-          <p>Cresci na Colômbia com caracóis que ninguém sabia cuidar. Ou os alisavam, ou os escondiam.</p>
-        </div>
-        <div class="capitulo">
-          <span class="rotulo">Capítulo 2 · Portugal</span>
-          <h3>As prateleiras erradas.</h3>
-          <p>Quando cheguei a Portugal, havia duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
-        </div>
-        <div class="capitulo">
-          <span class="rotulo">Capítulo 3 · De volta às raízes</span>
-          <h3>A resposta estava em casa.</h3>
-          <p>Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
-          <div class="foto-cap"><img width="1200" height="896" src="{{ 'historia-maos-cacay.jpg' | asset_url }}" alt="Mãos a segurar nozes de Cacay, com a planície da Orinoquía ao fundo" loading="lazy"></div>
-        </div>
-        <div class="capitulo">
-          <div class="assina"><b>Jhon</b><span>Fundador da ondão<br>Colombiano, a viver em Portugal</span></div>
-        </div>
-      </div>
-    </div>
+<section class="secao historia historia-curta" id="historia">
+  <div class="wrap estreito" style="text-align:center">
+    <span class="caps" style="color:var(--terra)">A nossa história</span>
+    <h2 class="h2" style="margin-top:12px">Ondas com <em class="it">raízes.</em></h2>
+    <p class="hc-txt">Cresci na Colômbia com caracóis que ninguém sabia cuidar. Em Portugal, encontrei prateleiras cheias de produtos que pesavam ou prometiam "domar" o que nunca precisou de ser domado. A resposta estava em casa: o Cacay da Orinoquía.</p>
+    <div class="assina" style="justify-content:center"><b>Jhon</b><span>Fundador da ondão</span></div>
+    <a class="ver-mais" href="/pages/historia">Ler a história completa <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
@@ -355,6 +315,8 @@
 <div class="fixa" id="fixa"><a href="{{ routes.root_url }}#vip" class="btn btn-verde btn-preco" id="fixa-btn"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2 preco-vip"><b>19,99 €</b> · compra única</span></a></div>
 
 
+<script>window.ONDAO_ASSET_BASE = {{ 'ondao-paginas.js' | asset_url | split: 'ondao-paginas.js' | first | json }};</script>
+<script src="{{ 'ondao-paginas.js' | asset_url }}" defer></script>
 <script src="{{ 'ondao.js' | asset_url }}" defer></script>
 
 {% schema %}

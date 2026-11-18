@@ -24,9 +24,9 @@
       </button>
       <nav class="links" aria-label="Principal">
         <a href="{{ routes.root_url }}#produto">O creme</a>
-        <a href="{{ routes.root_url }}#ingredientes">Ingredientes</a>
-        <a href="{{ routes.root_url }}#historia">A nossa história</a>
-        <a href="{{ routes.root_url }}#faq">FAQ</a>
+        <a href="/pages/ingredientes">Ingredientes</a>
+        <a href="/pages/historia">A nossa história</a>
+        <a href="/pages/faq">FAQ</a>
       </nav>
     </div>
     <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
@@ -44,9 +44,9 @@
     <div class="wrap">
       <ul>
         <li><a href="{{ routes.root_url }}#produto">O creme</a></li>
-        <li><a href="{{ routes.root_url }}#ingredientes">Ingredientes</a></li>
-        <li><a href="{{ routes.root_url }}#historia">A nossa história</a></li>
-        <li><a href="{{ routes.root_url }}#faq">Perguntas frequentes</a></li>
+        <li><a href="/pages/ingredientes">Ingredientes</a></li>
+        <li><a href="/pages/historia">A nossa história</a></li>
+        <li><a href="/pages/faq">Perguntas frequentes</a></li>
         <li><a href="{{ routes.root_url }}#vip">Lista VIP</a></li>
       </ul>
     </div>
@@ -61,6 +61,19 @@
     btn.setAttribute("aria-expanded", aberto);
   });
   menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("aberto"); btn.setAttribute("aria-expanded", false); }); });
+})();
+(function(){
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href*="#"]');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
+    var url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname || !url.hash) return;
+    var alvo = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!alvo) return;
+    e.preventDefault();
+    var saltar = function(){ alvo.scrollIntoView({block: "start", behavior: "instant"}); history.pushState(null, "", url.hash); };
+    if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.startViewTransition(saltar); else saltar();
+  });
 })();
 </script>
 
