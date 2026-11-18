@@ -11,8 +11,13 @@
 -%}
 <div class="anuncio" aria-label="Avisos">
   <div class="trilho">
-    <span>Envios grátis para Portugal acima de €35</span><span>Pré-venda em breve</span><span>Enviamos para toda a UE</span>
-    <span aria-hidden="true">Envios grátis para Portugal acima de €35</span><span aria-hidden="true">Pré-venda em breve</span><span aria-hidden="true">Enviamos para toda a UE</span>
+    {%- if cta_v and cta_v.available -%}
+      {%- assign av2 = 'Pré-encomenda aberta · envio em até 10 dias' -%}{%- assign av3 = '14 dias para devolver após a entrega' -%}
+    {%- else -%}
+      {%- assign av2 = 'Pré-venda em breve' -%}{%- assign av3 = 'Enviamos para toda a UE' -%}
+    {%- endif -%}
+    <span>Envios grátis para Portugal acima de €35</span><span>{{ av2 }}</span><span>{{ av3 }}</span>
+    <span aria-hidden="true">Envios grátis para Portugal acima de €35</span><span aria-hidden="true">{{ av2 }}</span><span aria-hidden="true">{{ av3 }}</span>
   </div>
 </div>
 

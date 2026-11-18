@@ -1,0 +1,234 @@
+{%- comment -%}
+  Loja de um só produto. Estrutura inspirada na página de produto da Wavy
+  (hero com modelo → faixa → produto → benefícios → cartões → citação em verde →
+  FAQ → banner com foto → retratos → newsletter), com cores, imagens e textos ondão.
+{%- endcomment -%}
+{%- liquid
+  if product
+    assign p = product
+  elsif section.settings.produto != blank
+    assign p = section.settings.produto
+  else
+    assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
+  endif
+  assign a_venda = false
+  assign link = '/pages/lista'
+  if p != blank
+    assign v = p.selected_or_first_available_variant
+    if v.available
+      assign a_venda = true
+      assign link = '/cart/' | append: v.id | append: ':1'
+    endif
+  endif
+  assign dias = section.settings.dias_preparacao
+  assign dev = section.settings.dias_devolucao
+-%}
+{{ 'ondao-loja.css' | asset_url | stylesheet_tag }}
+
+{%- capture seta -%}<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>{%- endcapture -%}
+{%- capture preco -%}{% if v %}{{ v.price | money }}{% else %}19,99 €{% endif %}{%- endcapture -%}
+{%- if a_venda -%}{%- assign txt_cta = 'Quero o meu ondão' -%}{%- else -%}{%- assign txt_cta = 'Entrar na Lista VIP' -%}{%- endif -%}
+
+<div class="lj">
+
+  <!-- HERO -->
+  <section class="lj-hero">
+    <img class="lj-hero-foto" src="{{ 'IMG_4141.jpeg' | asset_url }}" width="928" height="1152" alt="Mulher e homem com caracóis definidos, lado a lado junto a uma janela" fetchpriority="high">
+    <div class="lj-hero-txt">
+      <span class="lj-olho">Óleo de Cacay da Colômbia · Para ela e para ele</span>
+      <h1 class="lj-h1">Defina a sua <em>onda</em> com <span class="lj-logo">ondão.</span></h1>
+      <p>Creme finalizador leve para ondas, cachos e crespos: define sem pesar, sem efeito molhado e sem crosta.</p>
+      <a class="lj-btn lj-btn-claro" href="{{ link }}">{{ txt_cta }}</a>
+    </div>
+  </section>
+
+  <!-- FAIXA -->
+  <div class="lj-faixa"><p>Pronto para a sua <em>onda?</em></p></div>
+
+  <!-- PRODUTO -->
+  <section class="lj-produto" id="produto">
+    <div class="lj-wrap lj-prod-grid">
+      <div class="lj-galeria">
+        <div class="lj-slides" id="lj-slides" tabindex="0" aria-label="Fotografias do creme">
+          <div class="lj-slide"><img src="{{ 'tubo-frente-v2.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão de frente, 200 ml"></div>
+          <div class="lj-slide"><img src="{{ 'galeria-ritual.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão numa prateleira com pente de madeira e toalha de linho" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'galeria-textura.jpg' | asset_url }}" width="928" height="1152" alt="Textura do creme ondão sobre ardósia" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'galeria-tubo-ingredientes.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão com nozes de Cacay e Sacha Inchi" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'galeria-em-uso-v2.jpg' | asset_url }}" width="928" height="1152" alt="Mulher de caracóis com o tubo ondão e creme na palma da mão" loading="lazy"></div>
+        </div>
+        <div class="lj-pontos" id="lj-pontos" aria-hidden="true"></div>
+      </div>
+
+      <div class="lj-info">
+        <ul class="lj-pilulas">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/></svg>Óleo de Cacay</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Sem silicones</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Leve, não pesa</li>
+        </ul>
+        <h2 class="lj-titulo">Creme Finalizador para Pentear 200 ml</h2>
+        <p class="lj-estado">{% if a_venda %}Pré-encomenda aberta{% else %}Pré-lançamento{% endif %} <span aria-hidden="true">|</span> Envio para toda a UE</p>
+        <p class="lj-desc">Uma fórmula leve que equilibra definição e movimento: o caracol fica marcado e solto, sem efeito molhado e sem crosta. Feita à volta do óleo de Cacay da Colômbia, com Sacha Inchi, Ungurahui, proteína de quinoa e Ácido Poliglutâmico. Para ela e para ele.</p>
+
+        <span class="lj-rotulo">Tamanho</span>
+        <div class="lj-tamanhos"><span class="ativo">200 ml</span></div>
+        <p class="lj-por100">{% if v %}{{ v.price | times: 0.5 | money }}{% else %}10,00 €{% endif %}/100 ml</p>
+
+        <div class="lj-compra">
+          <p class="lj-compra-titulo">Como quer o seu ondão?</p>
+          <div class="lj-opcao ativa">
+            <div><b>{% if a_venda %}Pré-encomenda{% else %}Lista VIP{% endif %}</b><span>{% if a_venda %}Compra única · envio em até {{ dias }} dias{% else %}Receba o link de compra 48h antes de todos{% endif %}</span></div>
+            <div class="lj-opcao-preco"><b>{{ preco }}</b><span>{% if a_venda %}+ portes{% else %}grátis{% endif %}</span></div>
+            <svg class="lj-check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 9"/></svg>
+          </div>
+        </div>
+
+        <ul class="lj-vantagens">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Ativos botânicos</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Ondas, cachos e crespos</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Sem silicones</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M14 15c3 0 5 2 6 5"/></svg>Para ela e para ele</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg>{{ dev }} dias para devolver</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Envio para toda a UE</li>
+        </ul>
+
+        <a class="lj-btn lj-btn-escuro lj-btn-full" id="lj-comprar" href="{{ link }}">{{ txt_cta }}{% if a_venda %} – {{ preco }}{% endif %}</a>
+        {%- if a_venda -%}
+        <div class="lj-express">
+          <p class="lj-ou"><span>ou pague num toque</span></p>
+          {%- form 'product', p -%}
+            <input type="hidden" name="id" value="{{ v.id }}">
+            <input type="hidden" name="quantity" value="1">
+            {{ form | payment_button }}
+          {%- endform -%}
+        </div>
+        <p class="lj-nota">Pré-encomenda: paga agora e enviamos em até {{ dias }} dias. Os {{ dev }} dias para devolver só começam a contar quando o creme chega a sua casa.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA ELA E PARA ELE -->
+  <section class="lj-secao">
+    <h2 class="lj-h2 lj-centro">Para ela e para ele. Para todas as ondas.</h2>
+    <div class="lj-rolo">
+      <article class="lj-cartao">
+        <img src="{{ 'cartao-ele-frizz.jpg' | asset_url }}" width="900" height="1117" alt="Homem de perfil junto à janela, com cabelo ondulado definido" loading="lazy">
+        <h3>Dias de humidade</h3>
+        <p>A onda com forma, mesmo nos dias húmidos. Menos frizz e nada de brilho molhado.</p>
+      </article>
+      <article class="lj-cartao">
+        <img src="{{ 'cartao-ela-define.jpg' | asset_url }}" width="900" height="1117" alt="Mulher de costas a amachucar os caracóis com as mãos" loading="lazy">
+        <h3>De manhã, com pressa</h3>
+        <p>Amachuque, deixe secar e saia de casa. O caracol marca-se e continua a mexer-se.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CITAÇÃO DO FUNDADOR -->
+  <section class="lj-verde">
+    <span class="lj-marca">Orinoquía</span>
+    <blockquote>“Cresci na Colômbia com um cabelo que ninguém sabia tratar. Voltei às origens, encontrei o Cacay e construí a ondão à volta dele.”</blockquote>
+    <cite>Jhon, fundador</cite>
+    <a class="lj-btn lj-btn-escuro" href="/pages/historia">Ler a nossa história</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="lj-secao lj-faq">
+    <div class="lj-wrap-estreito">
+      <h2 class="lj-caps-titulo">Perguntas frequentes</h2>
+      <p class="lj-ajuda">Centro de ajuda</p>
+      <details open><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
+      <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado, cacheado e crespo. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
+      <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones.</p></details>
+      <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
+      <details><summary>Quando recebo a minha encomenda?</summary><p>É uma pré-encomenda: enviamos em até {{ dias }} dias depois do pagamento, mais o tempo de transporte. Tem {{ dev }} dias para devolver, a contar da entrega.</p></details>
+      <a class="lj-link" href="/pages/faq">Ver todas as perguntas {{ seta }}</a>
+    </div>
+  </section>
+
+  <!-- BANNER COM FOTO -->
+  <section class="lj-banner">
+    <img src="{{ 'historia-maos-cacay.jpg' | asset_url }}" width="1200" height="896" alt="Mãos a segurar nozes de Cacay num campo da Orinoquía" loading="lazy">
+    <div class="lj-banner-txt">
+      <h2 class="lj-h2">Da Orinoquía para o seu cabelo</h2>
+      <p>Conheça os cinco ativos da fórmula e de onde vêm.</p>
+      <a class="lj-btn lj-btn-escuro" href="/pages/ingredientes">Ver os ingredientes</a>
+    </div>
+  </section>
+
+  <!-- RETRATOS -->
+  <section class="lj-secao lj-retratos-sec">
+    <h2 class="lj-h2 lj-centro">Ondas com raízes</h2>
+    <p class="lj-centro lj-sub">Um creme pensado para realçar cada caracol, como ele é.</p>
+    <div class="lj-centro"><a class="lj-btn lj-btn-escuro" href="{{ link }}">{{ txt_cta }}</a></div>
+    <div class="lj-retratos">
+      <img src="{{ 'hero-modelo.jpg' | asset_url }}" width="928" height="1152" alt="Mulher com caracóis definidos" loading="lazy">
+      <img src="{{ 'modelo-ondulado-v2.jpg' | asset_url }}" width="896" height="1200" alt="Homem com cabelo ondulado" loading="lazy">
+      <img src="{{ 'IMG_4137.jpeg' | asset_url }}" width="896" height="1200" alt="Homem com cabelo crespo curto" loading="lazy">
+      <img src="{{ 'galeria-em-uso-v2.jpg' | asset_url }}" width="928" height="1152" alt="Mulher de caracóis a aplicar o creme" loading="lazy">
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="lj-news">
+    <form class="lj-wrap-estreito" id="lj-news" novalidate>
+      <p>Receba novidades, acesso antecipado e dicas para cuidar das suas ondas.</p>
+      <label for="lj-email">Email</label>
+      <input id="lj-email" name="email" type="email" autocomplete="email" required>
+      <input type="hidden" name="origem" value="newsletter-rodape">
+      <input type="hidden" name="_subject" value="Nova inscrição na newsletter ondão">
+      <label class="lj-consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento.</span></label>
+      <button class="lj-btn lj-btn-contorno" type="submit">Inscrever</button>
+      <p class="lj-msg" id="lj-msg" role="status"></p>
+    </form>
+  </section>
+
+  <!-- BOTÃO FIXO -->
+  <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}">{{ txt_cta }}{% if a_venda %} · {{ preco }}{% endif %} {{ seta }}</a></div>
+</div>
+
+<script>
+(function(){
+  // galeria
+  var s = document.getElementById("lj-slides"), pts = document.getElementById("lj-pontos");
+  if (s && pts) {
+    [].forEach.call(s.children, function(sl, i){
+      var b = document.createElement("button"); b.type = "button";
+      b.addEventListener("click", function(){ s.scrollTo({left: sl.offsetLeft, behavior: "smooth"}); });
+      pts.appendChild(b);
+    });
+    var marcar = function(){ var i = Math.round(s.scrollLeft / (s.clientWidth || 1)); [].forEach.call(pts.children, function(b, k){ b.setAttribute("aria-current", k === i); }); };
+    s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
+  }
+  // botão fixo: aparece quando o botão de compra sai do ecrã
+  var fixa = document.getElementById("lj-fixa"), comprar = document.getElementById("lj-comprar");
+  if (fixa && comprar && "IntersectionObserver" in window) {
+    new IntersectionObserver(function(es){ var e = es[0]; fixa.classList.toggle("on", !e.isIntersecting && e.boundingClientRect.top < 0); }).observe(comprar);
+  }
+  // newsletter
+  var f = document.getElementById("lj-news"), m = document.getElementById("lj-msg");
+  if (f) f.addEventListener("submit", async function(e){
+    e.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { m.textContent = "Confirme o seu email."; return; }
+    if (!f.consent.checked) { m.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
+    m.textContent = "A inscrever…";
+    try {
+      var r = await fetch("https://formspree.io/f/xqpegzwz", {method: "POST", body: new FormData(f), headers: {Accept: "application/json"}});
+      if (!r.ok) throw 0;
+      f.reset(); m.textContent = "Está inscrito. Obrigado!";
+    } catch(err) { m.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Loja ondão",
+  "settings": [
+    {"type": "product", "id": "produto", "label": "Produto à venda"},
+    {"type": "number", "id": "dias_preparacao", "label": "Dias até enviar (a contar do pagamento)", "default": 10},
+    {"type": "number", "id": "dias_devolucao", "label": "Dias para devolver (a contar da entrega)", "default": 14}
+  ],
+  "presets": [{"name": "Loja ondão"}]
+}
+{% endschema %}

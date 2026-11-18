@@ -1,0 +1,147 @@
+/* Loja de um só produto (sections/ondao-loja.liquid). Estrutura ao estilo Wavy, cores ondão. Mobile primeiro. */
+.lj{--lj-cinza:#ECE8E0;--lj-claro:#E4EBE2;background:var(--branco)}
+.lj-wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.lj-wrap-estreito{max-width:720px;margin:0 auto;padding:0 var(--gutter)}
+.lj-centro{text-align:center}
+.lj-h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+.lj-h1 em{font-style:italic;font-weight:400}
+.lj-logo{font-family:var(--logo);font-weight:700;letter-spacing:-.03em}
+.lj-h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,5.4vw,2.4rem);line-height:1.1;letter-spacing:-.015em;text-wrap:balance}
+.lj-caps-titulo{font-family:var(--sans);font-size:1.15rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.lj-sub{color:var(--cinza);margin:10px auto 22px;max-width:520px;padding:0 var(--gutter)}
+
+/* botões */
+.lj-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 34px;border-radius:999px;font-family:var(--sans);font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s ease}
+.lj-btn:hover{transform:translateY(-1px)}
+.lj-btn-escuro{background:var(--verde);color:var(--branco)}
+.lj-btn-escuro:hover{background:var(--verde-2)}
+.lj-btn-claro{background:var(--creme);color:var(--verde)}
+.lj-btn-contorno{background:transparent;color:var(--branco);border-color:var(--branco);width:100%}
+.lj-btn-full{width:100%;font-size:1rem;min-height:58px}
+
+/* hero */
+.lj-hero{position:relative;min-height:min(88svh,760px);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:var(--branco)}
+.lj-hero-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.lj-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,24,0) 30%,rgba(20,30,24,.55) 70%,rgba(20,30,24,.7))}
+.lj-hero-txt{position:relative;z-index:2;text-align:center;padding:0 22px 56px;max-width:760px}
+.lj-olho{display:block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;opacity:.95}
+.lj-hero-txt p{margin:14px auto 26px;max-width:520px;font-size:1rem;line-height:1.45}
+
+/* faixa */
+.lj-faixa{background:var(--branco);text-align:center;padding:22px var(--gutter)}
+.lj-faixa p{font-family:var(--serif);font-size:clamp(1.25rem,4.6vw,1.8rem);font-weight:500;color:var(--verde)}
+.lj-faixa em{font-style:italic;color:var(--terra)}
+
+/* produto */
+.lj-produto{background:var(--lj-cinza);padding:28px 0 44px}
+.lj-prod-grid{display:grid;gap:22px}
+.lj-galeria{position:relative}
+.lj-slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px}
+.lj-slides::-webkit-scrollbar{display:none}
+.lj-slide{flex:0 0 100%;scroll-snap-align:center}
+.lj-slide img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.lj-pontos{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.lj-pontos button{width:7px;height:7px;border-radius:50%;border:0;background:var(--linha);padding:0;cursor:pointer}
+.lj-pontos button[aria-current="true"]{background:var(--verde)}
+.lj-pilulas{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.lj-pilulas li{display:flex;align-items:center;gap:5px;background:var(--lj-claro);color:var(--verde-2);border-radius:999px;padding:5px 11px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.lj-pilulas svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
+.lj-titulo{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,5.6vw,2.2rem);line-height:1.1;letter-spacing:-.015em}
+.lj-estado{margin:8px 0 14px;color:var(--salvia);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.lj-estado span{color:var(--linha);margin:0 8px}
+.lj-desc{font-size:.95rem;line-height:1.55;color:var(--tinta)}
+.lj-rotulo{display:block;margin:18px 0 8px;font-size:.8rem;color:var(--cinza)}
+.lj-tamanhos{display:flex;gap:8px}
+.lj-tamanhos span{border:1.5px solid var(--linha);border-radius:10px;padding:8px 28px;font-size:.9rem;background:var(--branco)}
+.lj-tamanhos .ativo{background:var(--verde-2);border-color:var(--verde-2);color:var(--branco)}
+.lj-por100{margin-top:10px;font-size:.8rem;color:var(--cinza)}
+.lj-compra{margin-top:22px}
+.lj-compra-titulo{text-align:center;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:1rem;margin-bottom:12px}
+.lj-opcao{position:relative;display:flex;justify-content:space-between;gap:12px;border:1.5px solid var(--salvia);background:var(--lj-claro);border-radius:14px;padding:16px 16px}
+.lj-opcao b{display:block;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase}
+.lj-opcao span{display:block;font-size:.82rem;color:var(--verde-2)}
+.lj-opcao-preco{text-align:right;padding-right:30px}
+.lj-opcao-preco b{text-transform:none;letter-spacing:0;font-size:1rem}
+.lj-check{position:absolute;top:14px;right:14px;width:22px;height:22px}
+.lj-check circle{fill:var(--verde-2)}
+.lj-check path{fill:none;stroke:var(--branco);stroke-width:2.2}
+.lj-vantagens{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin:22px 0 24px}
+.lj-vantagens li{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.lj-vantagens svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--verde-2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lj-express{margin-top:14px}
+.lj-ou{display:flex;align-items:center;gap:12px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);margin-bottom:10px}
+.lj-ou::before,.lj-ou::after{content:"";flex:1;height:1px;background:var(--linha)}
+.lj-express .shopify-payment-button__button{border-radius:999px!important;min-height:52px;overflow:hidden}
+.lj-express .shopify-payment-button__more-options{display:none}
+.lj-nota{margin-top:14px;font-size:.78rem;color:var(--cinza);line-height:1.5}
+
+/* secções */
+.lj-secao{padding:48px 0}
+.lj-rolo{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:24px var(--gutter) 4px;scrollbar-width:none;max-width:var(--max);margin:0 auto}
+.lj-rolo::-webkit-scrollbar{display:none}
+.lj-cartao{flex:0 0 78%;scroll-snap-align:start}
+.lj-cartao img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+.lj-cartao h3{margin:14px 0 6px;font-family:var(--sans);font-size:.95rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.lj-cartao p{font-size:.88rem;color:var(--cinza);line-height:1.5}
+
+/* citação em verde */
+.lj-verde{background:var(--verde-2);color:var(--branco);text-align:center;padding:56px var(--gutter)}
+.lj-marca{display:block;font-family:var(--serif);font-style:italic;font-size:2.2rem;color:var(--rosa);margin-bottom:18px}
+.lj-verde blockquote{font-family:var(--serif);font-size:clamp(1.15rem,4.2vw,1.6rem);line-height:1.4;max-width:720px;margin:0 auto}
+.lj-verde cite{display:block;margin:16px 0 26px;font-style:normal;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.lj-verde .lj-btn-escuro{background:var(--verde)}
+
+/* FAQ */
+.lj-ajuda{margin:2px 0 18px;font-weight:600}
+.lj-faq details{border-bottom:1px solid var(--linha);padding:18px 0}
+.lj-faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;font-size:.95rem}
+.lj-faq summary::-webkit-details-marker{display:none}
+.lj-faq summary::after{content:"+";flex:none;width:22px;height:22px;border:1.5px solid var(--tinta);border-radius:50%;display:grid;place-items:center;font-size:1rem;line-height:1}
+.lj-faq details[open] summary::after{content:"−"}
+.lj-faq details p{margin-top:10px;color:var(--cinza);font-size:.9rem}
+.lj-link{display:inline-flex;align-items:center;gap:6px;margin-top:22px;font-weight:600;color:var(--verde)}
+
+/* banner com foto */
+.lj-banner{position:relative;min-height:520px;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;color:var(--branco);text-align:center}
+.lj-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lj-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,30,24,.6),rgba(20,30,24,0) 55%)}
+.lj-banner-txt{position:relative;z-index:2;padding:48px 24px}
+.lj-banner-txt p{margin:10px 0 22px}
+
+/* retratos */
+.lj-retratos-sec{background:var(--creme)}
+.lj-retratos{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px var(--gutter) 0;scrollbar-width:none}
+.lj-retratos::-webkit-scrollbar{display:none}
+.lj-retratos img{flex:0 0 62%;aspect-ratio:3/4;object-fit:cover;border-radius:16px;scroll-snap-align:center}
+
+/* newsletter */
+.lj-news{background:var(--verde-2);color:var(--branco);padding:44px 0}
+.lj-news form{display:grid;gap:12px}
+.lj-news label[for]{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-top:8px}
+.lj-news input[type=email]{background:transparent;border:0;border-bottom:1px solid var(--branco);color:var(--branco);padding:8px 0;font:inherit;outline:none}
+.lj-consent{display:flex;gap:10px;font-size:.8rem;opacity:.9;align-items:flex-start}
+.lj-consent input{margin-top:3px;accent-color:var(--terra)}
+.lj-msg{font-size:.85rem;min-height:1.2em}
+
+/* botão fixo */
+.lj-fixa{position:fixed;left:50%;bottom:16px;z-index:60;transform:translate(-50%,160%);transition:transform .35s ease;width:calc(100% - 32px);max-width:420px}
+.lj-fixa.on{transform:translate(-50%,0)}
+.lj-fixa .lj-btn{width:100%;box-shadow:0 10px 30px rgba(20,30,24,.25)}
+
+/* computador */
+@media (min-width:900px){
+  .lj-hero{min-height:min(92vh,820px)}
+  .lj-hero-foto{object-position:50% 30%}
+  .lj-produto{padding:56px 0 72px}
+  .lj-prod-grid{grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+  .lj-galeria{position:sticky;top:calc(var(--topo) + 20px)}
+  .lj-secao{padding:80px 0}
+  .lj-rolo{justify-content:center;overflow:visible}
+  .lj-cartao{flex:0 0 calc(50% - 7px);max-width:520px}
+  .lj-verde{padding:90px var(--gutter)}
+  .lj-banner{min-height:620px}
+  .lj-retratos{justify-content:center;overflow:visible;max-width:var(--max);margin:0 auto}
+  .lj-retratos img{flex:1 1 0;min-width:0}
+  .lj-news{padding:64px 0}
+}
+@media (prefers-reduced-motion:reduce){.lj-btn,.lj-fixa{transition:none}}
