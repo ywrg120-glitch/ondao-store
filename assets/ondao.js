@@ -161,13 +161,14 @@ document.getElementById("cta-hero").addEventListener("click", e => { e.preventDe
 const fixa = document.getElementById("fixa");
 let depoisHero = false, naVip = false;
 const topoBtn = document.getElementById("topo-btn");
-new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; fixa.classList.toggle("on", depoisHero && !naVip); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero"));
+const mostrarFixa = () => fixa.classList.toggle("on", depoisHero && (!naVip || !!CONFIG.LINK_COMPRA));
+new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; mostrarFixa(); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero"));
 topoBtn.addEventListener("click", () => {
   const suave = !matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({top: 0, behavior: suave ? "smooth" : "auto"});
   contar("voltar-ao-topo");
 });
-new IntersectionObserver(([e]) => { naVip = e.isIntersecting; fixa.classList.toggle("on", depoisHero && !naVip); }).observe(document.getElementById("vip"));
+new IntersectionObserver(([e]) => { naVip = e.isIntersecting; mostrarFixa(); }).observe(document.getElementById("vip"));
 
 // estatísticas (GoatCounter): eventos sem cookies
 function contar(nome){ try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path: nome, title: nome, event: true}); } catch(e){} }
@@ -325,7 +326,9 @@ const INGS={
   novoComprar.innerHTML = '<span class="l1">Pré-encomendar ' + seta + '</span><span class="l2">' + linhaPreco + '</span>';
   novoComprar.addEventListener("click", () => { contar("clique-checkout-produto"); location.href = destino; });
   const fixa = document.getElementById("fixa-btn");
-  fixa.href = destino; fixa.innerHTML = '<span class="l1">Pré-encomendar ' + seta + '</span><span class="l2">' + linhaPreco + '</span>';
+  fixa.href = destino; fixa.innerHTML = '<span class="l1">Quero o meu ondão ' + seta + '</span><span class="l2">' + linhaPreco + '</span>';
+  const navCta = document.getElementById("nav-cta");
+  if (navCta) { navCta.href = destino; navCta.addEventListener("click", () => contar("clique-checkout-topo")); }
   fixa.addEventListener("click", () => contar("clique-checkout-fixa"));
   // só compra única na pré-encomenda
   // garantias e nota

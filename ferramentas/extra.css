@@ -28,3 +28,11 @@ img{height:auto}
 .pagina-pw .logo{display:block;font-size:2.6rem;margin-bottom:24px}
 .pagina-pw form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
 .pagina-pw input{padding:16px 20px;border-radius:999px;border:1px solid var(--linha);background:var(--branco);font:inherit;min-width:240px}
+
+/* botão "Quero o meu ondão" sempre à mão */
+.nav-cta{display:none;padding:12px 20px;font-size:.72rem;margin-right:6px;white-space:nowrap}
+.nav-dir{align-items:center}
+@media (min-width:900px){
+  .nav-cta{display:inline-flex}
+  .fixa-geral{display:none}
+}
