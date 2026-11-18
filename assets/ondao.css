@@ -499,7 +499,3 @@ body{overflow-x:clip}
   .fixa .btn{width:auto;min-width:360px;padding:16px 40px}
   body:has(.fixa.on) .topo-btn{bottom:28px}
 }
-
-/* descrição do produto em parágrafos curtos */
-.prod-desc p{margin:0}
-.prod-desc p+p{margin-top:10px}
