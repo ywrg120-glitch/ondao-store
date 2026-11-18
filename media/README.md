@@ -14,6 +14,14 @@ Para trocar uma imagem não é preciso mexer em código.
 
 O original fica guardado em `media/originais/`.
 
+## Ou: criar a imagem com IA diretamente no GitHub (Gemini)
+
+1. GitHub → separador **Actions** → **Criar imagem para o site (IA)** → **Run workflow**.
+2. Escolha o **lugar**, cole o **prompt** do guia visual e, se quiser a mesma pessoa ou o tubo, indique uma **referência** (ex.: `assets/ondao-02-galeria-1.jpg` para o tubo).
+3. Em 1–2 minutos a imagem é gerada, cortada e publicada no site.
+
+Precisa do segredo `GEMINI_API_KEY` (GitHub → Settings → Secrets and variables → Actions).
+
 ## Vídeos
 
 Os vídeos estão desligados até os ligar:

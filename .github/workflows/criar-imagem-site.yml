@@ -1,0 +1,86 @@
+name: Criar imagem para o site (IA)
+# Actions → "Criar imagem para o site (IA)" → Run workflow.
+# Escolhe o lugar, escreve o prompt (está no guia visual) e a imagem vai direta para o site.
+on:
+  workflow_dispatch:
+    inputs:
+      lugar:
+        description: 'Lugar no site'
+        required: true
+        type: choice
+        options:
+          - 01-topo-telemovel
+          - 01-topo-computador
+          - 02-galeria-1
+          - 02-galeria-2
+          - 02-galeria-3
+          - 02-galeria-4
+          - 02-galeria-5
+          - 03-cartao-1
+          - 03-cartao-2
+          - 04-como-usar-capa
+          - 05-fundador
+          - 06-banner-telemovel
+          - 06-banner-computador
+          - 07-retrato-1
+          - 07-retrato-2
+          - 07-retrato-3
+          - 07-retrato-4
+      prompt:
+        description: 'Prompt (copie do guia visual)'
+        required: true
+      referencia:
+        description: 'Imagem de referência opcional, para manter a mesma pessoa ou o tubo (ex.: assets/ondao-02-galeria-1.jpg ou media/originais/01-topo-telemovel.png)'
+        required: false
+        default: ''
+      modelo:
+        description: 'Modelo de imagem do Gemini'
+        required: true
+        default: 'gemini-nano-banana-2.1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: media
+  cancel-in-progress: false
+
+jobs:
+  criar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ferramentas
+        run: pip install --quiet google-genai pillow pillow-heif
+      - name: Proporção do lugar
+        id: lugar
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, math
+          s = json.load(open("media/slots.json"))["${{ inputs.lugar }}"]
+          w, h = s["largura"], s["altura"]; g = math.gcd(w, h)
+          print(f"aspect={w//g}:{h//g}")
+          PY
+      - name: Gerar imagem
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PROMPT: ${{ inputs.prompt }}
+          OUTPUT: media/entrada/${{ inputs.lugar }}.png
+          ASPECT: ${{ steps.lugar.outputs.aspect }}
+          REFERENCIA: ${{ inputs.referencia }}
+          MODELO: ${{ inputs.modelo }}
+        run: python gerar_imagem.py
+      - name: Cortar, comprimir e publicar no site
+        run: python media/ferramentas/processar.py
+      - name: Commit e push
+        run: |
+          git config user.name "ondao-media"
+          git config user.email "ondao-media@users.noreply.github.com"
+          git add -A assets media
+          if git diff --cached --quiet; then echo "Nada de novo."; exit 0; fi
+          git commit -m "Imagem IA para o lugar ${{ inputs.lugar }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
