@@ -62,3 +62,12 @@ header,.anuncio{view-transition-name:none}
 
 /* overflow-x:hidden no body impedia o cabeçalho fixo; clip corta na mesma sem bloquear o sticky */
 body{overflow-x:clip}
+
+/* botão "Quero o meu ondão": no computador passa a ficar em baixo, ao centro (em vez do canto superior direito) */
+.nav-cta{display:none!important}
+@media (min-width:900px){
+  .fixa,.fixa-geral{display:block;left:50%;right:auto;bottom:24px;width:auto;padding:0;transform:translate(-50%,160%)}
+  .fixa.on,.fixa-geral.on{transform:translate(-50%,0)}
+  .fixa .btn{width:auto;min-width:360px;padding:16px 40px}
+  body:has(.fixa.on) .topo-btn{bottom:28px}
+}
