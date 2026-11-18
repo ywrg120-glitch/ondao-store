@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "ondao-landing",
+      "settings": {
+        "vista": "creme"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

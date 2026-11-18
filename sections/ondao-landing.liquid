@@ -24,6 +24,7 @@
 </script>
 
 <!-- HERO: um ecrã — modelo, selo USP, produto, promessa, 3 benefícios, prova social, CTA -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="hero" id="topo">
   <div class="wrap hero-in">
     <div class="cena">
@@ -41,6 +42,7 @@
     </div>
   </div>
 </section>
+{%- endunless -%}
 
 <div class="faixa">
   <div class="wrap"><p>Definição que se vê. Leveza que se sente.</p></div>
@@ -131,6 +133,7 @@
 </section>
 
 <!-- FUNDADOR -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="fundador tex">
   <div class="wrap">
     <span class="marca">Orinoquía</span>
@@ -139,8 +142,10 @@
     <a href="/pages/historia" class="btn btn-branco">Ler a nossa história</a>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- INGREDIENTES -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="secao" id="ingredientes">
   <div class="wrap">
     <div class="cabeca">
@@ -167,8 +172,10 @@
     </div>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- FAQ -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="secao" id="faq">
   <div class="wrap faq">
     <div class="cabeca">
@@ -182,8 +189,10 @@
     <a class="ver-mais" href="/pages/faq">Ver todas as perguntas <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- TIPO DE CARACOL -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="tipo">
   <div class="fundo"><img width="928" height="1152" src="{{ 'IMG_4141.jpeg' | asset_url }}" alt="" loading="lazy"></div>
   <div class="wrap">
@@ -197,8 +206,10 @@
     </div>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- HISTÓRIA -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="secao historia historia-curta" id="historia">
   <div class="wrap estreito" style="text-align:center">
     <span class="caps" style="color:var(--terra)">A nossa história</span>
@@ -208,8 +219,10 @@
     <a class="ver-mais" href="/pages/historia">Ler a história completa <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- 100 LUGARES -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="secao cem tex">
   <div class="wrap">
     <div class="cem-grid">
@@ -240,9 +253,10 @@
     </div>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- LISTA VIP -->
-<section class="vip tex" id="vip">
+<section class="vip tex" id="vip"{% if section.settings.vista == 'creme' and v.available %} hidden{% endif %}>
   <div class="wrap">
     <div>
       <span class="caps" style="color:var(--rosa)">Lista VIP</span>
@@ -324,6 +338,7 @@
   "name": "Página ondão",
   "settings": [
     {"type": "product", "id": "produto", "label": "Produto à venda", "info": "O preço e o botão de compra vêm deste produto. Quando o produto está ativo, o site muda sozinho de Lista VIP para pré-encomenda."},
+    {"type": "select", "id": "vista", "label": "Vista", "options": [{"value": "completa", "label": "Página inicial completa"}, {"value": "creme", "label": "Só o creme"}], "default": "completa"},
     {"type": "number", "id": "dias_preparacao", "label": "Dias até enviar (a contar do pagamento)", "default": 10},
     {"type": "number", "id": "dias_devolucao", "label": "Dias para devolver (a contar da entrega)", "default": 14}
   ],

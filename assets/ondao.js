@@ -144,7 +144,7 @@ if (CONFIG.INSCRITOS >= 50) {
 
 // hero: muda suavemente ao fazer scroll
 const heroEl = document.getElementById("topo");
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (heroEl && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
   let pend = false;
   addEventListener("scroll", () => {
     if (pend) return; pend = true;
@@ -155,14 +155,14 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
     });
   }, {passive:true});
 }
-document.getElementById("cta-hero").addEventListener("click", e => { e.preventDefault(); irParaVip(); });
+document.getElementById("cta-hero")?.addEventListener("click", e => { e.preventDefault(); irParaVip(); });
 
 // botão fixo no telemóvel
 const fixa = document.getElementById("fixa");
 let depoisHero = false, naVip = false;
 const topoBtn = document.getElementById("topo-btn");
 const mostrarFixa = () => fixa.classList.toggle("on", depoisHero && (!naVip || !!CONFIG.LINK_COMPRA));
-new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; mostrarFixa(); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero"));
+new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; mostrarFixa(); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero") || document.querySelector("#produto .garantias") || document.getElementById("produto"));
 topoBtn.addEventListener("click", () => {
   const suave = !matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({top: 0, behavior: suave ? "smooth" : "auto"});
@@ -243,7 +243,7 @@ const ano = document.getElementById("ano"); if (ano) ano.textContent = new Date(
   });
   // topo: leva ao produto
   const hero = document.getElementById("cta-hero");
-  hero.href = "#produto"; hero.innerHTML = 'Pré-encomendar o meu ondão ' + hero.querySelector("svg").outerHTML;
+  if (hero) { hero.href = destino; hero.innerHTML = 'Pré-encomendar o meu ondão ' + hero.querySelector("svg").outerHTML; }
   // botão do produto e barra fixa: vão direto ao checkout do Shopify
   const comprar = document.getElementById("comprar");
   const novoComprar = comprar.cloneNode(false); comprar.replaceWith(novoComprar);

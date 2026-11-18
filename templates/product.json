@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "ondao-landing",
-      "settings": {}
+      "settings": {
+        "vista": "creme"
+      }
     }
   },
   "order": [
