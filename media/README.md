@@ -26,6 +26,16 @@ Em vez de carregar o ficheiro, crie em `media/entrada` um ficheiro de texto com 
 
 Precisa do segredo `GEMINI_API_KEY` (GitHub → Settings → Secrets and variables → Actions).
 
+## Para o Shopify atualizar sozinho (uma vez só)
+
+O Shopify ignora as alterações feitas pelo robô do GitHub. Para que as imagens processadas apareçam logo no site, dê ao robô uma chave em seu nome:
+
+1. GitHub → foto de perfil → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+2. Nome: `ondao-media`. Repositório: só `ondao-store`. Permissão: **Contents: Read and write**. Validade: 1 ano.
+3. Copie o token. No repositório: **Settings** → **Secrets and variables** → **Actions** → **New repository secret** → nome `GH_PUSH_TOKEN` → cole → **Add secret**.
+
+Sem isto, o site só atualiza no próximo envio seu, ou em Shopify → Temas → menu do GitHub → **Reset to latest commit**.
+
 ## Vídeos
 
 Os vídeos estão desligados até os ligar:

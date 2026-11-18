@@ -50,6 +50,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Com o segredo GH_PUSH_TOKEN o push sai em nome da sua conta e o Shopify atualiza logo.
+          token: ${{ secrets.GH_PUSH_TOKEN || github.token }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
