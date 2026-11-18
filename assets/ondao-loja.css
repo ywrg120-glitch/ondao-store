@@ -175,3 +175,10 @@
   .lj-hero .lj-h1{font-size:clamp(2.4rem,4vw,3.6rem)}
   .lj-hero-txt p{margin:10px auto 18px}
 }
+
+/* cartões "Para ela e para ele" ao estilo Wavy: mais pequenos, foto 4:5, texto curto por baixo */
+.lj-cartao img{aspect-ratio:4/5}
+@media (min-width:900px){
+  .lj-rolo{max-width:820px;gap:20px}
+  .lj-cartao{flex:0 0 calc(50% - 10px);max-width:400px}
+}
