@@ -59,3 +59,6 @@ header,.anuncio{view-transition-name:none}
 /* cabeçalho fixo na Shopify: a secção envolve o cabeçalho, por isso é ela que fica presa ao topo (a barra de avisos sai do ecrã, o menu e o botão ficam) */
 #shopify-section-ondao-header{position:sticky;top:calc(-1 * var(--h-anuncio));z-index:50}
 #shopify-section-ondao-header header{position:relative;top:auto}
+
+/* overflow-x:hidden no body impedia o cabeçalho fixo; clip corta na mesma sem bloquear o sticky */
+body{overflow-x:clip}
