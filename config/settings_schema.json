@@ -6,5 +6,42 @@
     "theme_author": "ondão",
     "theme_documentation_url": "https://github.com/ywrg120-glitch/ondao-store",
     "theme_support_url": "https://github.com/ywrg120-glitch/ondao-store"
+  },
+  {
+    "name": "Imagens e vídeos ondão",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "As imagens trocam-se no GitHub (pasta media/entrada). Ligue aqui os vídeos depois de os carregar."
+      },
+      {
+        "type": "checkbox",
+        "id": "ondao_video_topo",
+        "label": "Vídeo no topo da página",
+        "info": "Ficheiros: ondao-01-topo-telemovel.mp4 e ondao-01-topo-computador.mp4",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "ondao_video_galeria",
+        "label": "Vídeo na galeria do produto",
+        "info": "Ficheiro: ondao-02-galeria-video.mp4",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "ondao_video_como_usar",
+        "label": "Secção \"Como se usa\" com vídeo",
+        "info": "Ficheiros: ondao-04-como-usar.mp4 e ondao-04-como-usar.jpg",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "ondao_foto_fundador",
+        "label": "Foto do fundador na citação",
+        "info": "Ficheiro: ondao-05-fundador.jpg (use uma foto real)",
+        "default": false
+      }
+    ]
   }
 ]

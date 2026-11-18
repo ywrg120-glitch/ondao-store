@@ -33,7 +33,14 @@
 
   <!-- HERO -->
   <section class="lj-hero">
-    <img class="lj-hero-foto" src="{{ 'IMG_4141.jpeg' | asset_url }}" width="928" height="1152" alt="Mulher e homem com caracóis definidos, lado a lado junto a uma janela" fetchpriority="high">
+    <picture>
+      <source media="(min-width: 900px)" srcset="{{ 'ondao-01-topo-computador.jpg' | asset_url }}">
+      <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Pessoas com ondas e caracóis definidos" fetchpriority="high">
+    </picture>
+    {%- if settings.ondao_video_topo -%}
+    <video class="lj-hero-foto lj-video" id="lj-video-topo" muted loop playsinline preload="none" aria-hidden="true"
+      data-telemovel="{{ 'ondao-01-topo-telemovel.mp4' | asset_url }}" data-computador="{{ 'ondao-01-topo-computador.mp4' | asset_url }}"></video>
+    {%- endif -%}
     <div class="lj-hero-txt">
       <span class="lj-olho">Óleo de Cacay da Colômbia · Para ela e para ele</span>
       <h1 class="lj-h1">Defina a sua <em>onda</em> com <span class="lj-logo">ondão.</span></h1>
@@ -50,11 +57,14 @@
     <div class="lj-wrap lj-prod-grid">
       <div class="lj-galeria">
         <div class="lj-slides" id="lj-slides" tabindex="0" aria-label="Fotografias do creme">
-          <div class="lj-slide"><img src="{{ 'tubo-frente-v2.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão de frente, 200 ml"></div>
-          <div class="lj-slide"><img src="{{ 'galeria-ritual.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão numa prateleira com pente de madeira e toalha de linho" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'galeria-textura.jpg' | asset_url }}" width="928" height="1152" alt="Textura do creme ondão sobre ardósia" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'galeria-tubo-ingredientes.jpg' | asset_url }}" width="928" height="1152" alt="Tubo ondão com nozes de Cacay e Sacha Inchi" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'galeria-em-uso-v2.jpg' | asset_url }}" width="928" height="1152" alt="Mulher de caracóis com o tubo ondão e creme na palma da mão" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-1.jpg' | asset_url }}" width="1080" height="1350" alt="Tubo ondão de frente, 200 ml"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-2.jpg' | asset_url }}" width="1080" height="1350" alt="Tubo ondão numa prateleira com pente de madeira e toalha de linho" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-3.jpg' | asset_url }}" width="1080" height="1350" alt="Textura do creme ondão" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-4.jpg' | asset_url }}" width="1080" height="1350" alt="Tubo ondão com os ingredientes da fórmula" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-5.jpg' | asset_url }}" width="1080" height="1350" alt="O creme ondão a ser aplicado" loading="lazy"></div>
+          {%- if settings.ondao_video_galeria -%}
+          <div class="lj-slide"><video class="lj-video" src="{{ 'ondao-02-galeria-video.mp4' | asset_url }}" muted loop playsinline preload="none" poster="{{ 'ondao-02-galeria-5.jpg' | asset_url }}" aria-label="Vídeo do creme ondão"></video></div>
+          {%- endif -%}
         </div>
         <div class="lj-pontos" id="lj-pontos" aria-hidden="true"></div>
       </div>
@@ -112,20 +122,39 @@
     <h2 class="lj-h2 lj-centro">Para ela e para ele. Para todas as ondas.</h2>
     <div class="lj-rolo">
       <article class="lj-cartao">
-        <img src="{{ 'cartao-ele-frizz.jpg' | asset_url }}" width="900" height="1117" alt="Homem de perfil junto à janela, com cabelo ondulado definido" loading="lazy">
+        <img src="{{ 'ondao-03-cartao-1.jpg' | asset_url }}" width="1080" height="1350" alt="Homem com cabelo ondulado definido num dia húmido" loading="lazy">
         <h3>Dias de humidade</h3>
         <p>A onda com forma, mesmo nos dias húmidos. Menos frizz e nada de brilho molhado.</p>
       </article>
       <article class="lj-cartao">
-        <img src="{{ 'cartao-ela-define.jpg' | asset_url }}" width="900" height="1117" alt="Mulher de costas a amachucar os caracóis com as mãos" loading="lazy">
+        <img src="{{ 'ondao-03-cartao-2.jpg' | asset_url }}" width="1080" height="1350" alt="Mulher a amachucar os caracóis com as mãos" loading="lazy">
         <h3>De manhã, com pressa</h3>
         <p>Amachuque, deixe secar e saia de casa. O caracol marca-se e continua a mexer-se.</p>
       </article>
     </div>
   </section>
 
+  {%- if settings.ondao_video_como_usar -%}
+  <!-- COMO USAR -->
+  <section class="lj-secao lj-como">
+    <div class="lj-wrap lj-como-grid">
+      <div class="lj-como-video"><video class="lj-video" src="{{ 'ondao-04-como-usar.mp4' | asset_url }}" poster="{{ 'ondao-04-como-usar.jpg' | asset_url }}" muted loop playsinline preload="none" controls aria-label="Como usar o creme ondão"></video></div>
+      <div>
+        <h2 class="lj-h2">Como se usa</h2>
+        <ol class="lj-passos">
+          <li><b>Cabelo húmido</b><span>Depois do banho, tire o excesso de água com uma toalha.</span></li>
+          <li><b>Uma noz de creme</b><span>Espalhe nas palmas e passe pelo cabelo, de baixo para cima.</span></li>
+          <li><b>Amachuque e deixe secar</b><span>Ao ar ou com difusor. Não mexa até estar seco.</span></li>
+        </ol>
+        <a class="lj-btn lj-btn-escuro" href="{{ link }}">{{ txt_cta }}</a>
+      </div>
+    </div>
+  </section>
+  {%- endif -%}
+
   <!-- CITAÇÃO DO FUNDADOR -->
   <section class="lj-verde">
+    {%- if settings.ondao_foto_fundador -%}<img class="lj-fundador" src="{{ 'ondao-05-fundador.jpg' | asset_url }}" width="1080" height="1350" alt="Jhon, fundador da ondão" loading="lazy">{%- endif -%}
     <span class="lj-marca">Orinoquía</span>
     <blockquote>“Cresci na Colômbia com um cabelo que ninguém sabia tratar. Voltei às origens, encontrei o Cacay e construí a ondão à volta dele.”</blockquote>
     <cite>Jhon, fundador</cite>
@@ -148,7 +177,10 @@
 
   <!-- BANNER COM FOTO -->
   <section class="lj-banner">
-    <img src="{{ 'historia-maos-cacay.jpg' | asset_url }}" width="1200" height="896" alt="Mãos a segurar nozes de Cacay num campo da Orinoquía" loading="lazy">
+    <picture>
+      <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
+      <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Mãos a segurar nozes de Cacay num campo da Orinoquía" loading="lazy">
+    </picture>
     <div class="lj-banner-txt">
       <h2 class="lj-h2">Da Orinoquía para o seu cabelo</h2>
       <p>Conheça os cinco ativos da fórmula e de onde vêm.</p>
@@ -162,10 +194,10 @@
     <p class="lj-centro lj-sub">Um creme pensado para realçar cada caracol, como ele é.</p>
     <div class="lj-centro"><a class="lj-btn lj-btn-escuro" href="{{ link }}">{{ txt_cta }}</a></div>
     <div class="lj-retratos">
-      <img src="{{ 'hero-modelo.jpg' | asset_url }}" width="928" height="1152" alt="Mulher com caracóis definidos" loading="lazy">
-      <img src="{{ 'modelo-ondulado-v2.jpg' | asset_url }}" width="896" height="1200" alt="Homem com cabelo ondulado" loading="lazy">
-      <img src="{{ 'IMG_4137.jpeg' | asset_url }}" width="896" height="1200" alt="Homem com cabelo crespo curto" loading="lazy">
-      <img src="{{ 'galeria-em-uso-v2.jpg' | asset_url }}" width="928" height="1152" alt="Mulher de caracóis a aplicar o creme" loading="lazy">
+      {%- for i in (1..4) -%}
+      {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
+      <img src="{{ f | asset_url }}" width="1080" height="1440" alt="Pessoa com ondas ou caracóis definidos" loading="lazy">
+      {%- endfor -%}
     </div>
   </section>
 
@@ -199,6 +231,17 @@
     });
     var marcar = function(){ var i = Math.round(s.scrollLeft / (s.clientWidth || 1)); [].forEach.call(pts.children, function(b, k){ b.setAttribute("aria-current", k === i); }); };
     s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
+  }
+  // vídeos: só tocam quando estão no ecrã; o do topo escolhe a versão do telemóvel ou do computador
+  var calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var topo = document.getElementById("lj-video-topo");
+  if (topo && !calmo) {
+    topo.src = matchMedia("(min-width: 900px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
+    topo.addEventListener("canplay", function(){ topo.classList.add("pronto"); }, {once: true});
+  }
+  if ("IntersectionObserver" in window && !calmo) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ var v = e.target; if (!v.getAttribute("src")) return; if (e.isIntersecting) { v.play().catch(function(){}); } else { v.pause(); } }); }, {threshold: .25});
+    [].forEach.call(document.querySelectorAll(".lj video.lj-video"), function(v){ if (!v.controls) io.observe(v); });
   }
   // botão fixo: aparece quando o botão de compra sai do ecrã
   var fixa = document.getElementById("lj-fixa"), comprar = document.getElementById("lj-comprar");

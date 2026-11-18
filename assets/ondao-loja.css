@@ -145,3 +145,22 @@
   .lj-news{padding:64px 0}
 }
 @media (prefers-reduced-motion:reduce){.lj-btn,.lj-fixa{transition:none}}
+
+/* vídeos e secções novas */
+.lj-hero picture,.lj-banner picture{position:absolute;inset:0}
+.lj-banner picture img{width:100%;height:100%;object-fit:cover}
+.lj-video{opacity:1}
+.lj-hero video.lj-video{opacity:0;transition:opacity .6s ease;z-index:0}
+.lj-hero video.lj-video.pronto{opacity:1}
+.lj-hero-foto{z-index:0}
+.lj-slide video{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.lj-como{background:var(--creme)}
+.lj-como-grid{display:grid;gap:26px;align-items:center}
+.lj-como-video video{width:100%;max-width:380px;margin:0 auto;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:var(--areia)}
+.lj-passos{list-style:none;counter-reset:p;margin:18px 0 24px;display:grid;gap:16px}
+.lj-passos li{counter-increment:p;display:grid;grid-template-columns:38px 1fr;column-gap:12px}
+.lj-passos li::before{content:counter(p);grid-row:span 2;width:32px;height:32px;border-radius:50%;background:var(--verde);color:var(--branco);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.lj-passos b{font-size:1rem}
+.lj-passos span{color:var(--cinza);font-size:.9rem}
+.lj-fundador{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 18px;border:3px solid var(--rosa)}
+@media (min-width:900px){.lj-como-grid{grid-template-columns:1fr 1fr;gap:64px}}
