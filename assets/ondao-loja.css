@@ -131,12 +131,12 @@
 /* computador */
 @media (min-width:900px){
   .lj-hero{min-height:min(92vh,820px)}
-  .lj-hero-foto{object-position:50% 30%}
+  .lj-hero-foto{object-position:50% 42%}
   .lj-produto{padding:56px 0 72px}
   .lj-prod-grid{grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
   .lj-galeria{position:sticky;top:calc(var(--topo) + 20px)}
   .lj-secao{padding:80px 0}
-  .lj-rolo{justify-content:center;overflow:visible}
+  .lj-rolo{justify-content:center;overflow:visible;max-width:1000px}
   .lj-cartao{flex:0 0 calc(50% - 7px);max-width:520px}
   .lj-verde{padding:90px var(--gutter)}
   .lj-banner{min-height:620px}
