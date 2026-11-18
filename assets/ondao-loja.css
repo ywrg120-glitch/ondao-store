@@ -164,3 +164,12 @@
 .lj-passos span{color:var(--cinza);font-size:.9rem}
 .lj-fundador{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 18px;border:3px solid var(--rosa)}
 @media (min-width:900px){.lj-como-grid{grid-template-columns:1fr 1fr;gap:64px}}
+
+/* topo no computador: mostra a foto 16:9 inteira, caras livres e título na faixa de baixo */
+@media (min-width:900px){
+  .lj-hero{min-height:0;aspect-ratio:16/9;max-height:none}
+  .lj-hero .lj-hero-foto{object-position:50% 50%}
+  .lj-hero-txt{padding-bottom:36px}
+  .lj-hero .lj-h1{font-size:clamp(2.4rem,4vw,3.6rem)}
+  .lj-hero-txt p{margin:10px auto 18px}
+}
