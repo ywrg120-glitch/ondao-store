@@ -23,12 +23,32 @@ def achar_slot(nome):
         if n == normal(Path(v["ficheiro"]).stem) or n.startswith(k + "-"): return k
     return None
 
+def aparar_bordas(im, limite=55, maximo=0.12):
+    """Tira molduras escuras (ex.: bordas de "filme" que a IA às vezes desenha, com números)."""
+    g = im.convert("L")
+    w, h = g.size
+    def escura(caixa):
+        reg = g.crop(caixa).resize((1, 1), 0)
+        return reg.getpixel((0, 0)) < limite
+    t = b = l = r = 0
+    passo_v, passo_h = max(1, h // 400), max(1, w // 400)
+    while t < h * maximo and escura((0, t, w, t + passo_v)): t += passo_v
+    while b < h * maximo and escura((0, h - b - passo_v, w, h - b)): b += passo_v
+    while l < w * maximo and escura((l, 0, l + passo_h, h)): l += passo_h
+    while r < w * maximo and escura((w - r - passo_h, 0, w - r, h)): r += passo_h
+    if t or b or l or r:
+        m = 0.012  # margem extra para levar os restos da moldura
+        t, b = t + int(h * m) if t else 0, b + int(h * m) if b else 0
+        l, r = l + int(w * m) if l else 0, r + int(w * m) if r else 0
+        im = im.crop((l, t, w - r, h - b))
+    return im
+
 def imagem(orig, slot):
     from PIL import Image, ImageOps
     try:
         import pillow_heif; pillow_heif.register_heif_opener()
     except Exception: pass
-    im = ImageOps.exif_transpose(Image.open(orig)).convert("RGB")
+    im = aparar_bordas(ImageOps.exif_transpose(Image.open(orig)).convert("RGB"))
     im = ImageOps.fit(im, (slot["largura"], slot["altura"]), Image.LANCZOS, centering=tuple(slot.get("foco", [0.5, 0.5])))
     destino = ASSETS / slot["ficheiro"]
     q = 85
