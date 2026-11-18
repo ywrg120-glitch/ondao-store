@@ -1,0 +1,30 @@
+/* ===== Extra para o tema Shopify ===== */
+img{height:auto}
+/* pagamento num toque (Apple Pay, Shop Pay, Google Pay, PayPal) */
+.express{margin:2px 0 6px}
+.express-ou{display:flex;align-items:center;gap:12px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);margin-bottom:10px}
+.express-ou::before,.express-ou::after{content:"";flex:1;height:1px;background:var(--linha)}
+.express .shopify-payment-button__button{border-radius:999px!important;min-height:52px;overflow:hidden}
+.express .shopify-payment-button__more-options{display:none}
+/* páginas simples: políticas, carrinho, 404 */
+.estreito{max-width:760px}
+.pagina{padding-top:48px;padding-bottom:72px}
+.pagina .h2{margin-bottom:20px}
+.pagina p{margin-bottom:14px}
+.pagina .btn{margin-top:12px}
+.texto h2,.texto h3{font-family:var(--serif);margin:26px 0 10px;color:var(--verde)}
+.texto ul,.texto ol{margin:0 0 14px 1.2em}
+.texto a{color:var(--terra)}
+.shopify-policy__container{max-width:760px!important;padding:48px var(--gutter) 72px!important}
+.shopify-policy__title h1{font-family:var(--serif);color:var(--verde);font-size:clamp(2rem,6vw,3rem);margin-bottom:20px}
+.shopify-policy__body h2,.shopify-policy__body h3{font-family:var(--serif);margin:26px 0 10px;color:var(--verde)}
+.shopify-policy__body p{margin-bottom:14px}
+.shopify-policy__body ul{margin:0 0 14px 1.2em}
+.carrinho{list-style:none;border-top:1px solid var(--linha);margin:10px 0 16px}
+.carrinho li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--linha)}
+.total{font-size:1.1rem}
+/* página de palavra-passe (antes do lançamento) */
+.pagina-pw{min-height:100svh;display:grid;place-items:center;text-align:center;padding:40px 0}
+.pagina-pw .logo{display:block;font-size:2.6rem;margin-bottom:24px}
+.pagina-pw form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.pagina-pw input{padding:16px 20px;border-radius:999px;border:1px solid var(--linha);background:var(--branco);font:inherit;min-width:240px}

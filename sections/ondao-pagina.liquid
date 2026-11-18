@@ -1,0 +1,38 @@
+<section class="secao pagina">
+  <div class="wrap estreito">
+    {%- case template.name -%}
+      {%- when 'page' -%}
+        <h1 class="h2">{{ page.title }}</h1>
+        <div class="texto">{{ page.content }}</div>
+      {%- when 'cart' -%}
+        <h1 class="h2">O seu carrinho</h1>
+        {%- if cart.item_count > 0 -%}
+          <ul class="carrinho">
+            {%- for item in cart.items -%}
+              <li><span>{{ item.quantity }} × {{ item.product.title }}</span><b>{{ item.final_line_price | money }}</b></li>
+            {%- endfor -%}
+          </ul>
+          <p class="total">Total: <b>{{ cart.total_price | money }}</b></p>
+          <form action="{{ routes.cart_url }}" method="post"><button class="btn btn-verde" type="submit" name="checkout">Finalizar compra</button></form>
+        {%- else -%}
+          <p>O carrinho está vazio.</p>
+          <a class="btn btn-verde" href="{{ routes.root_url }}#produto">Ver o creme</a>
+        {%- endif -%}
+      {%- when '404' -%}
+        <h1 class="h2">Página não encontrada</h1>
+        <p>Esta página não existe ou mudou de sítio.</p>
+        <a class="btn btn-verde" href="{{ routes.root_url }}">Voltar à loja</a>
+      {%- when 'article' -%}
+        <h1 class="h2">{{ article.title }}</h1>
+        <div class="texto">{{ article.content }}</div>
+      {%- else -%}
+        <h1 class="h2">ondão</h1>
+        <p>Por agora temos um só produto: o Creme Finalizador para Pentear.</p>
+        <a class="btn btn-verde" href="{{ routes.root_url }}#produto">Ver o creme</a>
+    {%- endcase -%}
+  </div>
+</section>
+
+{% schema %}
+{"name": "Página simples", "settings": []}
+{% endschema %}

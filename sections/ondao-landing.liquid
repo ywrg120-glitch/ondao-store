@@ -1,0 +1,370 @@
+{%- liquid
+  if product
+    assign p = product
+  elsif section.settings.produto != blank
+    assign p = section.settings.produto
+  else
+    assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
+  endif
+  if p != blank
+    assign v = p.selected_or_first_available_variant
+  endif
+-%}
+<script>
+  window.ONDAO_CONFIG = {
+    {%- if p != blank %}
+    PRECO: {{ v.price | divided_by: 100.0 | json }},
+    {%- if v.available %}
+    LINK_COMPRA: {{ request.origin | append: '/cart/' | append: v.id | append: ':1' | json }},
+    {%- endif %}
+    {%- endif %}
+    DIAS_PREPARACAO: {{ section.settings.dias_preparacao | json }},
+    DIAS_DEVOLUCAO: {{ section.settings.dias_devolucao | json }}
+  };
+</script>
+
+<!-- HERO: um ecrã — modelo, selo USP, produto, promessa, 3 benefícios, prova social, CTA -->
+<section class="hero" id="topo">
+  <div class="wrap hero-in">
+    <div class="cena">
+      <img width="1024" height="1024" class="foto-hero" src="{{ 'hero-ingredientes.webp' | asset_url }}" alt="Tubo ondão sobre travertino com os ingredientes da fórmula: Cacay, Sacha Inchi, Ungurahui, quinoa e uma gota de gel" fetchpriority="high" onerror="this.onerror=null;this.src='{{ 'hero-ingredientes.jpg' | asset_url }}'">
+    </div>
+    <div class="oferta">
+      <h1 class="promessa">Defina a sua <em>onda.</em></h1>
+      <ul class="usps">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.4"/></svg><span><b>Óleo de Cacay</b>da Colômbia</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/><path d="M3 13c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/><path d="M3 18c2.5-2.5 5-2.5 7.5 0s5 2.5 7.5 0 2.5-1.5 3-2"/></svg><span><b>Define sem pesar</b>e controla o frizz</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="8.5" r="2.6"/><path d="M3 19.5c.6-3.3 2.8-5.3 5.5-5.3s4.9 2 5.5 5.3M14.6 14.4c.5-.1.9-.2 1.4-.2 2.4 0 4.3 1.8 4.9 4.8"/></svg><span><b>Para ela e ele</b>ondas a crespos</span></li>
+      </ul>
+      <p class="prova" id="prova" hidden><span class="ponto" aria-hidden="true"></span><span id="prova-txt"></span></p>
+      <a href="{{ routes.root_url }}#vip" class="btn cta-hero" id="cta-hero">Quero o meu ondão <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="faixa">
+  <div class="wrap"><p>Definição que se vê. Leveza que se sente.</p></div>
+</div>
+
+<!-- PRODUTO -->
+<section class="produto" id="produto">
+  <div class="wrap prod-grid">
+    <div class="galeria">
+      <div class="slides" id="slides" tabindex="0" aria-label="Galeria do produto">
+        <div class="slide contem" data-legenda="O tubo"><img width="928" height="1152" src="{{ 'tubo-frente-v2.jpg' | asset_url }}" alt="Tubo ondão de frente"></div>
+        <div class="slide" data-legenda="A textura"><img width="928" height="1152" src="{{ 'galeria-textura.jpg' | asset_url }}" alt="Textura sedosa do creme ondão espalhada sobre ardósia" loading="lazy"></div>
+        <div class="slide" data-legenda="Os ingredientes"><img width="928" height="1152" src="{{ 'galeria-tubo-ingredientes.jpg' | asset_url }}" alt="Tubo ondão sobre ardósia com nozes de Cacay, cápsulas de Sacha Inchi e óleo" loading="lazy"></div>
+        <div class="slide" data-legenda="Em uso"><img width="928" height="1152" src="{{ 'galeria-em-uso-v2.jpg' | asset_url }}" alt="Mulher de caracóis definidos com o tubo ondão numa mão e uma porção de creme na palma da outra" loading="lazy"></div>
+        <div class="slide" data-legenda="O ritual"><img width="928" height="1152" src="{{ 'galeria-ritual.jpg' | asset_url }}" alt="Tubo ondão numa prateleira de travertino com pente de madeira e toalha de linho" loading="lazy"></div>
+      </div>
+      <div class="pontos" id="pontos" aria-hidden="true"></div>
+      <div class="legenda-gal">
+        <p class="contador" aria-live="polite"><b id="gal-num">01</b><span id="gal-total">/ 05</span><em id="gal-nome">O tubo</em></p>
+        <div class="setas">
+          <button type="button" id="gal-ant" aria-label="Imagem anterior"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button type="button" id="gal-seg" aria-label="Imagem seguinte"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+
+      <div class="prod-cabeca">
+        <span class="prod-olho">ondão · Pré-lançamento</span>
+        <h2 class="prod-titulo">Creme Finalizador para Pentear</h2>
+        <p class="prod-sub">200 ml <span aria-hidden="true">·</span> <span id="por100">10,00 € / 100 ml</span></p>
+      </div>
+
+      <p class="prod-desc">Uma fórmula leve que equilibra definição e movimento: o caracol fica marcado e solto, sem efeito molhado e sem crosta. Feita à volta do óleo de Cacay da Colômbia, com Sacha Inchi, Ungurahui, proteína de quinoa e Ácido Poliglutâmico. Para ela e para ele.</p>
+
+
+      <input type="radio" name="plano" value="unica" checked hidden>
+
+      <ul class="beneficios">
+        <li><svg viewBox="0 0 24 24"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Ativos botânicos</li>
+        <li><svg viewBox="0 0 24 24"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Ondas e caracóis</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Sem silicones</li>
+        <li><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20c1-3 3-5 6-5s5 2 6 5M14 15c3 0 5 2 6 5"/></svg>Para ela e para ele</li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z"/></svg>Leve, não pesa</li>
+        <li><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Envio para toda a UE</li>
+      </ul>
+
+      <button class="btn btn-verde btn-full btn-preco" id="comprar" type="button"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2" id="comprar-preco"><b>19,99 €</b> · compra única</span></button>
+      {%- if p != blank and v.available -%}
+      <div class="express" id="express">
+        <p class="express-ou"><span>ou pague num toque</span></p>
+        {%- form 'product', p, id: 'ondao-express-form' -%}
+          <input type="hidden" name="id" value="{{ v.id }}">
+          <input type="hidden" name="quantity" value="1">
+          {{ form | payment_button }}
+        {%- endform -%}
+      </div>
+      {%- endif -%}
+      <ul class="garantias"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Inscrição grátis</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sem cartão</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Sem spam</li></ul>
+      <p class="nota-compra">Pré-lançamento: não cobramos nada agora. Entre na Lista VIP e receba o link de compra 48h antes de todos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARA CADA ONDA -->
+<section class="secao" style="padding-top:0">
+  <div class="wrap">
+    <div class="cabeca centro">
+      <h2 class="h2">O seu cabelo, <em class="it">nos seus dias.</em></h2>
+      <p class="sub-cabeca">Não é preciso uma rotina de 40 minutos. É preciso um creme que funcione numa terça-feira normal.</p>
+    </div>
+    <div class="rolo">
+      <article class="cartao">
+        <div class="foto"><img width="900" height="1117" src="{{ 'cartao-ela-define.jpg' | asset_url }}" alt="Mulher de costas a amachucar os caracóis definidos com as mãos" loading="lazy"></div>
+        <span class="momento">Para ela · De manhã, com pressa</span>
+        <h3>Amachuque, deixe secar e saia de casa.</h3>
+        <p>Um pouco de creme no cabelo húmido chega. O caracol marca-se e continua a mexer-se, macio ao toque, sem aquela crosta de gel.</p>
+      </article>
+      <article class="cartao">
+        <div class="foto"><img width="900" height="1117" src="{{ 'cartao-ele-frizz.jpg' | asset_url }}" alt="Homem de perfil junto à janela, com cabelo ondulado definido e sem frizz" loading="lazy"></div>
+        <span class="momento">Para ele · Dias de humidade</span>
+        <h3>A onda com forma, mesmo nos dias húmidos.</h3>
+        <p>Menos frizz e nada de brilho molhado. Ninguém percebe que tem produto: só que o cabelo está bem.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDADOR -->
+<section class="fundador tex">
+  <div class="wrap">
+    <span class="marca">Orinoquía</span>
+    <blockquote>“Cresci na Colômbia com um cabelo que ninguém sabia tratar. Voltei às origens, encontrei o Cacay e construí a ondão à volta dele.”</blockquote>
+    <cite>Jhon, fundador</cite>
+    <a href="{{ routes.root_url }}#historia" class="btn btn-branco">Ler a nossa história</a>
+  </div>
+</section>
+
+<!-- INGREDIENTES -->
+<section class="secao" id="ingredientes">
+  <div class="wrap">
+    <div class="cabeca">
+      <span class="caps" style="color:var(--terra)">O que está dentro</span>
+      <h2 class="h2">Cinco ativos. <em class="it">Zero enchimento.</em></h2>
+      <p class="ing-dica">Escolha um ativo para conhecer a origem e o que faz no seu cabelo.</p>
+    </div>
+    <div class="ing-grid">
+      <div class="heroi" id="ing-heroi" aria-live="polite">
+        <div class="foto"><img width="1248" height="848" src="{{ 'IMG_4142.jpeg' | asset_url }}" alt="Nozes de Cacay abertas e óleo dourado sobre ardósia" loading="lazy"></div>
+        <div class="txt">
+          <span class="palavra">Cacay.</span>
+          <span class="latim">Caryodendron orinocense · bacia do Orinoco, Colômbia</span>
+          <p class="corpo">O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p>
+          <div class="funcao"><b>Na fórmula</b><span>O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.</span></div>
+        </div>
+      </div>
+      <div class="ings">
+        <button class="ing" type="button" data-ing="sacha-inchi"><span class="mais" aria-hidden="true">+</span><img src="{{ 'ing-sacha-inchi.jpg' | asset_url }}" alt="Cápsulas em estrela de Sacha Inchi, sementes e óleo claro sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Sacha Inchi</h4><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></button>
+        <button class="ing" type="button" data-ing="ungurahui"><span class="mais" aria-hidden="true">+</span><img src="{{ 'ing-ungurahui.jpg' | asset_url }}" alt="Frutos roxos de Ungurahui e óleo verde-dourado sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Amazónia colombiana</span><h4>Óleo de Ungurahui</h4><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></button>
+        <button class="ing" type="button" data-ing="quinoa"><span class="mais" aria-hidden="true">+</span><img src="{{ 'ing-quinoa.jpg' | asset_url }}" alt="Grãos de quinoa, espiga seca e proteína em pó sobre ardósia" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Andes</span><h4>Proteína de Quinoa</h4><p>Estrutura e elasticidade para o caracol.</p></div></button>
+        <button class="ing" type="button" data-ing="poliglutamico"><span class="mais" aria-hidden="true">+</span><img src="{{ 'ing-poliglutamico.jpg' | asset_url }}" alt="Gel transparente a escorrer de uma pipeta para uma taça de cerâmica" loading="lazy" width="640" height="640"><div class="ing-txt"><span class="origem">Biotecnologia</span><h4>Ácido Poliglutâmico</h4><p>Retém a hidratação. Menos frizz.</p></div></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="secao" id="faq">
+  <div class="wrap faq">
+    <div class="cabeca">
+      <span class="caps">Perguntas frequentes</span>
+      <span class="ajuda">Centro de ajuda</span>
+    </div>
+    <details open><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
+    <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado, cacheado e crespo. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
+    <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones. A lista INCI completa estará no tubo e nesta página no lançamento.</p></details>
+    <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
+    <details><summary>Quanto custa?</summary><p>19,99 € por tubo de 200 ml. Um só preço, sem subscrições nem letras pequenas.</p></details>
+    <details><summary>É testado em animais?</summary><p>Não. Como todos os cosméticos vendidos na União Europeia, a ondão não é testada em animais.</p></details>
+    <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, o envio é grátis em encomendas acima de €35.</p></details>
+    <details><summary>Quando é o lançamento?</summary><p>Muito em breve. Quem está na Lista VIP recebe a data primeiro, e acesso antecipado de 48h.</p></details>
+  </div>
+</section>
+
+<!-- TIPO DE CARACOL -->
+<section class="tipo">
+  <div class="fundo"><img width="928" height="1152" src="{{ 'IMG_4141.jpeg' | asset_url }}" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <h2 class="h2">Qual é o seu tipo de caracol?</h2>
+    <p>Diga-nos e enviamos-lhe a rotina certa para a sua textura no dia do lançamento.</p>
+    <div class="tipos-rapidos">
+      <button type="button" data-tipo="ondulado">Ondulado</button>
+      <button type="button" data-tipo="cacheado">Cacheado</button>
+      <button type="button" data-tipo="crespo">Crespo</button>
+      <button type="button" data-tipo="nao-sei">Não sei</button>
+    </div>
+  </div>
+</section>
+
+<!-- HISTÓRIA -->
+<section class="secao historia" id="historia">
+  <div class="wrap historia-grid">
+    <div class="historia-esq">
+      <span class="caps" style="color:var(--terra)">A nossa história</span>
+      <h2 class="h2" style="margin-top:12px">Ondas com <em class="it">raízes.</em></h2>
+      <div class="rota" id="rota">
+        <svg viewBox="0 0 320 160" role="img" aria-label="Rota da Colômbia até Portugal, do outro lado do Atlântico">
+          <path class="arco" d="M44,120 C80,22 200,8 272,44"/>
+          <path class="mascara" d="M44,120 C80,22 200,8 272,44"/>
+          <circle class="halo" cx="272" cy="44" r="9"/>
+          <circle class="ponto" cx="44" cy="120" r="5.5"/>
+          <circle class="ponto pt" cx="272" cy="44" r="5.5"/>
+          <text class="meio" x="168" y="112" text-anchor="middle">um oceano de distância</text>
+          <text class="lugar" x="270" y="68" text-anchor="middle">Portugal</text>
+          <text class="sub" x="270" y="81" text-anchor="middle">onde nasce a ondão</text>
+          <text class="lugar" x="44" y="143" text-anchor="middle">Colômbia</text>
+          <text class="sub" x="44" y="156" text-anchor="middle">onde tudo começou</text>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <div class="capitulos" id="capitulos">
+        <span class="linha" aria-hidden="true"></span>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 1 · Colômbia</span>
+          <h3>O cabelo que ninguém sabia tratar.</h3>
+          <p>Cresci na Colômbia com caracóis que ninguém sabia cuidar. Ou os alisavam, ou os escondiam.</p>
+        </div>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 2 · Portugal</span>
+          <h3>As prateleiras erradas.</h3>
+          <p>Quando cheguei a Portugal, havia duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
+        </div>
+        <div class="capitulo">
+          <span class="rotulo">Capítulo 3 · De volta às raízes</span>
+          <h3>A resposta estava em casa.</h3>
+          <p>Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
+          <div class="foto-cap"><img width="1200" height="896" src="{{ 'historia-maos-cacay.jpg' | asset_url }}" alt="Mãos a segurar nozes de Cacay, com a planície da Orinoquía ao fundo" loading="lazy"></div>
+        </div>
+        <div class="capitulo">
+          <div class="assina"><b>Jhon</b><span>Fundador da ondão<br>Colombiano, a viver em Portugal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 100 LUGARES -->
+<section class="secao cem tex">
+  <div class="wrap">
+    <div class="cem-grid">
+      <div>
+        <div class="cem-topo">
+          <span class="caps">Lista VIP</span>
+          <div class="selo-cem" aria-hidden="true">
+            <svg viewBox="0 0 132 132"><defs><path id="circ-cem" d="M66,66 m-55,0 a55,55 0 1,1 110,0 a55,55 0 1,1 -110,0"/></defs><text><textPath href="#circ-cem" textLength="342" lengthAdjust="spacing">Lista VIP · 100 lugares · acesso antecipado ·</textPath></text></svg>
+            <div class="centro"><b>100</b><span>lugares</span></div>
+          </div>
+        </div>
+        <h2 class="h2">Ainda não temos milhares de clientes. <em class="it">Temos 100 lugares.</em></h2>
+        <ol class="vantagens">
+          <li><span class="n">01</span><b>Acesso antes de todos</b><span>O link de compra chega-lhe 48h antes do lançamento público.</span></li>
+          <li><span class="n">02</span><b>Rotina para o seu caracol</b><span>Como aplicar o ondão no seu tipo de cabelo, por email.</span></li>
+          <li><span class="n">03</span><b>A sua opinião conta</b><span>Os primeiros testemunhos desta página vão ser os seus.</span></li>
+        </ol>
+        <a href="{{ routes.root_url }}#vip" class="btn btn-verde btn-cem" id="cem">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="seguro">Grátis e sem compromisso. Pode sair da lista quando quiser.</span>
+      </div>
+      <div class="cem-fotos">
+        <div class="rolo tres">
+          <div class="retrato"><img width="896" height="1200" src="{{ 'modelo-ondulado-v2.jpg' | asset_url }}" alt="Homem com ondas definidas a passar a mão pelo cabelo" loading="lazy" style="object-position:50% 30%"><div class="rot"><b>Ondulado</b><span>Ondas soltas</span></div></div>
+          <div class="retrato"><img width="928" height="1152" src="{{ 'hero-modelo.jpg' | asset_url }}" alt="Mulher com caracóis definidos" loading="lazy" style="object-position:40% 20%"><div class="rot"><b>Cacheado</b><span>Caracóis definidos</span></div></div>
+          <div class="retrato"><img width="896" height="1200" src="{{ 'IMG_4137.jpeg' | asset_url }}" alt="Homem com cabelo crespo curto" loading="lazy"><div class="rot"><b>Crespo</b><span>Caracol fechado</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTA VIP -->
+<section class="vip tex" id="vip">
+  <div class="wrap">
+    <div>
+      <span class="caps" style="color:var(--rosa)">Lista VIP</span>
+      <h2 class="h2" style="margin-top:12px">Seja dos primeiros a <em class="it">sentir a diferença.</em></h2>
+      <p class="lead" style="margin-top:16px">Acesso 48h antes de todos e conteúdo sobre cuidar de ondas e caracóis. Sem spam.</p>
+    </div>
+    <form id="form-vip" novalidate>
+      <div class="campo">
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="nome@email.com">
+      </div>
+      <div class="campo">
+        <label for="nome">Primeiro nome</label>
+        <input id="nome" name="nome" autocomplete="given-name" placeholder="O seu nome">
+      </div>
+      <div class="campo">
+        <span class="rotulo" id="rotulo-cabelo">O meu cabelo é</span>
+        <div class="tipos-f" role="radiogroup" aria-labelledby="rotulo-cabelo">
+          <label><input type="radio" name="cabelo" value="ondulado">Ondulado</label>
+          <label><input type="radio" name="cabelo" value="cacheado">Cacheado</label>
+          <label><input type="radio" name="cabelo" value="crespo">Crespo</label>
+          <label><input type="radio" name="cabelo" value="nao-sei">Não sei</label>
+        </div>
+      </div>
+      <input type="hidden" name="plano" id="plano" value="unica">
+      <input type="hidden" name="origem" id="origem" value="">
+      <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão">
+      <label class="consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Política de privacidade</a>.</span></label>
+      <button class="btn btn-terra btn-full" type="submit">Quero saber primeiro</button>
+      <p class="msg" id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+
+
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-titulo" hidden>
+  <div class="pop-card">
+    <button class="pop-fechar" type="button" id="pop-fechar" aria-label="Fechar">×</button>
+    <div class="pop-in">
+      <span class="logo">ondão</span>
+      <div id="pop-passo1">
+        <p class="pop-titulo" id="pop-titulo">Qual é a sua <em>onda?</em></p>
+        <p class="pop-sub" style="margin-top:12px"><b>Responda a uma pergunta</b> e receba a rotina certa para o seu caracol.</p>
+        <div class="pop-opcoes" style="margin-top:16px">
+          <button type="button" data-tipo="ondulado">Ondulado</button>
+          <button type="button" data-tipo="cacheado">Cacheado</button>
+          <button type="button" data-tipo="crespo">Crespo</button>
+          <button type="button" data-tipo="nao-sei">Não sei</button>
+        </div>
+      </div>
+      <form id="pop-form" hidden novalidate>
+        <p class="pop-titulo" style="margin-top:28px;font-size:2rem;text-align:center">Está quase.</p>
+        <p class="pop-sub" style="text-align:center">Deixe o seu email e enviamos-lhe a rotina certa para cabelo <span id="pop-tipo-txt">ondulado</span> e o aviso quando abrirmos.</p>
+        <label for="pop-email" class="sr">Email</label>
+        <input type="email" id="pop-email" name="email" required autocomplete="email" placeholder="nome@email.com">
+        <input type="hidden" name="cabelo" id="pop-cabelo" value="">
+        <input type="hidden" name="origem" id="pop-origem" value="popup">
+        <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão (popup)">
+        <label class="consent"><input type="checkbox" name="consent" value="accepted" id="pop-consent" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Política de privacidade</a>.</span></label>
+        <button class="btn btn-terra" type="submit">Quero a minha rotina</button>
+        <p class="pop-msg" id="pop-msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button class="topo-btn" id="topo-btn" type="button" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+
+<div class="fixa" id="fixa"><a href="{{ routes.root_url }}#vip" class="btn btn-verde btn-preco" id="fixa-btn"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2 preco-vip"><b>19,99 €</b> · compra única</span></a></div>
+
+
+<script src="{{ 'ondao.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Página ondão",
+  "settings": [
+    {"type": "product", "id": "produto", "label": "Produto à venda", "info": "O preço e o botão de compra vêm deste produto. Quando o produto está ativo, o site muda sozinho de Lista VIP para pré-encomenda."},
+    {"type": "number", "id": "dias_preparacao", "label": "Dias até enviar (a contar do pagamento)", "default": 10},
+    {"type": "number", "id": "dias_devolucao", "label": "Dias para devolver (a contar da entrega)", "default": 14}
+  ],
+  "presets": [{"name": "Página ondão"}]
+}
+{% endschema %}

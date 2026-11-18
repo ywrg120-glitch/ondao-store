@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | default: 'pt-PT' }}">
+<head>
+<meta charset="utf-8">
+<title>{%- if template.name == 'index' -%}ondão — Creme Finalizador para Pentear{%- else -%}{{ page_title }} · ondão{%- endif -%}</title>
+<meta name="description" content="{{ page_description | default: 'Creme finalizador para pentear ondas e caracóis, feito à volta do óleo de Cacay da Colômbia. Define sem pesar e controla o frizz. Para ela e para ele.' | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="ondão — Ondas com raízes">
+<meta property="og:description" content="O creme finalizador que define ondas e caracóis sem pesar. Óleo de Cacay da Colômbia. Pré-encomenda em breve: entre na Lista VIP e saiba primeiro.">
+<meta property="og:image" content="{{ 'tubo-frente-v2.jpg' | asset_url }}">
+<meta name="theme-color" content="#1C3327">
+<script data-goatcounter="https://ondao.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+{{ 'ondao.css' | asset_url | stylesheet_tag }}
+{{ content_for_header }}
+</head>
+<body class="tpl-{{ template.name }}">
+{% section 'ondao-header' %}
+<main>
+{{ content_for_layout }}
+</main>
+{% section 'ondao-footer' %}
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% layout none %}
+<!doctype html>
+<html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cartão-presente · ondão</title>{{ 'ondao.css' | asset_url | stylesheet_tag }}</head>
+<body><section class="secao pagina"><div class="wrap estreito">
+<h1 class="h2">Cartão-presente</h1>
+<p>Valor: <b>{{ gift_card.balance | money }}</b></p>
+<p>Código: <b>{{ gift_card.code | format_code }}</b></p>
+<a class="btn btn-verde" href="{{ shop.url }}">Ir para a loja</a>
+</div></section></body></html>

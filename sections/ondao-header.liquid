@@ -1,0 +1,57 @@
+<div class="anuncio" aria-label="Avisos">
+  <div class="trilho">
+    <span>Envios grátis para Portugal acima de €35</span><span>Pré-venda em breve</span><span>Enviamos para toda a UE</span>
+    <span aria-hidden="true">Envios grátis para Portugal acima de €35</span><span aria-hidden="true">Pré-venda em breve</span><span aria-hidden="true">Enviamos para toda a UE</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <div>
+      <button class="ico-btn" id="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="links" aria-label="Principal">
+        <a href="{{ routes.root_url }}#produto">O creme</a>
+        <a href="{{ routes.root_url }}#ingredientes">Ingredientes</a>
+        <a href="{{ routes.root_url }}#historia">A nossa história</a>
+        <a href="{{ routes.root_url }}#faq">FAQ</a>
+      </nav>
+    </div>
+    <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
+    <div class="nav-dir">
+      <a class="ico-btn" href="{{ routes.root_url }}#vip" aria-label="Lista VIP">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      </a>
+      <a class="ico-btn" href="{{ routes.root_url }}#produto" aria-label="Ver o creme">
+        <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="menu" id="menu">
+    <div class="wrap">
+      <ul>
+        <li><a href="{{ routes.root_url }}#produto">O creme</a></li>
+        <li><a href="{{ routes.root_url }}#ingredientes">Ingredientes</a></li>
+        <li><a href="{{ routes.root_url }}#historia">A nossa história</a></li>
+        <li><a href="{{ routes.root_url }}#faq">Perguntas frequentes</a></li>
+        <li><a href="{{ routes.root_url }}#vip">Lista VIP</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<script>
+(function(){
+  var btn = document.getElementById("btn-menu"), menu = document.getElementById("menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", function(){
+    var aberto = menu.classList.toggle("aberto");
+    btn.setAttribute("aria-expanded", aberto);
+  });
+  menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("aberto"); btn.setAttribute("aria-expanded", false); }); });
+})();
+</script>
+
+{% schema %}
+{"name": "Cabeçalho ondão", "settings": []}
+{% endschema %}
