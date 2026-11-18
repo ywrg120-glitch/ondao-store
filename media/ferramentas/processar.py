@@ -47,8 +47,26 @@ def video(orig, slot):
                     "-movflags", "+faststart", "-an", str(destino)], check=True)
     return destino
 
+def baixar_links():
+    """Um ficheiro .url (ou .txt) com um link dentro é descarregado primeiro.
+    Nomes começados por "elenco-" vão para media/elenco/ (referências, não entram no site)."""
+    import urllib.request
+    for f in sorted(ENTRADA.iterdir()):
+        if f.suffix.lower() not in {".url", ".txt"}: continue
+        link = next((l.strip() for l in f.read_text().splitlines() if l.strip().startswith("http")), "")
+        if not link: continue
+        ext = Path(link.split("?")[0]).suffix.lower() or ".png"
+        destino = (RAIZ / "media/elenco" if f.stem.startswith("elenco-") else ENTRADA) / (f.stem + ext)
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        req = urllib.request.Request(link, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=120) as r, open(destino, "wb") as out:
+            shutil.copyfileobj(r, out)
+        f.unlink()
+        print(f"Descarregado: {f.name} -> {destino.relative_to(RAIZ)}")
+
 def main():
     ORIGINAIS.mkdir(parents=True, exist_ok=True)
+    baixar_links()
     feitos, ignorados = [], []
     for f in sorted(ENTRADA.iterdir()):
         if f.name.startswith(".") or f.name.lower() == "leia-me.md": continue

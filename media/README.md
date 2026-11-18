@@ -14,6 +14,10 @@ Para trocar uma imagem não é preciso mexer em código.
 
 O original fica guardado em `media/originais/`.
 
+## Ou: colar só o link da imagem
+
+Em vez de carregar o ficheiro, crie em `media/entrada` um ficheiro de texto com o nome do lugar e a extensão `.url` (ex.: `03-cartao-1.url`) e cole lá dentro o link da imagem ou vídeo (Higgsfield, Midjourney, etc.). O GitHub descarrega e publica. Nomes começados por `elenco-` ficam guardados em `media/elenco/` como referência.
+
 ## Ou: criar a imagem com IA diretamente no GitHub (Gemini)
 
 1. GitHub → separador **Actions** → **Criar imagem para o site (IA)** → **Run workflow**.
