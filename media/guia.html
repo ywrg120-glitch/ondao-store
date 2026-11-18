@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de imagens ondão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..650;1,9..144,400..600&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* Paleta da marca ondão (sistema de design do utilizador); um só tema. Layout: mapa da página → elenco → um cartão por lugar, pela ordem do site. */
+:root{
+  --verde:#1C3327; --verde2:#2E5240; --salvia:#6B9A7B; --terra:#C55A37;
+  --creme:#F7F3EC; --papel:#FFFDF9; --linha:#DDD3C6; --cinza:#6A625A; --tinta:#1E1B18;
+  --serif:"Fraunces", Georgia, serif; --sans:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--creme);color:var(--tinta);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header{padding:36px 0 18px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,6vw,3rem);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:italic;color:var(--terra)}
+.lead{max-width:62ch;margin-top:12px;color:var(--cinza)}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.4rem,4vw,1.9rem);letter-spacing:-.01em;margin:40px 0 14px;text-wrap:balance}
+.caps{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+nav.mapa{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+nav.mapa a{display:inline-flex;gap:6px;align-items:center;text-decoration:none;color:var(--verde);background:var(--papel);border:1px solid var(--linha);border-radius:999px;padding:6px 12px;font-size:.82rem}
+nav.mapa a b{font-variant-numeric:tabular-nums;color:var(--terra)}
+.passos{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.passo{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px}
+.passo b{display:block;font-family:var(--serif);font-size:1.05rem;margin-bottom:4px}
+.passo p{font-size:.88rem;color:var(--cinza)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;background:#EFE8DD;border-radius:5px;padding:1px 5px;word-break:break-all}
+.elenco{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.pessoa{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:14px;display:grid;gap:6px}
+.pessoa .nome{font-family:var(--serif);font-size:1.2rem}
+.pessoa .tipo{display:inline-block;width:max-content;background:#E4EBE2;color:var(--verde2);border-radius:999px;padding:2px 9px;font-size:.7rem;font-weight:700;letter-spacing:.06em}
+.pessoa p{font-size:.84rem;color:var(--cinza)}
+.estilo{background:var(--verde);color:#EFE9DF;border-radius:16px;padding:18px;margin-top:12px;display:grid;gap:10px}
+.estilo p{font-size:.88rem}
+.secao{margin-top:34px}
+.secao-cab{display:flex;align-items:baseline;gap:10px;border-top:1.5px solid var(--verde);padding-top:12px}
+.secao-cab .n{font-family:var(--serif);font-size:1.6rem;color:var(--terra);font-variant-numeric:tabular-nums}
+.secao-cab h3{font-family:var(--serif);font-weight:500;font-size:1.3rem}
+.secao-cab span{color:var(--cinza);font-size:.85rem;margin-left:auto;text-align:right}
+.lugares{display:grid;gap:14px;margin-top:14px}
+.lugar{background:var(--papel);border:1px solid var(--linha);border-radius:16px;padding:14px;display:grid;gap:14px;grid-template-columns:1fr}
+.esboco{display:flex;align-items:flex-start;justify-content:center;background:#EFE8DD;border-radius:12px;padding:12px}
+.esboco svg{width:100%;height:auto;max-height:300px}
+.info{display:grid;gap:10px;align-content:start;min-width:0}
+.info .topo{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:700;letter-spacing:.05em}
+.chip.img{background:#E4EBE2;color:var(--verde2)}
+.chip.vid{background:#F6DED3;color:#8A3A20}
+.chip.real{background:#1C3327;color:#fff}
+.chip.dim{background:transparent;border:1px solid var(--linha);color:var(--cinza);font-variant-numeric:tabular-nums}
+.info h4{font-family:var(--serif);font-weight:500;font-size:1.15rem;line-height:1.2}
+.info .desc{font-size:.9rem}
+.nome-f{font-size:.8rem;color:var(--cinza)}
+.prompt{position:relative;background:#F3EEE6;border:1px solid var(--linha);border-radius:12px;padding:12px 12px 48px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-word;color:#3A332D}
+.copiar{position:absolute;right:10px;bottom:10px;border:0;border-radius:999px;background:var(--verde);color:#fff;font:600 .78rem var(--sans);padding:8px 14px;cursor:pointer}
+.copiar:focus-visible,nav.mapa a:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+.copiar.ok{background:var(--salvia)}
+.dica{font-size:.8rem;color:var(--cinza);border-left:3px solid var(--terra);padding-left:10px}
+footer{margin:48px 0 40px;color:var(--cinza);font-size:.85rem}
+@media (min-width:760px){.lugar{grid-template-columns:260px 1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="caps" style="color:var(--terra)">ondão · loja de um só produto</span>
+    <h1>Guia de imagens e vídeos <em>do site</em></h1>
+    <p class="lead">Cada lugar da página tem um nome, um tamanho e um esboço do que lá deve aparecer. Crie a imagem com IA a partir do prompt, dê-lhe o nome do lugar e carregue-a no GitHub: o site atualiza sozinho.</p>
+    <nav class="mapa" id="mapa" aria-label="Secções da página"></nav>
+  </header>
+
+  <h2>Como pôr uma imagem no site</h2>
+  <div class="passos">
+    <div class="passo"><b>1. Criar</b><p>Copie o prompt do lugar e gere a imagem (Gemini, Higgsfield, Midjourney…). Os prompts estão em inglês porque as ferramentas de IA respondem melhor assim.</p></div>
+    <div class="passo"><b>2. Dar o nome</b><p>Renomeie o ficheiro para o nome do lugar, por exemplo <code>01-topo-telemovel.png</code>. Qualquer tamanho serve: o GitHub corta e comprime.</p></div>
+    <div class="passo"><b>3. Carregar</b><p>GitHub → <code>media/entrada</code> → Add file → Upload files → Commit changes. Em cerca de 2 minutos está no site.</p></div>
+    <div class="passo"><b>Ou tudo no GitHub</b><p>Actions → <b style="display:inline;font-family:inherit;font-size:inherit">Criar imagem para o site (IA)</b> → escolha o lugar e cole o prompt. O Gemini gera e publica.</p></div>
+  </div>
+
+  <h2>O elenco: as mesmas pessoas em todo o site</h2>
+  <p class="lead" style="margin-top:0">Cinco pessoas recorrentes tornam o site humano e coerente. Gere primeiro o retrato de cada uma (secção 07) e use-o como imagem de referência nas outras fotos, para a cara não mudar.</p>
+  <div class="elenco" id="elenco"></div>
+  <div class="estilo">
+    <span class="caps">Estilo comum (já está dentro de cada prompt)</span>
+    <p>Fotografia espontânea, como filme de 35 mm, luz natural de janela, pele real com textura, cabelo com frizz natural e fios soltos. Lisboa e arredores. Paleta: verde-floresta, terracota e creme quente. Nada de poses de estúdio nem pele de plástico.</p>
+    <p>O tubo, quando aparece: tubo mate cor de cobre-terracota, a palavra "Ondão" na vertical em verde escuro e tampa verde-salva. Use sempre a foto do tubo como referência (<code>assets/ondao-02-galeria-1.jpg</code>).</p>
+  </div>
+
+  <div id="secoes"></div>
+
+  <footer>Lista técnica dos lugares: <code>media/slots.json</code> · instruções: <code>media/README.md</code> no repositório ondao-store. Os vídeos ligam-se em Shopify → Temas → Personalizar → Definições do tema → Imagens e vídeos ondão.</footer>
+</div>
+
+<script>
+const ESTILO = "Candid lifestyle photograph shot on 35mm film (Kodak Portra 400), soft natural window light, warm earthy palette of deep forest green, terracotta and warm cream, real skin texture with pores, natural frizz and flyaways, unposed editorial feel, Lisbon, Portugal.";
+const NEG = "No text, no logos except the product, no watermark, natural hands with five fingers, no plastic skin.";
+const TUBO = "a matte copper-terracotta squeeze tube with the word \"Ondão\" written vertically in deep green and a sage green flip cap (match the reference image exactly)";
+const VID = "Seamless loop, slow and calm, gentle handheld drift, no cuts, no text, no sound needed.";
+
+const ELENCO = [
+  {nome:"Inês", tipo:"3C · caracóis", d:"28 anos, luso-cabo-verdiana, pele castanha média, caracóis volumosos até aos ombros, sardas, argolas douradas pequenas.", en:"Inês, a 28-year-old Portuguese-Cape Verdean woman with medium brown skin, voluminous shoulder-length 3C curls, light freckles and small gold hoop earrings"},
+  {nome:"Tiago", tipo:"2C · ondas", d:"35 anos, português, pele morena, ondas escuras até ao queixo, barba curta, camisa de linho.", en:"Tiago, a 35-year-old Portuguese man with olive skin, chin-length dark 2C wavy hair, a short beard and a linen shirt"},
+  {nome:"Marisol", tipo:"3A · cachos", d:"31 anos, colombiana de Bogotá, pele clara-morena, cachos longos castanho-escuros com pontas caramelo.", en:"Marisol, a 31-year-old Colombian woman with light tan skin and long dark brown 3A curls with caramel ends"},
+  {nome:"Dário", tipo:"4C · crespo", d:"27 anos, luso-angolano, pele castanha escura, cabelo crespo curto e definido, sorriso aberto.", en:"Dário, a 27-year-old Angolan-Portuguese man with deep brown skin, short defined 4C coily hair and a wide warm smile"},
+  {nome:"Helena", tipo:"2B/3A · grisalha", d:"54 anos, portuguesa, ondas grisalhas sal-e-pimenta, rugas de expressão, ar descontraído.", en:"Helena, a 54-year-old Portuguese woman with salt-and-pepper 2B/3A waves, laugh lines and a relaxed expression"}
+];
+const P = n => ELENCO.find(e => e.nome === n).en;
+
+/* esboços: s = [proporção w,h], pessoas (x,y,r em %), texto (y,h em %), tubo, mãos, cena */
+const SECOES = [
+ {n:"01", t:"Topo", onde:"primeira coisa que se vê", lugares:[
+  {id:"01-topo-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Topo no telemóvel", desc:"Inês e Dário a rir num miradouro de Lisboa ao fim da tarde. Caras na metade de cima; o terço de baixo calmo, porque leva o título por cima.",
+   s:[4,5], pess:[[36,30,10],[64,27,10]], txt:[64,30],
+   prompt:`${P("Inês")} and ${P("Dário")} laughing together at a Lisbon miradouro at golden hour, wind moving their hair, terracotta rooftops and the river softly blurred behind them. Framed from mid-chest up, faces in the upper half; keep the lower third simple and slightly darker so a headline can sit on top. ${ESTILO} ${NEG}`},
+  {id:"01-topo-computador", tipo:"img", dim:"1920×1080 · 16:9", titulo:"Topo no computador", desc:"A mesma cena em plano largo. Pessoas ao centro, caras acima do meio; a faixa de baixo livre para o título.",
+   s:[16,9], pess:[[43,32,6],[57,30,6]], txt:[62,30],
+   prompt:`Wide horizontal version: ${P("Inês")} and ${P("Dário")} laughing together at a Lisbon miradouro at golden hour, wind in their hair, terracotta rooftops and the Tagus river softly out of focus. Subjects centered, faces just above the middle; lower third calm and darker for a centered headline. ${ESTILO} ${NEG}`},
+  {id:"01-topo-video-telemovel", tipo:"vid", dim:"9:16 · 6–10 s", titulo:"Vídeo do topo (telemóvel)", desc:"Animar a imagem do topo (imagem → vídeo): vento no cabelo, um riso, câmara quase parada. Liga-se nas definições do tema.",
+   s:[9,16], pess:[[38,32,13],[63,29,13]], txt:[64,30], video:true,
+   prompt:`Image-to-video from 01-topo-telemovel. ${P("Inês")} and ${P("Dário")} at a Lisbon miradouro at golden hour; the wind lifts their curls, she laughs and touches her hair, he smiles at her. ${VID} Vertical 9:16, 8 seconds.`},
+  {id:"01-topo-video-computador", tipo:"vid", dim:"16:9 · 6–10 s", titulo:"Vídeo do topo (computador)", desc:"O mesmo movimento em horizontal.",
+   s:[16,9], pess:[[43,32,6],[57,30,6]], txt:[62,30], video:true,
+   prompt:`Image-to-video from 01-topo-computador. Same Lisbon miradouro scene at golden hour; wind moving their curls, a shared laugh, rooftops softly out of focus. ${VID} Horizontal 16:9, 8 seconds.`}
+ ]},
+ {n:"02", t:"Galeria do produto", onde:"ao lado do preço e do botão", lugares:[
+  {id:"02-galeria-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"O tubo", desc:"Foto limpa do tubo de frente, fundo creme liso, sombra suave. É a primeira foto que o cliente vê junto ao preço.",
+   s:[4,5], tubo:[50,50,1.4],
+   prompt:`Product photograph of ${TUBO}, standing upright and centered on a seamless warm cream background (#F7F3EC), soft diffused daylight from the left, gentle natural shadow, crisp label, premium minimal look. ${NEG}`},
+  {id:"02-galeria-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Na mão, de manhã", desc:"A mão da Marisol (anéis finos) a segurar o tubo na casa de banho, luz da manhã, cachos desfocados ao fundo.",
+   s:[4,5], tubo:[52,48,1], maos:[[50,62]], pess:[[70,20,9]],
+   prompt:`Close-up of a woman's hand with thin gold rings holding ${TUBO} in a bright bathroom in the morning; behind, slightly out of focus, ${P("Marisol")} with long curls. Natural morning light, linen towel, ceramic sink. ${ESTILO} ${NEG}`},
+  {id:"02-galeria-3", tipo:"img", dim:"1080×1350 · 4:5", titulo:"A textura", desc:"Uma noz de creme na ponta dos dedos, ou espalhada na palma. Mostra que é leve e cremoso.",
+   s:[4,5], maos:[[50,55]], creme:[50,50],
+   prompt:`Macro photograph of a hazelnut-sized dollop of silky ivory hair cream on fingertips, soft and light texture visible, warm cream background, natural daylight, shallow depth of field. ${NEG}`},
+  {id:"02-galeria-4", tipo:"img", dim:"1080×1350 · 4:5", titulo:"A amachucar", desc:"A Inês a amachucar os caracóis com as duas mãos, cabelo húmido, frente ao espelho.",
+   s:[4,5], pess:[[50,40,16]], maos:[[30,40],[70,40]],
+   prompt:`${P("Inês")} scrunching her damp curls upward with both hands in front of a bathroom mirror, eyes half closed, relaxed morning moment, the product tube on the sink edge. ${ESTILO} ${NEG}`},
+  {id:"02-galeria-5", tipo:"img", dim:"1080×1350 · 4:5", titulo:"O resultado", desc:"O Tiago com as ondas secas e definidas, a passar a mão pelo cabelo, à janela. O tubo numa prateleira.",
+   s:[4,5], pess:[[48,36,15]], tubo:[80,72,.55],
+   prompt:`${P("Tiago")} running a hand through his dry, defined, soft waves by a window with linen curtains, natural shine, no wet look; on a wooden shelf in the corner sits ${TUBO}. ${ESTILO} ${NEG}`},
+  {id:"02-galeria-video", tipo:"vid", dim:"4:5 · 6–10 s", titulo:"Vídeo na galeria", desc:"Mãos a apertar o tubo, esfregar o creme nas palmas e amachucar os caracóis. Último slide da galeria.",
+   s:[4,5], maos:[[38,55],[62,55]], tubo:[50,30,.7], video:true,
+   prompt:`Close-up video: hands squeeze a small amount of cream from ${TUBO} into the palm, rub palms together, then scrunch damp curls upward. Warm bathroom daylight. ${VID} Vertical 4:5, 8 seconds.`}
+ ]},
+ {n:"03", t:"Para ela e para ele", onde:"dois cartões lado a lado", lugares:[
+  {id:"03-cartao-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Dias de humidade", desc:"O Tiago num café em Lisboa, chuva no vidro, ondas com forma. Momento real, não pose.",
+   s:[4,5], pess:[[45,34,15]], chuva:true,
+   prompt:`${P("Tiago")} sitting by a café window in Lisbon on a rainy humid morning, raindrops on the glass, a cup of coffee, his waves defined and frizz-free, looking outside, candid moment. ${ESTILO} ${NEG}`},
+  {id:"03-cartao-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"De manhã, com pressa", desc:"A Marisol no corredor, chaves na mão, a amachucar os cachos à pressa antes de sair.",
+   s:[4,5], pess:[[50,34,15]], maos:[[32,38],[68,38]],
+   prompt:`${P("Marisol")} in her apartment hallway in the morning, keys in one hand, quickly scrunching her curls with the other before leaving, light from the open front door, a little rushed and smiling. ${ESTILO} ${NEG}`}
+ ]},
+ {n:"04", t:"Como se usa", onde:"vídeo vertical + 3 passos (liga-se nas definições)", lugares:[
+  {id:"04-como-usar-video", tipo:"vid", dim:"9:16 · 12–15 s", titulo:"Vídeo tutorial", desc:"Estilo vídeo de cliente (UGC). A Inês ao espelho: seca com a toalha, põe uma noz de creme, amachuca, sorri no fim.",
+   s:[9,16], pess:[[50,30,18]], maos:[[30,50],[70,50]], video:true,
+   prompt:`Vertical UGC-style tutorial, phone camera feel. ${P("Inês")} in front of her bathroom mirror: 1) blots damp curls with a cotton towel, 2) squeezes a hazelnut-sized amount from ${TUBO} into her palms, 3) scrunches it through her curls from ends to roots, 4) smiles at the camera. Natural light, real home. 9:16, 12-15 seconds, no text.`},
+  {id:"04-como-usar-capa", tipo:"img", dim:"1080×1920 · 9:16", titulo:"Capa do vídeo", desc:"Uma fotografia do momento de amachucar, para aparecer antes do vídeo começar.",
+   s:[9,16], pess:[[50,30,18]], maos:[[30,40],[70,40]], tubo:[78,80,.5],
+   prompt:`${P("Inês")} scrunching her curls in front of a bathroom mirror, mid-movement, smiling, ${TUBO} on the sink. Vertical, phone-camera framing. ${ESTILO} ${NEG}`}
+ ]},
+ {n:"05", t:"Fundador", onde:"foto redonda na citação verde (liga-se nas definições)", lugares:[
+  {id:"05-fundador", tipo:"real", dim:"1080×1350 · foto real", titulo:"A sua foto", desc:"Esta não deve ser de IA: é a sua cara e a sua história. Foto de telemóvel, luz de janela, cabelo ao natural, olhar para a câmara. Fica num círculo.",
+   s:[4,5], pess:[[50,40,22]], circulo:true,
+   prompt:`Sem prompt: use uma fotografia real sua. Dica: de frente para uma janela, telemóvel à altura dos olhos, fundo simples, sorriso natural. Carregue como 05-fundador.jpg.`}
+ ]},
+ {n:"06", t:"Banner das origens", onde:"\"Da Orinoquía para o seu cabelo\"", lugares:[
+  {id:"06-banner-computador", tipo:"img", dim:"1920×1080 · 16:9", titulo:"Banner no computador", desc:"Mãos de uma agricultora colombiana a segurar nozes de Cacay, planície da Orinoquía ao pôr do sol. O texto vai no topo: deixe céu livre.",
+   s:[16,9], maos:[[55,70]], txt:[6,30], campo:true,
+   prompt:`Weathered hands of a smiling Colombian farmer woman holding freshly cracked cacay nuts, the Orinoquía plains and moriche palms at sunset behind her, warm golden light. Keep the top third as open sky for a headline. Documentary photography, 35mm film look, honest and respectful. ${NEG}`},
+  {id:"06-banner-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Banner no telemóvel", desc:"A mesma cena na vertical, com céu em cima para o texto.",
+   s:[4,5], maos:[[50,72]], txt:[6,30], campo:true,
+   prompt:`Vertical version: hands of a Colombian farmer woman holding cracked cacay nuts, Orinoquía plains and moriche palms at sunset; open sky in the top third for a headline. Documentary photography, 35mm film look. ${NEG}`}
+ ]},
+ {n:"07", t:"Ondas com raízes", onde:"quatro retratos lado a lado: faça estes primeiro", lugares:[
+  {id:"07-retrato-1", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Helena", desc:"Do peito para cima, parede quente lisa, a rir. Mostra que a ondão é para todas as idades.",
+   s:[3,4], pess:[[50,38,20]],
+   prompt:`Portrait of ${P("Helena")}, chest up, laughing and looking slightly off camera, plain warm-toned plaster wall, soft window light from the side. ${ESTILO} ${NEG}`},
+  {id:"07-retrato-2", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Dário", desc:"Mesma parede e luz. Sorriso aberto.",
+   s:[3,4], pess:[[50,38,20]],
+   prompt:`Portrait of ${P("Dário")}, chest up, smiling, plain warm-toned plaster wall, soft side window light, cream knit sweater. ${ESTILO} ${NEG}`},
+  {id:"07-retrato-3", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Marisol", desc:"Mesma parede e luz. Mão no cabelo.",
+   s:[3,4], pess:[[50,38,20]],
+   prompt:`Portrait of ${P("Marisol")}, chest up, one hand lifting her curls, calm gaze, plain warm-toned plaster wall, soft side window light, forest green top. ${ESTILO} ${NEG}`},
+  {id:"07-retrato-4", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Tiago", desc:"Mesma parede e luz. Olhar para o lado.",
+   s:[3,4], pess:[[50,38,20]],
+   prompt:`Portrait of ${P("Tiago")}, chest up, looking out of frame toward a window, plain warm-toned plaster wall, soft side light, terracotta knit. ${ESTILO} ${NEG}`}
+ ]}
+];
+
+function esboco(l){
+  const [a,b] = l.s, W = 200, H = Math.round(W*b/a), x = v => v/100*W, y = v => v/100*H;
+  let g = `<rect width="${W}" height="${H}" rx="8" fill="#FFFDF9" stroke="#1C3327" stroke-width="1.5"/>`;
+  if (l.campo) g += `<path d="M0 ${y(55)} Q ${x(30)} ${y(50)} ${x(55)} ${y(56)} T ${W} ${y(54)} V ${H} H 0 Z" fill="#E4EBE2"/><line x1="${x(15)}" y1="${y(55)}" x2="${x(15)}" y2="${y(38)}" stroke="#6B9A7B" stroke-width="1.5"/><circle cx="${x(15)}" cy="${y(36)}" r="6" fill="none" stroke="#6B9A7B"/><line x1="${x(85)}" y1="${y(55)}" x2="${x(85)}" y2="${y(40)}" stroke="#6B9A7B" stroke-width="1.5"/><circle cx="${x(85)}" cy="${y(38)}" r="6" fill="none" stroke="#6B9A7B"/>`;
+  if (l.chuva) for (let i=0;i<14;i++){ const cx = (i*37)%W, cy = (i*53)%H; g += `<line x1="${cx}" y1="${cy}" x2="${cx-3}" y2="${cy+9}" stroke="#6B9A7B" stroke-width="1"/>`; }
+  (l.pess||[]).forEach(([px,py,r])=>{
+    const R = r/100*W, cx = x(px), cy = y(py);
+    let cach = ""; for (let k=0;k<9;k++){ const ang = Math.PI*(1.05+k*0.11); cach += `<circle cx="${(cx+Math.cos(ang)*R*1.05).toFixed(1)}" cy="${(cy+Math.sin(ang)*R*1.05).toFixed(1)}" r="${(R*.32).toFixed(1)}" fill="none" stroke="#C55A37" stroke-width="1.3"/>`; }
+    g += cach + `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#F3E6DA" stroke="#1C3327" stroke-width="1.3"/>`;
+    g += `<path d="M ${cx-R*1.9} ${Math.min(H, cy+R*3.4)} Q ${cx} ${cy+R*1.2} ${cx+R*1.9} ${Math.min(H, cy+R*3.4)}" fill="none" stroke="#1C3327" stroke-width="1.3"/>`;
+  });
+  (l.maos||[]).forEach(([mx,my])=>{ const cx=x(mx), cy=y(my); g += `<path d="M ${cx-12} ${cy+10} q 0 -14 6 -16 q 2 -6 6 0 q 3 -7 6 0 q 4 -5 6 2 q 2 8 -2 16 z" fill="#F3E6DA" stroke="#1C3327" stroke-width="1.2"/>`; });
+  if (l.creme) g += `<ellipse cx="${x(l.creme[0])}" cy="${y(l.creme[1])}" rx="10" ry="6" fill="#FFFDF9" stroke="#C55A37" stroke-width="1.2"/>`;
+  if (l.tubo){ const [tx,ty,k]=l.tubo, w=22*k, h=70*k, cx=x(tx), cy=y(ty);
+    g += `<rect x="${cx-w/2}" y="${cy-h/2}" width="${w}" height="${h*.82}" rx="3" fill="#C55A37" opacity=".85"/><rect x="${cx-w/2+1}" y="${cy-h/2+h*.82}" width="${w-2}" height="${h*.18}" rx="2" fill="#6B9A7B"/><text x="${cx}" y="${cy-h*.05}" transform="rotate(-90 ${cx} ${cy-h*.05})" text-anchor="middle" font-family="Fraunces, serif" font-size="${8*k}" fill="#1C3327">Ondão</text>`; }
+  if (l.txt){ const [ty,th]=l.txt; g += `<rect x="${x(10)}" y="${y(ty)}" width="${x(80)}" height="${y(th)}" rx="6" fill="none" stroke="#1C3327" stroke-dasharray="4 3"/><text x="${W/2}" y="${y(ty+th/2)+4}" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="10" fill="#1C3327">título por cima</text>`; }
+  if (l.circulo) g += `<circle cx="${W/2}" cy="${y(45)}" r="${W*.36}" fill="none" stroke="#C55A37" stroke-dasharray="5 4" stroke-width="1.5"/><text x="${W/2}" y="${H-10}" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="10" fill="#6A625A">corte redondo</text>`;
+  if (l.video) g += `<circle cx="${W-18}" cy="18" r="11" fill="#1C3327"/><path d="M ${W-21} 12 L ${W-12} 18 L ${W-21} 24 Z" fill="#fff"/>`;
+  g += `<text x="8" y="${H-8}" font-family="Instrument Sans, sans-serif" font-size="9" fill="#6A625A">${a}:${b}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Esboço do lugar ${l.id}">${g}</svg>`;
+}
+
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+document.getElementById("elenco").innerHTML = ELENCO.map(e => `<div class="pessoa"><span class="nome">${e.nome}</span><span class="tipo">${e.tipo}</span><p>${e.d}</p></div>`).join("");
+document.getElementById("mapa").innerHTML = SECOES.map(s => `<a href="#s${s.n}"><b>${s.n}</b>${s.t}</a>`).join("");
+document.getElementById("secoes").innerHTML = SECOES.map(s => `
+  <section class="secao" id="s${s.n}">
+    <div class="secao-cab"><span class="n">${s.n}</span><h3>${s.t}</h3><span>${s.onde}</span></div>
+    <div class="lugares">${s.lugares.map(l => `
+      <article class="lugar">
+        <div class="esboco">${esboco(l)}</div>
+        <div class="info">
+          <div class="topo"><span class="chip ${l.tipo === "vid" ? "vid" : l.tipo === "real" ? "real" : "img"}">${l.tipo === "vid" ? "Vídeo" : l.tipo === "real" ? "Foto real" : "Imagem IA"}</span><span class="chip dim">${l.dim}</span></div>
+          <h4>${l.titulo}</h4>
+          <p class="desc">${l.desc}</p>
+          <p class="nome-f">Nome do ficheiro: <code>${l.id}</code> + .png / .jpg${l.tipo === "vid" ? " / .mp4 / .mov" : ""}</p>
+          <div class="prompt"><span>${esc(l.prompt)}</span><button class="copiar" type="button" data-id="${l.id}">Copiar prompt</button></div>
+        </div>
+      </article>`).join("")}
+    </div>
+  </section>`).join("");
+
+const PROMPTS = Object.fromEntries(SECOES.flatMap(s => s.lugares.map(l => [l.id, l.prompt])));
+document.addEventListener("click", async e => {
+  const b = e.target.closest(".copiar"); if (!b) return;
+  const txt = PROMPTS[b.dataset.id];
+  try { await navigator.clipboard.writeText(txt); }
+  catch (err) {
+    const r = document.createRange(); r.selectNodeContents(b.previousElementSibling);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    b.textContent = "Selecionado: copie"; return;
+  }
+  b.textContent = "Copiado"; b.classList.add("ok");
+  setTimeout(() => { b.textContent = "Copiar prompt"; b.classList.remove("ok"); }, 1800);
+});
+</script>
+</body>
+</html>
