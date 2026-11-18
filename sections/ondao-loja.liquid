@@ -175,16 +175,26 @@
     </div>
   </section>
 
-  <!-- BANNER COM FOTO -->
-  <section class="lj-banner">
-    <picture>
-      <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
-      <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Mãos a segurar nozes de Cacay num campo da Orinoquía" loading="lazy">
-    </picture>
-    <div class="lj-banner-txt">
-      <h2 class="lj-h2">Da Orinoquía para o seu cabelo</h2>
-      <p>Conheça os cinco ativos da fórmula e de onde vêm.</p>
-      <a class="lj-btn lj-btn-escuro" href="/pages/ingredientes">Ver os ingredientes</a>
+  <!-- ORIGEM + MAPA DE INGREDIENTES -->
+  <section class="lj-origem">
+    <div class="lj-origem-foto">
+      <picture>
+        <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
+        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Agricultora colombiana a mostrar nozes de Cacay acabadas de abrir, na Orinoquía" loading="lazy">
+      </picture>
+      <span class="lj-origem-selo">Orinoquía · Colômbia</span>
+    </div>
+    <div class="lj-origem-txt">
+      <span class="lj-olho">Da Orinoquía para o seu cabelo</span>
+      <h2 class="lj-h2">Cinco ativos. <em>Zero enchimento.</em></h2>
+      <ul class="lj-ings">
+        <li><img src="{{ 'IMG_4142.jpeg' | asset_url }}" width="80" height="80" alt="" loading="lazy"><div><b>Óleo de Cacay</b><span>O ativo principal. Nutre e dá brilho com toque seco.</span></div></li>
+        <li><img src="{{ 'ing-sacha-inchi.jpg' | asset_url }}" width="80" height="80" alt="" loading="lazy"><div><b>Sacha Inchi</b><span>Ultraleve e rico em ómega-3. Brilho sem peso.</span></div></li>
+        <li><img src="{{ 'ing-ungurahui.jpg' | asset_url }}" width="80" height="80" alt="" loading="lazy"><div><b>Ungurahui</b><span>Usado há gerações na Amazónia. Suavidade.</span></div></li>
+        <li><img src="{{ 'ing-quinoa.jpg' | asset_url }}" width="80" height="80" alt="" loading="lazy"><div><b>Proteína de quinoa</b><span>Estrutura e elasticidade para o caracol.</span></div></li>
+        <li><img src="{{ 'ing-poliglutamico.jpg' | asset_url }}" width="80" height="80" alt="" loading="lazy"><div><b>Ácido Poliglutâmico</b><span>Retém a hidratação. Menos frizz.</span></div></li>
+      </ul>
+      <a class="lj-btn lj-btn-claro" href="/pages/ingredientes">Ver os ingredientes</a>
     </div>
   </section>
 
