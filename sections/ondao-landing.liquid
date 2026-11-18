@@ -112,7 +112,8 @@
   </div>
 </section>
 
-<!-- PARA CADA ONDA -->
+<!-- PARA CADA ONDA (só na página inicial) -->
+{%- unless section.settings.vista == 'creme' -%}
 <section class="secao" style="padding-top:0">
   <div class="wrap">
     <div class="cabeca centro">
@@ -135,6 +136,7 @@
     </div>
   </div>
 </section>
+{%- endunless -%}
 
 <!-- FUNDADOR -->
 {%- unless section.settings.vista == 'creme' -%}
