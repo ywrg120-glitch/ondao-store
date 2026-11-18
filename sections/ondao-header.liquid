@@ -1,6 +1,6 @@
 {%- liquid
   assign cta_p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
-  assign cta_link = routes.root_url | append: '#vip'
+  assign cta_link = '/pages/lista'
   assign cta_txt = 'Quero o meu ondão'
   if cta_p != blank
     assign cta_v = cta_p.selected_or_first_available_variant
@@ -32,7 +32,7 @@
     <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
     <div class="nav-dir">
       <a class="btn btn-verde nav-cta" id="nav-cta" href="{{ cta_link }}" data-checkout="{% if cta_link contains '/cart/' %}1{% endif %}">{{ cta_txt }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ico-btn" href="{{ routes.root_url }}#vip" aria-label="Lista VIP">
+      <a class="ico-btn" href="/pages/lista" aria-label="Lista VIP">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
       </a>
       <a class="ico-btn" href="/pages/creme" aria-label="Ver o creme">
@@ -47,7 +47,7 @@
         <li><a href="/pages/ingredientes">Ingredientes</a></li>
         <li><a href="/pages/historia">A nossa história</a></li>
         <li><a href="/pages/faq">Perguntas frequentes</a></li>
-        <li><a href="{{ routes.root_url }}#vip">Lista VIP</a></li>
+        <li><a href="/pages/lista">Lista VIP</a></li>
       </ul>
     </div>
   </div>
@@ -77,7 +77,7 @@
 })();
 </script>
 
-{%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' -%}
+{%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.suffix == 'creme' or template.suffix == 'lista' -%}
 <div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money }}</b> · pré-encomenda</span>{%- endif -%}</a></div>
 {%- endunless -%}
 

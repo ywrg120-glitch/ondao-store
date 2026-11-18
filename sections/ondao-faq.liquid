@@ -21,7 +21,7 @@
     {%- if p != blank and p.selected_or_first_available_variant.available -%}
       <a class="btn btn-verde" href="/cart/{{ p.selected_or_first_available_variant.id }}:1">Quero o meu ondão · {{ p.selected_or_first_available_variant.price | money }}</a>
     {%- else -%}
-      <a class="btn btn-verde" href="{{ routes.root_url }}#vip">Quero o meu ondão</a>
+      {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">Quero o meu ondão</a>
     {%- endif -%}
     <a class="pg-voltar" href="{{ routes.root_url }}">Voltar ao creme</a>
   </div>

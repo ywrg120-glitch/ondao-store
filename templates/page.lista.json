@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "ondao-lista",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

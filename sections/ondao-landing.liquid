@@ -6,8 +6,12 @@
   else
     assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
   endif
+  assign cta_link = '/pages/lista'
   if p != blank
     assign v = p.selected_or_first_available_variant
+    if v.available
+      assign cta_link = '/cart/' | append: v.id | append: ':1'
+    endif
   endif
 -%}
 <script>
@@ -38,7 +42,7 @@
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="8.5" r="2.6"/><path d="M3 19.5c.6-3.3 2.8-5.3 5.5-5.3s4.9 2 5.5 5.3M14.6 14.4c.5-.1.9-.2 1.4-.2 2.4 0 4.3 1.8 4.9 4.8"/></svg><span><b>Para ela e ele</b>ondas a crespos</span></li>
       </ul>
       <p class="prova" id="prova" hidden><span class="ponto" aria-hidden="true"></span><span id="prova-txt"></span></p>
-      <a href="{{ routes.root_url }}#vip" class="btn cta-hero" id="cta-hero">Quero o meu ondão <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="{{ cta_link }}" class="btn cta-hero" id="cta-hero">Quero o meu ondão <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -221,8 +225,8 @@
 </section>
 {%- endunless -%}
 
-<!-- 100 LUGARES -->
-{%- unless section.settings.vista == 'creme' -%}
+<!-- 100 LUGARES (só antes do lançamento) -->
+{%- unless section.settings.vista == 'creme' or v.available -%}
 <section class="secao cem tex">
   <div class="wrap">
     <div class="cem-grid">
@@ -240,7 +244,7 @@
           <li><span class="n">02</span><b>Rotina para o seu caracol</b><span>Como aplicar o ondão no seu tipo de cabelo, por email.</span></li>
           <li><span class="n">03</span><b>A sua opinião conta</b><span>Os primeiros testemunhos desta página vão ser os seus.</span></li>
         </ol>
-        <a href="{{ routes.root_url }}#vip" class="btn btn-verde btn-cem" id="cem">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/pages/lista" class="btn btn-verde btn-cem" id="cem">Garantir o meu lugar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <span class="seguro">Grátis e sem compromisso. Pode sair da lista quando quiser.</span>
       </div>
       <div class="cem-fotos">
@@ -254,44 +258,6 @@
   </div>
 </section>
 {%- endunless -%}
-
-<!-- LISTA VIP -->
-<section class="vip tex" id="vip"{% if section.settings.vista == 'creme' and v.available %} hidden{% endif %}>
-  <div class="wrap">
-    <div>
-      <span class="caps" style="color:var(--rosa)">Lista VIP</span>
-      <h2 class="h2" style="margin-top:12px">Seja dos primeiros a <em class="it">sentir a diferença.</em></h2>
-      <p class="lead" style="margin-top:16px">Acesso 48h antes de todos e conteúdo sobre cuidar de ondas e caracóis. Sem spam.</p>
-    </div>
-    <form id="form-vip" novalidate>
-      <div class="campo">
-        <label for="email">Email *</label>
-        <input id="email" name="email" type="email" required autocomplete="email" placeholder="nome@email.com">
-      </div>
-      <div class="campo">
-        <label for="nome">Primeiro nome</label>
-        <input id="nome" name="nome" autocomplete="given-name" placeholder="O seu nome">
-      </div>
-      <div class="campo">
-        <span class="rotulo" id="rotulo-cabelo">O meu cabelo é</span>
-        <div class="tipos-f" role="radiogroup" aria-labelledby="rotulo-cabelo">
-          <label><input type="radio" name="cabelo" value="ondulado">Ondulado</label>
-          <label><input type="radio" name="cabelo" value="cacheado">Cacheado</label>
-          <label><input type="radio" name="cabelo" value="crespo">Crespo</label>
-          <label><input type="radio" name="cabelo" value="nao-sei">Não sei</label>
-        </div>
-      </div>
-      <input type="hidden" name="plano" id="plano" value="unica">
-      <input type="hidden" name="origem" id="origem" value="">
-      <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão">
-      <label class="consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Política de privacidade</a>.</span></label>
-      <button class="btn btn-terra btn-full" type="submit">Quero saber primeiro</button>
-      <p class="msg" id="msg" role="status"></p>
-    </form>
-  </div>
-</section>
-
-
 
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-titulo" hidden>
   <div class="pop-card">
@@ -326,7 +292,7 @@
 
 <button class="topo-btn" id="topo-btn" type="button" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
-<div class="fixa" id="fixa"><a href="{{ routes.root_url }}#vip" class="btn btn-verde btn-preco" id="fixa-btn"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2 preco-vip"><b>19,99 €</b> · compra única</span></a></div>
+<div class="fixa" id="fixa"><a href="{{ cta_link }}" class="btn btn-verde btn-preco" id="fixa-btn"><span class="l1">Quero o meu ondão <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="l2 preco-vip"><b>19,99 €</b> · compra única</span></a></div>
 
 
 <script>window.ONDAO_ASSET_BASE = {{ 'ondao-paginas.js' | asset_url | split: 'ondao-paginas.js' | first | json }};</script>

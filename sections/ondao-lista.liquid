@@ -1,0 +1,71 @@
+<section class="vip tex vip-pagina" id="vip">
+  <div class="wrap">
+    <div>
+      <span class="caps" style="color:var(--rosa)">Lista VIP</span>
+      <h1 class="h2" style="margin-top:12px">Seja dos primeiros a <em class="it">sentir a diferença.</em></h1>
+      <p class="lead" style="margin-top:16px">Acesso 48h antes de todos e conteúdo sobre cuidar de ondas e caracóis. Sem spam.</p>
+    </div>
+    <form id="form-vip" novalidate>
+      <div class="campo">
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" required autocomplete="email" placeholder="nome@email.com">
+      </div>
+      <div class="campo">
+        <label for="nome">Primeiro nome</label>
+        <input id="nome" name="nome" autocomplete="given-name" placeholder="O seu nome">
+      </div>
+      <div class="campo">
+        <span class="rotulo" id="rotulo-cabelo">O meu cabelo é</span>
+        <div class="tipos-f" role="radiogroup" aria-labelledby="rotulo-cabelo">
+          <label><input type="radio" name="cabelo" value="ondulado">Ondulado</label>
+          <label><input type="radio" name="cabelo" value="cacheado">Cacheado</label>
+          <label><input type="radio" name="cabelo" value="crespo">Crespo</label>
+          <label><input type="radio" name="cabelo" value="nao-sei">Não sei</label>
+        </div>
+      </div>
+      <input type="hidden" name="plano" id="plano" value="unica">
+      <input type="hidden" name="origem" id="origem" value="">
+      <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão">
+      <label class="consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Política de privacidade</a>.</span></label>
+      <button class="btn btn-terra btn-full" type="submit">Quero saber primeiro</button>
+      <p class="msg" id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section class="secao pagina-fim">
+  <div class="wrap" style="text-align:center">
+    <a class="btn" href="/pages/creme">Ver o creme</a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var ENDPOINT = "https://formspree.io/f/xqpegzwz";
+  function contar(n){ try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path:n,title:n,event:true}); } catch(e){} }
+  var qs = new URLSearchParams(location.search);
+  var form = document.getElementById("form-vip"), msg = document.getElementById("msg");
+  document.getElementById("origem").value = qs.get("utm_source") || document.referrer || "direto";
+  var tipo = qs.get("cabelo");
+  if (tipo) { var r = form.querySelector('input[name="cabelo"][value="' + tipo.replace(/[^a-z-]/g,"") + '"]'); if (r) r.checked = true; }
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    var email = form.email.value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Confirme o seu email."; return; }
+    if (!form.consent.checked) { msg.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
+    msg.textContent = "A guardar o seu lugar…";
+    try {
+      var r = await fetch(ENDPOINT, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}});
+      if (!r.ok) throw 0;
+      form.reset();
+      msg.textContent = "Está dentro. Vai ser dos primeiros a saber quando abrirmos.";
+      try { localStorage.setItem("ondao_vip","1"); } catch(e){}
+      contar("inscricao-formulario");
+    } catch(err) { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
+  });
+})();
+</script>
+
+{% schema %}
+{"name": "Lista VIP ondão", "settings": []}
+{% endschema %}

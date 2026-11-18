@@ -1,0 +1,12 @@
+{%- comment -%}Destino do botão "Quero o meu ondão": checkout direto quando o creme está à venda, senão a página da Lista VIP.{%- endcomment -%}
+{%- liquid
+  assign _p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
+  assign _link = '/pages/lista'
+  if _p != blank
+    assign _v = _p.selected_or_first_available_variant
+    if _v.available
+      assign _link = '/cart/' | append: _v.id | append: ':1'
+    endif
+  endif
+  echo _link
+-%}

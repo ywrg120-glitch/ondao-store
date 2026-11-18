@@ -18,9 +18,9 @@ por100.textContent = eur(CONFIG.PRECO / CONFIG.ML * 100) + " / 100 ml";
 document.querySelectorAll('#comprar-preco, .preco-vip').forEach(e => e.innerHTML = '<b>' + eur(CONFIG.PRECO) + '</b> · compra única');
 function atualizarPlano(){}
 
-function irParaVip(){
-  document.getElementById("vip").scrollIntoView({behavior:"smooth"});
-  setTimeout(() => document.getElementById("email").focus({preventScroll:true}), 650);
+// a Lista VIP (formulário) vive numa página própria
+function irParaVip(tipo){
+  location.href = "/pages/lista" + (tipo ? "?cabelo=" + encodeURIComponent(tipo) : "");
 }
 btnComprar.addEventListener("click", () => {
   if (CONFIG.PRE_LANCAMENTO) irParaVip();
@@ -29,9 +29,7 @@ btnComprar.addEventListener("click", () => {
 
 // tipo de caracol: escolhe no formulário e leva à Lista VIP
 document.querySelectorAll(".tipos-rapidos button").forEach(b => b.addEventListener("click", () => {
-  const r = document.querySelector('input[name="cabelo"][value="' + b.dataset.tipo + '"]');
-  if (r) r.checked = true;
-  irParaVip();
+  irParaVip(b.dataset.tipo);
 }));
 
 // menu: tratado no cabeçalho (sections/ondao-header.liquid)
@@ -115,29 +113,10 @@ marcarPonto();
   document.addEventListener("visibilitychange", agendar);
 })();
 
-// origem do visitante
 const qs = new URLSearchParams(location.search);
-document.getElementById("origem").value = qs.get("utm_source") || document.referrer || "direto";
-
-// formulário VIP
-const form = document.getElementById("form-vip"), msg = document.getElementById("msg");
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const email = form.email.value.trim();
-  if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Confirme o seu email."; return; }
-  if (!form.consent.checked) { msg.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
-  msg.textContent = "A guardar o seu lugar…";
-  try {
-    const r = await fetch(CONFIG.FORM_ENDPOINT, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}});
-    if (!r.ok) throw 0;
-    form.reset(); atualizarPlano();
-    msg.textContent = "Está dentro. Vai ser dos primeiros a saber quando abrirmos.";
-    marcarInscrito(); contar("inscricao-formulario");
-  } catch { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
-});
 
 // prova social: só mostra números reais
-if (CONFIG.INSCRITOS >= 50) {
+if (CONFIG.INSCRITOS >= 50 && document.getElementById("prova")) {
   document.getElementById("prova-txt").textContent = "Junte-se a " + CONFIG.INSCRITOS.toLocaleString("pt-PT") + "+ pessoas na Lista VIP";
   document.getElementById("prova").hidden = false;
 }
@@ -155,20 +134,18 @@ if (heroEl && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     });
   }, {passive:true});
 }
-document.getElementById("cta-hero")?.addEventListener("click", e => { e.preventDefault(); irParaVip(); });
 
 // botão fixo no telemóvel
 const fixa = document.getElementById("fixa");
-let depoisHero = false, naVip = false;
+let depoisHero = false;
 const topoBtn = document.getElementById("topo-btn");
-const mostrarFixa = () => fixa.classList.toggle("on", depoisHero && (!naVip || !!CONFIG.LINK_COMPRA));
+const mostrarFixa = () => fixa.classList.toggle("on", depoisHero);
 new IntersectionObserver(([e]) => { depoisHero = !e.isIntersecting && e.boundingClientRect.top < 0; mostrarFixa(); topoBtn.classList.toggle("on", depoisHero); }).observe(document.querySelector(".hero") || document.querySelector("#produto .garantias") || document.getElementById("produto"));
 topoBtn.addEventListener("click", () => {
   const suave = !matchMedia("(prefers-reduced-motion: reduce)").matches;
   window.scrollTo({top: 0, behavior: suave ? "smooth" : "auto"});
   contar("voltar-ao-topo");
 });
-new IntersectionObserver(([e]) => { naVip = e.isIntersecting; mostrarFixa(); }).observe(document.getElementById("vip"));
 
 // estatísticas (GoatCounter): eventos sem cookies
 function contar(nome){ try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path: nome, title: nome, event: true}); } catch(e){} }
@@ -182,8 +159,7 @@ const pop = document.getElementById("pop");
 const popForm = document.getElementById("pop-form");
 let ultimoFoco = null;
 function abrirPop(){
-  if (ler("ondao_vip") || ler("ondao_pop") || !pop.hidden) return;
-  if (document.getElementById("vip").getBoundingClientRect().top < innerHeight) return;
+  if (CONFIG.LINK_COMPRA || ler("ondao_vip") || ler("ondao_pop") || !pop.hidden) return;
   guardar("ondao_pop","1");
   ultimoFoco = document.activeElement;
   pop.hidden = false; document.body.style.overflow = "hidden";
