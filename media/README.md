@@ -26,6 +26,13 @@ Em vez de carregar o ficheiro, crie em `media/entrada` um ficheiro de texto com 
 
 Precisa do segredo `GEMINI_API_KEY` (GitHub → Settings → Secrets and variables → Actions).
 
+## Vídeos com IA (Seedance, pago por vídeo)
+
+1. Conta em segmind.com, carregar saldo (5–10 $ chegam para vários vídeos; ~0,30 $ por 5 s a 720p) e criar uma **API key**.
+2. GitHub → Settings → Secrets and variables → Actions → **New repository secret** → nome `SEGMIND_API_KEY`.
+3. Actions → **Criar vídeo para o site (Seedance)** → escolha o lugar, cole o prompt do guia e, para animar uma foto do site, ponha o caminho dela (ex.: `assets/ondao-01-topo-telemovel.jpg`).
+4. Depois ligue o vídeo em Shopify → Personalizar → Definições do tema → Imagens e vídeos ondão.
+
 ## Para o Shopify atualizar sozinho (uma vez só)
 
 O Shopify ignora as alterações feitas pelo robô do GitHub. Para que as imagens processadas apareçam logo no site, dê ao robô uma chave em seu nome:

@@ -1,0 +1,95 @@
+name: Criar vídeo para o site (Seedance)
+# Actions → "Criar vídeo para o site (Seedance)" → Run workflow.
+# Anima uma foto do site com o Seedance 2.0 Fast (Segmind) e publica o vídeo no lugar escolhido.
+# Precisa do segredo SEGMIND_API_KEY. Depois ligue o vídeo em Shopify → Personalizar → Definições do tema.
+on:
+  workflow_dispatch:
+    inputs:
+      lugar:
+        description: 'Lugar do vídeo no site'
+        required: true
+        type: choice
+        options:
+          - 01-topo-video-telemovel
+          - 01-topo-video-computador
+          - 02-galeria-video
+          - 04-como-usar-video
+      prompt:
+        description: 'O que acontece no vídeo (copie do guia visual)'
+        required: true
+      primeira_imagem:
+        description: 'Foto que serve de primeiro fotograma (ex.: assets/ondao-01-topo-telemovel.jpg). Vazio = só texto.'
+        required: false
+        default: ''
+      duracao:
+        description: 'Segundos (4 a 15)'
+        required: true
+        default: '6'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: media
+  cancel-in-progress: false
+
+jobs:
+  criar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PUSH_TOKEN || github.token }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ferramentas
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet pillow pillow-heif
+      - name: Gerar vídeo (Segmind · Seedance 2.0 Fast)
+        env:
+          SEGMIND_API_KEY: ${{ secrets.SEGMIND_API_KEY }}
+          LUGAR: ${{ inputs.lugar }}
+          PROMPT: ${{ inputs.prompt }}
+          IMAGEM: ${{ inputs.primeira_imagem }}
+          DURACAO: ${{ inputs.duracao }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$SEGMIND_API_KEY" ]; then echo "ERRO: falta o segredo SEGMIND_API_KEY (Settings → Secrets and variables → Actions)."; exit 1; fi
+          python - <<'PY'
+          import json, os, urllib.request
+          s = json.load(open("media/slots.json"))[os.environ["LUGAR"]]
+          r = s["largura"] / s["altura"]
+          opcoes = {"16:9": 16/9, "9:16": 9/16, "1:1": 1.0, "4:3": 4/3, "3:4": 3/4, "21:9": 21/9}
+          aspect = min(opcoes, key=lambda k: abs(opcoes[k] - r))
+          corpo = {"prompt": os.environ["PROMPT"], "duration": int(os.environ.get("DURACAO") or 6),
+                   "resolution": "720p", "aspect_ratio": aspect, "generate_audio": False}
+          img = os.environ.get("IMAGEM", "").strip()
+          if img:
+              corpo["first_frame_url"] = img if img.startswith("http") else f"https://raw.githubusercontent.com/{os.environ['REPO']}/{os.environ['SHA']}/{img}"
+          print("Pedido:", {k: v for k, v in corpo.items() if k != "prompt"})
+          req = urllib.request.Request("https://api.segmind.com/v1/seedance-2.0-fast", data=json.dumps(corpo).encode(),
+                                       headers={"x-api-key": os.environ["SEGMIND_API_KEY"], "Content-Type": "application/json"})
+          try:
+              with urllib.request.urlopen(req, timeout=900) as resp:
+                  dados = resp.read()
+                  print("Custo:", resp.headers.get("x-cost"))
+          except urllib.error.HTTPError as e:
+              print("ERRO da Segmind:", e.code, e.read()[:500].decode(errors="ignore")); raise SystemExit(1)
+          os.makedirs("media/entrada", exist_ok=True)
+          open(f"media/entrada/{os.environ['LUGAR']}.mp4", "wb").write(dados)
+          print("Vídeo recebido:", len(dados) // 1024, "KB")
+          PY
+      - name: Cortar, comprimir e publicar no site
+        run: python media/ferramentas/processar.py
+      - name: Commit e push
+        run: |
+          git config user.name "ondao-media"
+          git config user.email "ondao-media@users.noreply.github.com"
+          git add -A assets media
+          if git diff --cached --quiet; then echo "Nada de novo."; exit 0; fi
+          git commit -m "Vídeo Seedance para o lugar ${{ inputs.lugar }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
