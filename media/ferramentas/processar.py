@@ -28,8 +28,8 @@ def aparar_bordas(im, limite=55, maximo=0.12):
     g = im.convert("L")
     w, h = g.size
     def escura(caixa):
-        reg = g.crop(caixa).resize((1, 1), 0)
-        return reg.getpixel((0, 0)) < limite
+        v = g.crop(caixa).resize((1, 1), 0).getpixel((0, 0))
+        return v < limite or v > 250  # moldura preta ou fio branco puro à volta
     t = b = l = r = 0
     passo_v, passo_h = max(1, h // 400), max(1, w // 400)
     while t < h * maximo and escura((0, t, w, t + passo_v)): t += passo_v
