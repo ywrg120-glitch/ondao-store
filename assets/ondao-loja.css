@@ -167,9 +167,11 @@
 
 /* topo no computador: mostra a foto 16:9 inteira, caras livres e título na faixa de baixo */
 @media (min-width:900px){
-  .lj-hero{min-height:0;aspect-ratio:16/9;max-height:none}
+  .lj-hero{min-height:0;aspect-ratio:16/9;max-height:none;justify-content:flex-start;align-items:center}
   .lj-hero .lj-hero-foto{object-position:50% 50%}
-  .lj-hero-txt{padding-bottom:36px}
+  .lj-hero::after{background:linear-gradient(90deg,rgba(20,30,24,.62) 0%,rgba(20,30,24,.35) 38%,rgba(20,30,24,0) 58%)}
+  .lj-hero-txt{text-align:left;padding:0 0 0 max(6vw,48px);max-width:620px}
+  .lj-hero-txt p{margin-left:0}
   .lj-hero .lj-h1{font-size:clamp(2.4rem,4vw,3.6rem)}
   .lj-hero-txt p{margin:10px auto 18px}
 }
