@@ -162,7 +162,7 @@
 .lj-passos li::before{content:counter(p);grid-row:span 2;width:32px;height:32px;border-radius:50%;background:var(--verde);color:var(--branco);display:grid;place-items:center;font-weight:700;font-size:.9rem}
 .lj-passos b{font-size:1rem}
 .lj-passos span{color:var(--cinza);font-size:.9rem}
-.lj-fundador{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 18px;border:3px solid var(--rosa)}
+.lj-fundador{width:140px;height:140px;object-position:50% 35%;border-radius:50%;object-fit:cover;margin:0 auto 18px;border:3px solid var(--rosa)}
 @media (min-width:900px){.lj-como-grid{grid-template-columns:1fr 1fr;gap:64px}}
 
 /* topo no computador: mostra a foto 16:9 inteira, caras livres e título na faixa de baixo */
