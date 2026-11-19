@@ -235,7 +235,8 @@
 .lj-confianca li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;font-size:.86rem;line-height:1.45;color:var(--tinta)}
 .lj-confianca svg{width:20px;height:20px;fill:none;stroke:var(--verde-2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .lj-pagamentos{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.lj-pag{height:24px;width:auto}
+.lj-pagamentos{gap:5px}
+.lj-pag{height:21px;width:auto}
 .lj-como-video video{max-width:420px}
 @media (max-width:899px){body:has(.lj-fixa){padding-bottom:84px}}
 @media (min-width:900px){
