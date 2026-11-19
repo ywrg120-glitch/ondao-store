@@ -66,6 +66,6 @@ Shopify → Loja online → Temas → **Personalizar** → Definições do tema 
 | 04-como-usar-capa | 1080×1920 (9:16) | Capa do vídeo "Como se usa" |
 | 05-fundador | 1080×1350 | Foto redonda do fundador |
 | 06-banner-telemovel / 06-banner-computador | 1080×1350 / 1200×1350 | Foto da origem ao lado do mapa de ingredientes |
-| 07-retrato-1 … 4 | 1080×1440 (3:4) | "Ondas com raízes" |
+| 07-retrato-1 … 5 | 1080×1440 (3:4) | "Ondas com raízes" |
 
 Se o nome não for reconhecido, o ficheiro fica na pasta e a Action (separador **Actions** no GitHub) diz qual foi.

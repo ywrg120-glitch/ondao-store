@@ -193,5 +193,15 @@
    0.5,
    0.3
   ]
+ },
+ "07-retrato-5": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-07-retrato-5.jpg",
+  "largura": 1080,
+  "altura": 1440,
+  "foco": [
+   0.5,
+   0.3
+  ]
  }
 }
