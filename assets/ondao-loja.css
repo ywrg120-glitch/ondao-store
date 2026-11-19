@@ -245,3 +245,5 @@
   .lj-como-video video{max-width:440px}
   .lj-preco b{font-size:2.2rem}
 }
+.lj-hero-txt p.lj-h1{font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.02;margin:0 auto;max-width:none}
+@media (min-width:900px){.lj-hero-txt p.lj-h1{font-size:clamp(2.4rem,4vw,3.6rem);margin:0}}
