@@ -1,5 +1,8 @@
 {
   "current": {
-    "ondao_foto_fundador": true
+    "ondao_foto_fundador": true,
+    "ondao_video_topo": true,
+    "ondao_video_galeria": true,
+    "ondao_video_como_usar": true
   }
 }
