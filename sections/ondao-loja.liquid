@@ -79,6 +79,7 @@
           <div class="lj-slide"><img src="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Textura do creme ondão" loading="lazy"></div>
           <div class="lj-slide"><img src="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Tubo ondão com os ingredientes da fórmula" loading="lazy"></div>
           <div class="lj-slide"><img src="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="O creme ondão a ser aplicado" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Mãos a espalhar o creme ondão nas palmas, com o tubo ao lado" loading="lazy"></div>
           {%- if settings.ondao_video_galeria -%}
           <div class="lj-slide"><video class="lj-video" src="{{ 'ondao-02-galeria-video.mp4' | asset_url }}" muted loop playsinline preload="none" poster="{{ 'ondao-02-galeria-5.jpg' | asset_url }}" aria-label="Vídeo do creme ondão"></video></div>
           {%- endif -%}
@@ -148,12 +149,12 @@
     <h2 class="lj-h2 lj-centro">Para ela e para ele. Para todas as ondas.</h2>
     <div class="lj-rolo">
       <article class="lj-cartao">
-        <img src="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Homem com cabelo ondulado definido num dia húmido" loading="lazy">
+        {%- if settings.ondao_videos_pessoas -%}<video class="lj-video" src="{{ 'ondao-03-cartao-1.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Homem com cabelo ondulado definido num dia húmido"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Homem com cabelo ondulado definido num dia húmido" loading="lazy">{%- endif -%}
         <h3>Dias de humidade</h3>
         <p>A onda com forma, mesmo nos dias húmidos. Menos frizz e nada de brilho molhado.</p>
       </article>
       <article class="lj-cartao">
-        <img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Mulher a amachucar os caracóis com as mãos" loading="lazy">
+        {%- if settings.ondao_videos_pessoas -%}<video class="lj-video" src="{{ 'ondao-03-cartao-2.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Mulher a amachucar os caracóis com as mãos"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Mulher a amachucar os caracóis com as mãos" loading="lazy">{%- endif -%}
         <h3>De manhã, com pressa</h3>
         <p>Amachuque, deixe secar e saia de casa. O caracol marca-se e continua a mexer-se.</p>
       </article>
@@ -168,9 +169,9 @@
       <div>
         <h2 class="lj-h2">Como se usa</h2>
         <ol class="lj-passos">
-          <li><b>Cabelo húmido</b><span>Depois do banho, tire o excesso de água com uma toalha.</span></li>
-          <li><b>Uma noz de creme</b><span>Espalhe nas palmas e passe pelo cabelo, de baixo para cima.</span></li>
-          <li><b>Amachuque e deixe secar</b><span>Ao ar ou com difusor. Não mexa até estar seco.</span></li>
+          <li><img src="{{ 'ondao-04-passo-1.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Cabelo húmido</b><span>Depois do banho, tire o excesso de água com uma toalha.</span></li>
+          <li><img src="{{ 'ondao-04-passo-2.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Uma noz de creme</b><span>Espalhe nas palmas e passe pelo cabelo, de baixo para cima.</span></li>
+          <li><img src="{{ 'ondao-04-passo-3.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Amachuque e deixe secar</b><span>Ao ar ou com difusor. Não mexa até estar seco.</span></li>
         </ol>
         <a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta>{{ txt_cta }}</a>
       </div>
@@ -228,7 +229,12 @@
     <div class="lj-retratos">
       {%- for i in (1..5) -%}
       {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
+      {%- if settings.ondao_videos_pessoas -%}
+      {%- capture fv -%}ondao-07-retrato-{{ i }}.mp4{%- endcapture -%}
+      <video class="lj-video" src="{{ fv | asset_url }}" poster="{{ f | asset_img_url: '540x' }}" muted loop playsinline preload="none" width="1080" height="1440" aria-label="Pessoa com ondas ou caracóis definidos"></video>
+      {%- else -%}
       <img src="{{ f | asset_img_url: '1080x' }}" srcset="{{ f | asset_img_url: '540x' }} 540w, {{ f | asset_img_url: '810x' }} 810w, {{ f | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 230px, 62vw" width="1080" height="1440" alt="Pessoa com ondas ou caracóis definidos" loading="lazy">
+      {%- endif -%}
       {%- endfor -%}
     </div>
   </section>
@@ -236,7 +242,7 @@
   <!-- NEWSLETTER -->
   <section class="lj-news">
     <form class="lj-wrap-estreito" id="lj-news" novalidate>
-      <p>Receba novidades, acesso antecipado e dicas para cuidar das suas ondas.</p>
+      <p>Receba novidades e dicas para cuidar das suas ondas. Um email de vez em quando, sem spam.</p>
       <label for="lj-email">Email</label>
       <input id="lj-email" name="email" type="email" autocomplete="email" required>
       <input type="hidden" name="origem" value="newsletter-rodape">

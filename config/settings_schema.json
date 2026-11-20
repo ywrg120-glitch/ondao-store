@@ -41,6 +41,12 @@
         "label": "Foto do fundador na citação",
         "info": "Ficheiro: ondao-05-fundador.jpg (use uma foto real)",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "ondao_videos_pessoas",
+        "label": "Retratos e cartões em vídeo (pessoas a mexer-se)",
+        "default": false
       }
     ]
   }

@@ -558,3 +558,11 @@ body:has(.fixa-geral) footer{padding-bottom:110px}
   .cx{grid-template-columns:minmax(0,1fr) 340px;gap:48px}
   .cx-resumo{position:sticky;top:calc(var(--topo) + 24px)}
 }
+
+.foto-cap video{display:block;width:100%;height:auto;border-radius:16px}
+.foto-real{margin:16px 0 0;max-width:360px}
+.foto-real img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+.foto-real figcaption{margin-top:8px;font-size:.85rem;color:var(--cinza);font-style:italic}
+.news-foto{margin:22px 0 0;max-width:420px}
+.news-foto img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+@media (prefers-reduced-motion:reduce){.foto-cap video{display:none}}
