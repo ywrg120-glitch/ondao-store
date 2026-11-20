@@ -311,5 +311,55 @@
    0.5,
    0.4
   ]
+ },
+ "10-ing-cacay": {
+  "tipo": "imagem",
+  "ficheiro": "ing-cacay-maos.jpg",
+  "largura": 1080,
+  "altura": 1080,
+  "foco": [
+   0.5,
+   0.5
+  ]
+ },
+ "10-ing-sacha-inchi": {
+  "tipo": "imagem",
+  "ficheiro": "ing-sacha-inchi-maos.jpg",
+  "largura": 1080,
+  "altura": 1080,
+  "foco": [
+   0.5,
+   0.5
+  ]
+ },
+ "10-ing-ungurahui": {
+  "tipo": "imagem",
+  "ficheiro": "ing-ungurahui-maos.jpg",
+  "largura": 1080,
+  "altura": 1080,
+  "foco": [
+   0.5,
+   0.5
+  ]
+ },
+ "10-ing-quinoa": {
+  "tipo": "imagem",
+  "ficheiro": "ing-quinoa-maos.jpg",
+  "largura": 1080,
+  "altura": 1080,
+  "foco": [
+   0.5,
+   0.5
+  ]
+ },
+ "10-ing-poliglutamico": {
+  "tipo": "imagem",
+  "ficheiro": "ing-poliglutamico-maos.jpg",
+  "largura": 1080,
+  "altura": 1080,
+  "foco": [
+   0.5,
+   0.5
+  ]
  }
 }

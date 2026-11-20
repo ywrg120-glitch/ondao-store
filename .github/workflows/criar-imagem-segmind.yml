@@ -1,0 +1,90 @@
+name: Criar imagem para o site (Segmind · Seedream 4)
+# Actions → "Criar imagem para o site (Segmind · Seedream 4)" → Run workflow.
+# Gera uma imagem com o Seedream 4 (Segmind), corta-a para o lugar escolhido e publica-a no site.
+# Usa o mesmo segredo SEGMIND_API_KEY dos vídeos.
+on:
+  workflow_dispatch:
+    inputs:
+      lugar:
+        description: 'Lugar da imagem (nome em media/slots.json, ex.: 10-ing-cacay)'
+        required: true
+      prompt:
+        description: 'O que a imagem mostra (em inglês funciona melhor)'
+        required: true
+      referencias:
+        description: 'Fotos de referência separadas por vírgula (ex.: assets/historia-maos-cacay.jpg). Opcional.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: media
+  cancel-in-progress: false
+
+jobs:
+  criar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PUSH_TOKEN || github.token }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Ferramentas
+        run: |
+          pip install --quiet pillow pillow-heif
+          for t in 1 2 3; do timeout 180 sudo apt-get update -qq && timeout 240 sudo apt-get install -y -qq ffmpeg && break; echo "apt encravou, tentativa $t"; sleep 5; done; command -v ffmpeg
+      - name: Gerar imagem (Segmind · Seedream 4)
+        env:
+          SEGMIND_API_KEY: ${{ secrets.SEGMIND_API_KEY }}
+          LUGAR: ${{ inputs.lugar }}
+          PROMPT: ${{ inputs.prompt }}
+          REFS: ${{ inputs.referencias }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$SEGMIND_API_KEY" ]; then echo "ERRO: falta o segredo SEGMIND_API_KEY."; exit 1; fi
+          python - <<'PY'
+          import json, os, urllib.request
+          slots = json.load(open("media/slots.json"))
+          lugar = os.environ["LUGAR"].strip()
+          if lugar not in slots: raise SystemExit(f"ERRO: lugar '{lugar}' não existe em media/slots.json")
+          s = slots[lugar]; r = s["largura"] / s["altura"]
+          opcoes = {"1:1": 1.0, "4:3": 4/3, "3:4": 3/4, "16:9": 16/9, "9:16": 9/16, "3:2": 3/2, "2:3": 2/3, "21:9": 21/9}
+          aspect = min(opcoes, key=lambda k: abs(opcoes[k] - r))
+          corpo = {"prompt": os.environ["PROMPT"], "size": "2K", "aspect_ratio": aspect, "max_images": 1}
+          refs = [x.strip() for x in os.environ.get("REFS", "").split(",") if x.strip()]
+          if refs:
+              corpo["image_input"] = [x if x.startswith("http") else f"https://raw.githubusercontent.com/{os.environ['REPO']}/{os.environ['SHA']}/{x}" for x in refs]
+          print("Pedido:", {k: v for k, v in corpo.items() if k != "prompt"})
+          req = urllib.request.Request("https://api.segmind.com/v1/seedream-4", data=json.dumps(corpo).encode(),
+                                       headers={"x-api-key": os.environ["SEGMIND_API_KEY"], "Content-Type": "application/json"})
+          try:
+              with urllib.request.urlopen(req, timeout=600) as resp:
+                  dados = resp.read(); tipo = resp.headers.get("content-type", "")
+                  print("Custo:", resp.headers.get("x-cost"), "| tipo:", tipo)
+          except urllib.error.HTTPError as e:
+              print("ERRO da Segmind:", e.code, e.read()[:500].decode(errors="ignore")); raise SystemExit(1)
+          if "json" in tipo:
+              j = json.loads(dados); print("Resposta JSON:", str(j)[:300])
+              url = j.get("output") or j.get("image") or (j.get("images") or [None])[0]
+              if isinstance(url, list): url = url[0]
+              dados = urllib.request.urlopen(url, timeout=120).read()
+          os.makedirs("media/entrada", exist_ok=True)
+          open(f"media/entrada/{lugar}.png", "wb").write(dados)
+          print("Guardado:", len(dados), "bytes")
+          PY
+      - name: Cortar, comprimir e publicar no site
+        run: python media/ferramentas/processar.py
+      - name: Commit e push
+        run: |
+          git config user.name "ondao-media"
+          git config user.email "ondao-media@users.noreply.github.com"
+          git add -A assets media
+          if git diff --cached --quiet; then echo "Nada de novo."; exit 0; fi
+          git commit -m "Imagem Seedream para o lugar ${{ inputs.lugar }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
