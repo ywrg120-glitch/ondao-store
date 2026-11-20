@@ -1,8 +1,8 @@
 <section class="vip tex vip-pagina" id="vip">
   <div class="wrap">
     <div>
-      <h1 class="h2">Seja dos primeiros a <em class="it">sentir a diferença.</em></h1>
-      <p class="lead" style="margin-top:16px">Acesso 48h antes de todos e conteúdo sobre cuidar de ondas e caracóis. Sem spam.</p>
+      <h1 class="h2">Dicas para a sua onda, <em class="it">no seu email.</em></h1>
+      <p class="lead" style="margin-top:16px">Novidades da ondão e conselhos para cuidar de ondas, cachos e crespos. Um email de vez em quando, sem spam. Pode sair quando quiser.</p>
     </div>
     <form id="form-vip" novalidate>
       <div class="campo">
@@ -24,9 +24,9 @@
       </div>
       <input type="hidden" name="plano" id="plano" value="unica">
       <input type="hidden" name="origem" id="origem" value="">
-      <input type="hidden" name="_subject" value="Nova inscrição na Lista VIP ondão">
+      <input type="hidden" name="_subject" value="Nova inscrição na newsletter ondão">
       <label class="consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento. <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Política de privacidade</a>.</span></label>
-      <button class="btn btn-terra btn-full" type="submit">Quero saber primeiro</button>
+      <button class="btn btn-terra btn-full" type="submit">Quero receber</button>
       <p class="msg" id="msg" role="status"></p>
     </form>
   </div>
@@ -52,12 +52,12 @@
     var email = form.email.value.trim();
     if (!/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = "Confirme o seu email."; return; }
     if (!form.consent.checked) { msg.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
-    msg.textContent = "A guardar o seu lugar…";
+    msg.textContent = "A inscrever…";
     try {
       var r = await fetch(ENDPOINT, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}});
       if (!r.ok) throw 0;
       form.reset();
-      msg.textContent = "Está dentro. Vai ser dos primeiros a saber quando abrirmos.";
+      msg.textContent = "Está inscrito. O primeiro email chega em breve.";
       try { localStorage.setItem("ondao_vip","1"); } catch(e){}
       contar("inscricao-formulario");
     } catch(err) { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
@@ -66,5 +66,5 @@
 </script>
 
 {% schema %}
-{"name": "Lista VIP ondão", "settings": []}
+{"name": "Newsletter ondão", "settings": []}
 {% endschema %}

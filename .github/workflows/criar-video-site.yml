@@ -14,6 +14,14 @@ on:
           - 01-topo-video-computador
           - 02-galeria-video
           - 04-como-usar-video
+          - 03-cartao-1-video
+          - 03-cartao-2-video
+          - 07-retrato-1-video
+          - 07-retrato-2-video
+          - 07-retrato-3-video
+          - 07-retrato-4-video
+          - 07-retrato-5-video
+          - 08-historia-maos-video
       prompt:
         description: 'O que acontece no vídeo (copie do guia visual)'
         required: true
@@ -22,7 +30,7 @@ on:
         required: false
         default: ''
       duracao:
-        description: 'Segundos (4 a 15)'
+        description: 'Segundos (4 a 15). Custa cerca de 0,12 $ por segundo.'
         required: true
         default: '6'
 

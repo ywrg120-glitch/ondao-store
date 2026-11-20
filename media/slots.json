@@ -203,5 +203,113 @@
    0.5,
    0.3
   ]
+ },
+ "02-galeria-6": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-02-galeria-6.jpg",
+  "largura": 1080,
+  "altura": 1350,
+  "foco": [
+   0.5,
+   0.5
+  ]
+ },
+ "03-cartao-1-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-03-cartao-1.mp4",
+  "largura": 864,
+  "altura": 1080
+ },
+ "03-cartao-2-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-03-cartao-2.mp4",
+  "largura": 864,
+  "altura": 1080
+ },
+ "04-passo-1": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-04-passo-1.jpg",
+  "largura": 720,
+  "altura": 900,
+  "foco": [
+   0.5,
+   0.4
+  ]
+ },
+ "04-passo-2": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-04-passo-2.jpg",
+  "largura": 720,
+  "altura": 900,
+  "foco": [
+   0.5,
+   0.45
+  ]
+ },
+ "04-passo-3": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-04-passo-3.jpg",
+  "largura": 720,
+  "altura": 900,
+  "foco": [
+   0.5,
+   0.4
+  ]
+ },
+ "07-retrato-1-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-07-retrato-1.mp4",
+  "largura": 720,
+  "altura": 960
+ },
+ "07-retrato-2-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-07-retrato-2.mp4",
+  "largura": 720,
+  "altura": 960
+ },
+ "07-retrato-3-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-07-retrato-3.mp4",
+  "largura": 720,
+  "altura": 960
+ },
+ "07-retrato-4-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-07-retrato-4.mp4",
+  "largura": 720,
+  "altura": 960
+ },
+ "07-retrato-5-video": {
+  "tipo": "video",
+  "ficheiro": "ondao-07-retrato-5.mp4",
+  "largura": 720,
+  "altura": 960
+ },
+ "08-historia-maos-video": {
+  "tipo": "video",
+  "ficheiro": "historia-maos-cacay.mp4",
+  "largura": 960,
+  "altura": 720
+ },
+ "08-historia-portugal": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-08-historia-portugal.jpg",
+  "largura": 1080,
+  "altura": 1350,
+  "foco": [
+   0.5,
+   0.35
+  ]
+ },
+ "09-newsletter": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-09-newsletter.jpg",
+  "largura": 1080,
+  "altura": 1350,
+  "foco": [
+   0.5,
+   0.4
+  ]
  }
 }
