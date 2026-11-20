@@ -53,7 +53,7 @@ jobs:
           python-version: '3.12'
       - name: Ferramentas
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          for t in 1 2 3; do timeout 180 sudo apt-get update -qq && timeout 240 sudo apt-get install -y -qq ffmpeg && break; echo "apt encravou, tentativa $t"; sleep 5; done; command -v ffmpeg
           pip install --quiet pillow pillow-heif
       - name: Gerar vídeo (Segmind · Seedance 2.0 Fast)
         env:
