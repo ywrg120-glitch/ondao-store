@@ -2,30 +2,18 @@
   <div class="wrap faq">
     <div class="cabeca">
       <h1 class="h2">Perguntas <em class="it">frequentes.</em></h1>
-      <span class="ajuda">Centro de ajuda</span>
     </div>
     <details open><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
     <details><summary>Para que tipo de cabelo é?</summary><p>Para cabelo ondulado, cacheado e crespo. Se o seu cabelo é liso, o creme não o vai tornar cacheado, mas pode dar-lhe leveza e controlar o frizz.</p></details>
     <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones. A lista INCI completa estará no tubo e nesta página no lançamento.</p></details>
     <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fórmula foi pensada para definir sem pesar e sem deixar crosta.</p></details>
-    <details><summary>Quanto custa?</summary><p>19,99 € por tubo de 200 ml. Um só preço, sem subscrições nem letras pequenas.</p></details>
+    <details><summary>Quanto custa?</summary><p>19,99&nbsp;€ por tubo de 200 ml, sem subscrições nem letras pequenas. Os portes em Portugal são 4,50&nbsp;€ e passam a grátis a partir de 35&nbsp;€, por isso dois tubos já seguem sem portes.</p></details>
     <details><summary>É testado em animais?</summary><p>Não. Como todos os cosméticos vendidos na União Europeia, a ondão não é testada em animais.</p></details>
-    <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, o envio é grátis em encomendas acima de €35.</p></details>
-    <details><summary>Quando é o lançamento?</summary><p>Muito em breve. Quem está na Lista VIP recebe a data primeiro, e acesso antecipado de 48h.</p></details>
+    <details><summary>Enviam para fora de Portugal?</summary><p>Sim, para toda a União Europeia. Em Portugal, os portes são grátis a partir de 35&nbsp;€. Para o resto da UE, os portes são calculados no checkout.</p></details>
+    <details><summary>Quando recebo a minha encomenda?</summary><p>O creme está em pré-encomenda: paga agora e enviamos em até 10 dias. Os 14 dias para devolver só começam a contar quando a encomenda chega a sua casa.</p></details>
   </div>
 </section>
-<section class="pg-cta">
-  <div class="wrap estreito">
-    <h2 class="h2">Pronto para a sua <em class="it">onda?</em></h2>
-    {%- assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay'] -%}
-    {%- if p != blank and p.selected_or_first_available_variant.available -%}
-      <a class="btn btn-verde" href="/cart/{{ p.selected_or_first_available_variant.id }}:1">Quero o meu ondão · {{ p.selected_or_first_available_variant.price | money }}</a>
-    {%- else -%}
-      {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">Quero o meu ondão</a>
-    {%- endif -%}
-    <a class="pg-voltar" href="{{ routes.root_url }}">Voltar ao creme</a>
-  </div>
-</section>
+{% render 'ondao-pg-cta' %}
 <script>window.ONDAO_ASSET_BASE = {{ 'ondao-paginas.js' | asset_url | split: 'ondao-paginas.js' | first | json }};</script>
 <script src="{{ 'ondao-paginas.js' | asset_url }}" defer></script>
 

@@ -16,8 +16,8 @@
     {%- else -%}
       {%- assign av2 = 'Pré-venda em breve' -%}{%- assign av3 = 'Enviamos para toda a UE' -%}
     {%- endif -%}
-    <span>Envios grátis para Portugal acima de €35</span><span>{{ av2 }}</span><span>{{ av3 }}</span>
-    <span aria-hidden="true">Envios grátis para Portugal acima de €35</span><span aria-hidden="true">{{ av2 }}</span><span aria-hidden="true">{{ av3 }}</span>
+    <span>Portes grátis em Portugal a partir de 35 €</span><span>{{ av2 }}</span><span>{{ av3 }}</span>
+    <span aria-hidden="true">Portes grátis em Portugal a partir de 35 €</span><span aria-hidden="true">{{ av2 }}</span><span aria-hidden="true">{{ av3 }}</span>
   </div>
 </div>
 
@@ -37,11 +37,9 @@
     <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
     <div class="nav-dir">
       <a class="btn btn-verde nav-cta" id="nav-cta" href="{{ cta_link }}" data-checkout="{% if cta_link contains '/cart/' %}1{% endif %}">{{ cta_txt }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ico-btn" href="/pages/lista" aria-label="Lista VIP">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-      </a>
-      <a class="ico-btn" href="/pages/creme" aria-label="Ver o creme">
-        <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <a class="ico-btn ico-saco" href="{{ routes.cart_url }}" aria-label="Carrinho, {{ cart.item_count }} {% if cart.item_count == 1 %}artigo{% else %}artigos{% endif %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="saco-n" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
       </a>
     </div>
   </div>
@@ -82,8 +80,8 @@
 })();
 </script>
 
-{%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.suffix == 'creme' or template.suffix == 'lista' -%}
-<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money }}</b> · pré-encomenda</span>{%- endif -%}</a></div>
+{%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.name == 'cart' or template.suffix == 'creme' or template.suffix == 'lista' -%}
+<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · pré-encomenda</span>{%- endif -%}</a></div>
 {%- endunless -%}
 
 {% schema %}

@@ -331,7 +331,22 @@
     "priceCurrency": {{ cart.currency.iso_code | json }},
     "price": {{ v.price | divided_by: 100.0 | json }},
     "availability": "https://schema.org/{% if v.available %}PreOrder{% else %}OutOfStock{% endif %}",
-    "itemCondition": "https://schema.org/NewCondition"
+    "itemCondition": "https://schema.org/NewCondition",
+    "shippingDetails": [{
+      "@type": "OfferShippingDetails",
+      "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "PT"},
+      "shippingRate": {"@type": "MonetaryAmount", "value": 4.5, "currency": "EUR"},
+      "deliveryTime": {"@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": {{ dias | default: 10 }}, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 2, "maxValue": 4, "unitCode": "DAY"}}
+    }],
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "PT",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": {{ dev | default: 14 }},
+      "returnMethod": "https://schema.org/ReturnByMail"
+    }
   }
 }
 </script>

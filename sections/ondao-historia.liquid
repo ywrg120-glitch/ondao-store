@@ -1,8 +1,7 @@
 <section class="secao historia pg" id="historia">
   <div class="wrap historia-grid">
     <div class="historia-esq">
-      <span class="caps" style="color:var(--terra)">A nossa história</span>
-      <h1 class="h2" style="margin-top:12px">Ondas com <em class="it">raízes.</em></h1>
+      <h1 class="h2">Ondas com <em class="it">raízes.</em></h1>
       <div class="rota" id="rota">
         <svg viewBox="0 0 320 160" role="img" aria-label="Rota da Colômbia até Portugal, do outro lado do Atlântico">
           <path class="arco" d="M44,120 C80,22 200,8 272,44"/>
@@ -22,40 +21,29 @@
       <div class="capitulos" id="capitulos">
         <span class="linha" aria-hidden="true"></span>
         <div class="capitulo">
-          <span class="rotulo">Capítulo 1 · Colômbia</span>
           <h3>O cabelo que ninguém sabia tratar.</h3>
+          <span class="rotulo">Colômbia</span>
           <p>Cresci na Colômbia com caracóis que ninguém sabia cuidar. Ou os alisavam, ou os escondiam.</p>
         </div>
         <div class="capitulo">
-          <span class="rotulo">Capítulo 2 · Portugal</span>
           <h3>As prateleiras erradas.</h3>
+          <span class="rotulo">Portugal</span>
           <p>Quando cheguei a Portugal, havia duas opções: produtos que pesavam e deixavam o cabelo duro, ou promessas de "domar" algo que nunca precisou de ser domado.</p>
         </div>
         <div class="capitulo">
-          <span class="rotulo">Capítulo 3 · De volta às raízes</span>
           <h3>A resposta estava em casa.</h3>
+          <span class="rotulo">De volta às raízes</span>
           <p>Na Orinoquía colombiana encontrei o Cacay, uma noz que as comunidades locais conhecem há gerações. Construí a ondão à volta dele.</p>
           <div class="foto-cap"><img width="1200" height="896" src="{{ 'historia-maos-cacay.jpg' | asset_url }}" alt="Mãos a segurar nozes de Cacay, com a planície da Orinoquía ao fundo" loading="lazy"></div>
         </div>
         <div class="capitulo">
-          <div class="assina"><b>Jhon</b><span>Fundador da ondão<br>Colombiano, a viver em Portugal</span></div>
+          <div class="assina"><img src="{{ 'ondao-05-fundador.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="56" height="56" alt="Jhon, fundador da ondão" loading="lazy"><b>Jhon</b><span>Fundador da ondão<br>Colombiano, a viver em Portugal</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="pg-cta">
-  <div class="wrap estreito">
-    <h2 class="h2">Pronto para a sua <em class="it">onda?</em></h2>
-    {%- assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay'] -%}
-    {%- if p != blank and p.selected_or_first_available_variant.available -%}
-      <a class="btn btn-verde" href="/cart/{{ p.selected_or_first_available_variant.id }}:1">Quero o meu ondão · {{ p.selected_or_first_available_variant.price | money }}</a>
-    {%- else -%}
-      {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">Quero o meu ondão</a>
-    {%- endif -%}
-    <a class="pg-voltar" href="{{ routes.root_url }}">Voltar ao creme</a>
-  </div>
-</section>
+{% render 'ondao-pg-cta' %}
 <script>window.ONDAO_ASSET_BASE = {{ 'ondao-paginas.js' | asset_url | split: 'ondao-paginas.js' | first | json }};</script>
 <script src="{{ 'ondao-paginas.js' | asset_url }}" defer></script>
 

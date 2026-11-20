@@ -42,7 +42,7 @@ const INGS={
     const d=INGS[k]; b.dataset.ing=k;
     const img=b.querySelector('img'); img.src=d.img; img.alt=d.alt;
     b.querySelector('.origem').textContent=d.origem;
-    b.querySelector('h4').textContent=d.card;
+    b.querySelector('.ing-nome').textContent=d.card;
     b.querySelector('p').textContent=d.curto;
     b.setAttribute('aria-label','Saber mais sobre '+d.card);
   }

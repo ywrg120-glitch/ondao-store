@@ -2,11 +2,13 @@
 <html lang="{{ request.locale.iso_code | default: 'pt-PT' }}">
 <head>
 <meta charset="utf-8">
-<title>{%- if template.name == 'index' -%}ondão — Creme Finalizador para Pentear{%- else -%}{{ page_title }} · ondão{%- endif -%}</title>
+<title>{%- if template.name == 'index' -%}ondão — Creme Finalizador para Pentear{%- elsif page_title contains 'ondão' -%}{{ page_title }}{%- else -%}{{ page_title }} · ondão{%- endif -%}</title>
 <meta name="description" content="{{ page_description | default: 'Creme finalizador para pentear ondas e caracóis, feito à volta do óleo de Cacay da Colômbia. Define sem pesar e controla o frizz. Para ela e para ele.' | escape }}">
 <link rel="canonical" href="{{ canonical_url }}">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta property="og:title" content="ondão — Ondas com raízes">
+<meta property="og:title" content="{%- if template.name == 'index' -%}ondão — Ondas com raízes{%- else -%}{{ page_title | escape }}{%- endif -%}">
+<meta property="og:type" content="{% if template.name == 'product' %}product{% else %}website{% endif %}">
+<meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:description" content="Creme finalizador leve para ondas, cachos e crespos, com óleo de Cacay da Colômbia. Define sem pesar, sem efeito molhado. Pré-encomenda aberta: 19,99 €.">
 <meta property="og:image" content="{{ 'tubo-frente-v2.jpg' | asset_url }}">
 <meta name="theme-color" content="#1C3327">
