@@ -279,6 +279,7 @@
     var arrancar = function(){ setTimeout(function(){
       topo.src = matchMedia("(min-width: 900px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
       topo.addEventListener("canplay", function(){ topo.classList.add("pronto"); topo.play().catch(function(){}); }, {once: true});
+      topo.preload = "auto"; topo.load();
     }, 800); };
     if (document.readyState === "complete") arrancar(); else window.addEventListener("load", arrancar, {once: true});
   }
