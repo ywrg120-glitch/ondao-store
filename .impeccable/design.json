@@ -1,0 +1,491 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T21:29:24.314869Z",
+  "title": "Design System: ondão",
+  "extensions": {
+    "colorMeta": {
+      "verde-floresta": {
+        "role": "primary",
+        "displayName": "Verde-floresta",
+        "canonical": "#1C3327",
+        "tonalRamp": [
+          "#050D09",
+          "#1B2720",
+          "#33443B",
+          "#4E6457",
+          "#6F8779",
+          "#96AA9F",
+          "#BFCFC6",
+          "#E5F2EB"
+        ]
+      },
+      "verde-musgo": {
+        "role": "primary",
+        "displayName": "Verde-musgo",
+        "canonical": "#2E5240",
+        "tonalRamp": [
+          "#030E08",
+          "#16291F",
+          "#2D4639",
+          "#456655",
+          "#678A77",
+          "#8FAD9D",
+          "#BAD1C4",
+          "#E1F4E9"
+        ]
+      },
+      "salvia": {
+        "role": "tertiary",
+        "displayName": "Sálvia",
+        "canonical": "#6B9A7B",
+        "tonalRamp": [
+          "#020F06",
+          "#122A1B",
+          "#284834",
+          "#40684E",
+          "#618C70",
+          "#8BAF96",
+          "#B6D3BF",
+          "#DFF5E5"
+        ]
+      },
+      "salvia-clara": {
+        "role": "tertiary",
+        "displayName": "Sálvia-clara",
+        "canonical": "#E4EBE2",
+        "tonalRamp": [
+          "#0A0C09",
+          "#222521",
+          "#3D413C",
+          "#5A5F59",
+          "#7C827B",
+          "#A1A6A0",
+          "#C8CCC7",
+          "#ECEFEB"
+        ]
+      },
+      "terracota": {
+        "role": "secondary",
+        "displayName": "Terracota",
+        "canonical": "#C55A37",
+        "tonalRamp": [
+          "#200000",
+          "#450E00",
+          "#6E240A",
+          "#993C1D",
+          "#C35F3F",
+          "#E18B70",
+          "#FEB7A1",
+          "#FFE0CF"
+        ]
+      },
+      "terracota-funda": {
+        "role": "secondary",
+        "displayName": "Terracota-funda",
+        "canonical": "#A9472A",
+        "tonalRamp": [
+          "#1F0000",
+          "#431002",
+          "#6B2712",
+          "#963F26",
+          "#BF6246",
+          "#DD8D75",
+          "#FBB8A5",
+          "#FFE1D2"
+        ]
+      },
+      "cobre": {
+        "role": "tertiary",
+        "displayName": "Cobre",
+        "canonical": "#8A4C2D",
+        "tonalRamp": [
+          "#190500",
+          "#3A1A09",
+          "#5E321D",
+          "#854D32",
+          "#AC6F52",
+          "#CC977E",
+          "#EBC0AC",
+          "#FFE6D7"
+        ]
+      },
+      "rosa-argila": {
+        "role": "secondary",
+        "displayName": "Rosa-argila",
+        "canonical": "#E39A7B",
+        "tonalRamp": [
+          "#1A0400",
+          "#3B1909",
+          "#60311D",
+          "#874C32",
+          "#AE6E52",
+          "#CD967E",
+          "#EDBFAC",
+          "#FFE6D7"
+        ]
+      },
+      "creme": {
+        "role": "neutral",
+        "displayName": "Creme",
+        "canonical": "#F7F3EC",
+        "tonalRamp": [
+          "#0C0B09",
+          "#252421",
+          "#423F3B",
+          "#605D58",
+          "#83807A",
+          "#A7A49F",
+          "#CCCAC6",
+          "#F0EEEB"
+        ]
+      },
+      "branco-quente": {
+        "role": "neutral",
+        "displayName": "Branco quente",
+        "canonical": "#FFFDF9",
+        "tonalRamp": [
+          "#0C0B0A",
+          "#252422",
+          "#41403D",
+          "#5F5D5A",
+          "#82807D",
+          "#A6A4A1",
+          "#CBCAC8",
+          "#EFEEEC"
+        ]
+      },
+      "areia": {
+        "role": "neutral",
+        "displayName": "Areia",
+        "canonical": "#ECE3D8",
+        "tonalRamp": [
+          "#0D0B08",
+          "#27231E",
+          "#443F38",
+          "#635C54",
+          "#867F76",
+          "#AAA39B",
+          "#CFCAC3",
+          "#F2EEE9"
+        ]
+      },
+      "linho": {
+        "role": "neutral",
+        "displayName": "Linho",
+        "canonical": "#E3DBD0",
+        "tonalRamp": [
+          "#0D0B08",
+          "#27231E",
+          "#443F38",
+          "#635D54",
+          "#867F76",
+          "#A9A49C",
+          "#CECAC3",
+          "#F1EEE9"
+        ]
+      },
+      "cinza-produto": {
+        "role": "neutral",
+        "displayName": "Cinza produto",
+        "canonical": "#ECE8E0",
+        "tonalRamp": [
+          "#0C0B09",
+          "#262420",
+          "#423F3B",
+          "#605D57",
+          "#838079",
+          "#A7A49E",
+          "#CCCAC5",
+          "#F0EEEB"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#1E1B18",
+        "tonalRamp": [
+          "#0C0B0A",
+          "#252422",
+          "#423F3D",
+          "#605D5A",
+          "#837F7C",
+          "#A7A4A1",
+          "#CCCAC7",
+          "#F0EEEC"
+        ]
+      },
+      "cinza-terra": {
+        "role": "neutral",
+        "displayName": "Cinza terra",
+        "canonical": "#6A625A",
+        "tonalRamp": [
+          "#0D0B08",
+          "#27231F",
+          "#443F39",
+          "#635C55",
+          "#867F77",
+          "#AAA39D",
+          "#CFC9C4",
+          "#F2EEE9"
+        ]
+      },
+      "linha": {
+        "role": "neutral",
+        "displayName": "Linha",
+        "canonical": "#DDD3C6",
+        "tonalRamp": [
+          "#0E0B07",
+          "#28231D",
+          "#453F37",
+          "#645C52",
+          "#877F74",
+          "#ABA39A",
+          "#CFC9C2",
+          "#F2EEE8"
+        ]
+      },
+      "texto-sobre-verde": {
+        "role": "neutral",
+        "displayName": "Texto sobre verde",
+        "canonical": "#EFE9DF",
+        "tonalRamp": [
+          "#0D0B08",
+          "#26241F",
+          "#433F39",
+          "#625D55",
+          "#847F77",
+          "#A8A49D",
+          "#CDCAC4",
+          "#F1EEE9"
+        ]
+      },
+      "subtexto-sobre-verde": {
+        "role": "neutral",
+        "displayName": "Subtexto sobre verde",
+        "canonical": "#BFC9C0",
+        "tonalRamp": [
+          "#090C09",
+          "#212521",
+          "#3B423C",
+          "#586059",
+          "#7A837B",
+          "#9FA7A0",
+          "#C6CCC7",
+          "#EBF0EC"
+        ]
+      },
+      "linha-sobre-verde": {
+        "role": "neutral",
+        "displayName": "Linha sobre verde",
+        "canonical": "#4A6B5A",
+        "tonalRamp": [
+          "#040E08",
+          "#172820",
+          "#2F463A",
+          "#486556",
+          "#698978",
+          "#91AC9E",
+          "#BBD1C5",
+          "#E3F3EA"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título do topo; uma vez por página."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de página e o fecho 'Pronto para a sua onda?'."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de secção, nome do produto, cartões."
+      },
+      "price": {
+        "displayName": "Preço",
+        "purpose": "Preço grande junto ao nome do produto."
+      },
+      "body": {
+        "displayName": "Corpo",
+        "purpose": "Texto corrido, 65–75 caracteres por linha."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Só botões e barra de avisos, em maiúsculas."
+      }
+    },
+    "shadows": [
+      {
+        "name": "flutuante",
+        "value": "0 10px 30px rgba(28,51,39,.3)",
+        "purpose": "Botão fixo de compra."
+      },
+      {
+        "name": "toque",
+        "value": "0 12px 28px -18px rgba(28,51,39,.5)",
+        "purpose": "Hover dos cartões de ingredientes, com subida de 3 px."
+      },
+      {
+        "name": "pousado",
+        "value": "0 2px 8px rgba(0,0,0,.15)",
+        "purpose": "Botão '+' pequeno sobre fotografia."
+      }
+    ],
+    "motion": [
+      {
+        "name": "estado",
+        "value": "0.2s ease",
+        "purpose": "Hover e foco de botões, opções e links."
+      },
+      {
+        "name": "saida-suave",
+        "value": "cubic-bezier(.16,1,.3,1) 0.5s",
+        "purpose": "Barra de portes grátis e revelações."
+      },
+      {
+        "name": "capitulo",
+        "value": "opacity/transform 0.7s ease",
+        "purpose": "Capítulos da história a aparecer ao descer."
+      },
+      {
+        "name": "video-entrada",
+        "value": "opacity 0.6s ease",
+        "purpose": "O vídeo do topo aparece por cima da foto quando está pronto."
+      },
+      {
+        "name": "reduzir-movimento",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Desliga vídeos, a barra de avisos a correr e as revelações."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "computador",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A ação de compra. Verde-floresta, pílula cheia, uma linha.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Quero o meu ondão</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:18px 30px;border-radius:999px;background:#1C3327;color:#FFFDF9;font:700 .8rem/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s}.ds-btn-primary:hover{background:#2E5240;transform:translateY(-1px)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:2px solid #C55A37;outline-offset:3px}"
+    },
+    {
+      "name": "Botão sobre fotografia",
+      "kind": "button",
+      "refersTo": "button-on-photo",
+      "description": "Creme sobre a foto do topo.",
+      "html": "<div class=\"ds-foto\"><a class=\"ds-btn-claro\" href=\"#\">Quero o meu ondão</a></div>",
+      "css": ".ds-foto{padding:28px;border-radius:22px;background:linear-gradient(180deg,#6B5A4A,#2A2520)}.ds-btn-claro{display:inline-flex;align-items:center;min-height:52px;padding:14px 34px;border-radius:999px;background:#F7F3EC;color:#1C3327;font:600 .9rem/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:transform .2s}.ds-btn-claro:hover{transform:translateY(-1px)}.ds-btn-claro:focus-visible{outline:2px solid #E39A7B;outline-offset:3px}"
+    },
+    {
+      "name": "Botão de contorno",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Ações secundárias como 'Juntar 1 tubo'.",
+      "html": "<button class=\"ds-btn-contorno\" type=\"button\">Juntar 1 tubo</button>",
+      "css": ".ds-btn-contorno{min-height:48px;padding:14px 22px;border:0;border-radius:999px;background:transparent;color:#1C3327;box-shadow:inset 0 0 0 1.5px #1C3327;font:700 .8rem/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}.ds-btn-contorno:hover{background:#1C3327;color:#FFFDF9}.ds-btn-contorno:focus-visible{outline:2px solid #C55A37;outline-offset:3px}"
+    },
+    {
+      "name": "Opção de compra",
+      "kind": "custom",
+      "refersTo": "option-card-selected",
+      "description": "Escolha 1 ou 2 tubos com rádio nativo e etiqueta de portes grátis.",
+      "html": "<fieldset class=\"ds-qtd\"><label class=\"ds-op\"><input type=\"radio\" name=\"q\" checked><span><b>1 tubo</b><small>+ 4,50 € de portes em Portugal</small></span><b>19,99 €</b></label><label class=\"ds-op\"><input type=\"radio\" name=\"q\"><span><b>2 tubos</b><small>Portes grátis em Portugal</small></span><b>39,98 €</b><em>Portes grátis</em></label></fieldset>",
+      "css": ".ds-qtd{border:0;padding:0;display:grid;gap:10px;max-width:420px;font-family:'Instrument Sans',system-ui,sans-serif;color:#1E1B18}.ds-op{position:relative;display:flex;align-items:center;gap:12px;padding:16px;border:1.5px solid #DDD3C6;border-radius:14px;background:#FFFDF9;cursor:pointer;transition:border-color .2s,background .2s}.ds-op:hover{border-color:#6B9A7B}.ds-op:has(input:checked){border-color:#2E5240;background:#E4EBE2}.ds-op:has(input:focus-visible){outline:2px solid #1C3327;outline-offset:2px}.ds-op input{width:20px;height:20px;margin:0;accent-color:#2E5240}.ds-op span{flex:1;display:grid}.ds-op small{font-size:.85rem;color:#6A625A}.ds-op em{position:absolute;top:-10px;right:14px;background:#C55A37;color:#FFFDF9;font-style:normal;font-size:.72rem;font-weight:700;border-radius:999px;padding:3px 10px}"
+    },
+    {
+      "name": "Campo sobre verde",
+      "kind": "input",
+      "refersTo": "input-on-forest",
+      "description": "Campo da newsletter numa secção verde-floresta.",
+      "html": "<div class=\"ds-verde\"><label for=\"ds-e\">Email</label><input id=\"ds-e\" type=\"email\" placeholder=\"nome@email.com\"></div>",
+      "css": ".ds-verde{display:grid;gap:6px;padding:24px;border-radius:16px;background:#1C3327;font-family:'Instrument Sans',system-ui,sans-serif}.ds-verde label{font-size:.9rem;font-weight:600;color:#EFE9DF}.ds-verde input{min-height:52px;padding:14px 16px;border:1.5px solid #4A6B5A;border-radius:12px;background:rgba(255,253,249,.06);color:#FFFDF9;font-size:16px}.ds-verde input::placeholder{color:#8FA396}.ds-verde input:focus-visible{outline:2px solid #E39A7B;outline-offset:2px;border-color:#E39A7B}"
+    },
+    {
+      "name": "Título com onda",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Fraunces com uma palavra em itálico terracota.",
+      "html": "<h2 class=\"ds-h2\">Pronto para a sua <em>onda?</em></h2>",
+      "css": ".ds-h2{margin:0;font-family:Fraunces,Georgia,serif;font-variation-settings:'SOFT' 100,'WONK' 0;font-weight:400;font-size:2.4rem;line-height:1.02;letter-spacing:-.025em;color:#1E1B18}.ds-h2 em{font-style:italic;color:#C55A37}"
+    },
+    {
+      "name": "Cabeçalho",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Logótipo ao centro, links à esquerda, saco com contador.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-links\"><a href=\"#\">O creme</a><a href=\"#\">Ingredientes</a></span><a class=\"ds-logo\" href=\"#\">ondão</a><a class=\"ds-saco\" href=\"#\" aria-label=\"Carrinho, 1 artigo\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"#1C3327\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 8h14l-1.2 12H6.2z\"/><path d=\"M9 8V6a3 3 0 0 1 6 0v2\"/></svg><b>1</b></a></nav>",
+      "css": ".ds-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 20px;background:#F7F3EC;border-bottom:1px solid #DDD3C6;font-family:'Instrument Sans',system-ui,sans-serif}.ds-links{display:flex;gap:18px;font-size:.88rem}.ds-links a{color:#6A625A;text-decoration:none}.ds-links a:hover{color:#1C3327;text-decoration:underline;text-underline-offset:.18em}.ds-logo{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.6rem;color:#1C3327;text-decoration:none}.ds-saco{justify-self:end;position:relative;display:grid;place-items:center;width:42px;height:42px}.ds-saco b{position:absolute;top:4px;right:2px;min-width:18px;height:18px;border-radius:999px;background:#C55A37;color:#FFFDF9;font:700 .68rem/18px 'Instrument Sans',sans-serif;text-align:center}.ds-saco:focus-visible{outline:2px solid #C55A37;outline-offset:3px;border-radius:50%}"
+    },
+    {
+      "name": "Etiqueta",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Etiqueta terracota para 'Portes grátis'.",
+      "html": "<span class=\"ds-tag\">Portes grátis</span>",
+      "css": ".ds-tag{display:inline-block;background:#C55A37;color:#FFFDF9;font:700 .72rem/1.4 'Instrument Sans',system-ui,sans-serif;border-radius:999px;padding:3px 10px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ondas com raízes",
+    "overview": "A ondão vive entre duas casas: a terra da Orinoquía colombiana, de onde vem o Cacay e o fundador, e a luz das casas de Lisboa, onde a marca nasceu. O sistema visual traduz isso num chão de verde-floresta com acentos de terracota, sobre papel creme quente, e em fotografia de filme de 35 mm com luz natural: pessoas reais, pele com textura, caracóis com frizz, o tubo verdadeiro. Nada parece de estúdio.\n\nA sensação é **quente e tátil**: botões em pílula cheia, cantos suaves, cartões de papel, sombras quase invisíveis. A página respira; uma só ação principal por ecrã (\"Quero o meu ondão\"), e cada secção tem um só trabalho. O título serifado (Fraunces, macio) fala com voz humana; a sans (Instrument Sans) trata dos factos.\n\nRejeitamos dois mundos: o **clínico de farmácia** (branco frio, azul, cara de laboratório) e o **luxo distante** (preto e dourado, modelos frias, preço inacessível). A ondão é próxima, honesta e de casa.",
+    "keyCharacteristics": [
+      "Verde-floresta como chão das ações e das secções escuras; terracota como sotaque raro.",
+      "Fundo creme quente, nunca branco puro nem preto puro.",
+      "Títulos em Fraunces com uma palavra em itálico terracota.",
+      "Fotografia de filme, luz natural, pessoas e tubo reais.",
+      "Pílulas cheias, cantos de 12 a 22 px, sombras difusas e raras.",
+      "Telemóvel primeiro; botão de compra fixo no fundo do ecrã."
+    ],
+    "rules": [
+      {
+        "name": "The Forest Floor Rule",
+        "body": "Toda a ação principal é verde-floresta sobre claro, ou creme sobre fotografia. A terracota não é cor de botão de compra; aparece no máximo em cerca de 10% de um ecrã.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Paper Rule",
+        "body": "Nada de `#FFFFFF` nem `#000000`. O claro é creme ou branco-quente; o escuro é tinta ou verde-floresta. O texto secundário sobre verde é tingido de verde (`subtexto-sobre-verde`), nunca cinzento.",
+        "section": "colors"
+      },
+      {
+        "name": "The Italic Wave Rule",
+        "body": "Um título pode ter uma, e só uma, palavra ou expressão em Fraunces itálico terracota (ou rosa-argila sobre verde). É a \"onda\" do título.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Eyebrow Rule",
+        "body": "Não há etiquetas pequenas em maiúsculas por cima dos títulos. Uma informação que precise de existir (origem de um ingrediente, lugar de um capítulo) vai por baixo do título, em texto normal de frase.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Superfícies paradas não têm sombra. Ou há contorno, ou há sombra, nunca os dois no mesmo cartão.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** usar verde-floresta (`#1C3327`) em todas as ações principais e terracota (`#C55A37`) só como sotaque, em cerca de 10% do ecrã.",
+      "**Do** escrever os títulos em Fraunces com uma só palavra em itálico terracota.",
+      "**Do** usar fotografia de filme de 35 mm com luz natural, pele com textura e cabelo com frizz. Quando aparece o tubo, tem de ser o tubo real: cobre-terracota mate, \"Ondão\" na vertical em verde escuro, tampa sálvia.",
+      "**Do** dar a cada fotografia e vídeo um fundo areia enquanto carrega, e uma imagem parada como capa de cada vídeo.",
+      "**Do** manter os alvos de toque com pelo menos 44 px e o texto dos campos a 16 px.",
+      "**Do** escrever os preços como \"19,99 €\" (vírgula, espaço, € no fim)."
+    ],
+    "donts": [
+      "**Don't** parecer farmácia ou laboratório: nada de branco frio, azul clínico, fundos assépticos, fotografia de bata ou ícones médicos.",
+      "**Don't** parecer luxo distante: nada de preto com dourado, modelos frias e posadas, letras finíssimas em maiúsculas ou ar de \"caro e inacessível\".",
+      "**Don't** pôr etiquetas pequenas em maiúsculas por cima de títulos, nem usar maiúsculas fora dos botões e da barra de avisos.",
+      "**Don't** usar branco puro (`#FFFFFF`) nem preto puro (`#000000`).",
+      "**Don't** publicar imagens geradas com erros visíveis: reflexos impossíveis, mãos ou braços errados, objetos que aparecem ou desaparecem, texto ilegível em destaque. É preferível nenhuma imagem a uma imagem que denuncia a IA.",
+      "**Don't** usar emoji ou caracteres como ícones. Os ícones são SVG de traço (1.6–2 px), arredondados e numa só família."
+    ]
+  }
+}
