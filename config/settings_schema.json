@@ -31,7 +31,7 @@
       {
         "type": "checkbox",
         "id": "ondao_video_como_usar",
-        "label": "Secção \"Como se usa\" com vídeo",
+        "label": "Secção \"Modo de uso\" com vídeo",
         "info": "Ficheiros: ondao-04-como-usar.mp4 e ondao-04-como-usar.jpg",
         "default": false
       },
