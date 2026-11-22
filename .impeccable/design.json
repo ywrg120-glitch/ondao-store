@@ -373,7 +373,7 @@
       "kind": "button",
       "refersTo": "button-primary",
       "description": "A ação de compra. Verde-floresta, pílula cheia, uma linha.",
-      "html": "<a class=\"ds-btn-primary\" href=\"#\">Quero o meu ondão</a>",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Adicionar ao carrinho</a>",
       "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:18px 30px;border-radius:999px;background:#1C3327;color:#FFFDF9;font:700 .8rem/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s}.ds-btn-primary:hover{background:#2E5240;transform:translateY(-1px)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:2px solid #C55A37;outline-offset:3px}"
     },
     {
@@ -381,7 +381,7 @@
       "kind": "button",
       "refersTo": "button-on-photo",
       "description": "Creme sobre a foto do topo.",
-      "html": "<div class=\"ds-foto\"><a class=\"ds-btn-claro\" href=\"#\">Quero o meu ondão</a></div>",
+      "html": "<div class=\"ds-foto\"><a class=\"ds-btn-claro\" href=\"#\">Adicionar ao carrinho</a></div>",
       "css": ".ds-foto{padding:28px;border-radius:22px;background:linear-gradient(180deg,#6B5A4A,#2A2520)}.ds-btn-claro{display:inline-flex;align-items:center;min-height:52px;padding:14px 34px;border-radius:999px;background:#F7F3EC;color:#1C3327;font:600 .9rem/1 'Instrument Sans',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:transform .2s}.ds-btn-claro:hover{transform:translateY(-1px)}.ds-btn-claro:focus-visible{outline:2px solid #E39A7B;outline-offset:3px}"
     },
     {
@@ -435,7 +435,7 @@
   ],
   "narrative": {
     "northStar": "Ondas com raízes",
-    "overview": "A ondão vive entre duas casas: a terra da Orinoquía colombiana, de onde vem o Cacay e o fundador, e a luz das casas de Lisboa, onde a marca nasceu. O sistema visual traduz isso num chão de verde-floresta com acentos de terracota, sobre papel creme quente, e em fotografia de filme de 35 mm com luz natural: pessoas reais, pele com textura, caracóis com frizz, o tubo verdadeiro. Nada parece de estúdio.\n\nA sensação é **quente e tátil**: botões em pílula cheia, cantos suaves, cartões de papel, sombras quase invisíveis. A página respira; uma só ação principal por ecrã (\"Quero o meu ondão\"), e cada secção tem um só trabalho. O título serifado (Fraunces, macio) fala com voz humana; a sans (Instrument Sans) trata dos factos.\n\nRejeitamos dois mundos: o **clínico de farmácia** (branco frio, azul, cara de laboratório) e o **luxo distante** (preto e dourado, modelos frias, preço inacessível). A ondão é próxima, honesta e de casa.",
+    "overview": "A ondão vive entre duas casas: a terra da Orinoquía colombiana, de onde vem o Cacay e o fundador, e a luz das casas de Lisboa, onde a marca nasceu. O sistema visual traduz isso num chão de verde-floresta com acentos de terracota, sobre papel creme quente, e em fotografia de filme de 35 mm com luz natural: pessoas reais, pele com textura, caracóis com frizz, o tubo verdadeiro. Nada parece de estúdio.\n\nA sensação é **quente e tátil**: botões em pílula cheia, cantos suaves, cartões de papel, sombras quase invisíveis. A página respira; uma só ação principal por ecrã (\"Adicionar ao carrinho\"), e cada secção tem um só trabalho. O título serifado (Fraunces, macio) fala com voz humana; a sans (Instrument Sans) trata dos factos.\n\nRejeitamos dois mundos: o **clínico de farmácia** (branco frio, azul, cara de laboratório) e o **luxo distante** (preto e dourado, modelos frias, preço inacessível). A ondão é próxima, honesta e de casa.",
     "keyCharacteristics": [
       "Verde-floresta como chão das ações e das secções escuras; terracota como sotaque raro.",
       "Fundo creme quente, nunca branco puro nem preto puro.",

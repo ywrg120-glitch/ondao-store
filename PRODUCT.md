@@ -46,7 +46,7 @@ A fórmula ser unissexo é verdade e aparece no site, mas não é o diferencial 
 ## Brand Commitments
 
 - Nome: **ondão** (minúsculas no logótipo; "ONDÃO" quando escrito em maiúsculas). Lema: "Ondas com raízes."
-- Língua: português europeu, a tratar o cliente por **"você"**. A chamada para ação é **"Quero o meu ondão"**.
+- Língua: português europeu, a tratar o cliente por **"você"**. A chamada para ação é **"Adicionar ao carrinho"**: abre a gaveta do carrinho sem sair da página; a compra fecha-se em "Finalizar compra em segurança".
 - O tubo é real e é a referência de todas as imagens: tubo mate cor de cobre-terracota, "Ondão" na vertical em verde escuro e tampa verde-salva.
 - Tom honesto e concreto (métodos Hopkins e Harry Dry): factos em vez de adjetivos.
 

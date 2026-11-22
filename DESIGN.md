@@ -133,7 +133,7 @@ components:
 
 A ondão vive entre duas casas: a terra da Orinoquía colombiana, de onde vem o Cacay e o fundador, e a luz das casas de Lisboa, onde a marca nasceu. O sistema visual traduz isso num chão de verde-floresta com acentos de terracota, sobre papel creme quente, e em fotografia de filme de 35 mm com luz natural: pessoas reais, pele com textura, caracóis com frizz, o tubo verdadeiro. Nada parece de estúdio.
 
-A sensação é **quente e tátil**: botões em pílula cheia, cantos suaves, cartões de papel, sombras quase invisíveis. A página respira; uma só ação principal por ecrã ("Quero o meu ondão"), e cada secção tem um só trabalho. O título serifado (Fraunces, macio) fala com voz humana; a sans (Instrument Sans) trata dos factos.
+A sensação é **quente e tátil**: botões em pílula cheia, cantos suaves, cartões de papel, sombras quase invisíveis. A página respira; uma só ação principal por ecrã ("Adicionar ao carrinho"), e cada secção tem um só trabalho. O título serifado (Fraunces, macio) fala com voz humana; a sans (Instrument Sans) trata dos factos.
 
 Rejeitamos dois mundos: o **clínico de farmácia** (branco frio, azul, cara de laboratório) e o **luxo distante** (preto e dourado, modelos frias, preço inacessível). A ondão é próxima, honesta e de casa.
 
@@ -226,7 +226,7 @@ Formas suaves e orgânicas, como o tubo. Pílulas cheias (999 px) para tudo o qu
 
 ### Buttons
 - **Shape:** pílula cheia (999 px), com pelo menos 52 px de altura e texto numa só linha.
-- **Primary:** verde-floresta com texto branco-quente, label em maiúsculas. Diz sempre a ação: "Quero o meu ondão", "Finalizar compra".
+- **Primary:** verde-floresta com texto branco-quente, label em maiúsculas. Diz sempre a ação: "Adicionar ao carrinho", "Finalizar compra em segurança".
 - **Hover / Focus:** o hover passa a verde-musgo e sobe 1 px; ao carregar, encolhe para 0.98. O foco tem anel terracota de 2 px a 3 px de distância.
 - **Sobre fotografia:** creme com texto verde-floresta.
 - **Terracota:** só na newsletter e em ofertas pontuais; nunca na compra principal.
