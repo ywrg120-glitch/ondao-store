@@ -104,19 +104,20 @@
 .cx-g-mais-btn:hover{background:var(--verde);color:var(--branco)}
 .cx-g-vazio{text-align:center;padding:30px 0;display:grid;gap:14px;justify-items:center;color:var(--cinza)}
 .cx-g-vazio[hidden]{display:none}
-.cx-g-pe{padding:16px 20px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--linha);background:var(--branco);display:grid;gap:10px}
+.cx-g-pe{padding:14px 20px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--linha);background:var(--branco);display:grid;gap:8px}
 .cx-g-pe[hidden]{display:none}
 .cx-g-sub{display:flex;justify-content:space-between;align-items:baseline}
 .cx-g-sub b{font-family:var(--serif);font-size:1.35rem;font-weight:600;font-variant-numeric:tabular-nums}
 .cx-g-nota{font-size:.8rem;color:var(--cinza)}
-.cx-g-pagar{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:999px;background:var(--verde);color:var(--branco);font:700 .85rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s}
+.cx-g-pagar{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border-radius:999px;background:var(--verde);color:var(--branco);font:700 .85rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s}
 .cx-g-pagar:hover{background:var(--verde-2);transform:translateY(-1px)}
 .cx-g-pagar:focus-visible,.cx-g-x:focus-visible,.cx-g-mais-btn:focus-visible,.cx-g-lixo:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
 .cx-g-pagar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
-.cx-g-conf{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-size:.8rem;color:var(--tinta)}
+.cx-g-conf{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:2px 12px;font-size:.76rem;color:var(--tinta)}
 .cx-g-conf li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--salvia);margin-right:6px;vertical-align:middle}
 .cx-g-pag{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
-.cx-g-pag-i{height:18px;width:auto}
+.cx-g-pag-i{height:16px;width:auto}
+@media (max-height:700px){.cx-g-nota,.cx-g-pag{display:none}}
 .cx-a-carregar{opacity:.55;pointer-events:none}
 html.cx-trancado{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.cx-g-painel,.cx-g-fundo{transition:none}}
