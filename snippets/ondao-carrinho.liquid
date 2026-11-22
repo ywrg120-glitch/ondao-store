@@ -1,0 +1,234 @@
+{%- comment -%}
+  Gaveta do carrinho (cart drawer). Qualquer link com [data-carrinho-add] adiciona ao carrinho sem sair da página
+  e abre esta gaveta; o ícone do saco [data-carrinho-abrir] também a abre. Sem JavaScript, os links continuam a
+  funcionar (vão para /cart/add e depois para o carrinho).
+  Calmo de propósito: sem contadores nem "últimas unidades" — portes, entrega e segurança claros antes de pagar.
+{%- endcomment -%}
+{%- liquid
+  assign cp = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
+  assign cv = cp.selected_or_first_available_variant
+-%}
+<div class="cx-gaveta" id="cx-gaveta" hidden
+  data-variante="{{ cv.id }}" data-gratis="3500" data-portes="4,50" data-dias-envio="10"
+  role="dialog" aria-modal="true" aria-labelledby="cx-g-titulo">
+  <div class="cx-g-fundo" data-carrinho-fechar></div>
+  <aside class="cx-g-painel" tabindex="-1">
+    <header class="cx-g-topo">
+      <h2 id="cx-g-titulo">O seu carrinho <span data-cx-n></span></h2>
+      <button class="cx-g-x" type="button" data-carrinho-fechar aria-label="Fechar carrinho">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="cx-g-corpo" aria-live="polite">
+      <div class="cx-g-portes" data-cx-portes>
+        <p data-cx-portes-txt></p>
+        <div class="cx-barra" aria-hidden="true"><span data-cx-barra></span></div>
+      </div>
+
+      <ul class="cx-g-lista" data-cx-lista></ul>
+
+      <div class="cx-g-entrega" data-cx-entrega>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+        <p><b>Entrega prevista em Portugal até <span data-cx-data></span></b><span>Pré-encomenda: enviamos em até 10 dias e os CTT entregam em 2 a 4 dias úteis.</span></p>
+      </div>
+
+      <div class="cx-g-mais" data-cx-mais hidden>
+        {%- if cv -%}<img src="{{ cv.image | default: cp.featured_image | image_url: width: 160 }}" width="56" height="56" alt="" loading="lazy">{%- endif -%}
+        <p><b>Junte mais um tubo</b><span>Com 2 tubos os portes ficam grátis em Portugal.</span></p>
+        <button class="cx-g-mais-btn" type="button" data-cx-mais-btn>Juntar · {{ cv.price | money_without_currency }}&nbsp;€</button>
+      </div>
+
+      <div class="cx-g-vazio" data-cx-vazio hidden>
+        <p>O seu carrinho está vazio.</p>
+        <a class="btn btn-verde" href="{{ routes.root_url }}" data-carrinho-fechar>Ver o creme</a>
+      </div>
+    </div>
+
+    <footer class="cx-g-pe" data-cx-pe>
+      <div class="cx-g-sub"><span>Subtotal</span><b data-cx-sub></b></div>
+      <p class="cx-g-nota" data-cx-nota></p>
+      <a class="cx-g-pagar" href="{{ routes.root_url }}checkout">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+        Finalizar compra em segurança
+      </a>
+      <ul class="cx-g-conf">
+        <li>Pagamento seguro</li>
+        <li>14 dias para devolver</li>
+        <li>Sem subscrições</li>
+      </ul>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+      <div class="cx-g-pag" aria-label="Métodos de pagamento aceites">{%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'cx-g-pag-i' }}{%- endfor -%}</div>
+      {%- endif -%}
+    </footer>
+  </aside>
+</div>
+
+<style>
+.cx-gaveta{position:fixed;inset:0;z-index:200}
+.cx-gaveta[hidden]{display:none}
+.cx-g-fundo{position:absolute;inset:0;background:rgba(20,30,24,.45);opacity:0;transition:opacity .3s ease}
+.cx-g-painel{position:absolute;top:0;right:0;bottom:0;width:min(100%,430px);display:flex;flex-direction:column;background:var(--creme);box-shadow:-10px 0 30px rgba(28,51,39,.18);transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);outline:none}
+.cx-gaveta.aberta .cx-g-fundo{opacity:1}
+.cx-gaveta.aberta .cx-g-painel{transform:none}
+.cx-g-topo{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--linha)}
+.cx-g-topo h2{font-family:var(--serif);font-weight:500;font-size:1.35rem}
+.cx-g-topo h2 span{font-family:var(--sans);font-size:.95rem;color:var(--cinza);font-weight:400}
+.cx-g-x{width:44px;height:44px;border:0;background:none;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:var(--verde)}
+.cx-g-x:hover{background:var(--areia)}
+.cx-g-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.cx-g-corpo{flex:1;overflow-y:auto;padding:16px 20px 20px;display:grid;gap:14px;align-content:start;overscroll-behavior:contain}
+.cx-g-portes{background:var(--salvia-claro);border-radius:14px;padding:12px 14px}
+.cx-g-portes p{font-size:.92rem;color:var(--verde)}
+.cx-g-lista{list-style:none}
+.cx-g-item{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linha)}
+.cx-g-item img{width:76px;height:76px;border-radius:12px;object-fit:cover;background:var(--areia)}
+.cx-g-item .cx-nome{font-weight:600;font-size:.95rem;line-height:1.3;color:var(--tinta)}
+.cx-g-item .cx-var{display:block;font-size:.82rem;color:var(--cinza);margin-top:2px}
+.cx-g-item .cx-qtd{margin-top:8px}
+.cx-g-dir{display:grid;justify-items:end;gap:8px}
+.cx-g-dir b{font-variant-numeric:tabular-nums}
+.cx-g-lixo{width:40px;height:40px;border:0;background:none;border-radius:50%;display:grid;place-items:center;color:var(--cinza);cursor:pointer}
+.cx-g-lixo:hover{background:var(--areia);color:var(--terra-2)}
+.cx-g-lixo svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cx-g-entrega{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:12px 14px}
+.cx-g-entrega svg{width:22px;height:22px;fill:none;stroke:var(--verde-2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cx-g-entrega p{display:grid;gap:3px;font-size:.88rem}
+.cx-g-entrega span{color:var(--cinza);font-size:.82rem}
+.cx-g-mais{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:14px;border:1.5px dashed var(--salvia);border-radius:14px}
+.cx-g-mais[hidden]{display:none}
+.cx-g-mais img{width:56px;height:56px;border-radius:10px;object-fit:cover}
+.cx-g-mais p{display:grid;gap:2px;font-size:.9rem}
+.cx-g-mais span{color:var(--cinza);font-size:.82rem}
+.cx-g-mais-btn{grid-column:1/-1;min-height:46px;border:0;border-radius:999px;background:transparent;color:var(--verde);box-shadow:inset 0 0 0 1.5px var(--verde);font:700 .8rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+.cx-g-mais-btn:hover{background:var(--verde);color:var(--branco)}
+.cx-g-vazio{text-align:center;padding:30px 0;display:grid;gap:14px;justify-items:center;color:var(--cinza)}
+.cx-g-vazio[hidden]{display:none}
+.cx-g-pe{padding:16px 20px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--linha);background:var(--branco);display:grid;gap:10px}
+.cx-g-pe[hidden]{display:none}
+.cx-g-sub{display:flex;justify-content:space-between;align-items:baseline}
+.cx-g-sub b{font-family:var(--serif);font-size:1.35rem;font-weight:600;font-variant-numeric:tabular-nums}
+.cx-g-nota{font-size:.8rem;color:var(--cinza)}
+.cx-g-pagar{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:999px;background:var(--verde);color:var(--branco);font:700 .85rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,transform .2s}
+.cx-g-pagar:hover{background:var(--verde-2);transform:translateY(-1px)}
+.cx-g-pagar:focus-visible,.cx-g-x:focus-visible,.cx-g-mais-btn:focus-visible,.cx-g-lixo:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.cx-g-pagar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.cx-g-conf{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-size:.8rem;color:var(--tinta)}
+.cx-g-conf li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--salvia);margin-right:6px;vertical-align:middle}
+.cx-g-pag{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+.cx-g-pag-i{height:18px;width:auto}
+.cx-a-carregar{opacity:.55;pointer-events:none}
+html.cx-trancado{overflow:hidden}
+@media (prefers-reduced-motion:reduce){.cx-g-painel,.cx-g-fundo{transition:none}}
+</style>
+
+<script>
+(function(){
+  var g = document.getElementById("cx-gaveta"); if (!g || !window.fetch) return;
+  var painel = g.querySelector(".cx-g-painel"), ultimoFoco = null;
+  var VAR = +g.dataset.variante, GRATIS = +g.dataset.gratis, PORTES = g.dataset.portes;
+  var $ = function(s){ return g.querySelector(s); };
+  var euros = function(c){ return (c/100).toFixed(2).replace(".", ",") + " €"; };
+  var raiz = (window.Shopify && Shopify.routes && Shopify.routes.root) || "/";
+
+  function dataEntrega(){
+    // pré-encomenda: envio até 10 dias de calendário + 4 dias úteis dos CTT (o pior caso, para não prometer de mais)
+    var d = new Date(); d.setDate(d.getDate() + (+g.dataset.diasEnvio || 10));
+    var uteis = 0; while (uteis < 4){ d.setDate(d.getDate() + 1); var w = d.getDay(); if (w !== 0 && w !== 6) uteis++; }
+    return d.toLocaleDateString("pt-PT", {weekday: "short", day: "numeric", month: "short"});
+  }
+
+  function desenhar(c){
+    var n = c.item_count, vazio = n === 0;
+    $("[data-cx-n]").textContent = vazio ? "" : "(" + n + ")";
+    $("[data-cx-vazio]").hidden = !vazio;
+    $("[data-cx-pe]").hidden = vazio;
+    $("[data-cx-portes]").hidden = vazio;
+    $("[data-cx-entrega]").hidden = vazio;
+    var falta = GRATIS - c.total_price;
+    $("[data-cx-portes-txt]").innerHTML = falta > 0
+      ? "Faltam <b>" + euros(falta) + "</b> para ter <b>portes grátis</b> em Portugal."
+      : "<b>Tem portes grátis</b> em Portugal.";
+    $("[data-cx-barra]").style.width = Math.min(100, Math.round(c.total_price * 100 / GRATIS)) + "%";
+    $("[data-cx-sub]").textContent = euros(c.total_price);
+    $("[data-cx-nota]").textContent = falta > 0
+      ? "Portes de " + PORTES + " € em Portugal, calculados no checkout."
+      : "Portes grátis em Portugal. Outros países: calculados no checkout.";
+    $("[data-cx-data]").textContent = dataEntrega();
+    var so1 = c.items.length === 1 && c.items[0].quantity === 1 && c.items[0].variant_id === VAR && falta > 0;
+    $("[data-cx-mais]").hidden = !so1;
+    var lista = $("[data-cx-lista]"); lista.innerHTML = "";
+    c.items.forEach(function(it, i){
+      var li = document.createElement("li"); li.className = "cx-g-item";
+      var img = it.image ? it.image.replace(/(\.[a-z]+)(\?|$)/i, "_160x$1$2") : "";
+      li.innerHTML =
+        '<img src="' + img + '" width="76" height="76" alt="">' +
+        '<div><span class="cx-nome"></span><span class="cx-var">200 ml · ' + euros(it.final_price) + ' cada</span>' +
+        '<div class="cx-qtd"><button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity-1) + '" aria-label="Tirar um tubo"' + (it.quantity < 2 ? " disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>' +
+        '<span aria-label="Quantidade">' + it.quantity + '</span>' +
+        '<button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity+1) + '" aria-label="Juntar um tubo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div></div>' +
+        '<div class="cx-g-dir"><b>' + euros(it.final_line_price) + '</b>' +
+        '<button class="cx-g-lixo" type="button" data-l="' + (i+1) + '" data-q="0" aria-label="Remover do carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg></button></div>';
+      li.querySelector(".cx-nome").textContent = it.product_title;
+      lista.appendChild(li);
+    });
+    // contador do saco no cabeçalho
+    [].forEach.call(document.querySelectorAll(".ico-saco"), function(a){
+      a.setAttribute("aria-label", "Carrinho, " + n + (n === 1 ? " artigo" : " artigos"));
+      var b = a.querySelector(".saco-n");
+      if (n > 0){ if (!b){ b = document.createElement("span"); b.className = "saco-n"; b.setAttribute("aria-hidden", "true"); a.appendChild(b); } b.textContent = n; }
+      else if (b){ b.remove(); }
+    });
+  }
+
+  function pedir(url, corpo){
+    painel.classList.add("cx-a-carregar");
+    return fetch(raiz + url, corpo ? {method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"}, body: JSON.stringify(corpo)} : {headers: {"Accept": "application/json"}})
+      .then(function(r){ if (!r.ok) throw r; return r.json(); })
+      .finally(function(){ painel.classList.remove("cx-a-carregar"); });
+  }
+  function atualizar(){ return pedir("cart.js").then(desenhar); }
+
+  function abrir(){
+    ultimoFoco = document.activeElement;
+    g.hidden = false; document.documentElement.classList.add("cx-trancado");
+    requestAnimationFrame(function(){ g.classList.add("aberta"); painel.focus(); });
+  }
+  function fechar(){
+    g.classList.remove("aberta"); document.documentElement.classList.remove("cx-trancado");
+    setTimeout(function(){ g.hidden = true; }, 350);
+    if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+  }
+
+  function quantidadeEscolhida(){
+    var r = document.querySelector('input[name="lj-qtd"]:checked');
+    return r ? +r.value : 1;
+  }
+  function adicionar(qtd){
+    return pedir("cart/add.js", {items: [{id: VAR, quantity: qtd}]}).then(atualizar).then(abrir)
+      .catch(function(){ location.href = raiz + "cart"; });
+  }
+
+  document.addEventListener("click", function(e){
+    var add = e.target.closest("[data-carrinho-add]");
+    if (add){ e.preventDefault(); adicionar(quantidadeEscolhida()); return; }
+    var abre = e.target.closest("[data-carrinho-abrir]");
+    if (abre){ e.preventDefault(); atualizar().then(abrir); return; }
+    if (e.target.closest("[data-carrinho-fechar]")){ if (g.classList.contains("aberta")){ e.preventDefault(); fechar(); } return; }
+    var q = e.target.closest("[data-l]");
+    if (q && g.contains(q)){ pedir("cart/change.js", {line: +q.dataset.l, quantity: +q.dataset.q}).then(desenhar); return; }
+    if (e.target.closest("[data-cx-mais-btn]")){ pedir("cart/add.js", {items: [{id: VAR, quantity: 1}]}).then(atualizar); }
+  });
+  document.addEventListener("keydown", function(e){
+    if (!g.classList.contains("aberta")) return;
+    if (e.key === "Escape") fechar();
+    if (e.key === "Tab"){
+      var f = painel.querySelectorAll('a[href]:not([hidden]),button:not([disabled])');
+      f = [].filter.call(f, function(x){ return x.offsetParent !== null; });
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+    }
+  });
+})();
+</script>

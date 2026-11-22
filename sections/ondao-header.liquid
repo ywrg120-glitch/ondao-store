@@ -1,7 +1,7 @@
 {%- liquid
   assign cta_p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
   assign cta_link = '/pages/lista'
-  assign cta_txt = 'Quero o meu ondão'
+  assign cta_txt = 'Adicionar ao carrinho'
   if cta_p != blank
     assign cta_v = cta_p.selected_or_first_available_variant
     if cta_v.available
@@ -36,8 +36,8 @@
     </div>
     <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
     <div class="nav-dir">
-      <a class="btn btn-verde nav-cta" id="nav-cta" href="{{ cta_link }}" data-checkout="{% if cta_link contains '/cart/' %}1{% endif %}">{{ cta_txt }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ico-btn ico-saco" href="{{ routes.cart_url }}" aria-label="Carrinho, {{ cart.item_count }} {% if cart.item_count == 1 %}artigo{% else %}artigos{% endif %}">
+      <a class="btn btn-verde nav-cta" id="nav-cta" href="{{ cta_link }}" {% if cta_link contains '/cart/' %}data-carrinho-add{% endif %}>{{ cta_txt }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="ico-btn ico-saco" href="{{ routes.cart_url }}" data-carrinho-abrir aria-label="Carrinho, {{ cart.item_count }} {% if cart.item_count == 1 %}artigo{% else %}artigos{% endif %}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         {%- if cart.item_count > 0 -%}<span class="saco-n" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
       </a>
@@ -81,7 +81,7 @@
 </script>
 
 {%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.name == 'cart' or template.suffix == 'creme' or template.suffix == 'lista' -%}
-<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · pré-encomenda</span>{%- endif -%}</a></div>
+<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"{% if cta_link contains '/cart/' %} data-carrinho-add{% endif %}><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · pré-encomenda</span>{%- endif -%}</a></div>
 {%- endunless -%}
 
 {% schema %}

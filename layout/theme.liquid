@@ -26,5 +26,6 @@
 {{ content_for_layout }}
 </main>
 {% section 'ondao-footer' %}
+{%- unless template.name == 'cart' or template.name == 'password' -%}{% render 'ondao-carrinho' %}{%- endunless -%}
 </body>
 </html>

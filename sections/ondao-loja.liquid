@@ -44,7 +44,7 @@
     endif
   endif
 -%}
-{%- if a_venda -%}{%- assign txt_cta = 'Quero o meu ondão' -%}{%- else -%}{%- assign txt_cta = 'Entrar na Lista VIP' -%}{%- endif -%}
+{%- if a_venda -%}{%- assign txt_cta = 'Adicionar ao carrinho' -%}{%- else -%}{%- assign txt_cta = 'Entrar na Lista VIP' -%}{%- endif -%}
 
 <div class="lj">
 
@@ -60,7 +60,7 @@
     <div class="lj-hero-txt">
       {%- if e_produto -%}<p class="lj-h1">{%- else -%}<h1 class="lj-h1">{%- endif -%}Defina a sua <em>onda</em> com <span class="lj-logo">ondão.</span>{%- if e_produto -%}</p>{%- else -%}</h1>{%- endif %}
       <p>Creme finalizador leve com óleo de Cacay da Colômbia, para ondas, cachos e crespos: define sem pesar, sem efeito molhado e sem crosta.</p>
-      <a class="lj-btn lj-btn-claro" href="{{ link }}" data-lj-cta>{{ txt_cta }}</a>
+      <a class="lj-btn lj-btn-claro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
       {%- if a_venda -%}<p class="lj-hero-preco">{{ preco }} · envio em até {{ dias }} dias</p>{%- endif -%}
     </div>
   </section>
@@ -118,7 +118,7 @@
         <div class="lj-opcao lj-opcao-vip"><span class="lj-opcao-txt"><b>Lista VIP</b><span>Receba o link de compra 48h antes de todos</span></span><span class="lj-opcao-preco"><b>{{ preco }}</b></span></div>
         {%- endif -%}
 
-        <a class="lj-btn lj-btn-escuro lj-btn-full" id="lj-comprar" href="{{ link }}" data-lj-cta>{{ txt_cta }}</a>
+        <a class="lj-btn lj-btn-escuro lj-btn-full" id="lj-comprar" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
         {%- if a_venda -%}
         <div class="lj-express">
           <p class="lj-ou"><span>ou pague num toque</span></p>
@@ -172,7 +172,7 @@
           <li><img src="{{ 'ondao-04-passo-2.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Uma noz de creme</b><span>Espalhe nas palmas e passe pelo cabelo, de baixo para cima.</span></li>
           <li><img src="{{ 'ondao-04-passo-3.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Amachuque e deixe secar</b><span>Ao ar ou com difusor. Não mexa até estar seco.</span></li>
         </ol>
-        <a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta>{{ txt_cta }}</a>
+        <a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
       </div>
     </div>
   </section>
@@ -253,7 +253,7 @@
   </section>
 
   <!-- BOTÃO FIXO -->
-  <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% endif %} {{ seta }}</a></div>
+  <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% endif %} {{ seta }}</a></div>
 </div>
 
 <script>
