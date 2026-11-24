@@ -51,11 +51,11 @@
   <!-- HERO -->
   <section class="lj-hero">
     <picture>
-      <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Um casal a rir, ela com caracóis e ele com cabelo crespo, numa varanda sobre o rio" fetchpriority="high">
+      <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Homem com caracóis escuros definidos a olhar para a câmara, na costa do Cabo da Roca" fetchpriority="high">
     </picture>
     {%- if settings.ondao_video_topo -%}
     <video class="lj-hero-foto lj-video" id="lj-video-topo" muted loop playsinline preload="none" aria-hidden="true"
-      data-telemovel="{{ 'ondao-01-topo-telemovel.mp4' | asset_url }}" data-computador="{{ 'ondao-01-topo-telemovel.mp4' | asset_url }}"></video>
+      data-telemovel="{{ 'ondao-01-topo-telemovel.mp4' | asset_url }}" data-computador=""></video>
     {%- endif -%}
     <div class="lj-hero-txt">
       {%- if e_produto -%}<p class="lj-h1">{%- else -%}<h1 class="lj-h1">{%- endif -%}Defina a sua <em>onda</em> com <span class="lj-logo">ondão.</span>{%- if e_produto -%}</p>{%- else -%}</h1>{%- endif %}
@@ -277,7 +277,9 @@
   if (topo && !calmo && !poupar) {
     // a foto do topo aparece primeiro; o vídeo só começa a descarregar depois de a página carregar
     var arrancar = function(){ setTimeout(function(){
-      topo.src = matchMedia("(min-width: 900px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
+      var src = matchMedia("(min-width: 900px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
+      if (!src) return; // no computador fica a foto larga até haver vídeo horizontal
+      topo.src = src;
       topo.addEventListener("canplay", function(){ topo.classList.add("pronto"); topo.play().catch(function(){}); }, {once: true});
       topo.preload = "auto"; topo.load();
     }, 800); };
