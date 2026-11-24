@@ -154,7 +154,7 @@
         <p>Define o caracol e deixa-o macio ao toque. Nada de cabelo duro, nada de brilho molhado.</p>
       </article>
       <article class="lj-cartao">
-        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-2.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Mulher a amachucar os caracóis com as mãos"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Homem de caracóis curtos e definidos a olhar para cima, com flash" loading="lazy">{%- endif -%}
+        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-2.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Mulher a amachucar os caracóis com as mãos"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Homem com caracóis 3B definidos a olhar para cima, com flash" loading="lazy">{%- endif -%}
         <h3>Dura até amanhã</h3>
         <p>No dia seguinte, um pouco de água e amachuque. O caracol volta quase ao do primeiro dia.</p>
       </article>
@@ -209,7 +209,7 @@
     <div class="lj-origem-foto">
       <picture>
         <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
-        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="Agricultora colombiana a mostrar nozes de Cacay acabadas de abrir, na Orinoquía" loading="lazy">
+        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="Nozes de Cacay inteiras e abertas, com uma taça de óleo de Cacay" loading="lazy">
       </picture>
       <span class="lj-origem-selo">Orinoquía, Colômbia</span>
     </div>
@@ -229,17 +229,17 @@
   <!-- RETRATOS -->
   <section class="lj-secao lj-retratos-sec">
     <h2 class="lj-h2 lj-centro">Ondas com raízes</h2>
-    <p class="lj-centro lj-sub">Um creme pensado para realçar cada caracol, como ele é.</p>
+    <p class="lj-centro lj-sub">Do ondulado ao cacheado. Encontre o seu tipo.</p>
     <div class="lj-retratos">
-      {%- for i in (1..5) -%}
+      {%- assign tipos = "2B · ondas|2C/3A · ondas e caracóis|3A · caracóis|3B · caracóis|3B · caracóis|3C · caracóis apertados" | split: "|" -%}
+      {%- assign altos = "Homem com cabelo ondulado 2B|Homem com ondas e caracóis 2C/3A|Mulher de perfil com caracóis 3A longos|Mulher com caracóis 3B volumosos|Homem com caracóis 3B|Mulher com caracóis 3C apertados" | split: "|" -%}
+      {%- for i in (1..6) -%}
       {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
-      {%- comment -%} O vídeo do Dário (2) criava fios estranhos no cabelo: fica a foto até haver vídeo novo {%- endcomment -%}
-      {%- if settings.ondao_videos_pessoas and i != 2 -%}
-      {%- capture fv -%}ondao-07-retrato-{{ i }}.mp4{%- endcapture -%}
-      <video class="lj-video" src="{{ fv | asset_url }}" poster="{{ f | asset_img_url: '540x' }}" muted loop playsinline preload="none" width="1080" height="1440" aria-label="Pessoa com ondas ou caracóis definidos"></video>
-      {%- else -%}
-      <img src="{{ f | asset_img_url: '1080x' }}" srcset="{{ f | asset_img_url: '540x' }} 540w, {{ f | asset_img_url: '810x' }} 810w, {{ f | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 230px, 62vw" width="1080" height="1440" alt="Pessoa com ondas ou caracóis definidos" loading="lazy">
-      {%- endif -%}
+      {%- assign k = forloop.index0 -%}
+      <figure class="lj-retrato">
+        <img src="{{ f | asset_img_url: '1080x' }}" srcset="{{ f | asset_img_url: '540x' }} 540w, {{ f | asset_img_url: '810x' }} 810w, {{ f | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 200px, 62vw" width="1080" height="1440" alt="{{ altos[k] }}" loading="lazy">
+        <figcaption>{{ tipos[k] }}</figcaption>
+      </figure>
       {%- endfor -%}
     </div>
   </section>

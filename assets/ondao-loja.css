@@ -116,7 +116,9 @@
 .lj-retratos-sec{background:var(--creme)}
 .lj-retratos{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px var(--gutter) 0;scrollbar-width:none}
 .lj-retratos::-webkit-scrollbar{display:none}
-.lj-retratos img,.lj-retratos video{flex:0 0 62%;min-width:0;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:16px;scroll-snap-align:center;background:var(--areia)}
+.lj-retrato{flex:0 0 62%;min-width:0;margin:0;scroll-snap-align:center}
+.lj-retratos img,.lj-retratos video{display:block;width:100%;min-width:0;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:16px;background:var(--areia)}
+.lj-retrato figcaption{margin-top:10px;text-align:center;font-size:.9rem;color:var(--cinza,#6a625a)}
 
 /* newsletter */
 .lj-news{background:var(--verde-2);color:var(--branco);padding:44px 0}
@@ -147,7 +149,7 @@
   .lj-verde{padding:90px var(--gutter)}
   .lj-banner{min-height:620px}
   .lj-retratos{justify-content:center;overflow:visible;max-width:var(--max);margin:0 auto}
-  .lj-retratos img,.lj-retratos video{flex:1 1 0;min-width:0}
+  .lj-retrato{flex:1 1 0;min-width:0}
   .lj-news{padding:64px 0}
 }
 @media (prefers-reduced-motion:reduce){.lj-btn,.lj-fixa{transition:none}}
