@@ -289,10 +289,18 @@
       topo.addEventListener("canplay", function(){ topo.classList.add("pronto"); topo.play().catch(function(){}); }, {once: true});
       topo.preload = "auto"; topo.load();
     }, 800); };
-    if (document.readyState === "complete") arrancar(); else window.addEventListener("load", arrancar, {once: true});
+    // arranca depois de a página carregar, mas nunca espera mais de 3 s (scripts externos podem atrasar o "load")
+    var feito = false, uma = function(){ if (!feito) { feito = true; arrancar(); } };
+    if (document.readyState === "complete") uma(); else { window.addEventListener("load", uma, {once: true}); setTimeout(uma, 3000); }
   }
+  // se o browser recusar o arranque automático (poupança de energia, definições), tenta outra vez ao primeiro toque ou scroll
+  var pendentes = [];
+  var tocar = function(v){ var pr = v.play(); if (pr && pr.catch) pr.catch(function(){ if (pendentes.indexOf(v) < 0) pendentes.push(v); }); };
+  var retomar = function(){ pendentes.splice(0).forEach(function(v){ if (v.dataset.visivel === "1") tocar(v); }); };
+  ["touchstart", "pointerdown", "keydown", "scroll"].forEach(function(ev){ window.addEventListener(ev, retomar, {passive: true}); });
+  if (topo) topo.addEventListener("canplay", function(){ if (topo.paused) tocar(topo); });
   if ("IntersectionObserver" in window && !calmo) {
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ var v = e.target; if (!v.getAttribute("src")) return; if (e.isIntersecting) { v.play().catch(function(){}); } else { v.pause(); } }); }, {threshold: .25});
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ var v = e.target; v.dataset.visivel = e.isIntersecting ? "1" : "0"; if (!v.getAttribute("src")) return; if (e.isIntersecting) { tocar(v); } else { v.pause(); } }); }, {threshold: .25});
     [].forEach.call(document.querySelectorAll(".lj video.lj-video"), function(v){ if (!v.controls) io.observe(v); });
   }
   // quantidade: 1 ou 2 tubos atualiza todos os botões de compra, o Shop Pay e o preço do botão fixo
