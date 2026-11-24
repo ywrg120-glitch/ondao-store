@@ -229,7 +229,8 @@
     <div class="lj-retratos">
       {%- for i in (1..5) -%}
       {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
-      {%- if settings.ondao_videos_pessoas -%}
+      {%- comment -%} O vídeo do Dário (2) criava fios estranhos no cabelo: fica a foto até haver vídeo novo {%- endcomment -%}
+      {%- if settings.ondao_videos_pessoas and i != 2 -%}
       {%- capture fv -%}ondao-07-retrato-{{ i }}.mp4{%- endcapture -%}
       <video class="lj-video" src="{{ fv | asset_url }}" poster="{{ f | asset_img_url: '540x' }}" muted loop playsinline preload="none" width="1080" height="1440" aria-label="Pessoa com ondas ou caracóis definidos"></video>
       {%- else -%}
