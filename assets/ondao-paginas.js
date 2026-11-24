@@ -5,23 +5,23 @@ if (typeof window.contar !== "function") {
 var contar = window.contar;
 /* Ingredientes: tocar num cartão troca-o com o painel grande */
 const INGS={
-  cacay:{nome:"Cacay.",card:"Óleo de Cacay",origem:"Orinoquía colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-cacay-maos.jpg",alt:"Mãos com nozes de Cacay, uma delas aberta",
+  cacay:{nome:"Cacay.",card:"Óleo de Cacay",origem:"Orinoquía colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-cacay-still.jpg",alt:"Nozes de Cacay, uma delas aberta",
     latim:"Caryodendron orinocense · bacia do Orinoco, Colômbia",
     corpo:"O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.",
     funcao:"O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.",curto:"Nutre a fibra e dá brilho sem pesar."},
-  "sacha-inchi":{nome:"Sacha Inchi.",card:"Óleo de Sacha Inchi",origem:"Amazónia colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-sacha-inchi-maos.jpg",alt:"Mãos com cápsulas em estrela e sementes de Sacha Inchi",
+  "sacha-inchi":{nome:"Sacha Inchi.",card:"Óleo de Sacha Inchi",origem:"Amazónia colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-sacha-inchi-still.jpg",alt:"Cápsulas em estrela e sementes de Sacha Inchi, com um pouco de óleo",
     latim:"Plukenetia volubilis · Amazónia colombiana",
     corpo:"A \u201cnoz-estrela\u201d da Amazónia. As sementes escondem-se dentro de cápsulas em forma de estrela e dão um óleo muito leve, rico em ómega-3 e ómega-6.",
     funcao:"Amacia e dá brilho com uma textura ultraleve, que é absorvida depressa e não deixa resíduo.",curto:"Ultraleve e rico em ómega-3. Brilho sem peso."},
-  ungurahui:{nome:"Ungurahui.",card:"Óleo de Ungurahui",origem:"Amazónia colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-ungurahui-maos.jpg",alt:"Mãos com frutos roxos de Ungurahui",
+  ungurahui:{nome:"Ungurahui.",card:"Óleo de Ungurahui",origem:"Amazónia colombiana",img:(window.ONDAO_ASSET_BASE||"")+"ing-ungurahui-still.jpg",alt:"Frutos roxos de Ungurahui",
     latim:"Oenocarpus bataua · conhecido na Colômbia como seje",
     corpo:"O fruto de uma palmeira amazónica que as comunidades indígenas usam há gerações para cuidar do cabelo. O óleo, rico em ácido oleico, é parecido com o azeite, mas mais leve.",
     funcao:"Suaviza a fibra, ajuda a desembaraçar e deixa os caracóis com brilho e toque macio.",curto:"Usado há gerações no cuidado do cabelo. Brilho e suavidade."},
-  quinoa:{nome:"Quinoa.",card:"Proteína de Quinoa",origem:"Andes",img:(window.ONDAO_ASSET_BASE||"")+"ing-quinoa-maos.jpg",alt:"Mãos com grãos e uma espiga de quinoa",
+  quinoa:{nome:"Quinoa.",card:"Proteína de Quinoa",origem:"Andes",img:(window.ONDAO_ASSET_BASE||"")+"ing-quinoa-still.jpg",alt:"Grãos e uma espiga de quinoa",
     latim:"Chenopodium quinoa · Andes",
     corpo:"O grão dos Andes, cultivado também no sul da Colômbia. A proteína é hidrolisada, ou seja, partida em fragmentos pequenos que conseguem aderir à superfície do cabelo.",
     funcao:"Dá estrutura e elasticidade ao caracol e ajuda a protegê-lo da quebra ao pentear.",curto:"Estrutura e elasticidade para o caracol."},
-  poliglutamico:{nome:"Ácido Poliglutâmico.",card:"Ácido Poliglutâmico",origem:"Biotecnologia",img:(window.ONDAO_ASSET_BASE||"")+"ing-poliglutamico-maos.jpg",alt:"Uma gota de gel transparente a cair de um conta-gotas para a mão",
+  poliglutamico:{nome:"Ácido Poliglutâmico.",card:"Ácido Poliglutâmico",origem:"Biotecnologia",img:(window.ONDAO_ASSET_BASE||"")+"ing-poliglutamico-still.jpg",alt:"Gel transparente e um conta-gotas",
     latim:"γ-PGA · obtido por fermentação natural",
     corpo:"Um ativo de biotecnologia, produzido por fermentação. Funciona como um íman de água: atrai e segura a hidratação dentro e à volta do fio.",
     funcao:"Forma um filme leve e invisível que mantém o caracol hidratado e ajuda a controlar o frizz da humidade.",curto:"Retém a hidratação. Menos frizz."}
