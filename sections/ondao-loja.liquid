@@ -51,6 +51,7 @@
   <!-- HERO -->
   <section class="lj-hero">
     <picture>
+      <source media="(min-width: 900px)" srcset="{{ 'ondao-01-topo-computador.jpg' | asset_url }}" width="1920" height="1080">
       <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Homem com caracóis escuros definidos a olhar para a câmara, na costa do Cabo da Roca" fetchpriority="high">
     </picture>
     {%- if settings.ondao_video_topo -%}
