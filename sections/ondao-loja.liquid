@@ -91,13 +91,13 @@
         {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}Creme Finalizador para Pentear{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
         <p class="lj-preco"><b>{{ preco }}</b><span>200 ml · {% if v %}{{ v.price | times: 0.5 | money_without_currency }} €{% else %}10,00 €{% endif %}/100 ml</span></p>
         <p class="lj-estado">{% if a_venda %}Pré-encomenda · envio em até {{ dias }} dias{% else %}Pré-lançamento{% endif %}</p>
-        <p class="lj-desc">Define o caracol sem o deixar duro: fica marcado, solto e macio, sem efeito molhado. Pouco creme para ondas soltas, mais creme para caracóis definidos. Feito à volta do óleo de Cacay da Colômbia, com Sacha Inchi, Ungurahui, proteína de quinoa e Ácido Poliglutâmico.</p>
+        <p class="lj-desc">Define o caracol sem o deixar duro. Pouco creme para ondas, mais para caracóis. <a class="lj-desc-link" href="/pages/ingredientes">Ver ingredientes&nbsp;→</a></p>
 
         <ul class="lj-vantagens">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Sem crosta, sem peso</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Do ondulado ao cacheado</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Menos de 1 € por lavagem</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/></svg>Cheiro fresco e unissexo</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Sem crosta</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Sem efeito molhado</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Menos de 1 €/lavagem</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/></svg>Cheiro unissexo</li>
         </ul>
 
         {%- if a_venda -%}
@@ -110,7 +110,7 @@
           </label>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="2">
-            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis · um para si, outro para quem vive consigo{% else %}{{ preco }} por tubo{% endif %}</span></span>
+            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span></span>
             <span class="lj-opcao-preco"><b>{{ preco2 }}</b></span>
             {%- if dois_gratis -%}<em class="lj-tag">Portes grátis</em>{%- endif -%}
           </label>
