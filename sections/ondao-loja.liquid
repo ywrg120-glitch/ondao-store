@@ -228,17 +228,18 @@
 
   <!-- RETRATOS -->
   <section class="lj-secao lj-retratos-sec">
-    <h2 class="lj-h2 lj-centro">Ondas com raízes</h2>
-    <p class="lj-centro lj-sub">Do ondulado ao cacheado. Encontre o seu tipo.</p>
+    <h2 class="lj-h2 lj-centro">Um creme. O seu tipo de caracol.</h2>
+    <p class="lj-centro lj-sub">Mais ou menos creme, conforme a definição que quer.</p>
     <div class="lj-retratos">
-      {%- assign tipos = "2B · ondas|2C/3A · ondas e caracóis|3A · caracóis|3B · caracóis|3B · caracóis|3C · caracóis apertados" | split: "|" -%}
-      {%- assign altos = "Homem com cabelo ondulado 2B|Homem com ondas e caracóis 2C/3A|Mulher de perfil com caracóis 3A longos|Mulher com caracóis 3B volumosos|Homem com caracóis 3B|Mulher com caracóis 3C apertados" | split: "|" -%}
-      {%- for i in (1..6) -%}
+      {%- assign nomes = "Ondas|Caracóis|Bem definido" | split: "|" -%}
+      {%- assign doses = "pouco creme|um pouco mais|mais creme" | split: "|" -%}
+      {%- assign altos = "Mulher de perfil com cabelo ondulado solto|Homem de perfil com caracóis definidos|Mulher com caracóis pequenos e bem definidos" | split: "|" -%}
+      {%- for i in (1..3) -%}
       {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
       {%- assign k = forloop.index0 -%}
       <figure class="lj-retrato">
-        <img src="{{ f | asset_img_url: '1080x' }}" srcset="{{ f | asset_img_url: '540x' }} 540w, {{ f | asset_img_url: '810x' }} 810w, {{ f | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 200px, 62vw" width="1080" height="1440" alt="{{ altos[k] }}" loading="lazy">
-        <figcaption>{{ tipos[k] }}</figcaption>
+        <img src="{{ f | asset_img_url: '810x' }}" srcset="{{ f | asset_img_url: '360x' }} 360w, {{ f | asset_img_url: '540x' }} 540w, {{ f | asset_img_url: '810x' }} 810w" sizes="(min-width: 900px) 240px, 31vw" width="1080" height="1440" alt="{{ altos[k] }}" loading="lazy">
+        <figcaption><b>{{ nomes[k] }}</b><span>{{ doses[k] }}</span></figcaption>
       </figure>
       {%- endfor -%}
     </div>
@@ -259,7 +260,7 @@
   </section>
 
   <!-- BOTÃO FIXO -->
-  <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% endif %} {{ seta }}</a></div>
+  <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% else %} {{ seta }}{% endif %}</a></div>
 </div>
 
 <script>

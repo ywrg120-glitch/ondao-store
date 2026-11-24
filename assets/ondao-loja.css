@@ -116,11 +116,12 @@
 
 /* retratos */
 .lj-retratos-sec{background:var(--creme)}
-.lj-retratos{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px var(--gutter) 0;scrollbar-width:none}
-.lj-retratos::-webkit-scrollbar{display:none}
-.lj-retrato{flex:0 0 62%;min-width:0;margin:0;scroll-snap-align:center}
-.lj-retratos img,.lj-retratos video{display:block;width:100%;min-width:0;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:16px;background:var(--areia)}
-.lj-retrato figcaption{margin-top:10px;text-align:center;font-size:.9rem;color:var(--cinza,#6a625a)}
+.lj-retratos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:24px var(--gutter) 0;max-width:780px;margin:0 auto}
+.lj-retrato{min-width:0;margin:0}
+.lj-retratos img{display:block;width:100%;min-width:0;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:50% 30%;border-radius:12px;background:var(--areia)}
+.lj-retrato figcaption{margin-top:8px;text-align:center;line-height:1.3}
+.lj-retrato figcaption b{display:block;font-size:.85rem;font-weight:600;color:var(--tinta)}
+.lj-retrato figcaption span{display:block;font-size:.75rem;color:var(--cinza,#6a625a)}
 
 /* newsletter */
 .lj-news{background:var(--verde-2);color:var(--branco);padding:44px 0}
@@ -136,7 +137,7 @@
 /* botão fixo */
 .lj-fixa{position:fixed;left:50%;bottom:16px;z-index:60;transform:translate(-50%,160%);transition:transform .35s ease;width:calc(100% - 32px);max-width:420px}
 .lj-fixa.on{transform:translate(-50%,0)}
-.lj-fixa .lj-btn{width:100%;box-shadow:0 10px 30px rgba(20,30,24,.25)}
+.lj-fixa .lj-btn{width:100%;box-shadow:0 10px 30px rgba(20,30,24,.25);white-space:nowrap;padding:14px 18px;font-size:.8rem;letter-spacing:.04em;gap:6px}
 
 /* computador */
 @media (min-width:900px){
@@ -150,8 +151,9 @@
   .lj-cartao{flex:0 0 calc(50% - 7px);max-width:520px}
   .lj-verde{padding:90px var(--gutter)}
   .lj-banner{min-height:620px}
-  .lj-retratos{justify-content:center;overflow:visible;max-width:var(--max);margin:0 auto}
-  .lj-retrato{flex:1 1 0;min-width:0}
+  .lj-retratos{gap:16px}
+  .lj-retrato figcaption b{font-size:.95rem}
+  .lj-retrato figcaption span{font-size:.85rem}
   .lj-news{padding:64px 0}
 }
 @media (prefers-reduced-motion:reduce){.lj-btn,.lj-fixa{transition:none}}
