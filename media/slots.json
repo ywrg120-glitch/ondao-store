@@ -1,375 +1,281 @@
 {
- "_leia": "Cada lugar de imagem/vídeo do site. Para trocar, ponha um ficheiro em media/entrada/ com o nome do lugar (ex.: 01-topo-telemovel.png). O GitHub corta, comprime e publica em assets/ sozinho.",
- "01-topo-telemovel": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-01-topo-telemovel.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.35
-  ]
- },
- "01-topo-computador": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-01-topo-computador.jpg",
-  "largura": 1920,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.4
-  ]
- },
- "01-topo-video-telemovel": {
-  "tipo": "video",
-  "ficheiro": "ondao-01-topo-telemovel.mp4",
-  "largura": 720,
-  "altura": 1280
- },
- "01-topo-video-computador": {
-  "tipo": "video",
-  "ficheiro": "ondao-01-topo-computador.mp4",
-  "largura": 1280,
-  "altura": 720
- },
- "02-galeria-1": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-1.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "02-galeria-2": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-2.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "02-galeria-3": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-3.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "02-galeria-4": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-4.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "02-galeria-5": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-5.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "02-galeria-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-02-galeria-video.mp4",
-  "largura": 864,
-  "altura": 1080
- },
- "03-cartao-1": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-03-cartao-1.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.35
-  ]
- },
- "03-cartao-2": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-03-cartao-2.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.35
-  ]
- },
- "04-como-usar-capa": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-04-como-usar.jpg",
-  "largura": 1080,
-  "altura": 1920,
-  "foco": [
-   0.5,
-   0.4
-  ]
- },
- "04-como-usar-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-04-como-usar.mp4",
-  "largura": 720,
-  "altura": 1280
- },
- "05-fundador": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-05-fundador.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "06-banner-telemovel": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-06-banner-telemovel.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "06-banner-computador": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-06-banner-computador.jpg",
-  "largura": 1200,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.45
-  ]
- },
- "07-retrato-1": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-1.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "07-retrato-2": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-2.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "07-retrato-3": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-3.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "07-retrato-4": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-4.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "07-retrato-5": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-5.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- },
- "02-galeria-6": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-02-galeria-6.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "03-cartao-1-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-03-cartao-1.mp4",
-  "largura": 864,
-  "altura": 1080
- },
- "03-cartao-2-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-03-cartao-2.mp4",
-  "largura": 864,
-  "altura": 1080
- },
- "04-passo-1": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-04-passo-1.jpg",
-  "largura": 720,
-  "altura": 900,
-  "foco": [
-   0.5,
-   0.4
-  ]
- },
- "04-passo-2": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-04-passo-2.jpg",
-  "largura": 720,
-  "altura": 900,
-  "foco": [
-   0.5,
-   0.45
-  ]
- },
- "04-passo-3": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-04-passo-3.jpg",
-  "largura": 720,
-  "altura": 900,
-  "foco": [
-   0.5,
-   0.4
-  ]
- },
- "07-retrato-1-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-07-retrato-1.mp4",
-  "largura": 720,
-  "altura": 960
- },
- "07-retrato-2-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-07-retrato-2.mp4",
-  "largura": 720,
-  "altura": 960
- },
- "07-retrato-3-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-07-retrato-3.mp4",
-  "largura": 720,
-  "altura": 960
- },
- "07-retrato-4-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-07-retrato-4.mp4",
-  "largura": 720,
-  "altura": 960
- },
- "07-retrato-5-video": {
-  "tipo": "video",
-  "ficheiro": "ondao-07-retrato-5.mp4",
-  "largura": 720,
-  "altura": 960
- },
- "08-historia-maos-video": {
-  "tipo": "video",
-  "ficheiro": "historia-maos-cacay.mp4",
-  "largura": 960,
-  "altura": 720
- },
- "08-historia-portugal": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-08-historia-portugal.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.35
-  ]
- },
- "09-newsletter": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-09-newsletter.jpg",
-  "largura": 1080,
-  "altura": 1350,
-  "foco": [
-   0.5,
-   0.4
-  ]
- },
- "10-ing-cacay": {
-  "tipo": "imagem",
-  "ficheiro": "ing-cacay-maos.jpg",
-  "largura": 1080,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "10-ing-sacha-inchi": {
-  "tipo": "imagem",
-  "ficheiro": "ing-sacha-inchi-maos.jpg",
-  "largura": 1080,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "10-ing-ungurahui": {
-  "tipo": "imagem",
-  "ficheiro": "ing-ungurahui-maos.jpg",
-  "largura": 1080,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "10-ing-quinoa": {
-  "tipo": "imagem",
-  "ficheiro": "ing-quinoa-maos.jpg",
-  "largura": 1080,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "10-ing-poliglutamico": {
-  "tipo": "imagem",
-  "ficheiro": "ing-poliglutamico-maos.jpg",
-  "largura": 1080,
-  "altura": 1080,
-  "foco": [
-   0.5,
-   0.5
-  ]
- },
- "07-retrato-6": {
-  "tipo": "imagem",
-  "ficheiro": "ondao-07-retrato-6.jpg",
-  "largura": 1080,
-  "altura": 1440,
-  "foco": [
-   0.5,
-   0.3
-  ]
- }
+  "_leia": "Cada lugar de imagem/vídeo do site. Para trocar, ponha um ficheiro em media/entrada/ com o nome do lugar (ex.: 01-topo-telemovel.png). O GitHub corta, comprime e publica em assets/ sozinho.",
+  "01-topo-telemovel": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-01-topo-telemovel.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.35
+    ]
+  },
+  "01-topo-video-telemovel": {
+    "tipo": "video",
+    "ficheiro": "ondao-01-topo-telemovel.mp4",
+    "largura": 720,
+    "altura": 1280
+  },
+  "02-galeria-1": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-1.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "02-galeria-2": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-2.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "02-galeria-3": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-3.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "02-galeria-4": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-4.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "02-galeria-5": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-5.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "02-galeria-video": {
+    "tipo": "video",
+    "ficheiro": "ondao-02-galeria-video.mp4",
+    "largura": 864,
+    "altura": 1080
+  },
+  "03-cartao-1": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-03-cartao-1.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.35
+    ]
+  },
+  "03-cartao-2": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-03-cartao-2.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.35
+    ]
+  },
+  "04-como-usar-capa": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-04-como-usar.jpg",
+    "largura": 1080,
+    "altura": 1920,
+    "foco": [
+      0.5,
+      0.4
+    ]
+  },
+  "04-como-usar-video": {
+    "tipo": "video",
+    "ficheiro": "ondao-04-como-usar.mp4",
+    "largura": 720,
+    "altura": 1280
+  },
+  "05-fundador": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-05-fundador.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.3
+    ]
+  },
+  "06-banner-telemovel": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-06-banner-telemovel.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "06-banner-computador": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-06-banner-computador.jpg",
+    "largura": 1200,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.45
+    ]
+  },
+  "07-retrato-1": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-07-retrato-1.jpg",
+    "largura": 1080,
+    "altura": 1440,
+    "foco": [
+      0.5,
+      0.3
+    ]
+  },
+  "07-retrato-2": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-07-retrato-2.jpg",
+    "largura": 1080,
+    "altura": 1440,
+    "foco": [
+      0.5,
+      0.3
+    ]
+  },
+  "07-retrato-3": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-07-retrato-3.jpg",
+    "largura": 1080,
+    "altura": 1440,
+    "foco": [
+      0.5,
+      0.3
+    ]
+  },
+  "02-galeria-6": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-02-galeria-6.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "04-passo-1": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-04-passo-1.jpg",
+    "largura": 720,
+    "altura": 900,
+    "foco": [
+      0.5,
+      0.4
+    ]
+  },
+  "04-passo-2": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-04-passo-2.jpg",
+    "largura": 720,
+    "altura": 900,
+    "foco": [
+      0.5,
+      0.45
+    ]
+  },
+  "04-passo-3": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-04-passo-3.jpg",
+    "largura": 720,
+    "altura": 900,
+    "foco": [
+      0.5,
+      0.4
+    ]
+  },
+  "08-historia-portugal": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-08-historia-portugal.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.35
+    ]
+  },
+  "09-newsletter": {
+    "tipo": "imagem",
+    "ficheiro": "ondao-09-newsletter.jpg",
+    "largura": 1080,
+    "altura": 1350,
+    "foco": [
+      0.5,
+      0.4
+    ]
+  },
+  "10-ing-cacay": {
+    "tipo": "imagem",
+    "ficheiro": "ing-cacay-still.jpg",
+    "largura": 1080,
+    "altura": 1080,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "10-ing-sacha-inchi": {
+    "tipo": "imagem",
+    "ficheiro": "ing-sacha-inchi-still.jpg",
+    "largura": 1080,
+    "altura": 1080,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "10-ing-ungurahui": {
+    "tipo": "imagem",
+    "ficheiro": "ing-ungurahui-still.jpg",
+    "largura": 1080,
+    "altura": 1080,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "10-ing-quinoa": {
+    "tipo": "imagem",
+    "ficheiro": "ing-quinoa-still.jpg",
+    "largura": 1080,
+    "altura": 1080,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  },
+  "10-ing-poliglutamico": {
+    "tipo": "imagem",
+    "ficheiro": "ing-poliglutamico-still.jpg",
+    "largura": 1080,
+    "altura": 1080,
+    "foco": [
+      0.5,
+      0.5
+    ]
+  }
 }
