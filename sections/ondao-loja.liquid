@@ -51,7 +51,7 @@
   <!-- HERO -->
   <section class="lj-hero">
     <picture>
-      <source media="(min-width: 900px)" srcset="{{ 'ondao-01-topo-computador.jpg' | asset_url }}" width="1920" height="1080">
+      <source media="(min-width: 900px), (orientation: landscape) and (min-width: 600px)" srcset="{{ 'ondao-01-topo-computador.jpg' | asset_url }}" width="1920" height="1080">
       <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Homem com caracóis escuros definidos a olhar para a câmara, na costa do Cabo da Roca" fetchpriority="high">
     </picture>
     {%- if settings.ondao_video_topo -%}
@@ -91,7 +91,7 @@
         {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}Creme Finalizador para Pentear{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
         <p class="lj-preco"><b>{{ preco }}</b><span>200 ml · {% if v %}{{ v.price | times: 0.5 | money_without_currency }} €{% else %}10,00 €{% endif %}/100 ml</span></p>
         <p class="lj-estado">{% if a_venda %}Pré-encomenda · envio em até {{ dias }} dias{% else %}Pré-lançamento{% endif %}</p>
-        <p class="lj-desc">Define o caracol sem o deixar duro. Pouco creme para ondas, mais para caracóis. <a class="lj-desc-link" href="/pages/ingredientes">Ver ingredientes&nbsp;→</a></p>
+        <p class="lj-desc">Define o caracol sem o deixar duro. Pouco creme para ondas, mais para caracóis.</p>
 
         <ul class="lj-vantagens">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Sem crosta</li>
@@ -141,6 +141,28 @@
         {%- endif -%}
         {%- endif -%}
       </div>
+    </div>
+  </section>
+
+  <!-- ORIGEM + MAPA DE INGREDIENTES -->
+  <section class="lj-origem">
+    <div class="lj-origem-foto">
+      <picture>
+        <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
+        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="Nozes de Cacay inteiras e abertas, com uma taça de óleo de Cacay" loading="lazy">
+      </picture>
+      <span class="lj-origem-selo">Orinoquía, Colômbia</span>
+    </div>
+    <div class="lj-origem-txt">
+            <h2 class="lj-h2">Cinco ativos. <em>Zero enchimento.</em></h2>
+      <ul class="lj-ings">
+        <li><img src="{{ 'ing-cacay-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Óleo de Cacay</b><span>O ativo principal. Nutre e dá brilho com toque seco.</span></div></li>
+        <li><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Sacha Inchi</b><span>Ultraleve e rico em ómega-3. Brilho sem peso.</span></div></li>
+        <li><img src="{{ 'ing-ungurahui-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ungurahui</b><span>Usado há gerações na Amazónia. Suavidade.</span></div></li>
+        <li><img src="{{ 'ing-quinoa-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Proteína de quinoa</b><span>Estrutura e elasticidade para o caracol.</span></div></li>
+        <li><img src="{{ 'ing-poliglutamico-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ácido Poliglutâmico</b><span>Retém a hidratação. Menos frizz.</span></div></li>
+      </ul>
+      <p class="lj-inci">Lista completa de ingredientes (INCI) na página <a href="/pages/ingredientes">Ingredientes</a>.</p>
     </div>
   </section>
 
@@ -204,27 +226,6 @@
     </div>
   </section>
 
-  <!-- ORIGEM + MAPA DE INGREDIENTES -->
-  <section class="lj-origem">
-    <div class="lj-origem-foto">
-      <picture>
-        <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
-        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="Nozes de Cacay inteiras e abertas, com uma taça de óleo de Cacay" loading="lazy">
-      </picture>
-      <span class="lj-origem-selo">Orinoquía, Colômbia</span>
-    </div>
-    <div class="lj-origem-txt">
-            <h2 class="lj-h2">Cinco ativos. <em>Zero enchimento.</em></h2>
-      <ul class="lj-ings">
-        <li><img src="{{ 'ing-cacay-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Óleo de Cacay</b><span>O ativo principal. Nutre e dá brilho com toque seco.</span></div></li>
-        <li><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Sacha Inchi</b><span>Ultraleve e rico em ómega-3. Brilho sem peso.</span></div></li>
-        <li><img src="{{ 'ing-ungurahui-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ungurahui</b><span>Usado há gerações na Amazónia. Suavidade.</span></div></li>
-        <li><img src="{{ 'ing-quinoa-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Proteína de quinoa</b><span>Estrutura e elasticidade para o caracol.</span></div></li>
-        <li><img src="{{ 'ing-poliglutamico-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ácido Poliglutâmico</b><span>Retém a hidratação. Menos frizz.</span></div></li>
-      </ul>
-      <a class="lj-btn lj-btn-claro" href="/pages/ingredientes">Ver os ingredientes</a>
-    </div>
-  </section>
 
   <!-- RETRATOS -->
   <section class="lj-secao lj-retratos-sec">
@@ -284,7 +285,7 @@
   if (topo && !calmo && !poupar) {
     // a foto do topo aparece primeiro; o vídeo só começa a descarregar depois de a página carregar
     var arrancar = function(){ setTimeout(function(){
-      var src = matchMedia("(min-width: 900px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
+      var src = matchMedia("(min-width: 900px), (orientation: landscape) and (min-width: 600px)").matches ? topo.dataset.computador : topo.dataset.telemovel;
       if (!src) return;
       topo.src = src;
       topo.addEventListener("canplay", function(){ topo.classList.add("pronto"); topo.play().catch(function(){}); }, {once: true});
