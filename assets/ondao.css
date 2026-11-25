@@ -579,6 +579,7 @@ body:has(.fixa-geral) footer{padding-bottom:110px}
 
 .foto-cap video{display:block;width:100%;height:auto;border-radius:16px}
 .foto-real{margin:16px 0 0;max-width:360px}
+.capitulo .foto-cap.foto-real{aspect-ratio:auto;overflow:visible;border-radius:0}
 .foto-real img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
 .foto-real figcaption{margin-top:8px;font-size:.85rem;color:var(--cinza);font-style:italic}
 .news-foto{margin:22px 0 0;max-width:420px}
