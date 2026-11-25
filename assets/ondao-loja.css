@@ -207,7 +207,18 @@
 .lj-origem-txt .lj-h2{color:var(--creme)}
 .lj-origem-txt .lj-h2 em{font-style:italic;color:var(--rosa)}
 .lj-ings{list-style:none;display:grid;gap:0;border-top:1px solid rgba(255,253,249,.16)}
-.lj-ings li{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,253,249,.16)}
+.lj-ings li{border-bottom:1px solid rgba(255,253,249,.16)}
+.lj-ing summary{display:grid;grid-template-columns:64px 1fr 22px;gap:16px;align-items:center;padding:14px 0;cursor:pointer;list-style:none}
+.lj-ing summary::-webkit-details-marker{display:none}
+.lj-ing-mais{position:relative;width:22px;height:22px;border:1px solid rgba(255,253,249,.4);border-radius:50%}
+.lj-ing-mais::before,.lj-ing-mais::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1.5px;background:var(--creme,#f5f0e8);transform:translate(-50%,-50%);transition:transform .25s}
+.lj-ing-mais::after{transform:translate(-50%,-50%) rotate(90deg)}
+.lj-ing[open] .lj-ing-mais::after{transform:translate(-50%,-50%) rotate(0)}
+.lj-ing-corpo{padding:0 0 16px 80px;font-size:.86rem;line-height:1.5;color:#DCE3DC}
+.lj-ing-corpo em{display:block;margin-bottom:6px;font-size:.78rem;color:#C9D3CA}
+.lj-ing-corpo p{margin:0 0 8px}
+.lj-ing-corpo strong{color:var(--branco)}
+@media (max-width:480px){.lj-ing-corpo{padding-left:0}}
 .lj-ings img{width:64px;height:64px;border-radius:50%;object-fit:cover;filter:brightness(1.12) saturate(1.05)}
 .lj-ings b{display:block;font-size:.95rem;color:var(--branco)}
 .lj-ings span{display:block;font-size:.84rem;color:#C9D3CA;line-height:1.4}
@@ -283,3 +294,7 @@
 .lj-linha li span{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:.62rem;font-weight:600}
 .lj-linha li b{display:block;margin-top:2px;font-size:.8rem;font-weight:600;color:var(--tinta)}
 .lj-prazo-pre{display:inline-block;margin-right:6px;padding:2px 8px;border-radius:999px;background:rgba(107,154,123,.18);color:var(--verde-2);font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
+.lj-origem .lj-ing-corpo p{color:#DCE3DC;margin:0 0 8px;font-size:.86rem;line-height:1.5;max-width:none}
+.lj-origem .lj-ing-corpo p:last-child{margin-bottom:0}
+.lj-ing-mais{flex:none;box-sizing:border-box}
+.lj-origem-txt .lj-ing-corpo p{margin:0 0 8px!important}
