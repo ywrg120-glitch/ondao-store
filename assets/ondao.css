@@ -292,6 +292,23 @@ details p{padding:0 0 20px;color:var(--cinza);font-size:.9rem;max-width:42em}
 .rota .halo{fill:none;stroke:var(--rosa);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
 .rota.ver .halo{animation:halo 2.4s ease-out 2.2s infinite}
 @keyframes halo{0%{opacity:.8;transform:scale(.4)}100%{opacity:0;transform:scale(2.2)}}
+/* Rota sobre o mapa real do Atlântico (Natural Earth) */
+.rota.mapa{padding:0;overflow:hidden;background:var(--verde)}
+.rota.mapa .terra{fill:rgba(245,240,232,.07)}
+.rota.mapa .fronteiras{fill:none;stroke:rgba(245,240,232,.07);stroke-width:.8}
+.rota.mapa .pais.co{fill:var(--terra);fill-opacity:.5;stroke:var(--rosa);stroke-width:1.2;stroke-opacity:.8}
+.rota.mapa .pais.pt{fill:var(--salvia);fill-opacity:.6;stroke:var(--creme);stroke-width:1;stroke-opacity:.7}
+.rota.mapa .arco{fill:none;stroke:var(--rosa);stroke-width:2.6;stroke-dasharray:7 9;stroke-linecap:round}
+.rota.mapa .revela{fill:none;stroke:#fff;stroke-width:12;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.6,0,.3,1) .2s}
+.rota.mapa.ver .revela{stroke-dashoffset:0}
+.rota.mapa .ponto{fill:var(--terra);stroke:var(--verde);stroke-width:2.5}
+.rota.mapa .ponto.pt{fill:var(--salvia)}
+.rota.mapa .halo{fill:none;stroke:var(--rosa);stroke-width:1.6;opacity:0;transform-box:fill-box;transform-origin:center}
+.rota.mapa.ver .halo{animation:halo 2.4s ease-out 2.2s infinite}
+.rota.mapa .lugar{font:600 28px var(--sans);fill:var(--creme)}
+.rota.mapa .sub{font:400 22px var(--sans);fill:var(--creme);fill-opacity:.75}
+.rota.mapa .meio{font:italic 400 29px var(--serif);fill:var(--rosa)}
+@media (prefers-reduced-motion:reduce){.rota.mapa .revela{transition:none;stroke-dashoffset:0}}
 .rota .lugar{font:600 13px var(--sans);fill:var(--creme)}
 .rota .sub{font:400 10.5px var(--sans);fill:var(--vip-sub)}
 .rota .meio{font:italic 400 16px var(--serif);fill:var(--rosa)}
