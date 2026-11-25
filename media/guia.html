@@ -85,6 +85,20 @@ footer{margin:48px 0 40px;color:var(--cinza);font-size:.85rem}
     <div class="passo"><b>Ou tudo no GitHub</b><p>Actions → <b style="display:inline;font-family:inherit;font-size:inherit">Criar imagem para o site (IA)</b> → escolha o lugar e cole o prompt. O Gemini gera e publica.</p></div>
   </div>
 
+
+  <h2>Regras que aprendemos (atualizado a 25/11/2026)</h2>
+  <div class="passos">
+    <div class="passo"><b>Nada de antes/depois com IA</b><p>Um resultado mostrado tem de ser verdadeiro (Reg. UE 655/2013). Antes/depois só com fotos reais da mesma pessoa, mesma luz, sem filtros, com "os resultados variam".</p></div>
+    <div class="passo"><b>Fotos reais ficam reais</b><p>Na foto do Jhon só se faz correção de cor e se tira o que distrai (ex.: fones). Nunca mudar o cabelo, a cara ou o cenário.</p></div>
+    <div class="passo"><b>O tubo só com a embalagem real</b><p>Enquanto a embalagem final não estiver confirmada, imagens novas não mostram o tubo. Quando houver tubo, usar a foto real como referência.</p></div>
+    <div class="passo"><b>Mãos denunciam a IA</b><p>Evitar mãos em grande plano. Ingredientes em still life sobre papel areia, sem mãos.</p></div>
+    <div class="passo"><b>Vídeos Seedance</b><p>Gestos curtos (mexer no cabelo menos de 1 s), no máximo 2 pestanejos, nada de olhar fixo para a câmara no fim. Corta-se sempre o fim antes de a pessoa "congelar".</p></div>
+    <div class="passo"><b>Vento e cabelo</b><p>Vento forte cria madeixas estranhas. Pedir brisa leve e caracóis que mantêm a forma.</p></div>
+    <div class="passo"><b>Espelhos</b><p>Pessoa + reflexo na mesma imagem falha (gestos diferentes). Mostrar só o reflexo.</p></div>
+    <div class="passo"><b>Mapas e gráficos em código</b><p>A IA deforma países e costas. O mapa da história é desenhado com dados geográficos reais.</p></div>
+    <div class="passo"><b>Computador = telemóvel</b><p>O topo usa a mesma foto e o mesmo vídeo verticais nos dois. Não é preciso gerar versões horizontais.</p></div>
+  </div>
+
   <h2>O estilo Wavy, adaptado à ondão</h2>
   <p class="lead" style="margin-top:0">Estudámos a página do Everyday Curl Crème da Wavy (24/11/2026). As fotos dela repetem sete famílias. A ondão copia o estilo, não as fotos, e melhora três coisas: o cenário é português (costa de Sintra-Cascais), há mulheres no lookbook porque a marca é unissexo, e nada de antes/depois feito com IA.</p>
   <div class="passos">
@@ -99,12 +113,12 @@ footer{margin:48px 0 40px;color:var(--cinza);font-size:.85rem}
   </div>
 
   <h2>O elenco: as mesmas pessoas em todo o site</h2>
-  <p class="lead" style="margin-top:0">Cinco pessoas recorrentes tornam o site humano e coerente. Gere primeiro o retrato de cada uma (secção 07) e use-o como imagem de referência nas outras fotos, para a cara não mudar.</p>
+  <p class="lead" style="margin-top:0">O Tiago é a cara principal (topo, galeria, como se usa, anúncios A1). As outras pessoas aparecem uma vez cada. Para repetir alguém, use a imagem dele como referência, para a cara não mudar.</p>
   <div class="elenco" id="elenco"></div>
   <div class="estilo">
     <span class="caps">Estilo comum (já está dentro de cada prompt)</span>
     <p>Fotografia editorial de campanha, como a da Wavy: filme de 35 mm, paleta terrosa (areia, oliva, castanho, creme, um toque de terracota), pele real. O cabelo é o herói, sempre em foco: caracóis definidos, macios, com volume, sem crosta nem efeito molhado. Expressões calmas e confiantes, quase sem sorrisos.</p>
-    <p>O tubo, quando aparece: tubo mate cor de cobre-terracota, a palavra "Ondão" na vertical em verde escuro e tampa verde-salva. Use sempre a foto do tubo como referência (<code>assets/ondao-02-galeria-1.jpg</code>).</p>
+    <p>O tubo: <b>a confirmar com a embalagem real.</b> As imagens atuais mostram um tubo terracota com "Ondão" e tampa verde-salva; se a embalagem final for diferente, as fotos com tubo (galeria 1, 2, 3) têm de ser refeitas a partir dela.</p>
   </div>
 
   <div id="secoes"></div>
@@ -132,85 +146,91 @@ const P = n => ELENCO.find(e => e.nome === n).en;
 
 /* esboços: s = [proporção w,h], pessoas (x,y,r em %), texto (y,h em %), tubo, mãos, cena */
 const SECOES = [
- {n:"01", t:"Topo", onde:"primeira coisa que se vê (estilo do topo da Wavy)", lugares:[
-  {id:"01-topo-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Topo no telemóvel", desc:"O Tiago a olhar direto para a câmara, sério e tranquilo, nas arribas do Cabo da Roca num dia encoberto. Do peito para cima, os caracóis bem definidos ao vento. A cara fica no terço de cima; o título assenta sobre o peito, como na Wavy.",
+ {n:"01", t:"Topo", onde:"primeira coisa que se vê; o computador usa a mesma foto e o mesmo vídeo", lugares:[
+  {id:"01-topo-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Topo (telemóvel e computador)", desc:"O Tiago a olhar direto para a câmara, sério e tranquilo, nas arribas do Cabo da Roca num dia encoberto. No computador aparece inteiro à direita, com o texto no verde à esquerda.",
    s:[4,5], pess:[[50,22,14]], txt:[52,36],
-   prompt:`${P("Tiago")} (same face as the reference portrait), head and shoulders, looking straight into the camera with a calm, confident, unsmiling expression, wearing a worn brown suede jacket over a cream t-shirt. ${EXTERIOR} Cabo da Roca cliffs and low coastal shrubs softly out of focus behind him, a little sea wind lifting his curls. His face sits in the top third of a vertical frame; the lower half (jacket and landscape) stays calm and even-toned so a large headline can sit on top. ${ESTILO} ${NEG}`},
-  {id:"01-topo-computador", tipo:"img", dim:"1920×1080 · 16:9", titulo:"Topo no computador", desc:"A mesma sessão em plano largo: o Tiago à direita do centro, a costa e o céu encoberto à esquerda, espaço calmo para o título.",
-   s:[16,9], pess:[[64,30,7]], txt:[40,40],
-   prompt:`Wide horizontal frame from the same shoot: ${P("Tiago")} in a worn brown suede jacket over a cream t-shirt, head and shoulders, standing right of centre and looking straight into the camera, calm and unsmiling. ${EXTERIOR} The Cabo da Roca coastline, cliffs and overcast sky extend softly out of focus to the left, leaving a calm area for a headline. ${ESTILO} ${NEG}`},
-  {id:"01-topo-video-telemovel", tipo:"vid", dim:"9:16 · 6–10 s", titulo:"Vídeo do topo (telemóvel)", desc:"Animar a imagem do topo: o vento mexe nos caracóis, ele pestaneja e vira a cara meio centímetro. Câmara quase parada.",
+   prompt:`${P("Tiago")} (same face as the reference portrait), head and shoulders, looking straight into the camera with a calm, confident, unsmiling expression, wearing a worn brown suede jacket over a cream t-shirt. ${EXTERIOR} ${ESTILO} ${NEG}`},
+  {id:"01-topo-video-telemovel", tipo:"vid", dim:"9:16 · 8 s", titulo:"Vídeo do topo", desc:"Animar a imagem do topo com o Seedance 2.5: brisa leve nos caracóis, um pestanejo, quase sem movimento de câmara. Toca no telemóvel e no computador.",
    s:[9,16], pess:[[50,24,16]], txt:[52,36], video:true,
-   prompt:`Image-to-video from 01-topo-telemovel. The sea wind gently moves his defined curls, he blinks and turns his head very slightly toward the camera, coastal shrubs sway softly behind him. ${VID} Vertical 9:16, 8 seconds.`},
-  {id:"01-topo-video-computador", tipo:"vid", dim:"16:9 · 6–10 s", titulo:"Vídeo do topo (computador)", desc:"O mesmo movimento em horizontal.",
-   s:[16,9], pess:[[64,30,7]], txt:[40,40], video:true,
-   prompt:`Image-to-video from 01-topo-computador. Sea wind moving his curls, a slow blink, clouds drifting over the Cabo da Roca coastline. ${VID} Horizontal 16:9, 8 seconds.`}
+   prompt:`Image-to-video from 01-topo-telemovel. A light sea breeze gently moves his defined curls, which keep their shape; one natural blink; he turns his head very slightly; coastal shrubs sway softly behind him. Never staring frozen into the lens. ${VID} Vertical 9:16, 8 seconds.`}
  ]},
- {n:"02", t:"Galeria do produto", onde:"ao lado do preço e do botão (como a galeria da Wavy)", lugares:[
-  {id:"02-galeria-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"O tubo (packshot)", desc:"O tubo de pé, fundo cinza-claro liso, sombra suave à esquerda. Limpo como o packshot da Wavy. O ideal é uma foto real do tubo neste fundo; a IA só serve de rascunho.",
+ {n:"02", t:"Galeria do produto", onde:"ao lado do preço e do botão", lugares:[
+  {id:"02-galeria-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"O tubo (packshot)", desc:"O tubo de pé, fundo cinza-claro liso, sombra suave. A refazer com a embalagem real (de preferência foto real).",
    s:[4,5], tubo:[50,50,1.4],
-   prompt:`Product photograph of ${TUBO}, standing upright and centered on a seamless light warm-grey background (#ECEBE6), soft diffused daylight from the right, gentle natural shadow falling to the left, crisp label, premium minimal look. ${NEG}`},
-  {id:"02-galeria-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Retrato com o tubo", desc:"O Tiago em estúdio, fundo areia, a segurar o tubo junto ao rosto, rótulo para a câmara, olhar sério. Campanha, não casa de banho.",
+   prompt:`Product photograph of ${TUBO}, standing upright and centered on a seamless light warm-grey background (#ECEBE6), soft diffused daylight from the right, gentle natural shadow falling to the left, crisp label, premium minimal packshot. ${NEG}`},
+  {id:"02-galeria-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Retrato com o tubo", desc:"O Tiago em estúdio, fundo areia, a segurar o tubo junto ao rosto. A refazer com a embalagem real.",
    s:[4,5], pess:[[48,32,16]], tubo:[70,62,.9],
    prompt:`${P("Tiago")} (same face as the reference portrait) holding ${TUBO} at shoulder height next to his face, label facing the camera, looking straight into the lens, calm and unsmiling, wearing an olive overshirt. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`},
-  {id:"02-galeria-3", tipo:"img", dim:"1080×1350 · 4:5", titulo:"A textura", desc:"Um traço de creme espalhado sobre papel cor de areia, com o tubo deitado ao lado. Macro de estúdio: mostra que é leve e cremoso.",
+  {id:"02-galeria-3", tipo:"img", dim:"1080×1350 · 4:5", titulo:"A textura", desc:"Um traço de creme sobre papel areia, com o tubo deitado ao lado. A refazer com a embalagem real.",
    s:[4,5], creme:[50,50], tubo:[50,22,.6],
-   prompt:`Studio macro: a single smooth swipe of light, lotion-like ivory hair cream with a faint golden tint spread across seamless sand-beige paper, soft peaks, slightly glossy, clearly light and not greasy; ${TUBO} lying just above it, slightly out of focus. Soft diffused side light, minimal premium still life. ${NEG}`},
-  {id:"02-galeria-4", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Os caracóis de perfil", desc:"Perfil do Tiago sobre fundo verde-salva liso, foco total nos caracóis. Como o cartão \"Frizz free\" da Wavy.",
+   prompt:`Studio macro: a single smooth swipe of light, lotion-like ivory hair cream with a faint golden tint spread across seamless sand-beige paper, soft peaks, slightly glossy, clearly light and not greasy; ${TUBO} lying just above it. ${ESTILO} ${NEG}`},
+  {id:"02-galeria-4", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Os caracóis de perfil", desc:"Perfil do Tiago sobre fundo verde-salva liso, foco total nos caracóis.",
    s:[4,5], pess:[[50,40,18]],
    prompt:`Close profile portrait of ${P("Tiago")}, shoulders up, facing right, eyes forward, his dark defined curls in sharp focus as the main subject. ${ESTUDIO("muted sage green")} ${ESTILO} ${NEG}`},
-  {id:"02-galeria-5", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Dura o dia todo", desc:"O Tiago a olhar para cima, contra uma parede branca, flash direto. Caracóis firmes e com volume ao fim do dia.",
+  {id:"02-galeria-5", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Dura o dia todo", desc:"O Tiago a olhar para cima, contra parede branca, flash direto. Nunca pôr ao lado da galeria 4 como \"antes e depois\".",
    s:[4,5], pess:[[55,34,16]],
    prompt:`${P("Tiago")} in three-quarter profile tilting his head back to look up, his voluminous defined curls catching the light, charcoal t-shirt. ${FLASH} ${ESTILO} ${NEG}`},
-  {id:"02-galeria-video", tipo:"vid", dim:"4:5 · 6–10 s", titulo:"Vídeo na galeria", desc:"Em estúdio, fundo areia: mãos a apertar o tubo, esfregar nas palmas e amachucar os caracóis. Planos de pormenor, ritmo calmo.",
-   s:[4,5], maos:[[38,55],[62,55]], tubo:[50,30,.7], video:true,
-   prompt:`Studio close-up video on a sand-beige backdrop: hands squeeze a small amount of cream from ${TUBO} into the palm, rub the palms together, then scrunch dark damp curls upward. Soft side light, earthy palette. ${VID} Vertical 4:5, 8 seconds.`}
+  {id:"02-galeria-6", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Caracóis no Cabo da Roca", desc:"Uma mulher de costas a caminhar no trilho das arribas, caracóis definidos com a brisa. Sem tubo.",
+   s:[4,5], pess:[[48,38,14]], campo:true,
+   prompt:`Editorial campaign photograph for a premium wavy and curly-hair brand, shot on 35mm film, muted earthy palette (sand, olive, sage, cream), soft overcast natural light. Exterior at Cabo da Roca, Portugal: dry coastal scrub and pale rocky cliffs softly out of focus, grey-blue Atlantic far behind. A Portuguese woman in her early thirties seen from behind and slightly to the side, three-quarter back view, walking slowly along the cliff path, her shoulder-length dark brown hair in defined, bouncy curls (type 3A) moving lightly in the breeze, curls clearly separated and soft, natural shine, no frizz, no wet look. Her face is only a hint of profile. Oatmeal linen shirt. The hair is the clear subject of the frame, framed from the waist up, generous negative space above. Real, candid, unposed, natural film grain. No text, no logos, no products, no watermark.`},
+  {id:"02-galeria-video", tipo:"vid", dim:"4:5 · 6–8 s", titulo:"Vídeo na galeria (desligado)", desc:"Desligado nas definições: parecia IA. Só voltar com um vídeo real, por exemplo o creme a ser aplicado por uma pessoa verdadeira.",
+   s:[4,5], pess:[[50,30,14]], video:true,
+   prompt:`Sem prompt: usar um vídeo real quando houver produto.`}
  ]},
- {n:"03", t:"Para ela e para ele", onde:"dois cartões lado a lado (como os cartões de benefícios da Wavy)", lugares:[
-  {id:"03-cartao-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Sem frizz, mesmo com humidade", desc:"A Marisol de perfil sobre fundo terracota liso, caracóis longos definidos, sem frizz. Cartão com cantos redondos.",
+ {n:"03", t:"Cartões", onde:"dois cartões lado a lado; os vídeos dos cartões estão desligados", lugares:[
+  {id:"03-cartao-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Sem crosta", desc:"A Marisol de perfil sobre fundo terracota liso, caracóis longos definidos.",
    s:[4,5], pess:[[50,38,18]],
    prompt:`Profile portrait of ${P("Marisol")}, shoulders up, facing left, calm, her long defined curls in sharp focus, cream knit top. ${ESTUDIO("muted terracotta")} ${ESTILO} ${NEG}`},
-  {id:"03-cartao-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Dura o dia todo", desc:"O Dário a olhar para cima contra parede branca, flash direto, caracóis definidos. Pose e luz iguais à galeria 5, com outra pessoa.",
+  {id:"03-cartao-2", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Dura até amanhã", desc:"Um homem de caracóis 3B a olhar para cima contra parede branca, flash direto.",
    s:[4,5], pess:[[52,34,16]],
-   prompt:`${P("Dário")} in three-quarter profile tilting his head back to look up, his short defined coils crisp in the light, olive t-shirt. ${FLASH} ${ESTILO} ${NEG}`}
+   prompt:`A Mediterranean man around thirty with defined 3B curls in three-quarter profile tilting his head back to look up, his curls crisp in the light, olive t-shirt. ${FLASH} ${ESTILO} ${NEG}`}
  ]},
- {n:"04", t:"Como se usa", onde:"vídeo vertical + 3 passos (liga-se nas definições)", lugares:[
-  {id:"04-como-usar-video", tipo:"vid", dim:"9:16 · 12–15 s", titulo:"Vídeo tutorial", desc:"Aqui o estilo é de cliente real (UGC), como as avaliações da Wavy. O Tiago ao espelho: seca com a toalha, põe uma noz de creme, amachuca, olha para a câmara.",
+ {n:"04", t:"Como se usa", onde:"vídeo vertical + 3 passos", lugares:[
+  {id:"04-como-usar-video", tipo:"vid", dim:"9:16 · ~16 s", titulo:"Como se usa + resultado na rua", desc:"Montagem de dois clips: o tutorial ao espelho (cortado aos 10 s, antes do olhar fixo) e ele a sair de casa numa rua de Lisboa, natural e com um meio sorriso. Transição twist (rotação) a partir das mãos no cabelo.",
    s:[9,16], pess:[[50,30,18]], maos:[[30,50],[70,50]], video:true,
-   prompt:`Vertical UGC-style tutorial, phone camera feel. ${P("Tiago")} in his bathroom: 1) blots damp curls with a towel, 2) squeezes a walnut-sized amount from ${TUBO} into his palms, 3) scrunches it through his curls from ends to roots, 4) looks into the camera with a small nod. Natural light, real home. 9:16, 12-15 seconds, no text.`},
-  {id:"04-como-usar-capa", tipo:"img", dim:"1080×1920 · 9:16", titulo:"Capa do vídeo", desc:"O momento de amachucar, para aparecer antes do vídeo. Só o reflexo no espelho (pessoa + reflexo na mesma foto denuncia a IA).",
-   s:[9,16], pess:[[50,30,18]], maos:[[30,40],[70,40]], tubo:[78,80,.5],
-   prompt:`Only the bathroom mirror is in the frame: the reflection of ${P("Tiago")} scrunching his damp curls, exactly two arms and two hands, small smile, ${TUBO} on the sink edge. Phone-camera feel, bright daylight. ${NEG}`}
+   prompt:`Rua (Seedance 2.5, 6 s, a partir de uma foto dele à porta): One continuous handheld phone shot, filmed by a friend walking backward in front of him. He pulls the door closed, pockets his keys and walks down a sunny cobblestone Lisbon street with easy, natural energy, glancing around; a small genuine half smile comes and goes. Only two quick, normal blinks, never staring into the lens. One quick casual brush of his fingers through his curls, under one second, without stopping. Keep face, clothes and hair identical to the reference; exactly two hands. No text, no music.`},
+  {id:"04-passo-1", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Passos 1 a 3", desc:"Fotogramas tirados do próprio vídeo tutorial (04-passo-1, 2 e 3), para a pessoa ser a mesma do vídeo.",
+   s:[4,5], pess:[[50,34,16]],
+   prompt:`Sem prompt: exportar fotogramas do vídeo 04-como-usar-video.`}
  ]},
- {n:"05", t:"Fundador", onde:"foto redonda na citação verde (liga-se nas definições)", lugares:[
-  {id:"05-fundador", tipo:"real", dim:"1080×1350 · foto real", titulo:"A sua foto", desc:"Tem de ser real. Para ficar ao nível da Wavy: parede lisa clara, luz de janela de lado, olhar para a câmara, expressão calma, camisola de cor terrosa. Fica num círculo.",
+ {n:"05", t:"Fundador", onde:"foto redonda na citação verde", lugares:[
+  {id:"05-fundador", tipo:"real", dim:"1080×1350 · foto real", titulo:"A foto do Jhon", desc:"Tem de ser real. Parede lisa clara, luz de janela de lado, olhar para a câmara, roupa de cor terrosa.",
    s:[4,5], pess:[[50,40,22]], circulo:true,
-   prompt:`Sem prompt: use uma fotografia real sua. Dica: parede lisa clara, janela de lado, telemóvel à altura dos olhos, expressão calma, roupa de cor terrosa. Carregue como 05-fundador.jpg.`}
+   prompt:`Sem prompt: fotografia real do Jhon.`}
  ]},
  {n:"06", t:"Banner das origens", onde:"\"Da Orinoquía para o seu cabelo\"", lugares:[
-  {id:"06-banner-computador", tipo:"img", dim:"1200×1350 · ~8:9", titulo:"Origem no computador", desc:"Mãos de uma agricultora colombiana com nozes de Cacay, planície da Orinoquía ao fim da tarde. Documental, mas com a mesma paleta terrosa e calma do resto do site.",
-   s:[8,9], maos:[[55,70]], txt:[6,30], campo:true,
-   prompt:`Weathered hands of a Colombian farmer woman holding freshly cracked cacay nuts, the Orinoquía plains and moriche palms behind her in soft late-afternoon light. Keep the top third as open, even sky for a headline. Documentary photography, 35mm film, muted earthy palette (sand, olive, brown), honest and respectful. ${NEG}`},
-  {id:"06-banner-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Banner no telemóvel", desc:"A mesma cena na vertical, com céu em cima para o texto.",
-   s:[4,5], maos:[[50,72]], txt:[6,30], campo:true,
-   prompt:`Vertical version: hands of a Colombian farmer woman holding cracked cacay nuts, Orinoquía plains and moriche palms in soft late-afternoon light; open, even sky in the top third for a headline. Documentary photography, 35mm film, muted earthy palette. ${NEG}`}
+  {id:"06-banner-telemovel", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Banner (telemóvel)", desc:"Paisagem da Orinoquía ao fim da tarde, céu em cima para o texto. O computador usa 06-banner-computador (1200×1350).",
+   s:[4,5], txt:[6,30], campo:true,
+   prompt:`Vertical documentary landscape of the Orinoquía plains in Colombia with moriche palms in soft late-afternoon light; open, even sky in the top third for a headline. ${ESTILO} ${NEG}`}
  ]},
- {n:"07", t:"Ondas com raízes", onde:"retratos lado a lado (como o lookbook da Wavy, mas para ela e para ele)", lugares:[
-  {id:"07-retrato-1", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Helena", desc:"Lookbook: fundo areia liso, enquadramento apertado da cabeça aos ombros, olhar para baixo e para o lado, malha creme.",
+ {n:"07", t:"Um creme. O seu tipo de caracol.", onde:"3 retratos lado a lado, com quanto creme usar", lugares:[
+  {id:"07-retrato-1", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Ondas · pouco creme", desc:"Mulher de perfil, ondas soltas até aos ombros, fundo areia, malha verde-oliva.",
    s:[3,4], pess:[[50,40,24]],
-   prompt:`Lookbook headshot of ${P("Helena")}, tight crop from the top of the head to the shoulders, looking down and to the side, calm, cream knit. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`},
-  {id:"07-retrato-2", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Dário", desc:"Mesmo fundo e luz. De costas a três quartos, para mostrar os caracóis na nuca.",
+   prompt:`Editorial campaign photograph for a premium wavy and curly-hair brand, shot on 35mm film with a medium-format feel, muted earthy palette (sand, olive, brown, cream). Studio portrait on a seamless warm sand paper backdrop, soft diffused key light from the side, subtle natural shadow. A Portuguese woman in her late twenties with shoulder-length dark brown hair in loose, soft S-shaped waves (type 2A-2B waves, not curls), light and airy, defined waves with natural shine, no frizz, no wet look, no crunch. Framed from the chest up, body turned three-quarters away, face in soft profile looking down and to the side, so the waves falling over her shoulder are the clear centre of the picture. Simple olive green knit top. Real skin texture with pores, no beauty retouching, calm expression. No text, no logos, no watermark, no plastic skin.`},
+  {id:"07-retrato-2", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Caracóis · um pouco mais", desc:"Homem de caracóis 3A-3B, vista a três quartos por trás, camisa creme.",
    s:[3,4], pess:[[50,40,24]],
-   prompt:`Lookbook headshot of ${P("Dário")}, tight crop, three-quarter back view showing his defined coils at the nape and the side of his face, deep green corduroy jacket. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`},
-  {id:"07-retrato-3", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Marisol", desc:"Mesmo fundo e luz. De perfil, caracóis longos a cair sobre o ombro.",
+   prompt:`Editorial campaign photograph for a premium wavy and curly-hair brand, shot on 35mm film with a medium-format feel, muted earthy palette (sand, olive, brown, cream). Studio portrait on a seamless warm sand paper backdrop, soft diffused key light from the side, subtle natural shadow. A Mediterranean man around thirty with medium-length dark hair in springy, clearly defined ringlet curls (type 3A-3B), soft and voluminous with natural shine, curls separated and bouncy, no frizz halo, no wet look, no crunch. Short trimmed beard. Framed from the chest up, three-quarter view from slightly behind and to the side, head turned looking past the camera, so the curls on top, side and nape are the clear centre of the picture. Cream cotton shirt. Real skin texture with pores, no beauty retouching, calm confident expression. No text, no logos, no watermark, no plastic skin.`},
+  {id:"07-retrato-3", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Bem definido · mais creme", desc:"Mulher colombiana com caracóis 3C bem definidos e volume redondo, malha terracota.",
    s:[3,4], pess:[[50,40,24]],
-   prompt:`Lookbook headshot of ${P("Marisol")}, tight crop, profile view, her long defined curls falling over one shoulder, olive leather jacket. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`},
-  {id:"07-retrato-4", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: Tiago", desc:"Mesmo fundo e luz. De frente, olhar para baixo, bigode e barba, malha de gola.",
-   s:[3,4], pess:[[50,40,24]],
-   prompt:`Lookbook headshot of ${P("Tiago")}, tight crop, facing the camera with eyes looking down, calm, beige knit polo. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`},
-  {id:"07-retrato-5", tipo:"img", dim:"1080×1440 · 3:4", titulo:"Retrato: modelo brasileira (3B)", desc:"Mesmo fundo e luz. A três quartos, caracóis volumosos, olhar firme para a câmara.",
-   s:[3,4], pess:[[50,40,24]],
-   prompt:`Lookbook headshot of the woman from the reference portrait (28-year-old Brazilian woman, warm tan skin, voluminous 3B curls), tight crop, three-quarter view looking firmly into the camera, rust knit. ${ESTUDIO("sand beige")} ${ESTILO} ${NEG}`}
+   prompt:`Editorial campaign photograph for a premium wavy and curly-hair brand, shot on 35mm film with a medium-format feel, muted earthy palette (sand, olive, brown, cream, a small terracotta accent). Studio portrait on a seamless warm sand paper backdrop, soft diffused key light from the side, subtle natural shadow. A Colombian woman in her late twenties with brown skin and a big, rounded head of tight, highly defined coily curls (type 3C), each small curl clearly formed and glossy, voluminous shape, no frizz halo, no wet look, no crunch. Framed from the chest up, body angled slightly, face in three-quarter view looking down and to the side, so the full rounded silhouette of the curls is the clear centre of the picture. Rust terracotta knit top. Real skin texture with pores, no beauty retouching, calm expression. No text, no logos, no watermark, no plastic skin.`}
+ ]},
+ {n:"08", t:"A nossa história", onde:"página da história", lugares:[
+  {id:"08-historia-portugal", tipo:"real", dim:"1080×1350 · foto real", titulo:"Cascais, 2024 · antes da ondão", desc:"Selfie real do Jhon perto do Parque Palmela. Só foram tirados os fones e feita correção de cor quente. Nunca mudar cabelo, cara ou cenário.",
+   s:[4,5], pess:[[50,40,20]],
+   prompt:`Sem prompt: foto real. O mapa Colômbia → Portugal é desenhado em código no tema (sections/ondao-historia.liquid).`},
+  {id:"08-historia-cacay", tipo:"img", dim:"960×720 · 4:3", titulo:"Still life do Cacay", desc:"Nozes de Cacay e um pouco de óleo sobre papel areia. Sem mãos.",
+   s:[4,3], creme:[60,60],
+   prompt:`Still life: a few whole cacay nuts and two cracked open, with a small glass dish of golden oil, on seamless warm sand paper, soft side light, gentle shadow. ${ESTILO} No hands, no people, no text, no logos.`}
+ ]},
+ {n:"09", t:"Newsletter", onde:"página da lista de email", lugares:[
+  {id:"09-newsletter", tipo:"img", dim:"1080×1350 · 4:5", titulo:"Carta à janela", desc:"Homem de caracóis a ler uma carta junto a uma janela antiga de Lisboa, com café. Calma de manhã.",
+   s:[4,5], pess:[[55,35,14]],
+   prompt:`Editorial lifestyle photograph for a premium wavy and curly-hair brand, shot on 35mm film, muted earthy palette (sand, olive, terracotta, cream), warm soft morning window light. Inside a simple Lisbon apartment with a lime-washed wall and an old wooden window frame, a man around thirty with medium-length dark, softly defined curls (type 2C-3A) sits by the window with a cup of coffee, glancing down at a letter-sized paper note he holds, relaxed half smile. Curls light and airy, natural shine, no frizz, no wet look. Ecru knit sweater. Medium shot from the chest up, three-quarter angle, his hair and face lit by the window, calm quiet morning mood, real skin texture. Candid, unposed. No phone screen, no text, no logos, no products, no watermark.`}
+ ]},
+ {n:"10", t:"Ingredientes", onde:"página dos ingredientes e miniaturas na loja (ficheiros ing-*-still.jpg)", lugares:[
+  {id:"10-ing-cacay", tipo:"img", dim:"1080×1080 · 1:1", titulo:"Os 5 ativos em still life", desc:"Um ativo por imagem, sobre o mesmo papel areia e a mesma luz: Cacay, Sacha Inchi, Ungurahui, quinoa, Ácido Poliglutâmico (gel e conta-gotas). Troque o ingrediente no prompt; lugares 10-ing-*.",
+   s:[1,1], creme:[50,55],
+   prompt:`Minimal still life of [INGREDIENT, e.g. a few whole and cracked cacay nuts] on seamless warm sand-beige paper, centered with generous space around, soft diffused side light, gentle natural shadow, muted earthy palette, shot on 35mm film. No hands, no people, no text, no logos, no watermark.`}
  ]}
 ];
 
