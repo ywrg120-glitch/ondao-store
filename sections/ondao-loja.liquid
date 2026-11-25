@@ -90,7 +90,16 @@
       <div class="lj-info">
         {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}Creme Finalizador para Pentear{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
         <p class="lj-preco"><b>{{ preco }}</b><span>200 ml · {% if v %}{{ v.price | times: 0.5 | money_without_currency }} €{% else %}10,00 €{% endif %}/100 ml</span></p>
-        <p class="lj-estado">{% if a_venda %}Pré-encomenda · envio em até {{ dias }} dias{% else %}Pré-lançamento{% endif %}</p>
+        {%- if a_venda -%}
+        <div class="lj-prazo" data-dias="{{ dias }}">
+          <p class="lj-prazo-topo"><span class="lj-prazo-pre">Pré-encomenda</span> Encomende nas próximas <b data-prazo-conta>—</b> para receber até <b data-prazo-entrega-curta>—</b></p>
+          <ol class="lj-linha">
+            <li class="feito"><span>Encomenda</span><b>Hoje</b></li>
+            <li><span>Envio</span><b data-prazo-envio>em até {{ dias }} dias</b></li>
+            <li><span>Entrega prevista</span><b data-prazo-entrega>CTT, 2 a 4 dias úteis</b></li>
+          </ol>
+        </div>
+        {%- else -%}<p class="lj-estado">Pré-lançamento</p>{%- endif -%}
         <p class="lj-desc">Define o caracol sem o deixar duro. Pouco creme para ondas, mais para caracóis.</p>
 
         <ul class="lj-vantagens">
@@ -278,6 +287,29 @@
     s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
   }
   // vídeos: só tocam quando estão no ecrã; o do topo escolhe a versão do telemóvel ou do computador
+  // prazo de entrega: conta até à meia-noite (depois disso as datas avançam um dia), mesmas contas do carrinho
+  (function(){
+    var box = document.querySelector(".lj-prazo"); if (!box) return;
+    var dias = +box.dataset.dias || 10;
+    var fmt = function(d){ return d.toLocaleDateString("pt-PT", {weekday: "short", day: "numeric", month: "short"}); };
+    function datas(){
+      var hoje = new Date(); hoje.setHours(0,0,0,0);
+      var envio = new Date(hoje); envio.setDate(envio.getDate() + dias);
+      var ent = new Date(envio), uteis = 0;
+      while (uteis < 4){ ent.setDate(ent.getDate() + 1); var w = ent.getDay(); if (w !== 0 && w !== 6) uteis++; }
+      return {envio: envio, entrega: ent};
+    }
+    function pintar(){
+      var agora = new Date(), meia = new Date(agora); meia.setHours(24,0,0,0);
+      var min = Math.max(1, Math.ceil((meia - agora) / 60000)), h = Math.floor(min / 60), m = min % 60;
+      box.querySelector("[data-prazo-conta]").textContent = (h ? h + " h " : "") + m + " min";
+      var d = datas();
+      box.querySelector("[data-prazo-envio]").textContent = "até " + fmt(d.envio);
+      box.querySelector("[data-prazo-entrega]").textContent = "até " + fmt(d.entrega);
+      box.querySelector("[data-prazo-entrega-curta]").textContent = fmt(d.entrega);
+    }
+    pintar(); setInterval(pintar, 30000);
+  })();
   var calmo = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var topo = document.getElementById("lj-video-topo");
   var ligacao = navigator.connection || {};
