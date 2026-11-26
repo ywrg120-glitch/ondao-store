@@ -91,12 +91,12 @@
         {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}Creme Finalizador para Pentear{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
         <p class="lj-preco"><b>{{ preco }}</b><span>200 ml · {% if v %}{{ v.price | times: 0.5 | money_without_currency }} €{% else %}10,00 €{% endif %}/100 ml</span></p>
         {%- if a_venda -%}
-        <div class="lj-prazo" data-dias="{{ dias }}">
-          <p class="lj-prazo-topo"><span class="lj-prazo-pre">Pré-encomenda</span> Encomende nas próximas <b data-prazo-conta>—</b> para receber até <b data-prazo-entrega-curta>—</b></p>
+        <div class="lj-prazo" data-modo="encomenda" data-corte="17" data-dias="{{ dias }}">
+          <p class="lj-prazo-topo">Encomende nas próximas <b data-prazo-conta>—</b> e receba <b data-prazo-entrega-curta>—</b></p>
           <ol class="lj-linha">
             <li class="feito"><span>Encomenda</span><b>Hoje</b></li>
-            <li><span>Envio</span><b data-prazo-envio>em até {{ dias }} dias</b></li>
-            <li><span>Entrega prevista</span><b data-prazo-entrega>CTT, 2 a 4 dias úteis</b></li>
+            <li><span>Envio</span><b data-prazo-envio>—</b></li>
+            <li><span>Entrega</span><b data-prazo-entrega>—</b></li>
           </ol>
         </div>
         {%- else -%}<p class="lj-estado">Pré-lançamento</p>{%- endif -%}
@@ -292,26 +292,49 @@
     s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
   }
   // vídeos: só tocam quando estão no ecrã; o do topo escolhe a versão do telemóvel ou do computador
-  // prazo de entrega: conta até à meia-noite (depois disso as datas avançam um dia), mesmas contas do carrinho
+  // prazo de entrega (modo "encomenda", em teste): encomendas até às 17:00 (hora de Lisboa) num dia útil saem nesse dia e chegam no dia útil seguinte.
+  // modo "pre" (pré-encomenda): envio em até N dias + 2 a 4 dias úteis CTT, conta até à meia-noite.
   (function(){
     var box = document.querySelector(".lj-prazo"); if (!box) return;
-    var dias = +box.dataset.dias || 10;
-    var fmt = function(d){ return d.toLocaleDateString("pt-PT", {weekday: "short", day: "numeric", month: "short"}); };
-    function datas(){
-      var hoje = new Date(); hoje.setHours(0,0,0,0);
-      var envio = new Date(hoje); envio.setDate(envio.getDate() + dias);
-      var ent = new Date(envio), uteis = 0;
-      while (uteis < 4){ ent.setDate(ent.getDate() + 1); var w = ent.getDay(); if (w !== 0 && w !== 6) uteis++; }
-      return {envio: envio, entrega: ent};
+    var modo = box.dataset.modo || "pre", corte = +box.dataset.corte || 17, dias = +box.dataset.dias || 10;
+    var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+    var dd = function(n){ return (n < 10 ? "0" : "") + n; };
+    var fmt = function(d){ return DIAS[d.getDay()] + ", " + dd(d.getDate()) + "/" + dd(d.getMonth() + 1); };
+    function lisboa(){ // hora de Lisboa, como data "local"
+      var p = {}; new Intl.DateTimeFormat("en-GB", {timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23"}).formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
+      return new Date(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute, +p.second);
     }
+    var util = function(d){ var w = d.getDay(); return w !== 0 && w !== 6; };
+    var proxUtil = function(d){ var n = new Date(d); do { n.setDate(n.getDate() + 1); } while (!util(n)); return n; };
+    var mesmoDia = function(a, b){ return a.toDateString() === b.toDateString(); };
     function pintar(){
-      var agora = new Date(), meia = new Date(agora); meia.setHours(24,0,0,0);
-      var min = Math.max(1, Math.ceil((meia - agora) / 60000)), h = Math.floor(min / 60), m = min % 60;
-      box.querySelector("[data-prazo-conta]").textContent = (h ? h + " h " : "") + m + " min";
-      var d = datas();
-      box.querySelector("[data-prazo-envio]").textContent = "até " + fmt(d.envio);
-      box.querySelector("[data-prazo-entrega]").textContent = "até " + fmt(d.entrega);
-      box.querySelector("[data-prazo-entrega-curta]").textContent = fmt(d.entrega);
+      var agora = lisboa(), limite, envio, entrega;
+      if (modo === "encomenda"){
+        limite = new Date(agora); limite.setHours(corte, 0, 0, 0);
+        if (!util(agora) || agora >= limite){ limite = proxUtil(agora); limite.setHours(corte, 0, 0, 0); }
+        envio = new Date(limite); envio.setHours(0,0,0,0); entrega = proxUtil(envio);
+      } else {
+        limite = new Date(agora); limite.setHours(24, 0, 0, 0);
+        envio = new Date(agora); envio.setHours(0,0,0,0); envio.setDate(envio.getDate() + dias);
+        entrega = new Date(envio); for (var u = 0; u < 4;){ entrega.setDate(entrega.getDate() + 1); if (util(entrega)) u++; }
+      }
+      var hoje = new Date(agora); hoje.setHours(0,0,0,0); var amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
+      var min = Math.max(1, Math.ceil((limite - agora) / 60000)), h = Math.floor(min / 60), m = min % 60;
+      var topoTxt = box.querySelector(".lj-prazo-topo"), conta = box.querySelector("[data-prazo-conta]");
+      if (modo !== "encomenda" || mesmoDia(limite, agora)){
+        topoTxt.firstChild.nodeValue = "Encomende nas próximas ";
+        conta.textContent = (h ? h + " h" + (m ? " " : "") : "") + (m || !h ? m + " min" : "");
+      } else {
+        var diaLimite = new Date(limite); diaLimite.setHours(0,0,0,0);
+        topoTxt.firstChild.nodeValue = "Encomende até ";
+        conta.textContent = (mesmoDia(diaLimite, amanha) ? "amanhã" : DIAS[limite.getDay()]) + " às " + corte + ":00";
+      }
+      var nome = function(d){ return mesmoDia(d, hoje) ? "hoje" : (mesmoDia(d, amanha) ? "amanhã, " + fmt(d) : fmt(d)); };
+      var pre = modo === "encomenda" ? "" : "até ";
+      var cap = function(t){ return t.charAt(0).toUpperCase() + t.slice(1); };
+      box.querySelector("[data-prazo-envio]").textContent = cap(pre + nome(envio));
+      box.querySelector("[data-prazo-entrega]").textContent = cap(pre + nome(entrega));
+      box.querySelector("[data-prazo-entrega-curta]").textContent = (modo === "encomenda" ? "" : "até ") + nome(entrega);
     }
     pintar(); setInterval(pintar, 30000);
   })();
