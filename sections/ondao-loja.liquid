@@ -119,7 +119,7 @@
           </label>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="2">
-            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf" data-bf hidden>+ escova de caracóis de oferta</span></span>
+            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf" data-bf hidden><img src="{{ 'ondao-escova.jpg' | asset_img_url: '120x120', crop: 'center' }}" width="44" height="44" alt="Escova de caracóis ondão" loading="lazy">+ escova de caracóis de oferta</span></span>
             <span class="lj-opcao-preco"><b>{{ preco2 }}</b></span>
             {%- if dois_gratis -%}<em class="lj-tag" data-bf-tag-normal>Portes grátis</em>{%- endif -%}<em class="lj-tag lj-tag-bf" data-bf hidden>Black Friday · oferta</em>
           </label>

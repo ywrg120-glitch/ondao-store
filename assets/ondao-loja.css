@@ -301,3 +301,6 @@
 .lj-bf{display:block;margin-top:2px;font-size:.78rem;font-weight:600;color:var(--terra,#c8553a)}
 .lj-tag.lj-tag-bf{background:#1c3327;color:#f7f3ec}
 [data-bf][hidden],[data-bf-tag-normal][hidden]{display:none!important}
+.lj-opcao span.lj-bf{display:flex;align-items:center;gap:8px;margin-top:6px}
+.lj-bf img{width:44px;height:44px;border-radius:10px;object-fit:cover;flex:none;background:#e8dccb}
+.lj-opcao span.lj-bf:not([hidden]){display:flex}
