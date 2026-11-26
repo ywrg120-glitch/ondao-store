@@ -1,29 +1,30 @@
 <section class="secao pg" id="ingredientes">
   <div class="wrap">
     <div class="cabeca">
-      <h1 class="h2">Cinco ativos. <em class="it">Zero enchimento.</em></h1>
-      <p class="ing-dica">Escolha um ativo para conhecer a origem e o que faz no seu cabelo.</p>
+      <h1 class="h2">{{ 'ondao.ing.titulo_html' | t }}</h1>
+      <p class="ing-dica">{{ 'ondao.ing.dica' | t }}</p>
     </div>
     <div class="ing-grid">
       <div class="heroi" id="ing-heroi" aria-live="polite">
-        <div class="foto"><img width="1080" height="1080" src="{{ 'ing-cacay-still.jpg' | asset_url }}" alt="Nozes de Cacay, uma delas aberta" loading="lazy"></div>
+        <div class="foto"><img width="1080" height="1080" src="{{ 'ing-cacay-still.jpg' | asset_url }}" alt="{{ 'ondao.ing.cacay.alt' | t }}" loading="lazy"></div>
         <div class="txt">
-          <span class="palavra">Cacay.</span>
-          <span class="latim">Caryodendron orinocense · bacia do Orinoco, Colômbia</span>
-          <p class="corpo">O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p>
-          <div class="funcao"><b>Na fórmula</b><span>O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.</span></div>
+          <span class="palavra">{{ 'ondao.ing.cacay.nome' | t }}</span>
+          <span class="latim">{{ 'ondao.ing.cacay.latim' | t }}</span>
+          <p class="corpo">{{ 'ondao.ing.cacay.corpo' | t }}</p>
+          <div class="funcao"><b>{{ 'ondao.ing.na_formula' | t }}</b><span>{{ 'ondao.ing.cacay.funcao' | t }}</span></div>
         </div>
       </div>
       <div class="ings">
-        <button class="ing" type="button" data-ing="sacha-inchi"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_url }}" alt="Cápsulas em estrela e sementes de Sacha Inchi, com um pouco de óleo" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">Óleo de Sacha Inchi</span><span class="origem">Amazónia colombiana</span><p>Ultraleve e rico em ómega-3. Brilho sem peso.</p></div></button>
-        <button class="ing" type="button" data-ing="ungurahui"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-ungurahui-still.jpg' | asset_url }}" alt="Frutos roxos de Ungurahui" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">Óleo de Ungurahui</span><span class="origem">Amazónia colombiana</span><p>Usado há gerações no cuidado do cabelo. Brilho e suavidade.</p></div></button>
-        <button class="ing" type="button" data-ing="quinoa"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-quinoa-still.jpg' | asset_url }}" alt="Grãos e uma espiga de quinoa" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">Proteína de Quinoa</span><span class="origem">Andes</span><p>Estrutura e elasticidade para o caracol.</p></div></button>
-        <button class="ing" type="button" data-ing="poliglutamico"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-poliglutamico-still.jpg' | asset_url }}" alt="Gel transparente e um conta-gotas" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">Ácido Poliglutâmico</span><span class="origem">Biotecnologia</span><p>Retém a hidratação. Menos frizz.</p></div></button>
+        <button class="ing" type="button" data-ing="sacha-inchi"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_url }}" alt="{{ 'ondao.ing.sacha_inchi.alt' | t }}" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">{{ 'ondao.ing.sacha_inchi.card' | t }}</span><span class="origem">{{ 'ondao.ing.sacha_inchi.origem' | t }}</span><p>{{ 'ondao.ing.sacha_inchi.curto' | t }}</p></div></button>
+        <button class="ing" type="button" data-ing="ungurahui"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-ungurahui-still.jpg' | asset_url }}" alt="{{ 'ondao.ing.ungurahui.alt' | t }}" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">{{ 'ondao.ing.ungurahui.card' | t }}</span><span class="origem">{{ 'ondao.ing.sacha_inchi.origem' | t }}</span><p>{{ 'ondao.ing.ungurahui.curto' | t }}</p></div></button>
+        <button class="ing" type="button" data-ing="quinoa"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-quinoa-still.jpg' | asset_url }}" alt="{{ 'ondao.ing.quinoa.alt' | t }}" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">{{ 'ondao.ing.quinoa.card' | t }}</span><span class="origem">{{ 'ondao.ing.quinoa.origem' | t }}</span><p>{{ 'ondao.ing.quinoa.curto' | t }}</p></div></button>
+        <button class="ing" type="button" data-ing="poliglutamico"><span class="mais" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><img src="{{ 'ing-poliglutamico-still.jpg' | asset_url }}" alt="{{ 'ondao.ing.poliglutamico.alt' | t }}" loading="lazy" width="1080" height="1080"><div class="ing-txt"><span class="ing-nome">{{ 'ondao.ing.poliglutamico.card' | t }}</span><span class="origem">{{ 'ondao.ing.poliglutamico.origem' | t }}</span><p>{{ 'ondao.ing.poliglutamico.curto' | t }}</p></div></button>
       </div>
     </div>
   </div>
 </section>
 {% render 'ondao-pg-cta' %}
+<script>window.ONDAO_INGS = {"cacay": {"nome": {{ 'ondao.ing.cacay.nome' | t | json }},"card": {{ 'ondao.ing.cacay.card' | t | json }},"origem": {{ 'ondao.ing.cacay.origem' | t | json }},"alt": {{ 'ondao.ing.cacay.alt' | t | json }},"latim": {{ 'ondao.ing.cacay.latim' | t | json }},"corpo": {{ 'ondao.ing.cacay.corpo' | t | json }},"funcao": {{ 'ondao.ing.cacay.funcao' | t | json }},"curto": {{ 'ondao.ing.cacay.curto' | t | json }}},"sacha-inchi": {"nome": {{ 'ondao.ing.sacha_inchi.nome' | t | json }},"card": {{ 'ondao.ing.sacha_inchi.card' | t | json }},"origem": {{ 'ondao.ing.sacha_inchi.origem' | t | json }},"alt": {{ 'ondao.ing.sacha_inchi.alt' | t | json }},"latim": {{ 'ondao.ing.sacha_inchi.latim' | t | json }},"corpo": {{ 'ondao.ing.sacha_inchi.corpo' | t | json }},"funcao": {{ 'ondao.ing.sacha_inchi.funcao' | t | json }},"curto": {{ 'ondao.ing.sacha_inchi.curto' | t | json }}},"ungurahui": {"nome": {{ 'ondao.ing.ungurahui.nome' | t | json }},"card": {{ 'ondao.ing.ungurahui.card' | t | json }},"origem": {{ 'ondao.ing.ungurahui.origem' | t | json }},"alt": {{ 'ondao.ing.ungurahui.alt' | t | json }},"latim": {{ 'ondao.ing.ungurahui.latim' | t | json }},"corpo": {{ 'ondao.ing.ungurahui.corpo' | t | json }},"funcao": {{ 'ondao.ing.ungurahui.funcao' | t | json }},"curto": {{ 'ondao.ing.ungurahui.curto' | t | json }}},"quinoa": {"nome": {{ 'ondao.ing.quinoa.nome' | t | json }},"card": {{ 'ondao.ing.quinoa.card' | t | json }},"origem": {{ 'ondao.ing.quinoa.origem' | t | json }},"alt": {{ 'ondao.ing.quinoa.alt' | t | json }},"latim": {{ 'ondao.ing.quinoa.latim' | t | json }},"corpo": {{ 'ondao.ing.quinoa.corpo' | t | json }},"funcao": {{ 'ondao.ing.quinoa.funcao' | t | json }},"curto": {{ 'ondao.ing.quinoa.curto' | t | json }}},"poliglutamico": {"nome": {{ 'ondao.ing.poliglutamico.nome' | t | json }},"card": {{ 'ondao.ing.poliglutamico.card' | t | json }},"origem": {{ 'ondao.ing.poliglutamico.origem' | t | json }},"alt": {{ 'ondao.ing.poliglutamico.alt' | t | json }},"latim": {{ 'ondao.ing.poliglutamico.latim' | t | json }},"corpo": {{ 'ondao.ing.poliglutamico.corpo' | t | json }},"funcao": {{ 'ondao.ing.poliglutamico.funcao' | t | json }},"curto": {{ 'ondao.ing.poliglutamico.curto' | t | json }}}}; window.ONDAO_ING_T = {saber: {{ 'ondao.ing.saber_mais' | t | json }}};</script>
 <script>window.ONDAO_ASSET_BASE = {{ 'ondao-paginas.js' | asset_url | split: 'ondao-paginas.js' | first | json }};</script>
 <script src="{{ 'ondao-paginas.js' | asset_url }}" defer></script>
 

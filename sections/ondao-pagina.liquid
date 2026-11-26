@@ -13,15 +13,16 @@
             assign pct = 100
           endif
         -%}
-        <h1 class="h2">O seu carrinho</h1>
+        <h1 class="h2">{{ 'ondao.cx.titulo' | t }}</h1>
         {%- if cart.item_count > 0 -%}
           <div class="cx">
             <div class="cx-itens">
               <div class="cx-portes" role="status">
                 {%- if falta > 0 -%}
-                  <p>Faltam <b>{{ falta | money_without_currency }}&nbsp;€</b> para ter <b>portes grátis</b> em Portugal.</p>
+                  {%- capture falta_txt -%}{{ falta | money_without_currency }}&nbsp;€{%- endcapture -%}
+                  <p>{{ 'ondao.cx.faltam_html' | t: valor: falta_txt }}</p>
                 {%- else -%}
-                  <p><b>Tem portes grátis</b> em Portugal.</p>
+                  <p>{{ 'ondao.cx.tem_gratis_html' | t }}</p>
                 {%- endif -%}
                 <div class="cx-barra" aria-hidden="true"><span style="width:{{ pct }}%"></span></div>
               </div>
@@ -31,16 +32,16 @@
                   <a class="cx-foto" href="{{ item.url }}" tabindex="-1" aria-hidden="true">{%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" width="100" height="100" alt="" loading="lazy">{%- endif -%}</a>
                   <div class="cx-info">
                     <a class="cx-nome" href="{{ item.url }}">{{ item.product.title }}</a>
-                    <span class="cx-var">200 ml · {{ item.final_price | money_without_currency }}&nbsp;€ cada</span>
+                    <span class="cx-var">200 ml · {{ item.final_price | money_without_currency }}&nbsp;€ {{ 'ondao.cx.cada' | t }}</span>
                     <div class="cx-qtd">
-                      <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="{{ item.quantity | minus: 1 }}"><button type="submit" aria-label="Tirar um tubo"{% if item.quantity == 1 %} disabled{% endif %}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button></form>
-                      <span aria-label="Quantidade">{{ item.quantity }}</span>
-                      <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="{{ item.quantity | plus: 1 }}"><button type="submit" aria-label="Juntar um tubo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></form>
+                      <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="{{ item.quantity | minus: 1 }}"><button type="submit" aria-label="{{ 'ondao.cx.tirar' | t }}"{% if item.quantity == 1 %} disabled{% endif %}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button></form>
+                      <span aria-label="{{ 'ondao.cx.qtd' | t }}">{{ item.quantity }}</span>
+                      <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="{{ item.quantity | plus: 1 }}"><button type="submit" aria-label="{{ 'ondao.cx.juntar_um' | t }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></form>
                     </div>
                   </div>
                   <div class="cx-dir">
                     <b>{{ item.final_line_price | money_without_currency }}&nbsp;€</b>
-                    <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="0"><button class="cx-tirar" type="submit">Remover</button></form>
+                    <form action="{{ routes.cart_change_url }}" method="post"><input type="hidden" name="line" value="{{ forloop.index }}"><input type="hidden" name="quantity" value="0"><button class="cx-tirar" type="submit">{{ 'ondao.cx.remover' | t }}</button></form>
                   </div>
                 </li>
                 {%- endfor -%}
@@ -50,45 +51,45 @@
                 {%- if falta <= v1.price -%}
                 <form class="cx-mais" action="{{ routes.cart_add_url }}" method="post">
                   <input type="hidden" name="id" value="{{ v1.id }}"><input type="hidden" name="quantity" value="1"><input type="hidden" name="return_to" value="{{ routes.cart_url }}">
-                  <p><b>Junte mais um tubo</b> por {{ v1.price | money_without_currency }}&nbsp;€ e os portes ficam grátis.</p>
-                  <button class="btn btn-contorno" type="submit">Juntar 1 tubo</button>
+                  {%- capture v1p -%}{{ v1.price | money_without_currency }}&nbsp;€{%- endcapture -%}<p>{{ 'ondao.cx.mais_pagina_html' | t: preco: v1p }}</p>
+                  <button class="btn btn-contorno" type="submit">{{ 'ondao.cx.juntar_1' | t }}</button>
                 </form>
                 {%- endif -%}
               {%- endif -%}
             </div>
-            <aside class="cx-resumo" aria-label="Resumo">
+            <aside class="cx-resumo" aria-label="{{ 'ondao.cx.resumo' | t }}">
               <dl>
-                <div><dt>Subtotal</dt><dd>{{ cart.total_price | money_without_currency }}&nbsp;€</dd></div>
-                <div><dt>Portes</dt><dd>{% if falta > 0 %}4,50&nbsp;€ em Portugal{% else %}Grátis em Portugal{% endif %}</dd></div>
+                <div><dt>{{ 'ondao.cx.subtotal' | t }}</dt><dd>{{ cart.total_price | money_without_currency }}&nbsp;€</dd></div>
+                <div><dt>{{ 'ondao.cx.portes' | t }}</dt><dd>{% if falta > 0 %}{{ 'ondao.cx.portes_pt' | t }}{% else %}{{ 'ondao.cx.gratis_pt' | t }}{% endif %}</dd></div>
               </dl>
-              <p class="cx-nota">Valor final dos portes e impostos no checkout. Encomendas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte.{% assign tubos_cx = 0 %}{% for it in cart.items %}{% assign tubos_cx = tubos_cx | plus: it.quantity %}{% endfor %}{% if tubos_cx >= 2 %} Inclui a escova de caracóis de oferta.{% endif %}</p>
-              <form action="{{ routes.cart_url }}" method="post"><button class="btn btn-verde btn-full" type="submit" name="checkout">Finalizar compra</button></form>
+              <p class="cx-nota">{{ 'ondao.cx.nota_pagina' | t }}{% assign tubos_cx = 0 %}{% for it in cart.items %}{% assign tubos_cx = tubos_cx | plus: it.quantity %}{% endfor %}{% if tubos_cx >= 2 %} {{ 'ondao.cx.inclui_escova' | t }}{% endif %}</p>
+              <form action="{{ routes.cart_url }}" method="post"><button class="btn btn-verde btn-full" type="submit" name="checkout">{{ 'ondao.cx.finalizar' | t }}</button></form>
               <ul class="cx-conf">
-                <li>14 dias para devolver, a contar da entrega</li>
-                <li>Pagamento seguro</li>
+                <li>{{ 'ondao.cx.dev_entrega' | t }}</li>
+                <li>{{ 'ondao.cx.seguro' | t }}</li>
               </ul>
-              {%- if shop.enabled_payment_types.size > 0 -%}<div class="cx-pag" aria-label="Métodos de pagamento aceites">{%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'cx-pag-i' }}{%- endfor -%}</div>{%- endif -%}
+              {%- if shop.enabled_payment_types.size > 0 -%}<div class="cx-pag" aria-label="{{ 'ondao.geral.metodos' | t }}">{%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'cx-pag-i' }}{%- endfor -%}</div>{%- endif -%}
             </aside>
           </div>
         {%- else -%}
-          <p class="cx-vazio">O seu carrinho está vazio.</p>
-          <a class="btn btn-verde" href="/pages/creme">Ver o creme</a>
+          <p class="cx-vazio">{{ 'ondao.cx.vazio' | t }}</p>
+          <a class="btn btn-verde" href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.geral.ver_creme' | t }}</a>
         {%- endif -%}
       {%- when '404' -%}
-        <h1 class="h2">Página não encontrada</h1>
-        <p>Esta página não existe ou mudou de sítio.</p>
-        <a class="btn btn-verde" href="{{ routes.root_url }}">Voltar à loja</a>
+        <h1 class="h2">{{ 'ondao.p404.titulo' | t }}</h1>
+        <p>{{ 'ondao.p404.txt' | t }}</p>
+        <a class="btn btn-verde" href="{{ routes.root_url }}">{{ 'ondao.p404.voltar' | t }}</a>
       {%- when 'article' -%}
         <h1 class="h2">{{ article.title }}</h1>
         <div class="texto">{{ article.content }}</div>
       {%- when 'search' -%}
-        <h1 class="h2">Pesquisa</h1>
-        <p>Por agora temos um só produto: o Creme Finalizador para Pentear.</p>
-        <a class="btn btn-verde" href="/pages/creme">Ver o creme</a>
+        <h1 class="h2">{{ 'ondao.pesquisa.titulo' | t }}</h1>
+        <p>{{ 'ondao.pesquisa.um' | t }}</p>
+        <a class="btn btn-verde" href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.geral.ver_creme' | t }}</a>
       {%- else -%}
         <h1 class="h2">ondão</h1>
-        <p>Por agora temos um só produto: o Creme Finalizador para Pentear.</p>
-        <a class="btn btn-verde" href="/pages/creme">Ver o creme</a>
+        <p>{{ 'ondao.pesquisa.um' | t }}</p>
+        <a class="btn btn-verde" href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.geral.ver_creme' | t }}</a>
     {%- endcase -%}
   </div>
 </section>

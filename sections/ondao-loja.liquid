@@ -12,7 +12,7 @@
     assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
   endif
   assign a_venda = false
-  assign link = '/pages/lista'
+  assign link = routes.root_url | append: '/pages/lista' | replace: '//', '/'
   if p != blank
     assign v = p.selected_or_first_available_variant
     if v.available
@@ -44,7 +44,7 @@
     endif
   endif
 -%}
-{%- if a_venda -%}{%- assign txt_cta = 'Adicionar ao carrinho' -%}{%- else -%}{%- assign txt_cta = 'Entrar na Lista VIP' -%}{%- endif -%}
+{%- if a_venda -%}{%- assign txt_cta = 'ondao.geral.adicionar' | t -%}{%- else -%}{%- assign txt_cta = 'ondao.loja.vip_entrar' | t -%}{%- endif -%}
 
 <div class="lj">
 
@@ -52,86 +52,86 @@
   <section class="lj-hero">
     <picture>
       <source media="(min-width: 900px), (orientation: landscape) and (min-width: 600px)" srcset="{{ 'ondao-01-topo-computador.jpg' | asset_url }}" width="1920" height="1080">
-      <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="Homem com caracóis escuros definidos a olhar para a câmara, na costa do Cabo da Roca" fetchpriority="high">
+      <img class="lj-hero-foto" src="{{ 'ondao-01-topo-telemovel.jpg' | asset_url }}" width="1080" height="1350" alt="{{ 'ondao.loja.alt.hero' | t }}" fetchpriority="high">
     </picture>
     {%- if settings.ondao_video_topo -%}
     <video class="lj-hero-foto lj-video" id="lj-video-topo" muted loop playsinline preload="none" aria-hidden="true"
       data-telemovel="{{ 'ondao-01-topo-telemovel.mp4' | asset_url }}" data-computador="{{ 'ondao-01-topo-computador.mp4' | asset_url }}"></video>
     {%- endif -%}
     <div class="lj-hero-txt">
-      {%- if e_produto -%}<p class="lj-h1">{%- else -%}<h1 class="lj-h1">{%- endif -%}Não é só cabelo. <em>É de propósito.</em>{%- if e_produto -%}</p>{%- else -%}</h1>{%- endif %}
-      <p>Um creme leve que define as ondas e os caracóis sem crosta e sem peso. Um passo, depois do banho.</p>
+      {%- if e_produto -%}<p class="lj-h1">{%- else -%}<h1 class="lj-h1">{%- endif -%}{{ 'ondao.loja.hero_html' | t }}{%- if e_produto -%}</p>{%- else -%}</h1>{%- endif %}
+      <p>{{ 'ondao.loja.hero_sub' | t }}</p>
       <a class="lj-btn lj-btn-claro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
-      {%- if a_venda -%}<p class="lj-hero-preco">{{ preco }} · <span data-prazo-hero>encomende até às 17:00, receba no dia útil seguinte</span></p>{%- endif -%}
+      {%- if a_venda -%}<p class="lj-hero-preco">{{ preco }} · <span data-prazo-hero>{{ 'ondao.loja.hero_prazo' | t }}</span></p>{%- endif -%}
     </div>
   </section>
 
   <!-- FAIXA -->
-  <div class="lj-faixa"><p>Um creme em vez de <em>quatro.</em></p></div>
+  <div class="lj-faixa"><p>{{ 'ondao.loja.faixa_html' | t }}</p></div>
 
   <!-- PRODUTO -->
   <section class="lj-produto" id="produto">
     <div class="lj-wrap lj-prod-grid">
       <div class="lj-galeria">
-        <div class="lj-slides" id="lj-slides" tabindex="0" aria-label="Fotografias do creme">
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Tubo ondão de frente, 200 ml"></div>
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Homem de caracóis escuros a segurar o tubo ondão junto ao rosto, em fundo cor de areia" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Traço do creme ondão, leve e cremoso, com o tubo ao lado" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Perfil de um homem com caracóis escuros definidos, em fundo verde-salva" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Homem a olhar para cima, caracóis definidos com volume, contra parede branca" loading="lazy"></div>
-          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="Mulher de costas com caracóis definidos a caminhar num trilho no Cabo da Roca" loading="lazy"></div>
+        <div class="lj-slides" id="lj-slides" tabindex="0" aria-label="{{ 'ondao.loja.fotos' | t }}">
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g1' | t }}"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g2' | t }}" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-3.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-3.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g3' | t }}" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-4.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-4.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g4' | t }}" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-5.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-5.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g5' | t }}" loading="lazy"></div>
+          <div class="lj-slide"><img src="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-02-galeria-6.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-02-galeria-6.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 580px, 100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.g6' | t }}" loading="lazy"></div>
           {%- if settings.ondao_video_galeria -%}
-          <div class="lj-slide"><video class="lj-video" src="{{ 'ondao-02-galeria-video.mp4' | asset_url }}" muted loop playsinline preload="none" poster="{{ 'ondao-02-galeria-video.jpg' | asset_url }}" aria-label="Homem com caracóis definidos a sair de casa e a caminhar numa rua de Lisboa"></video></div>
+          <div class="lj-slide"><video class="lj-video" src="{{ 'ondao-02-galeria-video.mp4' | asset_url }}" muted loop playsinline preload="none" poster="{{ 'ondao-02-galeria-video.jpg' | asset_url }}" aria-label="{{ 'ondao.loja.alt.gvideo' | t }}"></video></div>
           {%- endif -%}
         </div>
         <div class="lj-pontos" id="lj-pontos"></div>
       </div>
 
       <div class="lj-info">
-        {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}Creme Finalizador para Pentear{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
+        {%- if e_produto -%}<h1 class="lj-titulo">{%- else -%}<h2 class="lj-titulo">{%- endif -%}{{ 'ondao.geral.produto' | t }}{%- if e_produto -%}</h1>{%- else -%}</h2>{%- endif %}
         <p class="lj-preco"><b>{{ preco }}</b><span>200 ml · {% if v %}{{ v.price | times: 0.5 | money_without_currency }} €{% else %}10,00 €{% endif %}/100 ml</span></p>
         {%- if a_venda -%}
-        <div class="lj-prazo" data-modo="encomenda" data-corte="17" data-dias="{{ dias }}">
-          <p class="lj-prazo-topo">Encomende nas próximas <b data-prazo-conta>—</b> e receba <b data-prazo-entrega-curta>—</b></p>
+        <div class="lj-prazo" data-pais="{{ localization.country.iso_code | default: 'PT' }}" data-modo="encomenda" data-corte="17" data-dias="{{ dias }}">
+          <p class="lj-prazo-topo"><span data-t1>{{ 'ondao.ljjs.t1_proximas' | t }}</span> <b data-prazo-conta>—</b> <span data-t2>{{ 'ondao.ljjs.t2_receba' | t }}</span> <b data-prazo-entrega-curta>—</b></p>
           <ol class="lj-linha">
-            <li class="feito"><span>Encomenda</span><b>Hoje</b></li>
-            <li><span>Envio</span><b data-prazo-envio>—</b></li>
-            <li><span>Entrega</span><b data-prazo-entrega>—</b></li>
+            <li class="feito"><span>{{ 'ondao.loja.prazo_encomenda' | t }}</span><b>{{ 'ondao.loja.prazo_hoje' | t }}</b></li>
+            <li><span>{{ 'ondao.loja.prazo_envio' | t }}</span><b data-prazo-envio>—</b></li>
+            <li><span>{{ 'ondao.loja.prazo_entrega' | t }}</span><b data-prazo-entrega>—</b></li>
           </ol>
         </div>
-        {%- else -%}<p class="lj-estado">Pré-lançamento</p>{%- endif -%}
-        <p class="lj-desc">Define o caracol sem o deixar duro. Pouco creme para ondas, mais para caracóis.</p>
+        {%- else -%}<p class="lj-estado">{{ 'ondao.loja.pre_lancamento' | t }}</p>{%- endif -%}
+        <p class="lj-desc">{{ 'ondao.loja.desc' | t }}</p>
 
         <ul class="lj-vantagens">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>Sem crosta</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>Sem efeito molhado</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>Menos de 1 €/lavagem</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/></svg>Cheiro unissexo</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z"/><path d="M5 19l7-7"/></svg>{{ 'ondao.loja.v1' | t }}</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/></svg>{{ 'ondao.loja.v2' | t }}</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>{{ 'ondao.loja.v3' | t }}</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7.4 5.5 10.2a5.5 5.5 0 0 1-11 0C6.5 10.4 8.5 7.2 12 3z"/></svg>{{ 'ondao.loja.v4' | t }}</li>
         </ul>
 
         {%- if a_venda -%}
         <fieldset class="lj-qtd">
-          <legend>Quantidade</legend>
+          <legend>{{ 'ondao.cx.qtd' | t }}</legend>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="1" checked>
-            <span class="lj-opcao-txt"><b>1 tubo</b><span>+ {{ portes_txt }} € de portes em Portugal</span></span>
+            <span class="lj-opcao-txt"><b>{{ 'ondao.loja.um_tubo' | t }}</b><span>{{ 'ondao.loja.portes_pt' | t: v: portes_txt }}</span></span>
             <span class="lj-opcao-preco"><b>{{ preco }}</b></span>
           </label>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="2">
-            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf"><button type="button" class="lj-bf-ver" data-escova aria-label="Ver a escova de caracóis em grande"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="56" height="56" alt="" loading="lazy"><i aria-hidden="true">+</i></button><span>+ escova de caracóis de oferta<small>Toque na foto para ver</small></span></span></span>
+            <span class="lj-opcao-txt"><b>{{ 'ondao.loja.dois_tubos' | t }}</b><span>{% if dois_gratis %}{{ 'ondao.loja.portes_gratis' | t }}{% else %}{{ 'ondao.loja.por_tubo' | t: preco: preco }}{% endif %}</span><span class="lj-bf"><button type="button" class="lj-bf-ver" data-escova aria-label="{{ 'ondao.loja.escova_ver' | t }}"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="56" height="56" alt="" loading="lazy"><i aria-hidden="true">+</i></button><span>{{ 'ondao.loja.escova_oferta' | t }}<small>{{ 'ondao.loja.escova_toque' | t }}</small></span></span></span>
             <span class="lj-opcao-preco"><b>{{ preco2 }}</b></span>
-            <em class="lj-tag">Escova de oferta</em>
+            <em class="lj-tag">{{ 'ondao.loja.escova_tag' | t }}</em>
           </label>
         </fieldset>
         {%- else -%}
-        <div class="lj-opcao lj-opcao-vip"><span class="lj-opcao-txt"><b>Lista VIP</b><span>Receba o link de compra 48h antes de todos</span></span><span class="lj-opcao-preco"><b>{{ preco }}</b></span></div>
+        <div class="lj-opcao lj-opcao-vip"><span class="lj-opcao-txt"><b>Lista VIP</b><span>{{ 'ondao.loja.vip_txt' | t }}</span></span><span class="lj-opcao-preco"><b>{{ preco }}</b></span></div>
         {%- endif -%}
 
         <a class="lj-btn lj-btn-escuro lj-btn-full" id="lj-comprar" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
         {%- if a_venda -%}
         <div class="lj-express">
-          <p class="lj-ou"><span>ou pague num toque</span></p>
+          <p class="lj-ou"><span>{{ 'ondao.loja.ou_toque' | t }}</span></p>
           {%- form 'product', p -%}
             <input type="hidden" name="id" value="{{ v.id }}">
             <input type="hidden" name="quantity" value="1" id="lj-qtd-express">
@@ -139,12 +139,12 @@
           {%- endform -%}
         </div>
         <ul class="lj-confianca">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span>Portes {{ portes_txt }}&nbsp;€ em Portugal, <b>grátis a partir de {{ gratis }}&nbsp;€</b>. Envio para toda a UE.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg><span>{{ dev }} dias para devolver, a contar da entrega.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pagamento seguro. Encomende até às 17:00 e enviamos no mesmo dia.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span>{{ 'ondao.loja.conf_portes_html' | t: v: portes_txt, g: gratis }}</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg><span>{{ 'ondao.loja.conf_dev' | t: d: dev }}</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>{{ 'ondao.loja.conf_seguro' | t }}</span></li>
         </ul>
         {%- if shop.enabled_payment_types.size > 0 -%}
-        <div class="lj-pagamentos" aria-label="Métodos de pagamento aceites">
+        <div class="lj-pagamentos" aria-label="{{ 'ondao.geral.metodos' | t }}">
           {%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'lj-pag' }}{%- endfor -%}
         </div>
         {%- endif -%}
@@ -158,41 +158,41 @@
     <div class="lj-origem-foto">
       <picture>
         <source media="(min-width: 900px)" srcset="{{ 'ondao-06-banner-computador.jpg' | asset_url }}">
-        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="Nozes de Cacay inteiras e abertas, com uma taça de óleo de Cacay" loading="lazy">
+        <img src="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-06-banner-telemovel.jpg' | asset_img_url: '1080x' }} 1080w" sizes="100vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.origem' | t }}" loading="lazy">
       </picture>
-      <span class="lj-origem-selo">Orinoquía, Colômbia</span>
+      <span class="lj-origem-selo">{{ 'ondao.loja.selo' | t }}</span>
     </div>
     <div class="lj-origem-txt">
-            <h2 class="lj-h2">Cinco ativos. <em>Zero enchimento.</em></h2>
+            <h2 class="lj-h2">{{ 'ondao.loja.ativos_html' | t }}</h2>
       <ul class="lj-ings">
-        <li><details class="lj-ing"><summary><img src="{{ 'ing-cacay-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Óleo de Cacay</b><span>O ativo principal. Nutre e dá brilho com toque seco.</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
-          <div class="lj-ing-corpo"><em>Caryodendron orinocense · bacia do Orinoco, Colômbia</em><p>O óleo de uma noz que as comunidades da Orinoquía conhecem há gerações. Rico em vitamina E e ácido linoleico: nutre a fibra e dá brilho sem deixar o caracol pesado.</p><p><strong>Na fórmula:</strong> O ativo principal. Nutre e dá brilho com um toque seco, sem efeito oleoso.</p></div></details></li>
-        <li><details class="lj-ing"><summary><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Sacha Inchi</b><span>Ultraleve e rico em ómega-3. Brilho sem peso.</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
-          <div class="lj-ing-corpo"><em>Plukenetia volubilis · Amazónia colombiana</em><p>A “noz-estrela” da Amazónia. As sementes escondem-se dentro de cápsulas em forma de estrela e dão um óleo muito leve, rico em ómega-3 e ómega-6.</p><p><strong>Na fórmula:</strong> Amacia e dá brilho com uma textura ultraleve, que é absorvida depressa e não deixa resíduo.</p></div></details></li>
-        <li><details class="lj-ing"><summary><img src="{{ 'ing-ungurahui-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ungurahui</b><span>Usado há gerações na Amazónia. Suavidade.</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
-          <div class="lj-ing-corpo"><em>Oenocarpus bataua · conhecido na Colômbia como seje</em><p>O fruto de uma palmeira amazónica que as comunidades indígenas usam há gerações para cuidar do cabelo. O óleo, rico em ácido oleico, é parecido com o azeite, mas mais leve.</p><p><strong>Na fórmula:</strong> Suaviza a fibra, ajuda a desembaraçar e deixa os caracóis com brilho e toque macio.</p></div></details></li>
-        <li><details class="lj-ing"><summary><img src="{{ 'ing-quinoa-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Proteína de quinoa</b><span>Estrutura e elasticidade para o caracol.</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
-          <div class="lj-ing-corpo"><em>Chenopodium quinoa · Andes</em><p>O grão dos Andes, cultivado também no sul da Colômbia. A proteína é hidrolisada, ou seja, partida em fragmentos pequenos que conseguem aderir à superfície do cabelo.</p><p><strong>Na fórmula:</strong> Dá estrutura e elasticidade ao caracol e ajuda a protegê-lo da quebra ao pentear.</p></div></details></li>
-        <li><details class="lj-ing"><summary><img src="{{ 'ing-poliglutamico-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>Ácido Poliglutâmico</b><span>Retém a hidratação. Menos frizz.</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
-          <div class="lj-ing-corpo"><em>γ-PGA · obtido por fermentação natural</em><p>Um ativo de biotecnologia, produzido por fermentação. Funciona como um íman de água: atrai e segura a hidratação dentro e à volta do fio.</p><p><strong>Na fórmula:</strong> Forma um filme leve e invisível que mantém o caracol hidratado e ajuda a controlar o frizz da humidade.</p></div></details></li>
+        <li><details class="lj-ing"><summary><img src="{{ 'ing-cacay-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>{{ 'ondao.loja.ing_cacay_nome' | t }}</b><span>{{ 'ondao.loja.ing_cacay_curto' | t }}</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
+          <div class="lj-ing-corpo"><em>{{ 'ondao.ing.cacay.latim' | t }}</em><p>{{ 'ondao.ing.cacay.corpo' | t }}</p><p><strong>{{ 'ondao.ing.na_formula' | t }}:</strong> {{ 'ondao.loja.ing_cacay_funcao' | t }}</p></div></details></li>
+        <li><details class="lj-ing"><summary><img src="{{ 'ing-sacha-inchi-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>{{ 'ondao.loja.ing_sacha_inchi_nome' | t }}</b><span>{{ 'ondao.ing.sacha_inchi.curto' | t }}</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
+          <div class="lj-ing-corpo"><em>{{ 'ondao.ing.sacha_inchi.latim' | t }}</em><p>{{ 'ondao.ing.sacha_inchi.corpo' | t }}</p><p><strong>{{ 'ondao.ing.na_formula' | t }}:</strong> {{ 'ondao.ing.sacha_inchi.funcao' | t }}</p></div></details></li>
+        <li><details class="lj-ing"><summary><img src="{{ 'ing-ungurahui-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>{{ 'ondao.loja.ing_ungurahui_nome' | t }}</b><span>{{ 'ondao.loja.ing_ungurahui_curto' | t }}</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
+          <div class="lj-ing-corpo"><em>{{ 'ondao.ing.ungurahui.latim' | t }}</em><p>{{ 'ondao.ing.ungurahui.corpo' | t }}</p><p><strong>{{ 'ondao.ing.na_formula' | t }}:</strong> {{ 'ondao.ing.ungurahui.funcao' | t }}</p></div></details></li>
+        <li><details class="lj-ing"><summary><img src="{{ 'ing-quinoa-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>{{ 'ondao.loja.ing_quinoa_nome' | t }}</b><span>{{ 'ondao.ing.quinoa.curto' | t }}</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
+          <div class="lj-ing-corpo"><em>{{ 'ondao.ing.quinoa.latim' | t }}</em><p>{{ 'ondao.ing.quinoa.corpo' | t }}</p><p><strong>{{ 'ondao.ing.na_formula' | t }}:</strong> {{ 'ondao.ing.quinoa.funcao' | t }}</p></div></details></li>
+        <li><details class="lj-ing"><summary><img src="{{ 'ing-poliglutamico-still.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="64" height="64" alt="" loading="lazy"><div><b>{{ 'ondao.loja.ing_poliglutamico_nome' | t }}</b><span>{{ 'ondao.ing.poliglutamico.curto' | t }}</span></div><i class="lj-ing-mais" aria-hidden="true"></i></summary>
+          <div class="lj-ing-corpo"><em>{{ 'ondao.ing.poliglutamico.latim' | t }}</em><p>{{ 'ondao.ing.poliglutamico.corpo' | t }}</p><p><strong>{{ 'ondao.ing.na_formula' | t }}:</strong> {{ 'ondao.ing.poliglutamico.funcao' | t }}</p></div></details></li>
       </ul>
-      <p class="lj-inci">Lista completa de ingredientes (INCI) na página <a href="/pages/ingredientes">Ingredientes</a>.</p>
+      <p class="lj-inci">{{ 'ondao.loja.inci' | t }} <a href="{% render 'ondao-r' %}pages/ingredientes">{{ 'ondao.nav.ingredientes' | t }}</a>.</p>
     </div>
   </section>
 
   <!-- PARA ELA E PARA ELE -->
   <section class="lj-secao">
-    <h2 class="lj-h2 lj-centro">Feito por quem tem caracóis. Para quem tem caracóis.</h2>
+    <h2 class="lj-h2 lj-centro">{{ 'ondao.loja.cartoes_tit' | t }}</h2>
     <div class="lj-rolo">
       <article class="lj-cartao">
-        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-1.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Homem com cabelo ondulado definido num dia húmido"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Mulher de perfil com caracóis longos definidos, em fundo terracota" loading="lazy">{%- endif -%}
-        <h3>Sem crosta</h3>
-        <p>Define o caracol e deixa-o macio ao toque. Nada de cabelo duro, nada de brilho molhado.</p>
+        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-1.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Homem com cabelo ondulado definido num dia húmido"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-1.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-1.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.c1' | t }}" loading="lazy">{%- endif -%}
+        <h3>{{ 'ondao.loja.v1' | t }}</h3>
+        <p>{{ 'ondao.loja.c1_txt' | t }}</p>
       </article>
       <article class="lj-cartao">
-        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-2.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Mulher a amachucar os caracóis com as mãos"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="Homem com caracóis 3B definidos a olhar para cima, com flash" loading="lazy">{%- endif -%}
-        <h3>Dura até amanhã</h3>
-        <p>No dia seguinte, um pouco de água e amachuque. O caracol volta quase ao do primeiro dia.</p>
+        {%- if false -%}<video class="lj-video" src="{{ 'ondao-03-cartao-2.mp4' | asset_url }}" poster="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }}" muted loop playsinline preload="none" width="1080" height="1350" aria-label="Mulher a amachucar os caracóis com as mãos"></video>{%- else -%}<img src="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }}" srcset="{{ 'ondao-03-cartao-2.jpg' | asset_img_url: '540x' }} 540w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '810x' }} 810w, {{ 'ondao-03-cartao-2.jpg' | asset_img_url: '1080x' }} 1080w" sizes="(min-width: 900px) 536px, 78vw" width="1080" height="1350" alt="{{ 'ondao.loja.alt.c2' | t }}" loading="lazy">{%- endif -%}
+        <h3>{{ 'ondao.loja.c2_tit' | t }}</h3>
+        <p>{{ 'ondao.loja.c2_txt' | t }}</p>
       </article>
     </div>
   </section>
@@ -201,13 +201,13 @@
   <!-- COMO USAR -->
   <section class="lj-secao lj-como">
     <div class="lj-wrap lj-como-grid">
-      <div class="lj-como-video"><video class="lj-video" src="{{ 'ondao-04-como-usar.mp4' | asset_url }}" poster="{{ 'ondao-04-como-usar.jpg' | asset_url }}" muted loop playsinline preload="none" aria-label="Vídeo: como se aplica o creme ondão e o resultado na rua"></video></div>
+      <div class="lj-como-video"><video class="lj-video" src="{{ 'ondao-04-como-usar.mp4' | asset_url }}" poster="{{ 'ondao-04-como-usar.jpg' | asset_url }}" muted loop playsinline preload="none" aria-label="{{ 'ondao.loja.video_como' | t }}"></video></div>
       <div>
-        <h2 class="lj-h2">Modo de uso</h2>
+        <h2 class="lj-h2">{{ 'ondao.loja.modo' | t }}</h2>
         <ol class="lj-passos">
-          <li><img src="{{ 'ondao-04-passo-1.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Cabelo húmido</b><span>Depois do banho, tire o excesso de água com uma toalha.</span></li>
-          <li><img src="{{ 'ondao-04-passo-2.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Pouco ou mais creme</b><span>Uma noz para ondas soltas, um pouco mais para caracóis definidos. Espalhe nas palmas e passe de baixo para cima.</span></li>
-          <li><img src="{{ 'ondao-04-passo-3.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>Amachuque e deixe secar</b><span>Ao ar ou com difusor, sem mexer até estar seco. No dia seguinte, água e amachuque.</span></li>
+          <li><img src="{{ 'ondao-04-passo-1.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>{{ 'ondao.loja.p1t' | t }}</b><span>{{ 'ondao.loja.p1' | t }}</span></li>
+          <li><img src="{{ 'ondao-04-passo-2.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>{{ 'ondao.loja.p2t' | t }}</b><span>{{ 'ondao.loja.p2' | t }}</span></li>
+          <li><img src="{{ 'ondao-04-passo-3.jpg' | asset_img_url: '240x' }}" width="72" height="90" alt="" loading="lazy"><b>{{ 'ondao.loja.p3t' | t }}</b><span>{{ 'ondao.loja.p3' | t }}</span></li>
         </ol>
         <a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
       </div>
@@ -217,38 +217,38 @@
 
   <!-- CITAÇÃO DO FUNDADOR -->
   <section class="lj-verde">
-    {%- if settings.ondao_foto_fundador -%}<img class="lj-fundador" src="{{ 'ondao-05-fundador.jpg' | asset_img_url: '300x' }}" alt="Jhon, fundador da ondão" loading="lazy" width="640" height="640">{%- endif -%}
-        <blockquote>“Quando deixei crescer o cabelo, nem sabia que tinha caracóis. Parecia palha e diziam-me: isso não é penteado, é só cabelo. Andava de boné. Um creme deixava-o duro, o óleo deixava-o baixo e oleoso. Fiz a ondão para os caracóis ficarem definidos sem ficarem duros.”</blockquote>
-    <cite>Jhon, fundador</cite>
-    <a class="lj-btn lj-btn-escuro" href="/pages/historia">Ler a nossa história</a>
+    {%- if settings.ondao_foto_fundador -%}<img class="lj-fundador" src="{{ 'ondao-05-fundador.jpg' | asset_img_url: '300x' }}" alt="{{ 'ondao.geral.fundador_alt' | t }}" loading="lazy" width="640" height="640">{%- endif -%}
+        <blockquote>{{ 'ondao.loja.citacao' | t }}</blockquote>
+    <cite>{{ 'ondao.loja.cite' | t }}</cite>
+    <a class="lj-btn lj-btn-escuro" href="{% render 'ondao-r' %}pages/historia">{{ 'ondao.loja.ler_historia' | t }}</a>
   </section>
 
   <!-- FAQ -->
   <section class="lj-secao lj-faq">
     <div class="lj-wrap-estreito">
-      <h2 class="lj-h2">Perguntas frequentes</h2>
-      <details open><summary>Serve para homem e para mulher?</summary><p>Sim. A ondão é unissexo: a fórmula responde à textura do cabelo, não ao género.</p></details>
-      <details><summary>Funciona no meu cabelo?</summary><p>Foi pensado do ondulado (2A) ao cacheado (3C). O que muda é a quantidade: pouco creme para ondas soltas, um pouco mais para caracóis definidos. Em cabelo crespo (tipo 4) ainda estamos a testar. Se o seu cabelo é liso, o creme não o vai encaracolar.</p></details>
-      <details><summary>Quase 20 € por um creme não é caro?</summary><p>Um tubo de 200 ml dá 25 a 30 aplicações num cabelo pelos ombros. Fica a menos de 1 € por lavagem e, lavando 2 a 3 vezes por semana, dura 2 a 3 meses.</p></details>
-      <details><summary>Em que é diferente dos cremes que já uso?</summary><p>É um só produto, em vez de creme, gel, mousse e óleo. Define sem crosta e sem pesar, e o cheiro é fresco, amadeirado e cítrico, nada doce.</p></details>
-      <details><summary>Nunca pus nada no cabelo. Por onde começo?</summary><p>Saia do banho, tire o excesso de água com a toalha, ponha uma noz de creme nas mãos e amachuque o cabelo. É só isto.</p></details>
-      <details><summary>E no dia seguinte?</summary><p>É normal acordar com um lado mais achatado. Borrife um pouco de água, amachuque e o caracol volta quase ao do primeiro dia. Ao terceiro dia, um pouco de creme só nas pontas.</p></details>
-      <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fixação é leve: define sem pesar e sem deixar crosta, e não precisa de amachucar no fim para tirar dureza.</p></details>
-      <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones.</p></details>
-      <details><summary>Quando recebo a minha encomenda?</summary><p>Encomendas feitas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte. Depois das 17:00, ou ao fim de semana, saem no dia útil seguinte. Tem {{ dev }} dias para devolver, a contar da entrega.</p></details>
-      <a class="lj-link" href="/pages/faq">Ver todas as perguntas {{ seta }}</a>
+      <h2 class="lj-h2">{{ 'ondao.nav.perguntas' | t }}</h2>
+      <details open><summary>{{ 'ondao.faq.unissexo_q' | t }}</summary><p>{{ 'ondao.faq.unissexo_a_html' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_funciona_q' | t }}</summary><p>{{ 'ondao.loja.faq_funciona_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_caro_q' | t }}</summary><p>{{ 'ondao.loja.faq_caro_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_diferente_q' | t }}</summary><p>{{ 'ondao.loja.faq_diferente_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_comeco_q' | t }}</summary><p>{{ 'ondao.loja.faq_comeco_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_dia2_q' | t }}</summary><p>{{ 'ondao.loja.faq_dia2_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_duro2_q' | t }}</summary><p>{{ 'ondao.loja.faq_duro2_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.loja.faq_ing2_q' | t }}</summary><p>{{ 'ondao.loja.faq_ing2_a' | t }}</p></details>
+      <details><summary>{{ 'ondao.faq.quando_q' | t }}</summary><p>{{ 'ondao.faq.quando_a_html' | t }}</p></details>
+      <a class="lj-link" href="{% render 'ondao-r' %}pages/faq">{{ 'ondao.loja.todas' | t }} {{ seta }}</a>
     </div>
   </section>
 
 
   <!-- RETRATOS -->
   <section class="lj-secao lj-retratos-sec">
-    <h2 class="lj-h2 lj-centro">Um creme. O seu tipo de caracol.</h2>
-    <p class="lj-centro lj-sub">Mais ou menos creme, conforme a definição que quer.</p>
+    <h2 class="lj-h2 lj-centro">{{ 'ondao.loja.retratos_tit' | t }}</h2>
+    <p class="lj-centro lj-sub">{{ 'ondao.loja.retratos_sub' | t }}</p>
     <div class="lj-retratos">
-      {%- assign nomes = "Ondas|Caracóis|Caracóis fechados" | split: "|" -%}
-      {%- assign doses = "pouco creme|um pouco mais|mais creme" | split: "|" -%}
-      {%- assign altos = "Mulher de frente com cabelo escuro comprido e ondulado|Homem de perfil com caracóis definidos|Mulher com caracóis pequenos e bem definidos" | split: "|" -%}
+      {%- assign nomes = 'ondao.loja.retratos_nomes' | t | split: '|' -%}
+      {%- assign doses = 'ondao.loja.retratos_doses' | t | split: '|' -%}
+      {%- assign altos = 'ondao.loja.retratos_alts' | t | split: '|' -%}
       {%- for i in (1..3) -%}
       {%- capture f -%}ondao-07-retrato-{{ i }}.jpg{%- endcapture -%}
       {%- assign k = forloop.index0 -%}
@@ -263,35 +263,36 @@
   <!-- NEWSLETTER -->
   <section class="lj-news">
     <form class="lj-wrap-estreito" id="lj-news" novalidate>
-      <p>Conselhos práticos para ondas e caracóis e as novidades da ondão em primeira mão. Um email de vez em quando, sem spam.</p>
-      <label for="lj-email">Email</label>
+      <p>{{ 'ondao.loja.news_txt' | t }}</p>
+      <label for="lj-email">{{ 'ondao.loja.email' | t }}</label>
       <input id="lj-email" name="email" type="email" autocomplete="email" required>
       <input type="hidden" name="origem" value="newsletter-rodape">
       <input type="hidden" name="_subject" value="Nova inscrição na newsletter ondão">
-      <label class="lj-consent"><input type="checkbox" name="consent" value="accepted" required> <span>Aceito receber emails da ondão. Posso cancelar a qualquer momento.</span></label>
-      <button class="lj-btn lj-btn-contorno" type="submit">Inscrever</button>
+      <label class="lj-consent"><input type="checkbox" name="consent" value="accepted" required> <span>{{ 'ondao.news.consent' | t }}</span></label>
+      <button class="lj-btn lj-btn-contorno" type="submit">{{ 'ondao.loja.inscrever' | t }}</button>
       <p class="lj-msg" id="lj-msg" role="status"></p>
     </form>
   </section>
 
 
-  <dialog class="lj-escova-dlg" id="lj-escova-dlg" aria-label="Escova de caracóis ondão">
-    <img src="{{ 'ondao-escova-grande.jpg' | asset_url }}" width="1200" height="1200" alt="Escova de caracóis ondão, terracota com base verde-salva" loading="lazy">
-    <p>Escova de caracóis ondão, de oferta com 2 tubos. Ajuda a separar e definir os caracóis depois de aplicar o creme.</p>
-    <form method="dialog"><button class="lj-escova-fechar" aria-label="Fechar">×</button></form>
+  <dialog class="lj-escova-dlg" id="lj-escova-dlg" aria-label="{{ 'ondao.cxjs.escova' | t }}">
+    <img src="{{ 'ondao-escova-grande.jpg' | asset_url }}" width="1200" height="1200" alt="{{ 'ondao.loja.alt.escova' | t }}" loading="lazy">
+    <p>{{ 'ondao.loja.escova_dlg' | t }}</p>
+    <form method="dialog"><button class="lj-escova-fechar" aria-label="{{ 'ondao.geral.fechar' | t }}">×</button></form>
   </dialog>
 
   <!-- BOTÃO FIXO -->
   <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% else %} {{ seta }}{% endif %}</a></div>
 </div>
 
+<script>window.ONDAO_LJ = {"dias": {{ 'ondao.ljjs.dias' | t | json }},"hoje": {{ 'ondao.ljjs.hoje' | t | json }},"amanha": {{ 'ondao.ljjs.amanha' | t | json }},"as_": {{ 'ondao.ljjs.as_' | t | json }},"t1_ate": {{ 'ondao.ljjs.t1_ate' | t | json }},"t2_envio": {{ 'ondao.ljjs.t2_envio' | t | json }},"hero_receba": {{ 'ondao.ljjs.hero_receba' | t | json }},"hero_envio": {{ 'ondao.ljjs.hero_envio' | t | json }},"ate": {{ 'ondao.ljjs.ate' | t | json }},"entrega_ate": {{ 'ondao.ljjs.entrega_ate' | t | json }},"checkout": {{ 'ondao.ljjs.checkout' | t | json }},"foto": {{ 'ondao.ljjs.foto' | t | json }},"t1_proximas": {{ 'ondao.ljjs.t1_proximas' | t | json }},"t2_receba": {{ 'ondao.ljjs.t2_receba' | t | json }}, "news_email": {{ 'ondao.news.erro_email' | t | json }}, "news_consent": {{ 'ondao.news.erro_consent' | t | json }}, "news_ok": {{ 'ondao.news.ok' | t | json }}, "news_falhou": {{ 'ondao.news.falhou' | t | json }}};</script>
 <script>
 (function(){
   // galeria
   var s = document.getElementById("lj-slides"), pts = document.getElementById("lj-pontos");
   if (s && pts) {
     [].forEach.call(s.children, function(sl, i){
-      var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Foto " + (i + 1) + " de " + s.children.length);
+      var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", window.ONDAO_LJ.foto.replace("{i}", i + 1).replace("{n}", s.children.length));
       b.addEventListener("click", function(){ s.scrollTo({left: sl.offsetLeft, behavior: "smooth"}); });
       pts.appendChild(b);
     });
@@ -310,7 +311,7 @@
   (function(){
     var box = document.querySelector(".lj-prazo"); if (!box) return;
     var modo = box.dataset.modo || "pre", corte = +box.dataset.corte || 17, dias = +box.dataset.dias || 10;
-    var DIAS = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+    var L = window.ONDAO_LJ, DIAS = L.dias.split("|"), PAIS = box.dataset.pais || "PT";
     var dd = function(n){ return (n < 10 ? "0" : "") + n; };
     var fmt = function(d){ return DIAS[d.getDay()] + ", " + dd(d.getDate()) + "/" + dd(d.getMonth() + 1); };
     function lisboa(){ // hora de Lisboa, como data "local"
@@ -335,21 +336,23 @@
       var min = Math.max(1, Math.ceil((limite - agora) / 60000)), h = Math.floor(min / 60), m = min % 60;
       var topoTxt = box.querySelector(".lj-prazo-topo"), conta = box.querySelector("[data-prazo-conta]");
       if (modo !== "encomenda" || mesmoDia(limite, agora)){
-        topoTxt.firstChild.nodeValue = "Encomende nas próximas ";
+        topoTxt.querySelector("[data-t1]").textContent = L.t1_proximas;
         conta.textContent = (h ? h + " h" + (m ? " " : "") : "") + (m || !h ? m + " min" : "");
       } else {
         var diaLimite = new Date(limite); diaLimite.setHours(0,0,0,0);
-        topoTxt.firstChild.nodeValue = "Encomende até ";
-        conta.textContent = (mesmoDia(diaLimite, amanha) ? "amanhã" : DIAS[limite.getDay()]) + " às " + corte + ":00";
+        topoTxt.querySelector("[data-t1]").textContent = L.t1_ate;
+        conta.textContent = (mesmoDia(diaLimite, amanha) ? L.amanha : DIAS[limite.getDay()]) + L.as_ + corte + ":00";
       }
-      var nome = function(d){ return mesmoDia(d, hoje) ? "hoje" : (mesmoDia(d, amanha) ? "amanhã, " + fmt(d) : fmt(d)); };
-      var pre = modo === "encomenda" ? "" : "até ";
+      var nome = function(d){ return mesmoDia(d, hoje) ? L.hoje : (mesmoDia(d, amanha) ? L.amanha + ", " + fmt(d) : fmt(d)); };
+      var fora = PAIS !== "PT";
+      topoTxt.querySelector("[data-t2]").textContent = fora ? L.t2_envio : L.t2_receba;
+      var pre = modo === "encomenda" ? "" : L.ate;
       var cap = function(t){ return t.charAt(0).toUpperCase() + t.slice(1); };
       box.querySelector("[data-prazo-envio]").textContent = cap(pre + nome(envio));
-      box.querySelector("[data-prazo-entrega]").textContent = cap(pre + nome(entrega));
+      box.querySelector("[data-prazo-entrega]").textContent = fora ? L.checkout : cap(pre + nome(entrega));
       var heroP = document.querySelector("[data-prazo-hero]");
-      if (heroP) heroP.textContent = (modo === "encomenda" ? "receba " : "entrega até ") + nome(entrega).replace(/, \d\d\/\d\d$/, "");
-      box.querySelector("[data-prazo-entrega-curta]").textContent = (modo === "encomenda" ? "" : "até ") + nome(entrega);
+      if (heroP) heroP.textContent = fora ? L.hero_envio + nome(envio).replace(/, \d\d\/\d\d$/, "") : (modo === "encomenda" ? L.hero_receba : L.entrega_ate) + nome(entrega).replace(/, \d\d\/\d\d$/, "");
+      box.querySelector("[data-prazo-entrega-curta]").textContent = fora ? nome(envio) : (modo === "encomenda" ? "" : L.ate) + nome(entrega);
     }
     pintar(); setInterval(pintar, 30000);
   })();
@@ -402,14 +405,14 @@
   var f = document.getElementById("lj-news"), m = document.getElementById("lj-msg");
   if (f) f.addEventListener("submit", async function(e){
     e.preventDefault();
-    if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { m.textContent = "Confirme o seu email."; return; }
-    if (!f.consent.checked) { m.textContent = "Precisamos do seu consentimento para enviar emails."; return; }
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { m.textContent = window.ONDAO_LJ.news_email; return; }
+    if (!f.consent.checked) { m.textContent = window.ONDAO_LJ.news_consent; return; }
     m.textContent = "A inscrever…";
     try {
       var r = await fetch("https://formspree.io/f/xqpegzwz", {method: "POST", body: new FormData(f), headers: {Accept: "application/json"}});
       if (!r.ok) throw 0;
-      f.reset(); m.textContent = "Está inscrito. Obrigado!";
-    } catch(err) { m.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
+      f.reset(); m.textContent = window.ONDAO_LJ.news_ok;
+    } catch(err) { m.textContent = window.ONDAO_LJ.news_falhou; }
   });
 })();
 </script>
@@ -421,7 +424,7 @@
   "@type": "Product",
   "name": {{ p.title | json }},
   "image": [{{ 'ondao-02-galeria-1.jpg' | asset_url | prepend: 'https:' | json }}],
-  "description": "Creme de pentear leve para ondas e caracóis, com óleo de Cacay da Colômbia. Define sem crosta, sem peso e sem efeito molhado. 200 ml.",
+  "description": {{ 'ondao.loja.schema_desc' | t | json }},
   "brand": {"@type": "Brand", "name": "ondão"},
   {%- if v.sku != blank %}"sku": {{ v.sku | json }},{% endif %}
   "offers": {
@@ -429,15 +432,15 @@
     "url": {{ request.origin | append: p.url | json }},
     "priceCurrency": {{ cart.currency.iso_code | json }},
     "price": {{ v.price | divided_by: 100.0 | json }},
-    "availability": "https://schema.org/{% if v.available %}PreOrder{% else %}OutOfStock{% endif %}",
+    "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}",
     "itemCondition": "https://schema.org/NewCondition",
     "shippingDetails": [{
       "@type": "OfferShippingDetails",
       "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "PT"},
       "shippingRate": {"@type": "MonetaryAmount", "value": 4.5, "currency": "EUR"},
       "deliveryTime": {"@type": "ShippingDeliveryTime",
-        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": {{ dias | default: 10 }}, "unitCode": "DAY"},
-        "transitTime": {"@type": "QuantitativeValue", "minValue": 2, "maxValue": 4, "unitCode": "DAY"}}
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 1, "unitCode": "DAY"}}
     }],
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",

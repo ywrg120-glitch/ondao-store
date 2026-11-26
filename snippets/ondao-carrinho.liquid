@@ -14,8 +14,8 @@
   <div class="cx-g-fundo" data-carrinho-fechar></div>
   <aside class="cx-g-painel" tabindex="-1">
     <header class="cx-g-topo">
-      <h2 id="cx-g-titulo">O seu carrinho <span data-cx-n></span></h2>
-      <button class="cx-g-x" type="button" data-carrinho-fechar aria-label="Fechar carrinho">
+      <h2 id="cx-g-titulo">{{ 'ondao.cx.titulo' | t }} <span data-cx-n></span></h2>
+      <button class="cx-g-x" type="button" data-carrinho-fechar aria-label="{{ 'ondao.cx.fechar' | t }}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </header>
@@ -30,36 +30,36 @@
 
       <div class="cx-g-entrega" data-cx-entrega>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
-        <p><b>Receba <span data-cx-data></span></b><span data-cx-data-nota>Encomendas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte.</span></p>
+        <p><b><span data-cx-data-pre>{{ 'ondao.cx.receba' | t }}</span> <span data-cx-data></span></b><span data-cx-data-nota>{{ 'ondao.cx.regra' | t }}</span></p>
       </div>
 
       <div class="cx-g-mais" data-cx-mais hidden>
         {%- if cv -%}<img src="{{ cv.image | default: cp.featured_image | image_url: width: 160 }}" width="56" height="56" alt="" loading="lazy">{%- endif -%}
-        <p><b>Junte mais um tubo</b><span>Com 2 tubos os portes ficam grátis e leva a escova de caracóis de oferta.</span></p>
-        <div class="cx-g-mais-brinde"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '120x120', crop: 'center' }}" width="44" height="44" alt="" loading="lazy"><span><b>+ Escova de caracóis</b> de oferta</span><em>0,00&nbsp;€</em></div>
-        <button class="cx-g-mais-btn" type="button" data-cx-mais-btn>Juntar · {{ cv.price | money_without_currency }}&nbsp;€</button>
+        <p><b>{{ 'ondao.cx.mais_tit' | t }}</b><span>{{ 'ondao.cx.mais_txt' | t }}</span></p>
+        <div class="cx-g-mais-brinde"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '120x120', crop: 'center' }}" width="44" height="44" alt="" loading="lazy"><span>{{ 'ondao.cx.brinde_html' | t }}</span><em>0,00&nbsp;€</em></div>
+        <button class="cx-g-mais-btn" type="button" data-cx-mais-btn>{{ 'ondao.cx.juntar' | t }} · {{ cv.price | money_without_currency }}&nbsp;€</button>
       </div>
 
       <div class="cx-g-vazio" data-cx-vazio hidden>
-        <p>O seu carrinho está vazio.</p>
-        <a class="btn btn-verde" href="{{ routes.root_url }}" data-carrinho-fechar>Ver o creme</a>
+        <p>{{ 'ondao.cx.vazio' | t }}</p>
+        <a class="btn btn-verde" href="{{ routes.root_url }}" data-carrinho-fechar>{{ 'ondao.geral.ver_creme' | t }}</a>
       </div>
     </div>
 
     <footer class="cx-g-pe" data-cx-pe>
       <div class="cx-g-sub"><span>Subtotal</span><b data-cx-sub></b></div>
       <p class="cx-g-nota" data-cx-nota></p>
-      <a class="cx-g-pagar" href="{{ routes.root_url }}checkout">
+      <a class="cx-g-pagar" href="{% render 'ondao-r' %}checkout">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
-        Finalizar compra em segurança
+        {{ 'ondao.cx.pagar' | t }}
       </a>
       <ul class="cx-g-conf">
-        <li>Pagamento seguro</li>
-        <li>14 dias para devolver</li>
-        <li>Sem subscrições</li>
+        <li>{{ 'ondao.cx.seguro' | t }}</li>
+        <li>{{ 'ondao.cx.dev14' | t }}</li>
+        <li>{{ 'ondao.cx.sem_sub' | t }}</li>
       </ul>
       {%- if shop.enabled_payment_types.size > 0 -%}
-      <div class="cx-g-pag" aria-label="Métodos de pagamento aceites">{%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'cx-g-pag-i' }}{%- endfor -%}</div>
+      <div class="cx-g-pag" aria-label="{{ 'ondao.geral.metodos' | t }}">{%- for tipo in shop.enabled_payment_types -%}{{ tipo | payment_type_svg_tag: class: 'cx-g-pag-i' }}{%- endfor -%}</div>
       {%- endif -%}
     </footer>
   </aside>
@@ -129,6 +129,8 @@ html.cx-trancado{overflow:hidden}
   var g = document.getElementById("cx-gaveta"); if (!g || !window.fetch) return;
   var painel = g.querySelector(".cx-g-painel"), ultimoFoco = null;
   var VAR = +g.dataset.variante, GRATIS = +g.dataset.gratis, PORTES = g.dataset.portes;
+  var TX = {"dias": {{ 'ondao.cxjs.dias' | t | json }},"amanha": {{ 'ondao.cxjs.amanha' | t | json }},"faltam": {{ 'ondao.cxjs.faltam' | t | json }},"tem_gratis": {{ 'ondao.cxjs.tem_gratis' | t | json }},"nota_portes": {{ 'ondao.cxjs.nota_portes' | t | json }},"nota_gratis": {{ 'ondao.cxjs.nota_gratis' | t | json }},"cada": {{ 'ondao.cxjs.cada' | t | json }},"tirar": {{ 'ondao.cxjs.tirar' | t | json }},"juntar_um": {{ 'ondao.cxjs.juntar_um' | t | json }},"qtd": {{ 'ondao.cxjs.qtd' | t | json }},"remover": {{ 'ondao.cxjs.remover' | t | json }},"escova": {{ 'ondao.cxjs.escova' | t | json }},"escova_sub": {{ 'ondao.cxjs.escova_sub' | t | json }},"oferta": {{ 'ondao.cxjs.oferta' | t | json }},"carrinho": {{ 'ondao.cxjs.carrinho' | t | json }},"artigo": {{ 'ondao.cxjs.artigo' | t | json }},"artigos": {{ 'ondao.cxjs.artigos' | t | json }},"envio_hoje": {{ 'ondao.cxjs.envio_hoje' | t | json }},"envio_dia": {{ 'ondao.cxjs.envio_dia' | t | json }},"entrega_checkout": {{ 'ondao.cxjs.entrega_checkout' | t | json }}};
+  var PAIS = {{ localization.country.iso_code | default: 'PT' | json }};
   var ESCOVA = {{ 'ondao-escova.jpg' | asset_img_url: '160x160', crop: 'center' | json }};
   var $ = function(s){ return g.querySelector(s); };
   var euros = function(c){ return (c/100).toFixed(2).replace(".", ",") + " €"; };
@@ -144,9 +146,10 @@ html.cx-trancado{overflow:hidden}
     if (!util(agora) || agora.getHours() >= 17) envio = prox(envio);
     var ent = prox(envio), hoje = new Date(agora); hoje.setHours(0,0,0,0);
     var amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
-    var D = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"], dd = function(n){ return (n < 10 ? "0" : "") + n; };
+    var D = TX.dias.split("|"), dd = function(n){ return (n < 10 ? "0" : "") + n; };
     var txt = D[ent.getDay()] + ", " + dd(ent.getDate()) + "/" + dd(ent.getMonth() + 1);
-    return (ent.toDateString() === amanha.toDateString() ? "amanhã, " : "") + txt;
+    if (PAIS !== "PT"){ var env = envio.toDateString() === hoje.toDateString() ? null : D[envio.getDay()] + ", " + dd(envio.getDate()) + "/" + dd(envio.getMonth() + 1); return {pre: env ? TX.envio_dia : TX.envio_hoje, data: env || "", nota: TX.entrega_checkout}; }
+    return {data: (ent.toDateString() === amanha.toDateString() ? TX.amanha + ", " : "") + txt};
   }
 
   function desenhar(c){
@@ -158,14 +161,14 @@ html.cx-trancado{overflow:hidden}
     $("[data-cx-entrega]").hidden = vazio;
     var falta = GRATIS - c.total_price;
     $("[data-cx-portes-txt]").innerHTML = falta > 0
-      ? "Faltam <b>" + euros(falta) + "</b> para ter <b>portes grátis</b> em Portugal."
-      : "<b>Tem portes grátis</b> em Portugal.";
+      ? TX.faltam.replace("{v}", euros(falta))
+      : TX.tem_gratis;
     $("[data-cx-barra]").style.width = Math.min(100, Math.round(c.total_price * 100 / GRATIS)) + "%";
     $("[data-cx-sub]").textContent = euros(c.total_price);
     $("[data-cx-nota]").textContent = falta > 0
-      ? "Portes de " + PORTES + " € em Portugal, calculados no checkout."
-      : "Portes grátis em Portugal. Outros países: calculados no checkout.";
-    $("[data-cx-data]").textContent = dataEntrega();
+      ? TX.nota_portes.replace("{v}", PORTES)
+      : TX.nota_gratis;
+    var de = dataEntrega(); $("[data-cx-data]").textContent = de.data; if (de.pre) $("[data-cx-data-pre]").textContent = de.pre; if (de.nota) $("[data-cx-data-nota]").textContent = de.nota;
     var so1 = c.items.length === 1 && c.items[0].quantity === 1 && c.items[0].variant_id === VAR && falta > 0;
     $("[data-cx-mais]").hidden = !so1;
     var lista = $("[data-cx-lista]"); lista.innerHTML = "";
@@ -174,12 +177,12 @@ html.cx-trancado{overflow:hidden}
       var img = it.image ? it.image.replace(/(\.[a-z]+)(\?|$)/i, "_160x$1$2") : "";
       li.innerHTML =
         '<img src="' + img + '" width="76" height="76" alt="">' +
-        '<div><span class="cx-nome"></span><span class="cx-var">200 ml · ' + euros(it.final_price) + ' cada</span>' +
-        '<div class="cx-qtd"><button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity-1) + '" aria-label="Tirar um tubo"' + (it.quantity < 2 ? " disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>' +
-        '<span aria-label="Quantidade">' + it.quantity + '</span>' +
-        '<button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity+1) + '" aria-label="Juntar um tubo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div></div>' +
+        '<div><span class="cx-nome"></span><span class="cx-var">200 ml · ' + euros(it.final_price) + ' ' + TX.cada + '</span>' +
+        '<div class="cx-qtd"><button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity-1) + '" aria-label="' + TX.tirar + '"' + (it.quantity < 2 ? " disabled" : "") + '><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>' +
+        '<span aria-label="' + TX.qtd + '">' + it.quantity + '</span>' +
+        '<button type="button" data-l="' + (i+1) + '" data-q="' + (it.quantity+1) + '" aria-label="' + TX.juntar_um + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div></div>' +
         '<div class="cx-g-dir"><b>' + euros(it.final_line_price) + '</b>' +
-        '<button class="cx-g-lixo" type="button" data-l="' + (i+1) + '" data-q="0" aria-label="Remover do carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg></button></div>';
+        '<button class="cx-g-lixo" type="button" data-l="' + (i+1) + '" data-q="0" aria-label="' + TX.remover + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5h6v2M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg></button></div>';
       li.querySelector(".cx-nome").textContent = it.product_title;
       lista.appendChild(li);
     });
@@ -188,8 +191,8 @@ html.cx-trancado{overflow:hidden}
     if (tubos >= 2){
       var gli = document.createElement("li"); gli.className = "cx-g-item cx-g-brinde";
       gli.innerHTML = '<img src="' + ESCOVA + '" width="76" height="76" alt="">' +
-        '<div><span class="cx-nome">Escova de caracóis ondão</span><span class="cx-var">Oferta com 2 tubos</span></div>' +
-        '<div class="cx-g-dir"><b>Oferta</b><s>0,00&nbsp;€</s></div>';
+        '<div><span class="cx-nome">' + TX.escova + '</span><span class="cx-var">' + TX.escova_sub + '</span></div>' +
+        '<div class="cx-g-dir"><b>' + TX.oferta + '</b><s>0,00&nbsp;€</s></div>';
       lista.appendChild(gli);
     }
     var temAttr = c.attributes && c.attributes["Escova de oferta"];
@@ -197,7 +200,7 @@ html.cx-trancado{overflow:hidden}
     if (tubos < 2 && temAttr) fetch(raiz + "cart/update.js", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({attributes: {"Escova de oferta": ""}})});
     // contador do saco no cabeçalho
     [].forEach.call(document.querySelectorAll(".ico-saco"), function(a){
-      a.setAttribute("aria-label", "Carrinho, " + n + (n === 1 ? " artigo" : " artigos"));
+      a.setAttribute("aria-label", TX.carrinho + n + (n === 1 ? TX.artigo : TX.artigos));
       var b = a.querySelector(".saco-n");
       if (n > 0){ if (!b){ b = document.createElement("span"); b.className = "saco-n"; b.setAttribute("aria-hidden", "true"); a.appendChild(b); } b.textContent = n; }
       else if (b){ b.remove(); }

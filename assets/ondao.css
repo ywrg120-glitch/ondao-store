@@ -364,6 +364,8 @@ footer a:hover{color:var(--terra)}
 .foot-marca{display:grid;justify-items:center;gap:12px;margin-top:44px;text-align:center}
 .foot-marca .logo{font-size:clamp(3.6rem,18vw,7rem)}
 .foot-marca .lema{font-family:var(--serif);font-style:italic;color:var(--verde)}
+.idioma select{appearance:none;-webkit-appearance:none;font:inherit;font-size:.78rem;color:var(--tinta);background:transparent url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2710%27 height=%276%27%3E%3Cpath d=%27M1 1l4 4 4-4%27 fill=%27none%27 stroke=%27%23222%27 stroke-width=%271.4%27/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid var(--tinta);border-radius:999px;padding:7px 34px 7px 16px;min-height:36px;cursor:pointer}
+.idioma select:focus-visible{outline:2px solid var(--verde);outline-offset:2px}
 
 /* Popup do quiz */
 .pop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:rgba(16,22,18,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);animation:pop-in .35s ease both}

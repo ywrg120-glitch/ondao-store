@@ -2,14 +2,14 @@
 {%- assign p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay'] -%}
 <section class="pg-cta">
   <div class="wrap estreito">
-    <h2 class="h2">Pronto para a sua <em class="it">onda?</em></h2>
+    <h2 class="h2">{{ 'ondao.cta.titulo_html' | t }}</h2>
     {%- if p != blank and p.selected_or_first_available_variant.available -%}
       {%- assign pv = p.selected_or_first_available_variant -%}
-      <a class="btn btn-verde" href="/cart/{{ pv.id }}:1" data-carrinho-add>Adicionar ao carrinho · {{ pv.price | money_without_currency }}&nbsp;€</a>
-      <p class="pg-cta-nota">Portes grátis em Portugal a partir de 35&nbsp;€ · encomende até às 17:00, receba no dia útil seguinte</p>
+      <a class="btn btn-verde" href="/cart/{{ pv.id }}:1" data-carrinho-add>{{ 'ondao.geral.adicionar' | t }} · {{ pv.price | money_without_currency }}&nbsp;€</a>
+      <p class="pg-cta-nota">{{ 'ondao.cta.nota' | t }}</p>
     {%- else -%}
-      {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">Quero o meu ondão</a>
+      {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">{{ 'ondao.cta.quero' | t }}</a>
     {%- endif -%}
-    <a class="pg-voltar" href="{{ routes.root_url }}">Ver o creme</a>
+    <a class="pg-voltar" href="{{ routes.root_url }}">{{ 'ondao.geral.ver_creme' | t }}</a>
   </div>
 </section>

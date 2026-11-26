@@ -1,7 +1,7 @@
 {%- liquid
   assign cta_p = all_products['creme-finalizador-para-pentear-com-oleo-de-cacay']
-  assign cta_link = '/pages/lista'
-  assign cta_txt = 'Adicionar ao carrinho'
+  assign cta_link = routes.root_url | append: '/pages/lista' | replace: '//', '/'
+  assign cta_txt = 'ondao.geral.adicionar' | t
   if cta_p != blank
     assign cta_v = cta_p.selected_or_first_available_variant
     if cta_v.available
@@ -12,32 +12,32 @@
 <div class="anuncio" aria-label="Avisos">
   <div class="trilho">
     {%- if cta_v and cta_v.available -%}
-      {%- assign av2 = '' -%}{%- assign av3 = '14 dias para devolver após a entrega' -%}
+      {%- assign av2 = '' -%}{%- assign av3 = 'ondao.aviso.devolver' | t -%}
     {%- else -%}
-      {%- assign av2 = 'Pré-venda em breve' -%}{%- assign av3 = 'Enviamos para toda a UE' -%}
+      {%- assign av2 = 'ondao.aviso.pre_venda' | t -%}{%- assign av3 = 'ondao.aviso.ue' | t -%}
     {%- endif -%}
-    <span>Portes grátis em Portugal a partir de 35 €</span>{% if av2 != blank %}<span>{{ av2 }}</span>{% endif %}<span>{{ av3 }}</span>
-    <span aria-hidden="true">Portes grátis em Portugal a partir de 35 €</span>{% if av2 != blank %}<span aria-hidden="true">{{ av2 }}</span>{% endif %}<span aria-hidden="true">{{ av3 }}</span>
+    <span>{{ 'ondao.aviso.portes' | t }}</span>{% if av2 != blank %}<span>{{ av2 }}</span>{% endif %}<span>{{ av3 }}</span>
+    <span aria-hidden="true">{{ 'ondao.aviso.portes' | t }}</span>{% if av2 != blank %}<span aria-hidden="true">{{ av2 }}</span>{% endif %}<span aria-hidden="true">{{ av3 }}</span>
   </div>
 </div>
 
 <header>
   <div class="wrap nav">
     <div>
-      <button class="ico-btn" id="btn-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <button class="ico-btn" id="btn-menu" type="button" aria-label="{{ 'ondao.nav.abrir_menu' | t }}" aria-expanded="false" aria-controls="menu">
         <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
-      <nav class="links" aria-label="Principal">
-        <a href="/pages/creme">O creme</a>
-        <a href="/pages/ingredientes">Ingredientes</a>
-        <a href="/pages/historia">A nossa história</a>
-        <a href="/pages/faq">FAQ</a>
+      <nav class="links" aria-label="{{ 'ondao.nav.principal' | t }}">
+        <a href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.nav.creme' | t }}</a>
+        <a href="{% render 'ondao-r' %}pages/ingredientes">{{ 'ondao.nav.ingredientes' | t }}</a>
+        <a href="{% render 'ondao-r' %}pages/historia">{{ 'ondao.nav.historia' | t }}</a>
+        <a href="{% render 'ondao-r' %}pages/faq">{{ 'ondao.nav.faq' | t }}</a>
       </nav>
     </div>
-    <a href="{{ routes.root_url }}" class="logo" aria-label="ondão, início">ondão</a>
+    <a href="{{ routes.root_url }}" class="logo" aria-label="{{ 'ondao.nav.inicio' | t }}">ondão</a>
     <div class="nav-dir">
       <a class="btn btn-verde nav-cta" id="nav-cta" href="{{ cta_link }}" {% if cta_link contains '/cart/' %}data-carrinho-add{% endif %}>{{ cta_txt }} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ico-btn ico-saco" href="{{ routes.cart_url }}" data-carrinho-abrir aria-label="Carrinho, {{ cart.item_count }} {% if cart.item_count == 1 %}artigo{% else %}artigos{% endif %}">
+      <a class="ico-btn ico-saco" href="{{ routes.cart_url }}" data-carrinho-abrir aria-label="{{ 'ondao.nav.carrinho_n' | t: count: cart.item_count }}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
         {%- if cart.item_count > 0 -%}<span class="saco-n" aria-hidden="true">{{ cart.item_count }}</span>{%- endif -%}
       </a>
@@ -46,11 +46,11 @@
   <div class="menu" id="menu">
     <div class="wrap">
       <ul>
-        <li><a href="/pages/creme">O creme</a></li>
-        <li><a href="/pages/ingredientes">Ingredientes</a></li>
-        <li><a href="/pages/historia">A nossa história</a></li>
-        <li><a href="/pages/faq">Perguntas frequentes</a></li>
-        <li><a href="/pages/lista">Newsletter</a></li>
+        <li><a href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.nav.creme' | t }}</a></li>
+        <li><a href="{% render 'ondao-r' %}pages/ingredientes">{{ 'ondao.nav.ingredientes' | t }}</a></li>
+        <li><a href="{% render 'ondao-r' %}pages/historia">{{ 'ondao.nav.historia' | t }}</a></li>
+        <li><a href="{% render 'ondao-r' %}pages/faq">{{ 'ondao.nav.perguntas' | t }}</a></li>
+        <li><a href="{% render 'ondao-r' %}pages/lista">{{ 'ondao.nav.newsletter' | t }}</a></li>
       </ul>
     </div>
   </div>
@@ -81,7 +81,7 @@
 </script>
 
 {%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.name == 'cart' or template.suffix == 'creme' or template.suffix == 'lista' -%}
-<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"{% if cta_link contains '/cart/' %} data-carrinho-add{% endif %}><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · receba no dia útil seguinte</span>{%- endif -%}</a></div>
+<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"{% if cta_link contains '/cart/' %} data-carrinho-add{% endif %}><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · {{ 'ondao.aviso.fixa_entrega' | t }}</span>{%- endif -%}</a></div>
 {%- endunless -%}
 
 {% schema %}

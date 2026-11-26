@@ -26,6 +26,7 @@ const INGS={
     corpo:"Um ativo de biotecnologia, produzido por fermentação. Funciona como um íman de água: atrai e segura a hidratação dentro e à volta do fio.",
     funcao:"Forma um filme leve e invisível que mantém o caracol hidratado e ajuda a controlar o frizz da humidade.",curto:"Retém a hidratação. Menos frizz."}
 };
+if(window.ONDAO_INGS){Object.keys(window.ONDAO_INGS).forEach(function(k){if(INGS[k])Object.assign(INGS[k],window.ONDAO_INGS[k]);});}
 (function(){
   const heroi=document.getElementById('ing-heroi'); if(!heroi) return;
   let atual='cacay';
@@ -44,7 +45,7 @@ const INGS={
     b.querySelector('.origem').textContent=d.origem;
     b.querySelector('.ing-nome').textContent=d.card;
     b.querySelector('p').textContent=d.curto;
-    b.setAttribute('aria-label','Saber mais sobre '+d.card);
+    b.setAttribute('aria-label',((window.ONDAO_ING_T&&window.ONDAO_ING_T.saber)||'Saber mais sobre ')+d.card);
   }
   document.querySelectorAll('.ing[data-ing]').forEach(b=>{
     pintarCard(b,b.dataset.ing);

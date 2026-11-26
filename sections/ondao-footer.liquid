@@ -3,21 +3,30 @@
     <div class="foot-grid">
       <div>
         <p class="foot-tit">ondão</p>
-        <p style="color:var(--cinza);max-width:24em">Cuidado capilar unissexo para ondas e caracóis, com raízes na Colômbia e casa em Portugal.</p>
+        <p style="color:var(--cinza);max-width:24em">{{ 'ondao.rodape.sobre' | t }}</p>
       </div>
       <div>
-        <p class="foot-tit">Loja</p>
-        <ul><li><a href="/pages/creme">O creme</a></li><li><a href="/pages/ingredientes">Ingredientes</a></li><li><a href="/pages/historia">A nossa história</a></li><li><a href="/pages/lista">Newsletter</a></li></ul>
+        <p class="foot-tit">{{ 'ondao.rodape.loja' | t }}</p>
+        <ul><li><a href="{% render 'ondao-r' %}pages/creme">{{ 'ondao.nav.creme' | t }}</a></li><li><a href="{% render 'ondao-r' %}pages/ingredientes">{{ 'ondao.nav.ingredientes' | t }}</a></li><li><a href="{% render 'ondao-r' %}pages/historia">{{ 'ondao.nav.historia' | t }}</a></li><li><a href="{% render 'ondao-r' %}pages/lista">{{ 'ondao.nav.newsletter' | t }}</a></li></ul>
       </div>
       <div>
-        <p class="foot-tit">Ajuda</p>
-        <ul><li><a href="/pages/faq">FAQ</a></li><li><a href="mailto:ywrg120@gmail.com">Contacto</a></li><li><a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">Envios</a></li><li><a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">Devoluções</a></li><li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Privacidade</a></li><li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">Termos</a></li><li><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">Livro de Reclamações</a></li></ul>
+        <p class="foot-tit">{{ 'ondao.rodape.ajuda' | t }}</p>
+        <ul><li><a href="{% render 'ondao-r' %}pages/faq">{{ 'ondao.nav.faq' | t }}</a></li><li><a href="mailto:ywrg120@gmail.com">{{ 'ondao.rodape.contacto' | t }}</a></li><li><a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">{{ 'ondao.rodape.envios' | t }}</a></li><li><a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">{{ 'ondao.rodape.devolucoes' | t }}</a></li><li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">{{ 'ondao.rodape.privacidade' | t }}</a></li><li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">{{ 'ondao.rodape.termos' | t }}</a></li><li><a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener">{{ 'ondao.rodape.reclamacoes' | t }}</a></li></ul>
       </div>
     </div>
     <div class="foot-marca">
-      <span class="pais">Portugal | EUR €</span>
+      {%- if localization.available_languages.size > 1 -%}
+      {%- form 'localization', class: 'idioma' -%}
+        <label class="sr" for="idioma-sel">{{ 'ondao.rodape.idioma' | t }}</label>
+        <select id="idioma-sel" name="locale_code" onchange="this.form.submit()">
+          {%- for l in localization.available_languages -%}<option value="{{ l.iso_code }}"{% if l.iso_code == localization.language.iso_code %} selected{% endif %}>{{ l.endonym_name | capitalize }}</option>{%- endfor -%}
+        </select>
+        <noscript><button type="submit">OK</button></noscript>
+      {%- endform -%}
+      {%- endif -%}
+      <span class="pais">{{ localization.country.name | default: 'Portugal' }} | {{ localization.country.currency.iso_code | default: 'EUR' }} {{ localization.country.currency.symbol | default: '€' }}</span>
       <span class="logo">ondão</span>
-      <span class="lema">Ondas com raízes.</span>
+      <span class="lema">{{ 'ondao.rodape.lema' | t }}</span>
       <small class="mini">© <span id="ano">{{ "now" | date: "%Y" }}</span> ondão</small>
     </div>
   </div>
