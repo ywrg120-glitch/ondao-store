@@ -2,7 +2,8 @@
   <div class="wrap">
     <div>
       <h1 class="h2">Dicas para a sua onda, <em class="it">no seu email.</em></h1>
-      <p class="lead" style="margin-top:16px">Novidades da ondão e conselhos para cuidar de ondas, cachos e crespos. Um email de vez em quando, sem spam. Pode sair quando quiser.</p>
+      <p class="lead" style="margin-top:16px">Conselhos práticos para ondas e caracóis: quanto creme pôr para o seu tipo de cabelo, como secar sem frizz e como fazer o caracol durar até ao dia seguinte. E as novidades da ondão em primeira mão.</p>
+      <p class="lead" style="margin-top:10px">Um email de vez em quando, sem spam. Sai com um clique, quando quiser.</p>
       <figure class="news-foto"><img src="{{ 'ondao-09-newsletter.jpg' | asset_img_url: '810x' }}" width="1080" height="1350" alt="Homem de caracóis a ler uma carta junto à janela, com um café" loading="lazy"></figure>
     </div>
     <form id="form-vip" novalidate>
@@ -17,9 +18,9 @@
       <div class="campo">
         <span class="rotulo" id="rotulo-cabelo">O meu cabelo é</span>
         <div class="tipos-f" role="radiogroup" aria-labelledby="rotulo-cabelo">
-          <label><input type="radio" name="cabelo" value="ondulado">Ondulado</label>
-          <label><input type="radio" name="cabelo" value="cacheado">Cacheado</label>
-          <label><input type="radio" name="cabelo" value="crespo">Crespo</label>
+          <label><input type="radio" name="cabelo" value="ondas">Ondas</label>
+          <label><input type="radio" name="cabelo" value="caracois">Caracóis</label>
+          <label><input type="radio" name="cabelo" value="caracois-fechados">Caracóis fechados</label>
           <label><input type="radio" name="cabelo" value="nao-sei">Não sei</label>
         </div>
       </div>
@@ -47,6 +48,8 @@
   var form = document.getElementById("form-vip"), msg = document.getElementById("msg");
   document.getElementById("origem").value = qs.get("utm_source") || document.referrer || "direto";
   var tipo = qs.get("cabelo");
+  var antigos = {ondulado:"ondas", cacheado:"caracois", crespo:"caracois-fechados"};
+  if (tipo && antigos[tipo]) tipo = antigos[tipo];
   if (tipo) { var r = form.querySelector('input[name="cabelo"][value="' + tipo.replace(/[^a-z-]/g,"") + '"]'); if (r) r.checked = true; }
   form.addEventListener("submit", async function(e){
     e.preventDefault();
@@ -58,7 +61,7 @@
       var r = await fetch(ENDPOINT, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}});
       if (!r.ok) throw 0;
       form.reset();
-      msg.textContent = "Está inscrito. O primeiro email chega em breve.";
+      msg.textContent = "Está inscrito. Obrigado! Vai receber as novidades e os conselhos no seu email.";
       try { localStorage.setItem("ondao_vip","1"); } catch(e){}
       contar("inscricao-formulario");
     } catch(err) { msg.textContent = "Algo falhou. Tente de novo dentro de momentos."; }
