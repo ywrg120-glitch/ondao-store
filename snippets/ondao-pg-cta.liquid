@@ -6,7 +6,7 @@
     {%- if p != blank and p.selected_or_first_available_variant.available -%}
       {%- assign pv = p.selected_or_first_available_variant -%}
       <a class="btn btn-verde" href="/cart/{{ pv.id }}:1" data-carrinho-add>Adicionar ao carrinho · {{ pv.price | money_without_currency }}&nbsp;€</a>
-      <p class="pg-cta-nota">Portes grátis em Portugal a partir de 35&nbsp;€ · envio em até 10 dias</p>
+      <p class="pg-cta-nota">Portes grátis em Portugal a partir de 35&nbsp;€ · encomende até às 17:00, receba no dia útil seguinte</p>
     {%- else -%}
       {%- capture cta_link -%}{% render 'ondao-cta-link' %}{%- endcapture -%}<a class="btn btn-verde" href="{{ cta_link }}">Quero o meu ondão</a>
     {%- endif -%}

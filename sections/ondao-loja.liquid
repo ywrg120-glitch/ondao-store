@@ -62,7 +62,7 @@
       {%- if e_produto -%}<p class="lj-h1">{%- else -%}<h1 class="lj-h1">{%- endif -%}Não é só cabelo. <em>É de propósito.</em>{%- if e_produto -%}</p>{%- else -%}</h1>{%- endif %}
       <p>Um creme leve que define as ondas e os caracóis sem crosta e sem peso. Um passo, depois do banho.</p>
       <a class="lj-btn lj-btn-claro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}</a>
-      {%- if a_venda -%}<p class="lj-hero-preco">{{ preco }} · envio em até {{ dias }} dias</p>{%- endif -%}
+      {%- if a_venda -%}<p class="lj-hero-preco">{{ preco }} · <span data-prazo-hero>encomende até às 17:00, receba no dia útil seguinte</span></p>{%- endif -%}
     </div>
   </section>
 
@@ -334,6 +334,8 @@
       var cap = function(t){ return t.charAt(0).toUpperCase() + t.slice(1); };
       box.querySelector("[data-prazo-envio]").textContent = cap(pre + nome(envio));
       box.querySelector("[data-prazo-entrega]").textContent = cap(pre + nome(entrega));
+      var heroP = document.querySelector("[data-prazo-hero]");
+      if (heroP) heroP.textContent = (modo === "encomenda" ? "receba " : "entrega até ") + nome(entrega).replace(/, \d\d\/\d\d$/, "");
       box.querySelector("[data-prazo-entrega-curta]").textContent = (modo === "encomenda" ? "" : "até ") + nome(entrega);
     }
     pintar(); setInterval(pintar, 30000);
