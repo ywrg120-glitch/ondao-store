@@ -599,3 +599,8 @@ body:has(.fixa-geral) footer{padding-bottom:110px}
 .cx-g-brinde{background:rgba(200,85,58,.06);border-radius:12px}
 .cx-g-brinde .cx-g-dir b{color:var(--terra,#c8553a);font-size:.85rem}
 .cx-g-brinde .cx-g-dir s{display:block;font-size:.75rem;color:var(--cinza,#6a625a)}
+.cx-g-mais .cx-g-mais-brinde{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:2px 0 4px;padding:8px 10px;border-radius:10px;background:rgba(200,85,58,.07);font-size:.82rem}
+.cx-g-mais .cx-g-mais-brinde img{width:44px;height:44px;border-radius:8px;object-fit:cover;flex:none}
+.cx-g-mais .cx-g-mais-brinde span{flex:1;color:var(--tinta);font-size:.82rem}
+.cx-g-mais .cx-g-mais-brinde b{color:var(--terra,#c8553a)}
+.cx-g-mais .cx-g-mais-brinde em{font-style:normal;font-weight:700;color:var(--terra,#c8553a);white-space:nowrap}

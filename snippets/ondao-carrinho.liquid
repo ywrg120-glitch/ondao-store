@@ -36,6 +36,7 @@
       <div class="cx-g-mais" data-cx-mais hidden>
         {%- if cv -%}<img src="{{ cv.image | default: cp.featured_image | image_url: width: 160 }}" width="56" height="56" alt="" loading="lazy">{%- endif -%}
         <p><b>Junte mais um tubo</b><span>Com 2 tubos os portes ficam grátis e leva a escova de caracóis de oferta.</span></p>
+        <div class="cx-g-mais-brinde"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '120x120', crop: 'center' }}" width="44" height="44" alt="" loading="lazy"><span><b>+ Escova de caracóis</b> de oferta</span><em>0,00&nbsp;€</em></div>
         <button class="cx-g-mais-btn" type="button" data-cx-mais-btn>Juntar · {{ cv.price | money_without_currency }}&nbsp;€</button>
       </div>
 
