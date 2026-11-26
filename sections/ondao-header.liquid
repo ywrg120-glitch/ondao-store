@@ -12,12 +12,12 @@
 <div class="anuncio" aria-label="Avisos">
   <div class="trilho">
     {%- if cta_v and cta_v.available -%}
-      {%- assign av2 = 'Pré-encomenda aberta · envio em até 10 dias' -%}{%- assign av3 = '14 dias para devolver após a entrega' -%}
+      {%- assign av2 = '' -%}{%- assign av3 = '14 dias para devolver após a entrega' -%}
     {%- else -%}
       {%- assign av2 = 'Pré-venda em breve' -%}{%- assign av3 = 'Enviamos para toda a UE' -%}
     {%- endif -%}
-    <span>Portes grátis em Portugal a partir de 35 €</span><span>{{ av2 }}</span><span>{{ av3 }}</span>
-    <span aria-hidden="true">Portes grátis em Portugal a partir de 35 €</span><span aria-hidden="true">{{ av2 }}</span><span aria-hidden="true">{{ av3 }}</span>
+    <span>Portes grátis em Portugal a partir de 35 €</span>{% if av2 != blank %}<span>{{ av2 }}</span>{% endif %}<span>{{ av3 }}</span>
+    <span aria-hidden="true">Portes grátis em Portugal a partir de 35 €</span>{% if av2 != blank %}<span aria-hidden="true">{{ av2 }}</span>{% endif %}<span aria-hidden="true">{{ av3 }}</span>
   </div>
 </div>
 
