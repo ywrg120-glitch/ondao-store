@@ -141,7 +141,7 @@
         <ul class="lj-confianca">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span>Portes {{ portes_txt }}&nbsp;€ em Portugal, <b>grátis a partir de {{ gratis }}&nbsp;€</b>. Envio para toda a UE.</span></li>
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg><span>{{ dev }} dias para devolver, a contar da entrega.</span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pagamento seguro. Paga agora e enviamos em até {{ dias }} dias.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pagamento seguro. Encomende até às 17:00 e enviamos no mesmo dia.</span></li>
         </ul>
         {%- if shop.enabled_payment_types.size > 0 -%}
         <div class="lj-pagamentos" aria-label="Métodos de pagamento aceites">
@@ -235,7 +235,7 @@
       <details><summary>E no dia seguinte?</summary><p>É normal acordar com um lado mais achatado. Borrife um pouco de água, amachuque e o caracol volta quase ao do primeiro dia. Ao terceiro dia, um pouco de creme só nas pontas.</p></details>
       <details><summary>Deixa o cabelo duro ou com efeito molhado?</summary><p>Não. A fixação é leve: define sem pesar e sem deixar crosta, e não precisa de amachucar no fim para tirar dureza.</p></details>
       <details><summary>Que ingredientes tem?</summary><p>Três óleos da Amazónia colombiana (Cacay, Sacha Inchi e Ungurahui), proteína de quinoa dos Andes e Ácido Poliglutâmico, numa base leve sem silicones.</p></details>
-      <details><summary>Quando recebo a minha encomenda?</summary><p>É uma pré-encomenda: enviamos em até {{ dias }} dias depois do pagamento, mais o tempo de transporte. Tem {{ dev }} dias para devolver, a contar da entrega.</p></details>
+      <details><summary>Quando recebo a minha encomenda?</summary><p>Encomendas feitas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte. Depois das 17:00, ou ao fim de semana, saem no dia útil seguinte. Tem {{ dev }} dias para devolver, a contar da entrega.</p></details>
       <a class="lj-link" href="/pages/faq">Ver todas as perguntas {{ seta }}</a>
     </div>
   </section>
