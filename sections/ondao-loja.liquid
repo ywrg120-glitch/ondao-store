@@ -119,9 +119,9 @@
           </label>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="2">
-            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf" data-bf hidden><img src="{{ 'ondao-escova.jpg' | asset_img_url: '120x120', crop: 'center' }}" width="44" height="44" alt="Escova de caracóis ondão" loading="lazy">+ escova de caracóis de oferta</span></span>
+            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf"><button type="button" class="lj-bf-ver" data-escova aria-label="Ver a escova de caracóis em grande"><img src="{{ 'ondao-escova.jpg' | asset_img_url: '160x160', crop: 'center' }}" width="56" height="56" alt="" loading="lazy"><i aria-hidden="true">+</i></button><span>+ escova de caracóis de oferta<small>Toque na foto para ver</small></span></span></span>
             <span class="lj-opcao-preco"><b>{{ preco2 }}</b></span>
-            {%- if dois_gratis -%}<em class="lj-tag" data-bf-tag-normal>Portes grátis</em>{%- endif -%}<em class="lj-tag lj-tag-bf" data-bf hidden>Black Friday · oferta</em>
+            <em class="lj-tag">Escova de oferta</em>
           </label>
         </fieldset>
         {%- else -%}
@@ -274,6 +274,13 @@
     </form>
   </section>
 
+
+  <dialog class="lj-escova-dlg" id="lj-escova-dlg" aria-label="Escova de caracóis ondão">
+    <img src="{{ 'ondao-escova-grande.jpg' | asset_url }}" width="1200" height="1200" alt="Escova de caracóis ondão, terracota com base verde-salva" loading="lazy">
+    <p>Escova de caracóis ondão, de oferta com 2 tubos. Ajuda a separar e definir os caracóis depois de aplicar o creme.</p>
+    <form method="dialog"><button class="lj-escova-fechar" aria-label="Fechar">×</button></form>
+  </dialog>
+
   <!-- BOTÃO FIXO -->
   <div class="lj-fixa" id="lj-fixa"><a class="lj-btn lj-btn-escuro" href="{{ link }}" data-lj-cta{% if a_venda %} data-carrinho-add{% endif %}>{{ txt_cta }}{% if a_venda %} · <span data-lj-total>{{ preco }}</span>{% else %} {{ seta }}{% endif %}</a></div>
 </div>
@@ -292,12 +299,11 @@
     s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
   }
   // vídeos: só tocam quando estão no ecrã; o do topo escolhe a versão do telemóvel ou do computador
-  // Black Friday: escova de caracóis de oferta no pack de 2 tubos, até domingo 30/11 às 23:59 (hora de Lisboa); depois some sozinha
+  // escova de oferta: ver em grande
   (function(){
-    var fim = Date.UTC(2026, 10, 30, 23, 59, 59); // 30/11 23:59:59 em Lisboa = UTC no inverno
-    if (Date.now() > fim) return;
-    [].forEach.call(document.querySelectorAll("[data-bf]"), function(e){ e.hidden = false; });
-    [].forEach.call(document.querySelectorAll("[data-bf-tag-normal]"), function(e){ e.hidden = true; });
+    var d = document.getElementById("lj-escova-dlg"); if (!d || !d.showModal) return;
+    [].forEach.call(document.querySelectorAll("[data-escova]"), function(b){ b.addEventListener("click", function(e){ e.preventDefault(); d.showModal(); }); });
+    d.addEventListener("click", function(e){ if (e.target === d) d.close(); });
   })();
   // prazo de entrega (modo "encomenda", em teste): encomendas até às 17:00 (hora de Lisboa) num dia útil saem nesse dia e chegam no dia útil seguinte.
   // modo "pre" (pré-encomenda): envio em até N dias + 2 a 4 dias úteis CTT, conta até à meia-noite.
