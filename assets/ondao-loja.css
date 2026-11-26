@@ -298,3 +298,6 @@
 .lj-origem .lj-ing-corpo p:last-child{margin-bottom:0}
 .lj-ing-mais{flex:none;box-sizing:border-box}
 .lj-origem-txt .lj-ing-corpo p{margin:0 0 8px!important}
+.lj-bf{display:block;margin-top:2px;font-size:.78rem;font-weight:600;color:var(--terra,#c8553a)}
+.lj-tag.lj-tag-bf{background:#1c3327;color:#f7f3ec}
+[data-bf][hidden],[data-bf-tag-normal][hidden]{display:none!important}

@@ -119,9 +119,9 @@
           </label>
           <label class="lj-opcao">
             <input type="radio" name="lj-qtd" value="2">
-            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span></span>
+            <span class="lj-opcao-txt"><b>2 tubos</b><span>{% if dois_gratis %}Portes grátis{% else %}{{ preco }} por tubo{% endif %}</span><span class="lj-bf" data-bf hidden>+ escova de caracóis de oferta</span></span>
             <span class="lj-opcao-preco"><b>{{ preco2 }}</b></span>
-            {%- if dois_gratis -%}<em class="lj-tag">Portes grátis</em>{%- endif -%}
+            {%- if dois_gratis -%}<em class="lj-tag" data-bf-tag-normal>Portes grátis</em>{%- endif -%}<em class="lj-tag lj-tag-bf" data-bf hidden>Black Friday · oferta</em>
           </label>
         </fieldset>
         {%- else -%}
@@ -292,6 +292,13 @@
     s.addEventListener("scroll", function(){ requestAnimationFrame(marcar); }, {passive: true}); marcar();
   }
   // vídeos: só tocam quando estão no ecrã; o do topo escolhe a versão do telemóvel ou do computador
+  // Black Friday: escova de caracóis de oferta no pack de 2 tubos, até domingo 30/11 às 23:59 (hora de Lisboa); depois some sozinha
+  (function(){
+    var fim = Date.UTC(2026, 10, 30, 23, 59, 59); // 30/11 23:59:59 em Lisboa = UTC no inverno
+    if (Date.now() > fim) return;
+    [].forEach.call(document.querySelectorAll("[data-bf]"), function(e){ e.hidden = false; });
+    [].forEach.call(document.querySelectorAll("[data-bf-tag-normal]"), function(e){ e.hidden = true; });
+  })();
   // prazo de entrega (modo "encomenda", em teste): encomendas até às 17:00 (hora de Lisboa) num dia útil saem nesse dia e chegam no dia útil seguinte.
   // modo "pre" (pré-encomenda): envio em até N dias + 2 a 4 dias úteis CTT, conta até à meia-noite.
   (function(){
