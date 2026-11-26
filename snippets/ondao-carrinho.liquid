@@ -30,12 +30,12 @@
 
       <div class="cx-g-entrega" data-cx-entrega>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
-        <p><b>Entrega prevista em Portugal até <span data-cx-data></span></b><span>Pré-encomenda: enviamos em até 10 dias e os CTT entregam em 2 a 4 dias úteis.</span></p>
+        <p><b>Receba <span data-cx-data></span></b><span data-cx-data-nota>Encomendas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte.</span></p>
       </div>
 
       <div class="cx-g-mais" data-cx-mais hidden>
         {%- if cv -%}<img src="{{ cv.image | default: cp.featured_image | image_url: width: 160 }}" width="56" height="56" alt="" loading="lazy">{%- endif -%}
-        <p><b>Junte mais um tubo</b><span>Com 2 tubos os portes ficam grátis em Portugal.</span></p>
+        <p><b>Junte mais um tubo</b><span>Com 2 tubos os portes ficam grátis e leva a escova de caracóis de oferta.</span></p>
         <button class="cx-g-mais-btn" type="button" data-cx-mais-btn>Juntar · {{ cv.price | money_without_currency }}&nbsp;€</button>
       </div>
 
@@ -128,15 +128,24 @@ html.cx-trancado{overflow:hidden}
   var g = document.getElementById("cx-gaveta"); if (!g || !window.fetch) return;
   var painel = g.querySelector(".cx-g-painel"), ultimoFoco = null;
   var VAR = +g.dataset.variante, GRATIS = +g.dataset.gratis, PORTES = g.dataset.portes;
+  var ESCOVA = {{ 'ondao-escova.jpg' | asset_img_url: '160x160', crop: 'center' | json }};
   var $ = function(s){ return g.querySelector(s); };
   var euros = function(c){ return (c/100).toFixed(2).replace(".", ",") + " €"; };
   var raiz = (window.Shopify && Shopify.routes && Shopify.routes.root) || "/";
 
   function dataEntrega(){
-    // pré-encomenda: envio até 10 dias de calendário + 4 dias úteis dos CTT (o pior caso, para não prometer de mais)
-    var d = new Date(); d.setDate(d.getDate() + (+g.dataset.diasEnvio || 10));
-    var uteis = 0; while (uteis < 4){ d.setDate(d.getDate() + 1); var w = d.getDay(); if (w !== 0 && w !== 6) uteis++; }
-    return d.toLocaleDateString("pt-PT", {weekday: "short", day: "numeric", month: "short"});
+    // encomendas até às 17:00 (hora de Lisboa) num dia útil saem nesse dia e chegam no dia útil seguinte
+    var p = {}; new Intl.DateTimeFormat("en-GB", {timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23"}).formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
+    var agora = new Date(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute);
+    var util = function(d){ var w = d.getDay(); return w !== 0 && w !== 6; };
+    var prox = function(d){ var n = new Date(d); do { n.setDate(n.getDate() + 1); } while (!util(n)); return n; };
+    var envio = new Date(agora); envio.setHours(0,0,0,0);
+    if (!util(agora) || agora.getHours() >= 17) envio = prox(envio);
+    var ent = prox(envio), hoje = new Date(agora); hoje.setHours(0,0,0,0);
+    var amanha = new Date(hoje); amanha.setDate(amanha.getDate() + 1);
+    var D = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"], dd = function(n){ return (n < 10 ? "0" : "") + n; };
+    var txt = D[ent.getDay()] + ", " + dd(ent.getDate()) + "/" + dd(ent.getMonth() + 1);
+    return (ent.toDateString() === amanha.toDateString() ? "amanhã, " : "") + txt;
   }
 
   function desenhar(c){
@@ -173,6 +182,18 @@ html.cx-trancado{overflow:hidden}
       li.querySelector(".cx-nome").textContent = it.product_title;
       lista.appendChild(li);
     });
+    // escova de oferta a partir de 2 tubos: linha no carrinho + nota na encomenda (atributo do carrinho)
+    var tubos = c.items.reduce(function(t, it){ return t + (it.variant_id === VAR ? it.quantity : 0); }, 0);
+    if (tubos >= 2){
+      var gli = document.createElement("li"); gli.className = "cx-g-item cx-g-brinde";
+      gli.innerHTML = '<img src="' + ESCOVA + '" width="76" height="76" alt="">' +
+        '<div><span class="cx-nome">Escova de caracóis ondão</span><span class="cx-var">Oferta com 2 tubos</span></div>' +
+        '<div class="cx-g-dir"><b>Oferta</b><s>0,00&nbsp;€</s></div>';
+      lista.appendChild(gli);
+    }
+    var temAttr = c.attributes && c.attributes["Escova de oferta"];
+    if (tubos >= 2 && !temAttr) fetch(raiz + "cart/update.js", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({attributes: {"Escova de oferta": "Sim (pack de 2 tubos)"}})});
+    if (tubos < 2 && temAttr) fetch(raiz + "cart/update.js", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({attributes: {"Escova de oferta": ""}})});
     // contador do saco no cabeçalho
     [].forEach.call(document.querySelectorAll(".ico-saco"), function(a){
       a.setAttribute("aria-label", "Carrinho, " + n + (n === 1 ? " artigo" : " artigos"));

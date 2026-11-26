@@ -81,7 +81,7 @@
 </script>
 
 {%- unless template.name == 'index' or template.name == 'product' or template.name == 'password' or template.name == 'cart' or template.suffix == 'creme' or template.suffix == 'lista' -%}
-<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"{% if cta_link contains '/cart/' %} data-carrinho-add{% endif %}><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · pré-encomenda</span>{%- endif -%}</a></div>
+<div class="fixa on fixa-geral"><a href="{{ cta_link }}" class="btn btn-verde btn-preco"{% if cta_link contains '/cart/' %} data-carrinho-add{% endif %}><span class="l1">{{ cta_txt }} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- if cta_v and cta_v.available -%}<span class="l2"><b>{{ cta_v.price | money_without_currency }}&nbsp;€</b> · receba no dia útil seguinte</span>{%- endif -%}</a></div>
 {%- endunless -%}
 
 {% schema %}

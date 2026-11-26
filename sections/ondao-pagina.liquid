@@ -61,7 +61,7 @@
                 <div><dt>Subtotal</dt><dd>{{ cart.total_price | money_without_currency }}&nbsp;€</dd></div>
                 <div><dt>Portes</dt><dd>{% if falta > 0 %}4,50&nbsp;€ em Portugal{% else %}Grátis em Portugal{% endif %}</dd></div>
               </dl>
-              <p class="cx-nota">Valor final dos portes e impostos no checkout. Pré-encomenda: enviamos em até 10 dias.</p>
+              <p class="cx-nota">Valor final dos portes e impostos no checkout. Encomendas até às 17:00 de um dia útil saem no mesmo dia e chegam no dia útil seguinte.{% assign tubos_cx = 0 %}{% for it in cart.items %}{% assign tubos_cx = tubos_cx | plus: it.quantity %}{% endfor %}{% if tubos_cx >= 2 %} Inclui a escova de caracóis de oferta.{% endif %}</p>
               <form action="{{ routes.cart_url }}" method="post"><button class="btn btn-verde btn-full" type="submit" name="checkout">Finalizar compra</button></form>
               <ul class="cx-conf">
                 <li>14 dias para devolver, a contar da entrega</li>

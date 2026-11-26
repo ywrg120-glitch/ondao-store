@@ -594,3 +594,8 @@ body:has(.fixa-geral) footer{padding-bottom:110px}
 .rede svg{width:26px;height:26px;flex:none;fill:var(--verde,#1c3327)}
 .rede b{display:block;font-size:.95rem}
 .rede small{display:block;font-size:.8rem;color:var(--cinza,#6a625a)}
+
+/* Escova de oferta no carrinho */
+.cx-g-brinde{background:rgba(200,85,58,.06);border-radius:12px}
+.cx-g-brinde .cx-g-dir b{color:var(--terra,#c8553a);font-size:.85rem}
+.cx-g-brinde .cx-g-dir s{display:block;font-size:.75rem;color:var(--cinza,#6a625a)}
