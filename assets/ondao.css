@@ -585,3 +585,12 @@ body:has(.fixa-geral) footer{padding-bottom:110px}
 .news-foto{margin:22px 0 0;max-width:420px}
 .news-foto img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
 @media (prefers-reduced-motion:reduce){.foto-cap video{display:none}}
+
+/* Redes do fundador (fim da história) */
+.redes{margin-top:22px;padding-top:18px;border-top:1px solid var(--linha,rgba(28,51,39,.14))}
+.redes p{margin:0 0 12px;font-size:.95rem}
+.rede{display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:10px;border:1px solid rgba(28,51,39,.16);border-radius:14px;text-decoration:none;color:var(--tinta);background:rgba(255,253,249,.6);transition:background .2s,border-color .2s}
+.rede:hover{background:#fff;border-color:rgba(28,51,39,.3)}
+.rede svg{width:26px;height:26px;flex:none;fill:var(--verde,#1c3327)}
+.rede b{display:block;font-size:.95rem}
+.rede small{display:block;font-size:.8rem;color:var(--cinza,#6a625a)}
