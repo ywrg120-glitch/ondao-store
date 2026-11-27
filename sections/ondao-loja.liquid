@@ -439,7 +439,6 @@
 })();
 </script>
 
-{%- if e_produto and p != blank -%}
 <script>
 (function(){
   var sec = document.querySelector(".lj-ad"); if (!sec) return;
@@ -452,6 +451,7 @@
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) auto();
 })();
 </script>
+{%- if e_produto and p != blank -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
