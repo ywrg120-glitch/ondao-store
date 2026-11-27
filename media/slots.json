@@ -371,5 +371,15 @@
    0.5,
    0.3
   ]
+ },
+ "11-antes": {
+  "tipo": "imagem",
+  "ficheiro": "ondao-10-antes.jpg",
+  "largura": 1080,
+  "altura": 1350,
+  "foco": [
+   0.5,
+   0.5
+  ]
  }
 }
