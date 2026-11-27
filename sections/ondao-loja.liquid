@@ -198,6 +198,28 @@
   </section>
 
   {%- if settings.ondao_video_como_usar -%}
+  <!-- ANTES E DEPOIS (teste, estilo Wavy) -->
+  <section class="lj-ad" aria-label="{{ 'ondao.loja.ad_aria' | t }}">
+    <div class="lj-ad-in">
+      <div class="lj-ad-texto">
+        <div class="lj-ad-slides"><div class="lj-ad-slide"><span class="lj-ad-rotulo">{{ 'ondao.loja.ad1_t' | t }}</span><p>“{{ 'ondao.loja.ad1' | t }}”</p></div><div class="lj-ad-slide" hidden><span class="lj-ad-rotulo">{{ 'ondao.loja.ad2_t' | t }}</span><p>“{{ 'ondao.loja.ad2' | t }}”</p></div><div class="lj-ad-slide" hidden><span class="lj-ad-rotulo">{{ 'ondao.loja.ad3_t' | t }}</span><p>“{{ 'ondao.loja.ad3' | t }}”</p></div></div>
+        <div class="lj-ad-nav">
+          <button type="button" class="lj-ad-seta" data-ad="-1" aria-label="{{ 'ondao.loja.ad_ant' | t }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button>
+          <a class="lj-btn lj-ad-cta" href="#produto">{{ 'ondao.loja.ad_cta' | t }}</a>
+          <button type="button" class="lj-ad-seta" data-ad="1" aria-label="{{ 'ondao.loja.ad_seg' | t }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="lj-ad-pontos" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="lj-ad-comp" style="--p:50%">
+        <img class="lj-ad-depois" src="{{ 'ondao-10-depois.jpg' | asset_img_url: '900x' }}" srcset="{{ 'ondao-10-depois.jpg' | asset_img_url: '600x' }} 600w, {{ 'ondao-10-depois.jpg' | asset_img_url: '900x' }} 900w" sizes="(min-width: 900px) 470px, 90vw" width="900" height="1125" alt="{{ 'ondao.loja.ad_depois' | t }}" loading="lazy">
+        <img class="lj-ad-antes" src="{{ 'ondao-10-antes.jpg' | asset_img_url: '900x' }}" srcset="{{ 'ondao-10-antes.jpg' | asset_img_url: '600x' }} 600w, {{ 'ondao-10-antes.jpg' | asset_img_url: '900x' }} 900w" sizes="(min-width: 900px) 470px, 90vw" width="900" height="1125" alt="{{ 'ondao.loja.ad_antes' | t }}" loading="lazy">
+        <span class="lj-ad-linha" aria-hidden="true"><b><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M3 12h18"/></svg></b></span>
+        <input class="lj-ad-range" type="range" min="0" max="100" value="50" aria-label="{{ 'ondao.loja.ad_range' | t }}">
+        <small class="lj-ad-nota">{{ 'ondao.loja.ad_nota' | t }}</small>
+      </div>
+    </div>
+  </section>
+
   <!-- COMO USAR -->
   <section class="lj-secao lj-como">
     <div class="lj-wrap lj-como-grid">
@@ -418,6 +440,18 @@
 </script>
 
 {%- if e_produto and p != blank -%}
+<script>
+(function(){
+  var sec = document.querySelector(".lj-ad"); if (!sec) return;
+  var comp = sec.querySelector(".lj-ad-comp"), r = sec.querySelector(".lj-ad-range");
+  r.addEventListener("input", function(){ comp.style.setProperty("--p", r.value + "%"); });
+  var sl = sec.querySelectorAll(".lj-ad-slide"), pt = sec.querySelectorAll(".lj-ad-pontos i"), i = 0, t;
+  var ir = function(n){ sl[i].hidden = true; pt[i].className = ""; i = (n + sl.length) % sl.length; sl[i].hidden = false; pt[i].className = "on"; };
+  var auto = function(){ clearInterval(t); t = setInterval(function(){ ir(i + 1); }, 6000); };
+  sec.querySelectorAll("[data-ad]").forEach(function(b){ b.addEventListener("click", function(){ ir(i + +b.dataset.ad); auto(); }); });
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) auto();
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",

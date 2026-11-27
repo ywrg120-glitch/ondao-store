@@ -352,7 +352,21 @@
       "email": "Email",
       "inscrever": "Inscrever",
       "escova_dlg": "Escova de caracóis ondão, de oferta com 2 tubos. Ajuda a separar e definir os caracóis depois de aplicar o creme.",
-      "schema_desc": "Creme de pentear leve para ondas e caracóis, com óleo de Cacay da Colômbia. Define sem crosta, sem peso e sem efeito molhado. 200 ml."
+      "schema_desc": "Creme de pentear leve para ondas e caracóis, com óleo de Cacay da Colômbia. Define sem crosta, sem peso e sem efeito molhado. 200 ml.",
+      "ad1_t": "Sem crosta",
+      "ad1": "Define o caracol e deixa-o macio ao toque. Nada de cabelo duro, nada de brilho molhado.",
+      "ad2_t": "Dura até amanhã",
+      "ad2": "No dia seguinte, um pouco de água e amachuque. O caracol volta quase ao do primeiro dia.",
+      "ad3_t": "Um passo",
+      "ad3": "Um creme em vez de quatro. Depois do banho, nas mãos, de baixo para cima. É só isto.",
+      "ad_aria": "Antes e depois",
+      "ad_ant": "Anterior",
+      "ad_cta": "Quero o meu ondão",
+      "ad_seg": "Seguinte",
+      "ad_depois": "Depois: caracóis definidos com o creme ondão",
+      "ad_antes": "Antes: o mesmo cabelo seco e com frizz",
+      "ad_range": "Arraste para comparar antes e depois",
+      "ad_nota": "Imagem ilustrativa"
     },
     "ljjs": {
       "t1_proximas": "Encomende nas próximas",

@@ -349,7 +349,21 @@
       "email": "Email",
       "inscrever": "Apuntarme",
       "escova_dlg": "Cepillo de rizos ondão, de regalo con 2 tubos. Ayuda a separar y definir los rizos después de aplicar la crema.",
-      "schema_desc": "Crema de peinado ligera para ondas y rizos, con aceite de Cacay de Colombia. Define sin efecto cartón, sin peso y sin efecto mojado. 200 ml."
+      "schema_desc": "Crema de peinado ligera para ondas y rizos, con aceite de Cacay de Colombia. Define sin efecto cartón, sin peso y sin efecto mojado. 200 ml.",
+      "ad1_t": "Sin efecto cartón",
+      "ad1": "Define el rizo y lo deja suave al tacto. Nada de pelo duro, nada de brillo mojado.",
+      "ad2_t": "Aguanta hasta mañana",
+      "ad2": "Al día siguiente, un poco de agua y scrunch. El rizo vuelve casi como el primer día.",
+      "ad3_t": "Un paso",
+      "ad3": "Una crema en lugar de cuatro. Después de la ducha, en las manos, de abajo arriba. Nada más.",
+      "ad_aria": "Antes y después",
+      "ad_ant": "Anterior",
+      "ad_cta": "Quiero mi ondão",
+      "ad_seg": "Siguiente",
+      "ad_depois": "Después: rizos definidos con la crema ondão",
+      "ad_antes": "Antes: el mismo pelo seco y con frizz",
+      "ad_range": "Arrastra para comparar antes y después",
+      "ad_nota": "Imagen ilustrativa"
     },
     "ljjs": {
       "t1_proximas": "Pide en las próximas",

@@ -309,3 +309,32 @@
 .lj-escova-dlg img{display:block;width:100%;height:auto}
 .lj-escova-dlg p{margin:0;padding:14px 18px 18px;font-size:.9rem;line-height:1.45}
 .lj-escova-fechar{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(247,243,236,.92);font-size:24px;line-height:38px;cursor:pointer;color:var(--verde,#1c3327)}
+
+/* ANTES E DEPOIS (teste, estilo Wavy) */
+.lj-ad{background:var(--salvia-claro);padding:56px 20px}
+.lj-ad-in{max-width:1000px;margin:0 auto;display:grid;gap:36px;align-items:center}
+.lj-ad-texto{display:grid;justify-items:center;text-align:center;gap:22px}
+.lj-ad-slides{display:grid;min-height:11.5em}
+.lj-ad-slide{grid-area:1/1;display:grid;align-content:center;gap:14px;animation:lj-ad-in .45s ease}
+.lj-ad-slide[hidden]{display:none}
+@keyframes lj-ad-in{from{opacity:0;transform:translateY(6px)}}
+.lj-ad-rotulo{font-family:var(--serif);font-size:clamp(1.9rem,6vw,2.6rem);font-weight:500;letter-spacing:-.02em;color:var(--verde)}
+.lj-ad-slide p{font-family:var(--serif);font-size:clamp(1.1rem,3.8vw,1.5rem);line-height:1.25;max-width:24em;margin:0 auto;color:var(--tinta)}
+.lj-ad-nav{display:flex;align-items:center;gap:14px}
+.lj-ad-seta{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--tinta);color:#fff;display:grid;place-items:center;cursor:pointer}
+.lj-ad-seta svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lj-ad-seta:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.lj-ad-cta{background:var(--tinta);color:#fff}
+.lj-ad-pontos{display:flex;gap:8px}
+.lj-ad-pontos i{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.25;color:var(--tinta);transition:opacity .2s}
+.lj-ad-pontos i.on{opacity:1}
+.lj-ad-comp{position:relative;width:100%;max-width:470px;margin:0 auto;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--areia);user-select:none;touch-action:pan-y}
+.lj-ad-comp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;pointer-events:none}
+.lj-ad-antes{clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.lj-ad-linha{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:#fff;pointer-events:none}
+.lj-ad-linha b{position:absolute;top:50%;left:50%;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.lj-ad-linha svg{width:18px;height:18px;fill:none;stroke:var(--tinta);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lj-ad-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none}
+.lj-ad-range:focus-visible + .lj-ad-nota{outline:2px solid #fff}
+.lj-ad-nota{position:absolute;right:10px;bottom:10px;font-size:.68rem;color:#fff;background:rgba(0,0,0,.35);padding:3px 8px;border-radius:999px;pointer-events:none}
+@media (min-width:900px){.lj-ad{padding:80px 40px}.lj-ad-in{grid-template-columns:1fr 470px;gap:56px}}
